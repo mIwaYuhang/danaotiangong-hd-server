@@ -525,13 +525,20 @@ function var_0_4.createRivalsLayer(arg_30_0)
 			var_30_2[arg_31_1]:removeFromParent()
 		end
 
+		local var_31_weapon = arg_31_2.WeaponId or arg_31_2.weaponId
+
+		if not var_31_weapon or var_31_weapon == 0 then
+			var_31_weapon = getHeroGroupWeaponId(arg_31_2.AvatarID)
+		end
+
 		var_30_2[arg_31_1] = figure.createHero({
 			scale = 0.7,
 			isViewQuality = false,
 			platTable = false,
 			figId = arg_31_2.AvatarID,
-			equipId = getHeroGroupWeaponId(arg_31_2.AvatarID),
-			pinjie = EquipPinjieType.eShengPin,
+			equipId = var_31_weapon,
+			pinjie = arg_31_2.PinJie or arg_31_2.pinJie or EquipPinjieType.eShengPin,
+			rebirthCount = arg_31_2.rebirthCount or arg_31_2.BreakthroughCount or arg_31_2.RebirthCount or 0,
 			clickAction = function()
 				arg_30_0:onRivalHeroClicked(arg_31_2.PlayerID)
 			end

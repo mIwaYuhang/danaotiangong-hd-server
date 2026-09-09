@@ -78,7 +78,7 @@ class CsBattleService:
         profile = self.directory.profile(db, player_id)
         return {'Type': kind, 'PlayerId': str(player_id), 'ServerId': self.directory.realm_id, 'ServerName': self.realm_name,
                 'PlayerName': profile['Name'], 'HeadId': profile['Avatar'], 'UnionName': '', 'TotalPower': profile['BattlePower'],
-                'KillCount': 0, 'Rank': 0, 'Level': profile['Level']}
+                'KillCount': 0, 'Rank': 0, 'Level': profile['Level'], **PlayerDirectory.figure_of(profile)}
 
     def _pick_seeds(self, ctx: RoleContext) -> dict:
         db = ctx.db

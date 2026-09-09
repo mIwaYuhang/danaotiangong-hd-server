@@ -117,6 +117,37 @@ class PlayerModel:
     def team_heroes(self, state: dict) -> list:
         return sorted((h for h in state['ownedHeros'] if h.get('battleIx', 0) > 0), key=lambda h: h['battleIx'])
 
+    def avatar_hero(self, state: dict):
+        """对外展示用的主将：``AvatarIndex`` 对应阵位；该位为空则取阵容第一人。"""
+        heroes = self.team_heroes(state)
+        if not heroes:
+            return None
+        try:
+            index = int(state.get('AvatarIndex') or 1)
+        except (TypeError, ValueError):
+            index = 1
+        return next((h for h in heroes if int(h.get('battleIx') or 0) == index), heroes[0])
+
+    def _equip_rows(self, rows):
+        if isinstance(rows, dict):
+            return rows.values()
+        return rows or []
+
+    def weapon_of(self, hero: dict):
+        """展示用武器：已穿戴的武器，否则取该主将缘分武器；``(equipId, pinJie)``。"""
+        if not hero or not hero.get('heroId'):
+            return 0, 1
+        for item in hero.get('equipList') or []:
+            tmpl = self.catalog['BaseEquips'].get(str(item.get('equipId')))
+            if tmpl and int(tmpl.get('equipType') or 0) == 1:
+                return int(item['equipId']), int(item.get('pinJie') or 1)
+        template = self.catalog['BaseHeros'].get(str(hero['heroId']), {})
+        for item in self._equip_rows(template.get('groupEquips')):
+            tmpl = self.catalog['BaseEquips'].get(str(item.get('equipId')))
+            if tmpl and int(tmpl.get('equipType') or 0) == 1:
+                return int(item['equipId']), 5
+        return 0, 1
+
     def unlocked_slots(self, state: dict) -> int:
         """按玩家等级解锁的阵位数（已上阵英雄所在的更高阵位也视为解锁，避免旧存档丢英雄）。"""
         unlocked = self.heroes.unlocked_team_slots(state['PLevel'])

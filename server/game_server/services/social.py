@@ -147,8 +147,10 @@ class FriendService:
 
     def _card(self, db, player_id: int, me: int) -> dict:
         profile = self.directory.profile(db, player_id)
+        rebirth = int(profile.get('RebirthCount') or 0)
         return dict(userId=player_id, name=profile['Name'], level=profile['Level'], battlePower=profile['BattlePower'],
-                    headerId=profile['Avatar'],
+                    headerId=profile['Avatar'], rebirthCount=rebirth, BreakthroughCount=rebirth,
+                    weaponId=int(profile.get('WeaponId') or 0), pinJie=int(profile.get('PinJie') or 1),
                     presentState=1 if self.friendships.presented_today(db, me, player_id, self.clock.day_key()) else 0)
 
     def friends(self, ctx: RoleContext, params) -> dict:
@@ -187,7 +189,8 @@ class FriendService:
             if len(rows) >= 8:
                 break
             rows.append(dict(userId=ROBOT_BASE + index, name=robot['name'], level=robot['level'],
-                             battlePower=robot['battlePower'], headerId=robot['headerId'], presentState=1))
+                             battlePower=robot['battlePower'], headerId=robot['headerId'], presentState=1,
+                             **PlayerDirectory.figure_of({})))
         return rows
 
     def add_request(self, ctx: RoleContext, params) -> dict:

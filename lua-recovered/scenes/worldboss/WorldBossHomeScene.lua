@@ -151,13 +151,20 @@ function var_0_2.place4Persons(arg_7_0, arg_7_1)
 	for iter_7_0 = 1, 4 do
 		if arg_7_1[iter_7_0] then
 			local var_7_4 = arg_7_1[iter_7_0].rank
+			local var_7_weapon = arg_7_1[iter_7_0].weaponId
+
+			if not var_7_weapon or var_7_weapon == 0 then
+				var_7_weapon = getHeroGroupWeaponId(arg_7_1[iter_7_0].avatarID)
+			end
+
 			local var_7_5 = figure.createHero({
 				scale = 0.7,
 				isViewQuality = false,
 				platTable = false,
 				figId = arg_7_1[iter_7_0].avatarID,
-				equipId = getHeroGroupWeaponId(arg_7_1[iter_7_0].avatarID),
-				pinjie = EquipPinjieType.eShengPin
+				equipId = var_7_weapon,
+				pinjie = arg_7_1[iter_7_0].pinJie or EquipPinjieType.eShengPin,
+				rebirthCount = arg_7_1[iter_7_0].rebirthCount or arg_7_1[iter_7_0].BreakthroughCount or 0
 			})
 
 			var_7_5:setPosition(arg_7_0.mPillarPos[var_7_4].x, arg_7_0.mPillarPos[var_7_4].y + 10)

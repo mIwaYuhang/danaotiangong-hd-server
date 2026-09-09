@@ -406,14 +406,21 @@ function var_0_5.createHeroCell(arg_18_0, arg_18_1, arg_18_2, arg_18_3)
 	var_18_2:setScale(0.9)
 	var_18_1:addChild(var_18_2)
 
+	local var_18_weapon = arg_18_3.weaponId or arg_18_3.WeaponId
+
+	if not var_18_weapon or var_18_weapon == 0 then
+		var_18_weapon = getHeroGroupWeaponId(arg_18_3.avatarID)
+	end
+
 	local var_18_3 = {
 		isViewQuality = false,
 		isViewBaseInfo = false,
 		platTable = false,
 		scale = 0.8,
 		figId = arg_18_3.avatarID,
-		equipId = getHeroGroupWeaponId(arg_18_3.avatarID),
-		pinjie = EquipPinjieType.eShengPin,
+		equipId = var_18_weapon,
+		pinjie = arg_18_3.pinJie or arg_18_3.PinJie or EquipPinjieType.eShengPin,
+		rebirthCount = arg_18_3.rebirthCount or arg_18_3.BreakthroughCount or 0,
 		clickAction = function()
 			if arg_18_3.playerID ~= nil then
 				local var_19_0 = require("scenes.fuben.ZSQLogLayer").new({

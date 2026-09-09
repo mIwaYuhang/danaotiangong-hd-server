@@ -233,6 +233,8 @@ def run(app, clock):
     body = p.call('/Hero/Breakthrough', heroid='101')
     check('进阶成功 rebirthCount=1、潜力 +80、消耗 60', body['State'] == 1 and body['Global']['Heros'][0]['rebirthCount'] == 1
           and body['Global']['Heros'][0]['potency'] == 80 and body['Global']['Consume'] == [{'Type': 6, 'ID': 200125, 'Count': 60}], body)
+    slot = next(s for s in body['Global']['Slots'] if s['heroId'] == 101)
+    check('进阶后 Slots 带 rebirthCount，阵容立绘才能换皮', slot['rebirthCount'] == 1, slot)
     left = next((x['Count'] for x in p.role()['Others'] if x['ID'] == 200125), 0)
     if left:
         p.consume([{'Type': 6, 'ID': 200125, 'Count': left}])

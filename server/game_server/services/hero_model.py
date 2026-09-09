@@ -99,6 +99,8 @@ class HeroModel:
         hero.setdefault('destinyList', [])
         hero.setdefault('attributeAddition', {})
         hero['talentLevel'] = self.talent_level(template, hero['rebirthCount'])
+        # 部分界面读 BreakthroughCount（商店预览、神殿），与 rebirthCount 保持同一值
+        hero['BreakthroughCount'] = hero['rebirthCount']
         return hero
 
     def talent_level(self, template: dict, rebirth: int) -> int:

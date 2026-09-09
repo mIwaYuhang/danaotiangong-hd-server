@@ -140,7 +140,7 @@ class HavocService:
         for rank, uid in enumerate(ranked, 1):
             profile = self.directory.profile(db, int(uid))
             rows.append({'Rank': rank, 'PlayerID': str(uid), 'PlayerName': profile['Name'], 'AvatarID': profile['Avatar'],
-                         'Lv': profile['Level'], 'FightScore': scores[uid]['score']})
+                         'Lv': profile['Level'], 'FightScore': scores[uid]['score'], **PlayerDirectory.figure_of(profile)})
         return rows
 
     def _candidates(self, ctx: RoleContext, scores: dict, group: int, salt: int) -> dict:
@@ -151,7 +151,8 @@ class HavocService:
         for i, uid in enumerate(pool[:self.config['candidates']], 1):
             profile = self.directory.profile(ctx.db, uid)
             rows[str(i)] = {'PlayerID': str(uid), 'AvatarID': profile['Avatar'], 'Lv': profile['Level'], 'PlayerName': profile['Name'],
-                            'IsHigh': 1 if scores[str(uid)]['score'] > scores.get(str(ctx.user), {'score': 0})['score'] else 0}
+                            'IsHigh': 1 if scores[str(uid)]['score'] > scores.get(str(ctx.user), {'score': 0})['score'] else 0,
+                            **PlayerDirectory.figure_of(profile)}
         return rows
 
     def _info(self, ctx: RoleContext, season: dict, data: dict) -> dict:
@@ -253,7 +254,7 @@ class HavocService:
         for uid in data['revenge']:
             profile = self.directory.profile(ctx.db, uid)
             rows.append({'PlayerID': str(uid), 'PlayerName': profile['Name'], 'AvatarID': profile['Avatar'], 'Lv': profile['Level'],
-                         'Power': profile['BattlePower']})
+                         'Power': profile['BattlePower'], **PlayerDirectory.figure_of(profile)})
         return {'LogLst': deepcopy(data['logs']), 'RevengeLst': rows}
 
     def logs(self, ctx: RoleContext, params) -> list:

@@ -191,12 +191,18 @@ function var_0_2.showCharacters(arg_12_0, arg_12_1)
 
 	for iter_12_6, iter_12_7 in pairs(var_12_0) do
 		if iter_12_7.name ~= nil and iter_12_7.avatar ~= nil then
+			local var_12_weapon = iter_12_7.statueWeaponID
+
+			if not var_12_weapon or var_12_weapon == 0 then
+				var_12_weapon = getHeroGroupWeaponId(iter_12_7.avatar)
+			end
+
 			local var_12_2 = {
 				isViewQuality = false,
 				isViewBaseInfo = false,
 				figId = iter_12_7.avatar,
-				equipId = getHeroGroupWeaponId(iter_12_7.avatar),
-				pinjie = EquipPinjieType.eShengPin,
+				equipId = var_12_weapon,
+				pinjie = iter_12_7.statuePinJie or EquipPinjieType.eShengPin,
 				scale = Adapter.MinScale * 0.8,
 				rebirthCount = iter_12_7.rebirthCount
 			}

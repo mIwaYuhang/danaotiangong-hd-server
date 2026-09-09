@@ -352,12 +352,20 @@ function var_0_5.createMemberCell(arg_30_0, arg_30_1, arg_30_2, arg_30_3)
 		local var_30_9 = 0
 	end
 
+	local var_30_weapon = arg_30_3.weaponId
+
+	if not var_30_weapon or var_30_weapon == 0 then
+		var_30_weapon = getHeroGroupWeaponId(var_30_4)
+	end
+
 	local var_30_10 = {
 		scale = 0.5,
 		isViewBaseInfo = false,
 		isViewQuality = false,
 		figId = var_30_4,
-		equipId = getHeroGroupWeaponId(var_30_4),
+		equipId = var_30_weapon,
+		pinjie = arg_30_3.pinJie,
+		rebirthCount = arg_30_3.rebirthCount or arg_30_3.BreakthroughCount or 0,
 		clickAction = function()
 			OthersTeamHelper:checkOthersTeam(var_30_3, var_30_5, OthersTeamHelper.eDataFromGuildRequest)
 		end

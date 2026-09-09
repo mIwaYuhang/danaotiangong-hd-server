@@ -166,12 +166,20 @@ function var_0_2.createFriendCell(arg_10_0, arg_10_1, arg_10_2, arg_10_3)
 	local var_10_10 = arg_10_3.userId
 	local var_10_11 = arg_10_3.headerId
 	local var_10_12 = arg_10_3.name
+	local var_10_weapon = arg_10_3.weaponId
+
+	if not var_10_weapon or var_10_weapon == 0 then
+		var_10_weapon = getHeroGroupWeaponId(var_10_11)
+	end
+
 	local var_10_13 = {
 		scale = 0.6,
 		isViewBaseInfo = false,
 		isViewQuality = false,
 		figId = var_10_11,
-		equipId = getHeroGroupWeaponId(var_10_11),
+		equipId = var_10_weapon,
+		pinjie = arg_10_3.pinJie,
+		rebirthCount = arg_10_3.rebirthCount or arg_10_3.BreakthroughCount or 0,
 		clickAction = function()
 			OthersTeamHelper:checkOthersTeam(var_10_10, var_10_12, OthersTeamHelper.eDataFromFriend)
 		end

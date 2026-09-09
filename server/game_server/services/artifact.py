@@ -137,14 +137,15 @@ class ArtifactService:
             if other and self.ledger.bag_count(other, 6, params['fragmentID']) > 0:
                 profile = self.directory.profile_from_state(other)
                 rows.append(dict(playerID=str(user_id), name=profile['Name'], avatarID=profile['Avatar'], level=profile['Level'],
-                                 type=1 if profile['BattlePower'] < self.model.team(ctx.state)['battlePower'] else 3))
+                                 type=1 if profile['BattlePower'] < self.model.team(ctx.state)['battlePower'] else 3,
+                                 **PlayerDirectory.figure_of(profile)))
             if len(rows) >= 6:
                 break
         rank = 1
         while len(rows) < 6:
             profile = self.directory.profile(db, ROBOT_BASE + rank * 7)
             rows.append(dict(playerID=str(profile['PlayerId']), name=profile['Name'], avatarID=profile['Avatar'], level=profile['Level'],
-                             type=min(3, 1 + rank // 3)))
+                             type=min(3, 1 + rank // 3), **PlayerDirectory.figure_of(profile)))
             rank += 1
         return rows
 

@@ -94,6 +94,23 @@ def main():
         check('神殿信息：3 档、3 次', len(temple['worshipInfos']) == 3 and temple['canWorshipTime'] == 3, temple)
         check('神殿立绘是真实主将', temple['statueInfos'] and temple['statueInfos'][0]['statueAvatarID'] > 0
               and temple['statueInfos'][0]['positionName'] == '盟主', temple['statueInfos'])
+        def set_rebirth(player, hero_id, count):
+            model = player.app.services.growth.model
+            def fn(st):
+                hero = next(h for h in st['ownedHeros'] if h['heroId'] == hero_id)
+                hero['rebirthCount'] = count
+                model.refresh_hero(st, hero)
+            player.edit(fn)
+        set_rebirth(a, 101, 12)
+        temple = a.call('/Union/Xm')['Result']
+        lead = next(h for h in a.role()['team']['groupList'] if h['heroId'] == 101)
+        check('进阶 12 后阵容带 rebirthCount', lead['rebirthCount'] == 12, lead)
+        check('神殿立绘带 +12 进阶，才会换 dengji2 皮', temple['statueInfos'][0]['statueAvatarID'] == 101
+              and temple['statueInfos'][0]['breakthroughCount'] == 12, temple['statueInfos'][0])
+        check('神殿立绘带武器', temple['statueInfos'][0].get('statueWeaponID', 0) > 0, temple['statueInfos'][0])
+        members = a.call('/Union/GetAllPlayerUnions')['Result']
+        me = next(r for r in members['PlayerUnionInfoList'] if r['PlayerId'] == a.user)
+        check('成员列表带 BreakthroughCount', me['BreakthroughCount'] == 12 and me['AvatarId'] == 101, me)
         check('我的晶石是玩家 UnionCoin', temple['curUnionCoin'] == a.role()['UnionCoin'], temple)
         body = a.call('/Union/Worship', index='1')
         check('捐献：扣 50 元宝、得晶石、盟贡献增加', body['State'] == 1 and body['Global']['Consume'][0]['Count'] == 50

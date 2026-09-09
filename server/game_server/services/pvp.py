@@ -108,8 +108,12 @@ class ArenaService:
             self.model.heroes.refresh(hero, self.model.equipment.bonus_of(equips), equips)
             heroes.append(hero)
         team = {'battlePower': sum(h['battlePower'] for h in heroes), 'groupList': heroes}
+        rebirth = int(heroes[0].get('rebirthCount') or 0)
+        weapon_id, pinjie = self.model.weapon_of(heroes[0])
         return {'PlayerId': robot_id, 'Name': f'{names[rank % len(names)]}·{rank}', 'Level': level, 'Vip': 0,
-                'Avatar': heroes[0]['heroId'], 'BattlePower': team['battlePower'], 'team': team,
+                'Avatar': heroes[0]['heroId'], 'RebirthCount': rebirth, 'BreakthroughCount': rebirth,
+                'WeaponId': weapon_id, 'PinJie': pinjie,
+                'BattlePower': team['battlePower'], 'team': team,
                 'partnerTeam': [], 'attributeAddition': {}, 'robot': True}
 
     def _robot_equipment(self, rng, robot_id: int, hero_id: int, pos: int, level: int) -> list:
@@ -128,8 +132,10 @@ class ArenaService:
     def _profile_at(self, db, rank: int) -> dict:
         user = self.occupant(db, rank)
         profile = self.directory.profile(db, user if user is not None else ROBOT_BASE + rank)
+        rebirth = int(profile.get('RebirthCount') or 0)
         return dict(PlayerId=str(profile['PlayerId']), PlayerName=profile['Name'], Avatar=profile['Avatar'], Ranking=rank,
-                    Level=profile['Level'], Fighting=profile['BattlePower'], ScorePerTime=self._score_rate(rank))
+                    Level=profile['Level'], Fighting=profile['BattlePower'], ScorePerTime=self._score_rate(rank),
+                    BreakthroughCount=rebirth, rebirthCount=rebirth)
 
     # ---- 接口 -------------------------------------------------------------
 
@@ -335,7 +341,10 @@ class WorldBossService:
         ranks = []
         if data:
             for index, (uid, entry) in enumerate(self._ranking(data)[:4], 1):
-                ranks.append({'rank': index, 'avatarID': entry.get('avatar', 0), 'level': entry.get('level', 1), 'name': entry.get('name', '')})
+                ranks.append({'rank': index, 'avatarID': entry.get('avatar', 0), 'level': entry.get('level', 1), 'name': entry.get('name', ''),
+                              'rebirthCount': int(entry.get('rebirthCount') or 0),
+                              'weaponId': int(entry.get('weaponId') or 0),
+                              'pinJie': int(entry.get('pinJie') or 5)})
         return {'isInActivity': 1 if active else 0, 'remainTime': remaining,
                 'isOrder': boss.get('order', 0) if boss.get('session') == start else 0,
                 'orderVipLv': self.config['order_vip'], 'orderCost': self.config['order_ingot'],
@@ -385,8 +394,11 @@ class WorldBossService:
         damage = pool['hp'] - max(0, enemy.hp)
         pool['hp'] = max(0, enemy.hp)
         gold = int(damage * self.config['gold_per_damage'])
-        me = data['players'].setdefault(str(ctx.user), {'hurt': 0, 'gold': 0, 'name': state['Name'], 'level': state['PLevel'],
-                                                        'avatar': self.model.team_heroes(state)[0]['heroId']})
+        lead = self.model.avatar_hero(state)
+        weapon_id, pinjie = self.model.weapon_of(lead)
+        me = data['players'].setdefault(str(ctx.user), {'hurt': 0, 'gold': 0})
+        me.update(name=state['Name'], level=state['PLevel'], avatar=lead['heroId'] if lead else 0,
+                  rebirthCount=int(lead.get('rebirthCount') or 0) if lead else 0, weaponId=weapon_id, pinJie=pinjie)
         me['hurt'] += damage
         me['gold'] += gold
         data['tick'] += 1

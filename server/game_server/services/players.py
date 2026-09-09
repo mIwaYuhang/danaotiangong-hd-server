@@ -49,11 +49,24 @@ class PlayerDirectory:
 
     def profile_from_state(self, state: dict) -> dict:
         team = self.model.team(state)
-        lead = next((h for h in team['groupList'] if h['heroId']), None)
+        lead = self.model.avatar_hero(state)
+        rebirth = int(lead.get('rebirthCount') or 0) if lead else 0
+        weapon_id, pinjie = self.model.weapon_of(lead)
         return {'PlayerId': state['ID'], 'Name': state['Name'], 'Level': state['PLevel'], 'Vip': state.get('VipLevel', 0),
-                'Avatar': lead['heroId'] if lead else 0, 'BattlePower': team['battlePower'], 'team': team,
+                'Avatar': lead['heroId'] if lead else 0, 'RebirthCount': rebirth, 'BreakthroughCount': rebirth,
+                'WeaponId': weapon_id, 'PinJie': pinjie,
+                'BattlePower': team['battlePower'], 'team': team,
                 'partnerTeam': deepcopy(state.get('partnerTeam', [])),
                 'attributeAddition': deepcopy(state.get('attributeAddition', {})), 'robot': False}
+
+    @staticmethod
+    def figure_of(profile: dict) -> dict:
+        """立绘字段：进阶次数与手上武器，给好友/仙盟/排行等 3D 展示用。"""
+        rebirth = int((profile or {}).get('RebirthCount') or 0)
+        weapon = int((profile or {}).get('WeaponId') or 0)
+        pinjie = int((profile or {}).get('PinJie') or 1)
+        return {'rebirthCount': rebirth, 'BreakthroughCount': rebirth, 'RebirthCount': rebirth,
+                'weaponId': weapon, 'WeaponId': weapon, 'pinJie': pinjie, 'PinJie': pinjie}
 
     # ---- 统一寻址 -----------------------------------------------------------
 

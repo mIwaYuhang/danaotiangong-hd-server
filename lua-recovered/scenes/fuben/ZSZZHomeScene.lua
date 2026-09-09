@@ -380,13 +380,20 @@ function var_0_1.place3Persons(arg_13_0, arg_13_1)
 			for iter_14_1, iter_14_2 in ipairs(arg_14_1 or {}) do
 				if iter_14_2.Rank == iter_14_0 then
 					local var_14_3 = iter_14_2
+					local var_14_weapon = iter_14_2.weaponId or iter_14_2.WeaponId
+
+					if not var_14_weapon or var_14_weapon == 0 then
+						var_14_weapon = getHeroGroupWeaponId(iter_14_2.HeadId)
+					end
+
 					local var_14_4 = figure.createHero({
 						scale = 0.7,
 						isViewQuality = false,
 						platTable = false,
 						figId = iter_14_2.HeadId,
-						equipId = getHeroGroupWeaponId(iter_14_2.HeadId),
-						pinjie = EquipPinjieType.eShengPin
+						equipId = var_14_weapon,
+						pinjie = iter_14_2.pinJie or iter_14_2.PinJie or EquipPinjieType.eShengPin,
+						rebirthCount = iter_14_2.rebirthCount or iter_14_2.BreakthroughCount or 0
 					})
 
 					var_14_4:setAnchorPoint(ccp(0.5, 0))

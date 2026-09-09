@@ -83,7 +83,7 @@ class SanqingService:
             rows.append({'rank': rank, 'playerID': seat['playerId'], 'name': profile['Name'], 'playerName': profile['Name'],
                          'avatarID': profile['Avatar'], 'avatarId': profile['Avatar'], 'level': profile['Level'],
                          'battlePower': profile['BattlePower'], 'continueWinTime': seat['wins'],
-                         'unionName': self.union_name(ctx.db, seat['playerId'])})
+                         'unionName': self.union_name(ctx.db, seat['playerId']), **PlayerDirectory.figure_of(profile)})
         return {'type': kind, 'myType': self.realm_of(ctx.state['PLevel']), 'sanqings': rows, 'chests': self._chest_views(ctx.state),
                 'continueWinTime': self._player(ctx.state)['wins']}
 

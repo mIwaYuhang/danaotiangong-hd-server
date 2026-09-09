@@ -96,15 +96,12 @@ class UnionService:
         avatar = int(profile.get('Avatar') or 0)
         if avatar <= 0:
             return None
-        rebirth = 0
-        other = self.directory.load_state(db, user_id)
-        if other is not None:
-            heroes = self.model.team_heroes(other)
-            if heroes:
-                rebirth = int(heroes[0].get('rebirthCount') or 0)
+        rebirth = int(profile.get('RebirthCount') or profile.get('BreakthroughCount') or 0)
         names = {1: '盟主', 2: '长老', 3: '长老', 4: '青龙护法', 5: '白虎护法', 6: '朱雀护法', 7: '玄武护法', 8: '普通成员'}
         return {'positionName': names.get(position, '普通成员'), 'statueName': profile['Name'],
-                'statueAvatarID': avatar, 'breakthroughCount': rebirth}
+                'statueAvatarID': avatar, 'breakthroughCount': rebirth,
+                'statueWeaponID': int(profile.get('WeaponId') or 0),
+                'statuePinJie': int(profile.get('PinJie') or 5)}
 
     def _statues(self, db, union: dict) -> list:
         members = [(int(uid), m['position']) for uid, m in union['members'].items()]
@@ -242,10 +239,13 @@ class UnionService:
         for uid, member in union['members'].items():
             profile = self.directory.profile(ctx.db, int(uid))
             other = self.directory.load_state(ctx.db, int(uid))
+            rebirth = int(profile.get('RebirthCount') or 0)
             rows.append({'PlayerId': int(uid), 'PlayerName': profile['Name'], 'AvatarId': profile['Avatar'], 'PlayerLevel': profile['Level'],
                          'PlayerLv': profile['Level'], 'PlayerFap': profile['BattlePower'], 'PositionId': member['position'],
                          'Online': 0 if int(uid) == ctx.user else max(0, self.clock.now() - (other or {}).get('LastSeenAt', union['created'])),
-                         'UnionCoin': (other or {}).get('UnionCoin', 0), 'IsFriend': 0})
+                         'UnionCoin': (other or {}).get('UnionCoin', 0), 'IsFriend': 0,
+                         'BreakthroughCount': rebirth, 'rebirthCount': rebirth,
+                         'weaponId': int(profile.get('WeaponId') or 0), 'pinJie': int(profile.get('PinJie') or 1)})
         rows.sort(key=lambda r: (r['PositionId'], -r['PlayerFap']))
         return {'MaxMemberCount': self._max_members(union), 'CurMemberCount': len(rows), 'PlayerUnionInfoList': rows}
 
@@ -328,8 +328,11 @@ class UnionService:
         for uid in union['applies']:
             profile = self.directory.profile(ctx.db, int(uid))
             other = self.directory.load_state(ctx.db, int(uid))
+            rebirth = int(profile.get('RebirthCount') or 0)
             rows.append({'PlayerId': int(uid), 'AvatarId': profile['Avatar'], 'PlayerName': profile['Name'], 'PlayerLv': profile['Level'],
-                         'PlayerFap': profile['BattlePower'], 'PlayerVipLv': (other or {}).get('VipLevel', 0)})
+                         'PlayerFap': profile['BattlePower'], 'PlayerVipLv': (other or {}).get('VipLevel', 0),
+                         'BreakthroughCount': rebirth, 'rebirthCount': rebirth,
+                         'weaponId': int(profile.get('WeaponId') or 0), 'pinJie': int(profile.get('PinJie') or 1)})
         return {'ApplyMemberCount': len(rows), 'UnionApplyList': rows, 'UnionApplyStatus': union['apply_status']}
 
     def approve(self, ctx: RoleContext, params) -> dict:

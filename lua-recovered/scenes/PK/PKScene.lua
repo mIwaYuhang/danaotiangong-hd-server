@@ -840,6 +840,11 @@ function var_0_6.createHeroNode(arg_44_0)
 		end
 	end
 
+	if not var_44_3 then
+		var_44_3 = getHeroGroupWeaponId(var_44_6.heroId)
+		var_44_4 = EquipPinjieType.eShengPin
+	end
+
 	local var_44_7 = {
 		isViewBaseInfo = false,
 		isViewQuality = false,
@@ -847,6 +852,7 @@ function var_0_6.createHeroNode(arg_44_0)
 		figId = var_44_6.heroId,
 		equipId = var_44_3,
 		pinjie = var_44_4,
+		rebirthCount = var_44_6.rebirthCount,
 		clickAction = function()
 			print("clickedFunc")
 		end

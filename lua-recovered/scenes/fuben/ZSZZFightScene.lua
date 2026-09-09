@@ -466,13 +466,20 @@ function var_0_1.createCenterView(arg_27_0)
 			var_29_0 = display.newSprite("uilocal/fuben/zszz_text_034.png")
 			var_29_1 = var_0_2.eEmpty
 		else
+			local var_29_weapon = arg_29_0.weaponId or arg_29_0.WeaponId
+
+			if not var_29_weapon or var_29_weapon == 0 then
+				var_29_weapon = getHeroGroupWeaponId(arg_29_0.headID or 306)
+			end
+
 			var_29_0 = figure.createHero({
 				scale = 0.7,
 				isViewQuality = false,
 				platTable = false,
 				figId = arg_29_0.headID or 306,
-				equipId = getHeroGroupWeaponId(arg_29_0.headID or 306),
-				pinjie = EquipPinjieType.eShengPin
+				equipId = var_29_weapon,
+				pinjie = arg_29_0.pinJie or arg_29_0.PinJie or EquipPinjieType.eShengPin,
+				rebirthCount = arg_29_0.rebirthCount or arg_29_0.BreakthroughCount or 0
 			})
 
 			var_29_0:setContentSize(CCSize(150, 220))
