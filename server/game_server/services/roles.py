@@ -43,6 +43,7 @@ class RoleService:
         self.model = model
         self.mail = mail
         self.welcome_mail = welcome_mail
+        self.enrichers = []  # ``enricher(db, state)``：加载角色时补充需要查库的派生字段（如好友申请数）
 
     # ---- 供分发器调用 ---------------------------------------------------------
 
@@ -52,6 +53,8 @@ class RoleService:
         if row is None:
             raise BusinessError('请先选择初始英雄并设置昵称', STATE_NO_NICKNAME)
         state = self.model.migrate(json.loads(row['state_json']))
+        for enricher in self.enrichers:
+            enricher(ctx.db, state)
         return RoleContext(db=ctx.db, user=ctx.user, row=row, state=state)
 
     # ---- 接口处理函数 ---------------------------------------------------------

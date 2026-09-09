@@ -1,4 +1,4 @@
-"""路由表：本地服实现的全部接口一览。
+"""路由表：服务端已实现的全部接口一览。
 
 参数名与客户端 ``base/serverurl.lua`` 中的查询参数一致。
 所有需要会话的接口，分发器都会额外校验 ``user`` / ``session`` / ``serverid``，
@@ -98,7 +98,7 @@ def build_router(services, token_length: int) -> Router:
     r.role('/Mailinfo/DeletePlayerMailId', s.mail.delete, mailid=Integer())
     r.role('/Mailinfo/ClickPlayerMail', s.mail.clear, mailType=Integer())
     r.role('/Mailinfo/ClickPlayerMailRead', s.mail.clear_read, mailType=Integer())
-    r.role('/Mailinfo/SendMail', s.mail.send, toplayerid=Integer())
+    r.role('/Mailinfo/SendMail', s.mail.send, toplayerid=Integer(), mailContent=Raw(default=''), message=Raw(default=''))
 
     # ---- 活动 -------------------------------------------------------------
     r.role('/SignMonth/GetSignInfoNew', s.activities.sign_info)
@@ -178,11 +178,14 @@ def build_router(services, token_length: int) -> Router:
     r.role('/Friend/RequestFriends', s.friends.requests)
     r.role('/Friend/RecommendFriends', s.friends.recommend, name=Raw(default=''), level=Raw(default=''))
     r.role('/Friend/PresentsInfo', s.friends.presents)
-    r.role('/Friend/GetAllBackPresent', s.friends.presents)
-    for path, extra in (('/Friend/AddMail', 'friendId'), ('/Friend/Add', 'friendId'), ('/Friend/Reject', 'friendId'),
-                        ('/Friend/Delete', 'friendId'), ('/Friend/Present', 'frinendID'), ('/Friend/Get', 'id'),
-                        ('/Friend/SendMail', 'friendId')):
-        r.role(path, s.friends.noop, **{extra: Raw(default='')})
+    r.role('/Friend/GetAllBackPresent', s.friends.get_all_presents)
+    r.role('/Friend/AddMail', s.friends.add_request, friendId=Raw(default=''), message=Raw(default=''))
+    r.role('/Friend/Add', s.friends.accept, friendId=Raw(default=''))
+    r.role('/Friend/Reject', s.friends.remove, friendId=Raw(default=''))
+    r.role('/Friend/Delete', s.friends.remove, friendId=Raw(default=''))
+    r.role('/Friend/Present', s.friends.present, frinendID=Raw(default=''))
+    r.role('/Friend/Get', s.friends.get_present, id=Raw(default=''))
+    r.role('/Friend/SendMail', s.friends.send_mail, friendId=Raw(default=''), message=Raw(default=''))
 
     # ---- 运镖 -------------------------------------------------------------
     r.role('/Transport/GetPlayerTransportInfo', s.transport.info)
@@ -193,8 +196,8 @@ def build_router(services, token_length: int) -> Router:
     r.role('/Transport/RefreshHorse', s.transport.refresh_horse, type=Raw(default=''))
     r.role('/Transport/Bless', s.transport.bless, type=Raw(default=''))
     r.role('/Transport/BlessInfo', s.transport.bless_info)
-    r.role('/Transport/Friends', s.transport.friends)
-    r.role('/Transport/RobFriends', s.transport.friends)
+    r.role('/Transport/Friends', s.transport.rob_targets)
+    r.role('/Transport/RobFriends', s.transport.rob_targets)
     r.role('/Transport/Rob', s.transport.rob, enemyid=Raw(default=''), friendIds=Raw(default=''))
     r.role('/TransportLog/GetPlayerTransportLogList', s.transport.logs, page=Raw(default=''))
     return r

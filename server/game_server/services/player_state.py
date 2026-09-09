@@ -327,6 +327,7 @@ class PlayerModel:
         view['Notify'] = self.notify(state)
         for key in ('Talismans', 'NextIds', 'BattleSession', 'Daily', 'Sign', 'Login', 'Mail', 'Counters',
                     'Recruit', 'TrainPending', 'MysteryStore', 'EnergyUpdatedAt', 'DoubleExpUntil', 'CdUntil',
-                    'LevelGiftClaims', 'MissionClaims', 'LocalChapterClaims', 'CreatedAt', '_v'):
+                    'LevelGiftClaims', 'MissionClaims', 'LocalChapterClaims', 'CreatedAt', '_v', 'FriendRequestCount',
+                    'Arena', 'WorldBoss', 'WorldBossRewards', 'Fuben', 'Tower', 'Transport'):
             view.pop(key, None)
         return view

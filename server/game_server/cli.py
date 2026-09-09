@@ -24,7 +24,7 @@ LOG = logging.getLogger('game_server')
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description='本地单机游戏服务端（仅供受信任的本地测试环境使用）')
+    parser = argparse.ArgumentParser(description='大闹天宫HD 游戏服务端')
     parser.add_argument('--data-dir', type=Path, default=DEFAULT_DATA_DIR,
                         help='data 目录，包含 config/、static/ 与存档（默认 server/data）')
     parser.add_argument('--host', help='覆盖 server.json 的 listen.host')
@@ -67,7 +67,7 @@ def main(argv=None):
     except (StaticDataError, ConfigError) as exc:
         parser.exit(1, f'{exc}\n')
     except (OSError, sqlite3.Error, ValueError):
-        parser.exit(1, '无法初始化本地服务；请检查监听地址、端口和数据库路径权限。\n')
+        parser.exit(1, '无法初始化服务；请检查监听地址、端口和数据库路径权限。\n')
     LOG.info('监听 %s:%s，区服「%s」(ID %s)，业务基址 %s',
              config.server.listen.host, config.server.listen.port,
              config.server.realm.name, config.server.realm.id, config.server.public_url)

@@ -61,7 +61,7 @@
     "RechargePointInfo": []
   },
   "marquee": [
-    {"content": "欢迎来到本地单机服，祝您游戏愉快！", "repeatNumber": 1}
+    {"content": "欢迎来到大闹天宫，祝您游戏愉快！", "repeatNumber": 1}
   ],
   "welcome_mail": {
     "content": "欢迎来到大闹天宫！这是一份见面礼，请收下。",

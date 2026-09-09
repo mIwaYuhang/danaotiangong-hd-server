@@ -45,16 +45,11 @@ class EquipmentModel:
     def bag(state: dict) -> dict:
         return state.setdefault('Talismans', {})
 
-    def create(self, state: dict, equip_id: int, level: int = 1) -> dict:
-        """按模板创建实例并放入背包。"""
+    def build(self, equip_id: int, level: int, equip_user_id: int, hero_id: int = 0, pinjie: int = 1) -> dict:
+        """按模板构造一个实例（不进背包），供背包创建与机器人阵容共用。"""
         template = self.template(equip_id)
-        bag = self.bag(state)
-        if len(bag) >= self.config.bag_capacity:
-            raise BusinessError('法宝背包已满', STATE_EQUIP_BAG_FULL)
-        ids = state.setdefault('NextIds', {})
-        ids['equip'] = ids.get('equip', 0) + 1
-        instance = dict(equipUserId=ids['equip'], equipId=equip_id, level=max(1, level), pinJie=1, pinJieLevel=0,
-                        BreakthroughCount=0, isInTeam=0, heroId=0, gem=None)
+        instance = dict(equipUserId=equip_user_id, equipId=equip_id, level=max(1, level), pinJie=pinjie, pinJieLevel=0,
+                        BreakthroughCount=0, isInTeam=1 if hero_id else 0, heroId=hero_id, gem=None)
         ratio = self.config.initial_ratio_of_max
         for attr in ALL_BATTLE_ATTRS:
             max_value = template.get(f'{attr}Max')
@@ -63,9 +58,29 @@ class EquipmentModel:
                 instance[f'{attr}Grow'] = round(float(template.get(f'{attr}GrowMax', 0)) * ratio, 2)
         for attr in SECONDARY:
             instance[attr] = 0
-        self.compute(instance)
+        return self.compute(instance)
+
+    def create(self, state: dict, equip_id: int, level: int = 1) -> dict:
+        """按模板创建实例并放入背包。"""
+        bag = self.bag(state)
+        if len(bag) >= self.config.bag_capacity:
+            raise BusinessError('法宝背包已满', STATE_EQUIP_BAG_FULL)
+        ids = state.setdefault('NextIds', {})
+        ids['equip'] = ids.get('equip', 0) + 1
+        instance = self.build(equip_id, level, ids['equip'])
         bag[str(instance['equipUserId'])] = instance
         return instance
+
+    @staticmethod
+    def bonus_of(instances) -> dict:
+        """若干实例的属性加成之和。"""
+        total = {}
+        for instance in instances:
+            for attr in ALL_BATTLE_ATTRS:
+                value = instance.get(attr)
+                if value:
+                    total[attr] = total.get(attr, 0) + value
+        return total
 
     def compute(self, instance: dict) -> dict:
         """当前属性 = (初始 + 成长 × (等级-1)) × (1 + 品阶加成) + 喂灵加成。"""
@@ -100,13 +115,7 @@ class EquipmentModel:
                       key=lambda x: self.template(x['equipId'])['equipType'])
 
     def bonus_for_hero(self, state: dict, hero_id: int) -> dict:
-        total = {}
-        for instance in self.equipped_by(state, hero_id):
-            for attr in ALL_BATTLE_ATTRS:
-                value = instance.get(attr)
-                if value:
-                    total[attr] = total.get(attr, 0) + value
-        return total
+        return self.bonus_of(self.equipped_by(state, hero_id))
 
     # ---- 锻造 / 重铸 -----------------------------------------------------------
 
@@ -137,12 +146,14 @@ class EquipmentModel:
                 return int(key)
         return None
 
-    def random_template_id(self, rng, quality: int, equip_type: int = None) -> int:
-        """随机一件指定品质（与部位）的装备模板；没有则逐级降低品质。"""
+    def random_template_id(self, rng, quality: int, equip_type: int = None, profession: int = None) -> int:
+        """随机一件指定品质（与部位、职业）的装备模板；没有则逐级降低品质。"""
         equips = self.catalog['BaseEquips']
         for q in range(quality, 0, -1):
             candidates = [int(k) for k, v in equips.items()
-                          if v['quality'] == q and (equip_type is None or v['equipType'] == equip_type)]
+                          if v['quality'] == q and (equip_type is None or v['equipType'] == equip_type)
+                          and (profession is None or v['equipType'] != 1 or v.get('profession') in (0, 4, profession))
+                          and not v.get('herosId')]
             if candidates:
                 return rng.choice(sorted(candidates))
         raise BusinessError('没有可用的装备模板')

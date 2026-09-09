@@ -179,7 +179,7 @@ class FubenService:
                 for k in sorted(self.catalog['FubenData'], key=int)]
 
     def reset(self, ctx: RoleContext, params):
-        raise BusinessError('本地服不支持重置副本')
+        raise BusinessError('副本重置功能尚未开放')
 
 
 class TowerService:
@@ -347,7 +347,7 @@ class TowerService:
         return Reply({'Resource': deepcopy(outcome.rewards)}, self.ledger.global_for(state, outcome))
 
     def rank(self, ctx: RoleContext, params) -> list:
-        """``/Tower/RankInfo`` 与 ``/Tower/LWRanking``：本地服只有自己。"""
+        """``/Tower/RankInfo`` 与 ``/Tower/LWRanking``：按最高层数排序的玩家榜。"""
         tower = self._state(ctx.state)
         return [dict(playerID=str(ctx.state['ID']), rank=1, name=ctx.state['Name'], level=ctx.state['PLevel'],
                      battlePower=self.model.team(ctx.state)['battlePower'], maxFloor=tower['floor'])]

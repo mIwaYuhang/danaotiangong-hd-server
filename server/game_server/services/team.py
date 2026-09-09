@@ -15,9 +15,10 @@ STATE_TEAM_ERROR = -1111001
 
 
 class TeamService:
-    def __init__(self, model: PlayerModel, events=None):
+    def __init__(self, model: PlayerModel, events=None, directory=None):
         self.model = model
         self.events = events
+        self.directory = directory  # 玩家目录：查看其他玩家阵容
 
     def _apply_formation(self, state: dict, formation: dict):
         """``formation``：battleIx → heroId（0 为空位）。校验后写回 ownedHeros.battleIx。"""
@@ -92,13 +93,17 @@ class TeamService:
         return Reply({'Index': index, 'HeroID': hero_id})
 
     def team_info(self, ctx: RoleContext, params) -> dict:
-        """``/Team/TeamNew``：只允许查看自己的阵容。"""
-        if params['playerid'] != str(ctx.user):
-            raise BusinessError('本地服仅支持查看自己的阵容')
-        state = ctx.state
-        team = self.model.team(state)
-        return dict(team=team, partnerTeam=deepcopy(state['partnerTeam']),
-                    attributeAddition=deepcopy(state.get('attributeAddition', {})))
+        """``/Team/TeamNew?playerid``：查看任意玩家（真实玩家或机器人）的阵容。"""
+        raw = params.get('playerid') or ''
+        if not raw.isdigit():
+            raise BusinessError('玩家编号无效')
+        player_id = int(raw)
+        if player_id == ctx.user or self.directory is None:
+            state = ctx.state
+            return dict(team=self.model.team(state), partnerTeam=deepcopy(state['partnerTeam']),
+                        attributeAddition=deepcopy(state.get('attributeAddition', {})))
+        profile = self.directory.profile(ctx.db, player_id)
+        return dict(team=profile['team'], partnerTeam=profile['partnerTeam'], attributeAddition=profile['attributeAddition'])
 
     def handbook(self, ctx: RoleContext, params) -> dict:
         """``/Handbook/Handbook``：图鉴，逗号分隔的已拥有英雄与装备模板 ID。"""

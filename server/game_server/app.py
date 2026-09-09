@@ -10,6 +10,9 @@
     │                                    │          ├─ HeroGrowthService / TalismanService
     │                                    │          ├─ RecruitmentService / MailService
     │                                    │          ├─ ActivityService / MissionService
+    │                                    │          ├─ ArenaService / WorldBossService（多玩家：PlayerDirectory / RealmStore）
+    │                                    │          ├─ FubenService / TowerService
+    │                                    │          └─ RefineService / FriendService / TransportService
     │                                    ├─ TeamService
     │                                    └─ RoleService
     └── Dispatcher(Router)
@@ -31,15 +34,16 @@ from .services.clock import Clock
 from .services.dungeons import FubenService, TowerService
 from .services.equipment import EquipmentModel
 from .services.growth import HeroGrowthService
-from .services.pvp import ArenaService, WorldBossService
-from .services.social import FriendService, RefineService, TransportService
 from .services.hero_model import HeroModel
 from .services.inventory import InventoryService, Ledger
 from .services.mail import MailService
 from .services.missions import MissionEvents, MissionService
 from .services.player_state import PlayerModel
+from .services.players import Friendships, PlayerDirectory, RealmStore
+from .services.pvp import ArenaService, WorldBossService
 from .services.recruitment import RecruitmentService
 from .services.roles import RoleRepository, RoleService
+from .services.social import FriendService, RefineService, TransportService
 from .services.stages import StageService
 from .services.talisman import TalismanService
 from .services.team import TeamService
@@ -75,15 +79,21 @@ def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Cl
     model = PlayerModel(config.player, catalog, heroes, equipment, clock)
     ledger = Ledger(config.inventory, catalog, model, equipment, clock, rng)
     repository = RoleRepository(realm_id)
+    directory = PlayerDirectory(repository, model, realm_id)
+    store = RealmStore(realm_id)
+    friendships = Friendships(realm_id)
     events = MissionEvents()
-    mail = MailService(ledger, clock, config.player.initial_state.get('SystemMailName', '系统'), events)
+    mail = MailService(ledger, clock, config.player.initial_state.get('SystemMailName', '系统'), events, directory)
     activities = ActivityService(config.activities, ledger, clock, events)
     missions = MissionService(config.missions, ledger, catalog)
     engine = BattleEngine(config.battle, config.hero, catalog, heroes, rng)
+    roles = RoleService(repository, model, mail, config.activities.welcome_mail)
+    friends = FriendService(config.features.friends, model, ledger, clock, directory, friendships, mail)
+    roles.enrichers.append(friends.enrich)
     services = Services(
         account=AccountService(storage, config.auth, realm_id),
-        roles=RoleService(repository, model, mail, config.activities.welcome_mail),
-        team=TeamService(model, events),
+        roles=roles,
+        team=TeamService(model, events, directory),
         growth=HeroGrowthService(model, ledger, events),
         talisman=TalismanService(model, equipment, ledger, events),
         inventory=InventoryService(ledger, config.store, repository),
@@ -93,13 +103,13 @@ def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Cl
         missions=missions,
         mail=mail,
         activities=activities,
-        arena=ArenaService(config.features.arena, model, ledger, engine, clock),
-        worldboss=WorldBossService(config.features.worldboss, model, ledger, engine, clock),
+        arena=ArenaService(config.features.arena, model, ledger, engine, clock, directory, realm_id),
+        worldboss=WorldBossService(config.features.worldboss, model, ledger, engine, clock, store),
         fuben=FubenService(config.features.fuben, model, ledger, engine, clock),
         tower=TowerService(config.features.tower, model, ledger, engine, clock),
         refine=RefineService(config.features.refine, model, ledger, equipment),
-        friends=FriendService(config.features.friends, model, ledger, clock),
-        transport=TransportService(config.features.transport, model, ledger, clock),
+        friends=friends,
+        transport=TransportService(config.features.transport, model, ledger, clock, engine, directory),
     )
     model.add_notify_provider(services.arena.notify)
     model.add_notify_provider(services.worldboss.notify)

@@ -401,7 +401,7 @@ class InventoryService:
         return Reply({'Reward': [dict(ID=ident, Count=count)]}, self.ledger.global_for(state, outcome))
 
     def suit_list(self, ctx: RoleContext, params) -> dict:
-        """``/Prop/StoreSuitPropList``：套装商城，本地服暂无套装商品。"""
+        """``/Prop/StoreSuitPropList``：套装商城，暂无套装商品。"""
         return {'NTC': 0, 'NVL': 0, 'CountDown': 0, 'TotalCount': 0, 'HaveCount': 0, 'SuitProp': []}
 
     # ---- 神秘商店 -----------------------------------------------------------

@@ -177,7 +177,7 @@ class ActivityService:
         return sum(1 for g in self._level_gifts(state) if g['IsGetStatus'])
 
     def growup_info(self, ctx: RoleContext, params) -> dict:
-        """``/LevelGiftBag/GetGrowupInfo``：成长计划（本地服未开放购买）。"""
+        """``/LevelGiftBag/GetGrowupInfo``：成长计划（尚未开放购买）。"""
         return {'IsBuy': 0, 'Rewards': [], 'Price': 0}
 
     # ---- 月卡与充值桩 -----------------------------------------------------------
@@ -190,7 +190,7 @@ class ActivityService:
 
     def unavailable(self, ctx: RoleContext, params):
         """需要支付渠道的功能。"""
-        raise BusinessError('本地服没有支付渠道，该功能未开放')
+        raise BusinessError('尚未接入支付渠道，该功能未开放')
 
     def recharge_list(self, ctx: RoleContext, params) -> list:
         """``/Recharge/RechargeLst``。"""

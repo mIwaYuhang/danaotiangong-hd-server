@@ -19,11 +19,12 @@ STATE_MAIL_DEALT = -1109002
 
 
 class MailService:
-    def __init__(self, ledger: Ledger, clock: Clock, system_name: str, events=None):
+    def __init__(self, ledger: Ledger, clock: Clock, system_name: str, events=None, directory=None):
         self.ledger = ledger
         self.clock = clock
         self.system_name = system_name
         self.events = events
+        self.directory = directory  # 玩家目录，用于玩家间站内信
 
     # ---- 供其他系统调用 ---------------------------------------------------------
 
@@ -32,6 +33,19 @@ class MailService:
         mail = dict(PKID=box['next_id'], MailType=mail_type, MessageContent=content, SendTime=self.clock.now(),
                     ReadingState=0, HaveAccessory=1 if attachments else 0, IsDealWith=0 if attachments else 1,
                     PlayerID=0, NickName=self.system_name, MailAccessory=[dict(x) for x in attachments])
+        box['next_id'] += 1
+        box['items'].insert(0, mail)
+        return mail
+
+    def send_player(self, target_state: dict, sender_state: dict, content: str) -> dict:
+        """玩家之间的站内信（MailType 3，客户端可直接回复）。"""
+        content = content.strip()
+        if not content:
+            raise BusinessError('邮件内容不能为空')
+        box = target_state['Mail']
+        mail = dict(PKID=box['next_id'], MailType=MAIL_FRIEND, MessageContent=content[:500], SendTime=self.clock.now(),
+                    ReadingState=0, HaveAccessory=0, IsDealWith=1, PlayerID=sender_state['ID'], NickName=sender_state['Name'],
+                    MailAccessory=[])
         box['next_id'] += 1
         box['items'].insert(0, mail)
         return mail
@@ -110,8 +124,18 @@ class MailService:
         return {}
 
     def send(self, ctx: RoleContext, params) -> dict:
-        """``/Mailinfo/SendMail?toplayerid``：本地服只有一个玩家，暂不支持互发。"""
-        raise BusinessError('本地服暂不支持给其他玩家发送邮件')
+        """``/Mailinfo/SendMail?toplayerid``：给其他玩家发站内信（POST 正文 mailContent 为 Base64）。"""
+        if self.directory is None:
+            raise BusinessError('暂不支持发送邮件')
+        target_id = params['toplayerid']
+        if target_id == ctx.user:
+            raise BusinessError('不能给自己发送邮件')
+        target = self.directory.load_state(ctx.db, target_id)
+        if target is None:
+            raise BusinessError('玩家不存在')
+        self.send_player(target, ctx.state, params.get('mailContent') or params.get('message') or '')
+        self.directory.save_state(ctx.db, target_id, target)
+        return {}
 
     def _emit(self, state: dict, kind: str, amount: int):
         if self.events is not None:

@@ -1,8 +1,9 @@
 {
   "_doc": {
-    "summary": "中期玩法（单机适配）：争霸、妖王洞穴、十二元辰殿、通天塔、炼化炉、好友、运镖。多人玩法用机器人对手与本地活动时段实现",
-    "arena": "争霸(/Duel/*)：robot_count 机器人数量、robot_names 名字池、初始排名 initial_rank、每日挑战次数 daily_times、次数恢复间隔、积分产出（每 score_interval 秒 + 按排名区间的每周期积分）、胜利奖励、兑换商店（Score 积分价，Reward 奖励）、排名限定奖励",
-    "worldboss": "妖王洞穴(/Worldboss/*)：每日活动时段（本地小时，开始/持续分钟）、四妖王 NPC 编号与血量、复活冷却、复活/鼓舞/预约元宝、鼓舞每次加成、伤害换银币比例、每日参与奖励",
+    "summary": "中期玩法：争霸、妖王洞穴、十二元辰殿、通天塔、炼化炉、好友、运镖。多人玩法基于真实玩家，未被玩家占据的名次/空位由机器人填充",
+    "arena": "争霸(/Duel/*)：robot_count 机器人填充的名次数、robot_names 名字池、initial_rank 新玩家起始名次（排在此之后）、每日挑战次数 daily_times、次数恢复间隔、积分产出（每 score_interval 秒 + 按排名区间的每周期积分）、胜利奖励、兑换商店（Score 积分价，Reward 奖励）、排名限定奖励",
+    "worldboss": "妖王洞穴(/Worldboss/*)：每日活动时段（服务器时区小时、开始/持续分钟）、四妖王 NPC 编号，血量 = boss_hp_per_player_level × 30 为全区服玩家共享；复活冷却、复活/鼓舞/预约元宝、鼓舞每次加成、伤害换银币比例、场次结束后的排名与宝箱奖励",
+    "friends_transport": "friends.present_energy 每份体力赠送领取时获得的体力；transport.max_robbed_times 单次运镖最多被劫次数，rob_ratio 每次被劫损失镖银比例",
     "fuben": "十二元辰殿(/Copy/*)：每日元辰石 daily_keys、刷星银币费用、星级对奖励与敌方属性的倍率、每波基础奖励随殿序号递增、翻牌商品池（Cost 为星价）",
     "tower": "通天塔(/Tower/*)：层数上限、每日挑战次数、三种难度(type)的积分与敌方倍率、每层 NPC 等级曲线、每 5 层奖励、Buff 商店（storeLevel 档、score 价、addtionProperty 属性 ID、addtionRate 加成）、扫荡所需等级/VIP",
     "refine": "炼化炉(/RefiningFurnace/*)：主将/将魂按品质返还魂玉，绿蓝装备返银币、紫橙装备返喂灵石；重生元宝费用按品质与进阶次数",
@@ -110,6 +111,7 @@
   "friends": {
     "friend_count_max": 30,
     "daily_energy_gets": 10,
+    "present_energy": 2,
     "recommend_robots": [{"name": "逍遥子", "level": 20, "battlePower": 8000, "headerId": 103}, {"name": "紫霞仙子", "level": 18, "battlePower": 7200, "headerId": 105}, {"name": "牛魔王", "level": 25, "battlePower": 11000, "headerId": 110}]
   },
   "transport": {
@@ -122,6 +124,8 @@
     "refresh_ingot": 10,
     "call_horse_ingot": 50,
     "early_end_ingot_per_minute": 10,
-    "gold_per_level": 200
+    "gold_per_level": 200,
+    "max_robbed_times": 3,
+    "rob_ratio": 0.1
   }
 }

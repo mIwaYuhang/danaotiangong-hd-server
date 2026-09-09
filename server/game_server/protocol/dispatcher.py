@@ -21,7 +21,7 @@ from .router import PUBLIC, ROLE, Router
 
 SERVER_LIST_PATH = '/ServerList.aspx'
 HEALTH_PATH = '/health'
-#: 客户端 ``network.lua`` 自动附加的公共参数；``sign`` 为旧签名，本地服忽略。
+#: 客户端 ``network.lua`` 自动附加的公共参数；``sign`` 为旧签名，当前不校验。
 COMMON_PARAMS = frozenset(('user', 'session', 'serverid', 'sign', 'version', 'resource', '_l', 'deviceToken'))
 NOT_IMPLEMENTED = {'error': 'not_implemented'}
 
