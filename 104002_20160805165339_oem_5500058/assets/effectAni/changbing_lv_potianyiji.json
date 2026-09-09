@@ -1,0 +1,271 @@
+{
+"bones": [
+	{ "name": "changbing_lv_potianyiji" },
+	{ "name": "changbing_lv_potianyiji_baozha", "parent": "changbing_lv_potianyiji", "scaleX": 2, "scaleY": 2 },
+	{ "name": "changbing_lv_potianyiji_dian", "parent": "changbing_lv_potianyiji", "scaleX": 2, "scaleY": 2 },
+	{ "name": "changbing_lv_potianyiji_guangquan", "parent": "changbing_lv_potianyiji", "scaleX": 2, "scaleY": 2 },
+	{
+		"name": "changbing_lv_potianyiji_guangshu",
+		"parent": "changbing_lv_potianyiji",
+		"length": 142.7,
+		"scaleX": 2,
+		"scaleY": 2,
+		"rotation": 89.09
+	},
+	{ "name": "changbing_lv_potianyiji_kong", "parent": "changbing_lv_potianyiji", "scaleX": 2, "scaleY": 2 },
+	{ "name": "changbing_lv_potianyiji_shan", "parent": "changbing_lv_potianyiji", "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{ "name": "changbing_lv_potianyiji_dian", "bone": "changbing_lv_potianyiji_dian", "attachment": "changbing_lv_potianyiji_dian" },
+	{ "name": "changbing_lv_potianyiji_kong", "bone": "changbing_lv_potianyiji_kong", "attachment": "changbing_lv_potianyiji_kong" },
+	{
+		"name": "changbing_lv_potianyiji_guangquan",
+		"bone": "changbing_lv_potianyiji_guangquan",
+		"attachment": "changbing_lv_potianyiji_guangquan"
+	},
+	{ "name": "changbing_lv_potianyiji_shan", "bone": "changbing_lv_potianyiji_shan", "attachment": "changbing_lv_potianyiji_shan" },
+	{
+		"name": "changbing_lv_potianyiji_guangshu",
+		"bone": "changbing_lv_potianyiji_guangshu",
+		"attachment": "changbing_lv_potianyiji_guangshu"
+	},
+	{
+		"name": "changbing_lv_potianyiji_baozha",
+		"bone": "changbing_lv_potianyiji_baozha",
+		"attachment": "changbing_lv_potianyiji_baozha_05"
+	}
+],
+"skins": {
+	"default": {
+		"changbing_lv_potianyiji_baozha": {
+			"changbing_lv_potianyiji_baozha_01": { "width": 181, "height": 180 },
+			"changbing_lv_potianyiji_baozha_02": { "width": 181, "height": 180 },
+			"changbing_lv_potianyiji_baozha_03": { "width": 181, "height": 180 },
+			"changbing_lv_potianyiji_baozha_04": { "width": 181, "height": 180 },
+			"changbing_lv_potianyiji_baozha_05": { "width": 181, "height": 180 }
+		},
+		"changbing_lv_potianyiji_dian": {
+			"changbing_lv_potianyiji_dian": { "scaleX": 0.5, "scaleY": 0.5, "width": 256, "height": 256 }
+		},
+		"changbing_lv_potianyiji_guangquan": {
+			"changbing_lv_potianyiji_guangquan": { "width": 182, "height": 182 }
+		},
+		"changbing_lv_potianyiji_guangshu": {
+			"changbing_lv_potianyiji_guangshu": { "x": 68.41, "y": 1.99, "rotation": -89.09, "width": 70, "height": 156 }
+		},
+		"changbing_lv_potianyiji_kong": {
+			"changbing_lv_potianyiji_kong": { "width": 210, "height": 45 }
+		},
+		"changbing_lv_potianyiji_shan": {
+			"changbing_lv_potianyiji_shan": { "width": 308, "height": 306 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"changbing_lv_potianyiji_kong": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.2666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.5, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 12.33, "y": 271.33, "curve": "stepped" },
+					{ "time": 0.2666, "x": 12.33, "y": 271.33, "curve": "stepped" },
+					{ "time": 0.3, "x": 12.33, "y": 271.33, "curve": "stepped" },
+					{ "time": 0.3333, "x": 12.33, "y": 271.33, "curve": "stepped" },
+					{ "time": 0.5, "x": 12.33, "y": 271.33, "curve": "stepped" },
+					{ "time": 0.6, "x": 12.33, "y": 271.33 }
+				],
+				"scale": [
+					{ "time": 0, "x": -0.399, "y": -0.399 },
+					{ "time": 0.2666, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3333, "x": 1, "y": 1 },
+					{ "time": 0.5, "x": 1.3, "y": 1.3 },
+					{ "time": 0.6, "x": 1.599, "y": 1.599 }
+				]
+			},
+			"changbing_lv_potianyiji_dian": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.2333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.5, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 281.43, "curve": "stepped" },
+					{ "time": 0.1, "x": 0, "y": 281.43, "curve": "stepped" },
+					{ "time": 0.1333, "x": 0, "y": 281.43, "curve": "stepped" },
+					{ "time": 0.2333, "x": 0, "y": 281.43, "curve": "stepped" },
+					{ "time": 0.3333, "x": 0, "y": 281.43, "curve": "stepped" },
+					{ "time": 0.4333, "x": 0, "y": 281.43, "curve": "stepped" },
+					{ "time": 0.5, "x": 0, "y": 281.43 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 },
+					{ "time": 0.1, "x": -0.2, "y": -0.2 },
+					{ "time": 0.1333, "x": -0.6, "y": -0.6 },
+					{ "time": 0.2333, "x": 1.4, "y": 1.4 },
+					{ "time": 0.3333, "x": 1, "y": 1 },
+					{ "time": 0.4333, "x": 1.9, "y": 1.9 },
+					{ "time": 0.5, "x": 2, "y": 2 }
+				]
+			},
+			"changbing_lv_potianyiji_guangshu": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.5666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.4333, "x": 0, "y": 0 },
+					{ "time": 0.4666, "x": 0, "y": 579.92 },
+					{ "time": 0.5666, "x": 0, "y": -26.8, "curve": "stepped" },
+					{ "time": 0.6333, "x": 0, "y": -26.8, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": -26.8 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.4333, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.4666, "x": 1, "y": 1 },
+					{ "time": 0.5666, "x": 1.7, "y": 1 },
+					{ "time": 0.6333, "x": 0, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 1 }
+				]
+			},
+			"changbing_lv_potianyiji_baozha": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.5666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.5666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.5666, "x": 1, "y": 1 }
+				]
+			},
+			"changbing_lv_potianyiji_shan": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.8, "angle": 0, "curve": "stepped" },
+					{ "time": 0.8666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.9, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.8, "x": 5.64, "y": 0, "curve": "stepped" },
+					{ "time": 0.8666, "x": 5.64, "y": 0, "curve": "stepped" },
+					{ "time": 0.9, "x": 5.64, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.8, "x": 1, "y": 1 },
+					{ "time": 0.8333, "x": -0.53, "y": -0.53, "curve": "stepped" },
+					{ "time": 0.8666, "x": -0.53, "y": -0.53 },
+					{ "time": 0.9, "x": 1, "y": 1 }
+				]
+			},
+			"changbing_lv_potianyiji_guangquan": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.8, "angle": 0, "curve": "stepped" },
+					{ "time": 0.8333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.9333, "angle": 0, "curve": "stepped" },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.8, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.8333, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.9333, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.8, "x": 1, "y": 1 },
+					{ "time": 0.8333, "x": -0.299, "y": -0.299 },
+					{ "time": 0.9333, "x": 1, "y": 1 },
+					{ "time": 1, "x": 1.2, "y": 1.2 }
+				]
+			}
+		},
+		"slots": {
+			"changbing_lv_potianyiji_baozha": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.5666, "name": null },
+					{ "time": 0.6, "name": "changbing_lv_potianyiji_baozha_01" },
+					{ "time": 0.7, "name": "changbing_lv_potianyiji_baozha_02" },
+					{ "time": 0.8, "name": "changbing_lv_potianyiji_baozha_03" },
+					{ "time": 0.8333, "name": "changbing_lv_potianyiji_baozha_04" },
+					{ "time": 0.8666, "name": "changbing_lv_potianyiji_baozha_05" },
+					{ "time": 0.9, "name": null }
+				]
+			},
+			"changbing_lv_potianyiji_dian": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.2333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.4333, "color": "ffffffff" },
+					{ "time": 0.5, "color": "ffffff00" }
+				]
+			},
+			"changbing_lv_potianyiji_guangquan": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.8, "color": "ffffff00" },
+					{ "time": 0.8333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.9333, "color": "ffffffff" },
+					{ "time": 1, "color": "ffffff80" },
+					{ "time": 1.0333, "color": "ffffff00" }
+				]
+			},
+			"changbing_lv_potianyiji_guangshu": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4333, "color": "ffffff00" },
+					{ "time": 0.4666, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.6333, "color": "ffffffff" },
+					{ "time": 0.6666, "color": "ffffff00" }
+				]
+			},
+			"changbing_lv_potianyiji_kong": {
+				"color": [
+					{ "time": 0, "color": "ffffff4e" },
+					{ "time": 0.2666, "color": "ffffff81", "curve": "stepped" },
+					{ "time": 0.3, "color": "ffffff81" },
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.5, "color": "ffffff7e" },
+					{ "time": 0.6, "color": "ffffff00" }
+				]
+			},
+			"changbing_lv_potianyiji_shan": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.8, "color": "ffffff00" },
+					{ "time": 0.8333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.9, "color": "ffffffff" },
+					{ "time": 0.9333, "color": "ffffff00" }
+				]
+			}
+		}
+	}
+}
+}

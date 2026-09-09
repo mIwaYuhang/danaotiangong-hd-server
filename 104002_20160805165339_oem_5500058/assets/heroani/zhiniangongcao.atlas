@@ -1,0 +1,390 @@
+
+zhiniangongcao.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 500, 253
+  size: 71, 74
+  orig: 71, 74
+  offset: 0, 0
+  index: -1
+root_chest_diji
+  rotate: false
+  xy: 520, 141
+  size: 71, 74
+  orig: 71, 74
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: false
+  xy: 2, 135
+  size: 158, 192
+  orig: 158, 192
+  offset: 0, 0
+  index: -1
+root_head_05
+  rotate: false
+  xy: 486, 3
+  size: 79, 43
+  orig: 79, 43
+  offset: 0, 0
+  index: -1
+root_head_05_diji
+  rotate: false
+  xy: 567, 6
+  size: 79, 43
+  orig: 79, 43
+  offset: 0, 0
+  index: -1
+root_head_06
+  rotate: false
+  xy: 533, 81
+  size: 83, 58
+  orig: 83, 58
+  offset: 0, 0
+  index: -1
+root_head_06_diji
+  rotate: false
+  xy: 593, 157
+  size: 83, 58
+  orig: 83, 58
+  offset: 0, 0
+  index: -1
+root_head_07
+  rotate: false
+  xy: 194, 4
+  size: 58, 34
+  orig: 58, 34
+  offset: 0, 0
+  index: -1
+root_head_07_diji
+  rotate: false
+  xy: 254, 4
+  size: 58, 34
+  orig: 58, 34
+  offset: 0, 0
+  index: -1
+root_head_08
+  rotate: true
+  xy: 703, 268
+  size: 59, 50
+  orig: 59, 50
+  offset: 0, 0
+  index: -1
+root_head_08_diji
+  rotate: true
+  xy: 678, 157
+  size: 59, 50
+  orig: 59, 50
+  offset: 0, 0
+  index: -1
+root_head_cc
+  rotate: false
+  xy: 644, 65
+  size: 59, 17
+  orig: 158, 192
+  offset: 77, 54
+  index: -1
+root_head_diji
+  rotate: false
+  xy: 162, 135
+  size: 158, 192
+  orig: 158, 192
+  offset: 0, 0
+  index: -1
+root_hip_01
+  rotate: true
+  xy: 2, 3
+  size: 35, 94
+  orig: 35, 94
+  offset: 0, 0
+  index: -1
+root_hip_01_diji
+  rotate: true
+  xy: 98, 3
+  size: 35, 94
+  orig: 35, 94
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 423, 48
+  size: 49, 29
+  orig: 49, 29
+  offset: 0, 0
+  index: -1
+root_hip_02_diji
+  rotate: false
+  xy: 474, 48
+  size: 49, 29
+  orig: 49, 29
+  offset: 0, 0
+  index: -1
+root_hip_03
+  rotate: false
+  xy: 789, 299
+  size: 28, 28
+  orig: 28, 28
+  offset: 0, 0
+  index: -1
+root_hip_03_diji
+  rotate: false
+  xy: 755, 299
+  size: 28, 28
+  orig: 28, 28
+  offset: 0, 0
+  index: -1
+root_hip_04
+  rotate: false
+  xy: 2, 40
+  size: 137, 93
+  orig: 137, 93
+  offset: 0, 0
+  index: -1
+root_hip_04_diji
+  rotate: false
+  xy: 141, 40
+  size: 137, 93
+  orig: 137, 93
+  offset: 0, 0
+  index: -1
+root_hip_05
+  rotate: true
+  xy: 322, 215
+  size: 112, 87
+  orig: 112, 87
+  offset: 0, 0
+  index: -1
+root_hip_05_diji
+  rotate: true
+  xy: 411, 215
+  size: 112, 87
+  orig: 112, 87
+  offset: 0, 0
+  index: -1
+root_hip_06
+  rotate: false
+  xy: 322, 137
+  size: 97, 76
+  orig: 97, 76
+  offset: 0, 0
+  index: -1
+root_hip_06_diji
+  rotate: false
+  xy: 421, 137
+  size: 97, 76
+  orig: 97, 76
+  offset: 0, 0
+  index: -1
+root_l_elbow_01
+  rotate: true
+  xy: 500, 217
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+root_l_elbow_01_diji
+  rotate: true
+  xy: 548, 217
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+root_l_elbow_02
+  rotate: true
+  xy: 525, 49
+  size: 28, 38
+  orig: 28, 38
+  offset: 0, 0
+  index: -1
+root_l_elbow_02_diji
+  rotate: true
+  xy: 565, 51
+  size: 28, 38
+  orig: 28, 38
+  offset: 0, 0
+  index: -1
+root_l_elbow_03
+  rotate: false
+  xy: 728, 106
+  size: 48, 49
+  orig: 48, 49
+  offset: 0, 0
+  index: -1
+root_l_elbow_03_diji
+  rotate: false
+  xy: 754, 55
+  size: 48, 49
+  orig: 48, 49
+  offset: 0, 0
+  index: -1
+root_l_elbow_04
+  rotate: true
+  xy: 705, 5
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+root_l_elbow_04_diji
+  rotate: true
+  xy: 749, 5
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: false
+  xy: 789, 275
+  size: 30, 22
+  orig: 30, 22
+  offset: 0, 0
+  index: -1
+root_l_foot_diji
+  rotate: false
+  xy: 789, 251
+  size: 30, 22
+  orig: 30, 22
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 593, 141
+  size: 37, 14
+  orig: 37, 14
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: true
+  xy: 596, 218
+  size: 42, 69
+  orig: 42, 69
+  offset: 0, 0
+  index: -1
+root_l_shoulder_diji
+  rotate: true
+  xy: 667, 218
+  size: 42, 69
+  orig: 42, 69
+  offset: 0, 0
+  index: -1
+root_magicweapon
+  rotate: true
+  xy: 423, 79
+  size: 56, 108
+  orig: 85, 141
+  offset: 15, 18
+  index: -1
+root_magicweapon_f
+  rotate: true
+  xy: 280, 48
+  size: 85, 141
+  orig: 85, 141
+  offset: 0, 0
+  index: -1
+root_r_elbow_01
+  rotate: false
+  xy: 679, 98
+  size: 47, 57
+  orig: 47, 57
+  offset: 0, 0
+  index: -1
+root_r_elbow_01_diji
+  rotate: false
+  xy: 705, 39
+  size: 47, 57
+  orig: 47, 57
+  offset: 0, 0
+  index: -1
+root_r_elbow_02
+  rotate: true
+  xy: 778, 116
+  size: 49, 37
+  orig: 49, 37
+  offset: 0, 0
+  index: -1
+root_r_elbow_02_diji
+  rotate: true
+  xy: 780, 167
+  size: 49, 37
+  orig: 49, 37
+  offset: 0, 0
+  index: -1
+root_r_elbow_03
+  rotate: true
+  xy: 730, 167
+  size: 49, 48
+  orig: 49, 48
+  offset: 0, 0
+  index: -1
+root_r_elbow_03_diji
+  rotate: false
+  xy: 738, 218
+  size: 49, 48
+  orig: 49, 48
+  offset: 0, 0
+  index: -1
+root_r_elbow_04
+  rotate: false
+  xy: 618, 84
+  size: 59, 55
+  orig: 59, 55
+  offset: 0, 0
+  index: -1
+root_r_elbow_04_diji
+  rotate: true
+  xy: 648, 4
+  size: 59, 55
+  orig: 59, 55
+  offset: 0, 0
+  index: -1
+root_r_foot
+  rotate: true
+  xy: 793, 21
+  size: 32, 22
+  orig: 32, 22
+  offset: 0, 0
+  index: -1
+root_r_foot_diji
+  rotate: false
+  xy: 755, 275
+  size: 32, 22
+  orig: 32, 22
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 314, 2
+  size: 44, 84
+  orig: 44, 84
+  offset: 0, 0
+  index: -1
+root_r_hand_03
+  rotate: true
+  xy: 605, 51
+  size: 28, 37
+  orig: 28, 37
+  offset: 0, 0
+  index: -1
+root_r_hand_diji
+  rotate: true
+  xy: 400, 2
+  size: 44, 84
+  orig: 44, 84
+  offset: 0, 0
+  index: -1
+root_r_shoulder
+  rotate: true
+  xy: 573, 262
+  size: 65, 63
+  orig: 65, 63
+  offset: 0, 0
+  index: -1
+root_r_shoulder_diji
+  rotate: true
+  xy: 638, 262
+  size: 65, 63
+  orig: 65, 63
+  offset: 0, 0
+  index: -1

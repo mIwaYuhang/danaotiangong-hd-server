@@ -1,0 +1,49 @@
+{
+"bones": [
+	{ "name": "buff_bianshen", "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{ "name": "buff_bianshen_01", "bone": "buff_bianshen", "attachment": "buff_bianshen_01" }
+],
+"skins": {
+	"default": {
+		"buff_bianshen_01": {
+			"buff_bianshen_01": { "width": 136, "height": 163 },
+			"buff_bianshen_02": { "width": 136, "height": 163 },
+			"buff_bianshen_03": { "width": 136, "height": 163 },
+			"buff_bianshen_04": { "width": 136, "height": 163 },
+			"buff_bianshen_05": { "width": 136, "height": 163 },
+			"buff_bianshen_06": { "width": 136, "height": 163 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"buff_bianshen": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"buff_bianshen_01": {
+				"attachment": [
+					{ "time": 0.0666, "name": "buff_bianshen_02" },
+					{ "time": 0.1333, "name": "buff_bianshen_03" },
+					{ "time": 0.2, "name": "buff_bianshen_04" },
+					{ "time": 0.2666, "name": "buff_bianshen_05" },
+					{ "time": 0.3333, "name": "buff_bianshen_06" },
+					{ "time": 0.4, "name": null }
+				]
+			}
+		}
+	}
+}
+}

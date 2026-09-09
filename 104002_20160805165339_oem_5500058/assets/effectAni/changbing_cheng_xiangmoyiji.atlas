@@ -1,0 +1,82 @@
+
+changbing_cheng_xiangmoyiji-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+changbing_cheng_xiangmoyiji_bangzi
+  rotate: true
+  xy: 698, 336
+  size: 35, 174
+  orig: 35, 174
+  offset: 0, 0
+  index: -1
+changbing_cheng_xiangmoyiji_baoguang_01
+  rotate: true
+  xy: 324, 124
+  size: 161, 140
+  orig: 250, 262
+  offset: 44, 15
+  index: -1
+changbing_cheng_xiangmoyiji_baoguang_02
+  rotate: false
+  xy: 2, 35
+  size: 204, 229
+  orig: 250, 262
+  offset: 20, 0
+  index: -1
+changbing_cheng_xiangmoyiji_baoguang_03
+  rotate: false
+  xy: 2, 266
+  size: 250, 229
+  orig: 250, 262
+  offset: 0, 22
+  index: -1
+changbing_cheng_xiangmoyiji_baoguang_04
+  rotate: false
+  xy: 254, 287
+  size: 213, 208
+  orig: 250, 262
+  offset: 16, 54
+  index: -1
+changbing_cheng_xiangmoyiji_baoguang_05
+  rotate: true
+  xy: 2, 2
+  size: 31, 186
+  orig: 250, 262
+  offset: 112, 65
+  index: -1
+changbing_cheng_xiangmoyiji_shibao_01
+  rotate: false
+  xy: 466, 119
+  size: 134, 114
+  orig: 236, 163
+  offset: 46, 0
+  index: -1
+changbing_cheng_xiangmoyiji_shibao_02
+  rotate: true
+  xy: 208, 81
+  size: 183, 114
+  orig: 236, 163
+  offset: 22, 13
+  index: -1
+changbing_cheng_xiangmoyiji_shibao_03
+  rotate: false
+  xy: 469, 235
+  size: 208, 124
+  orig: 236, 163
+  offset: 10, 16
+  index: -1
+changbing_cheng_xiangmoyiji_shibao_04
+  rotate: false
+  xy: 469, 361
+  size: 227, 134
+  orig: 236, 163
+  offset: 3, 21
+  index: -1
+changbing_cheng_xiangmoyiji_shibao_05
+  rotate: false
+  xy: 698, 373
+  size: 236, 122
+  orig: 236, 163
+  offset: 0, 41
+  index: -1

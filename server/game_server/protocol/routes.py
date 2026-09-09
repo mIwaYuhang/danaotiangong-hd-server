@@ -1,0 +1,200 @@
+"""路由表：本地服实现的全部接口一览。
+
+参数名与客户端 ``base/serverurl.lua`` 中的查询参数一致。
+所有需要会话的接口，分发器都会额外校验 ``user`` / ``session`` / ``serverid``，
+并拒绝未在此声明也不在公共参数集合中的参数。
+"""
+from .params import Device, Email, Integer, Md5Hex, Raw, Text, TicketJson
+from .router import Router
+
+
+def build_router(services, token_length: int) -> Router:
+    """``services`` 是 ``app.Services``，``token_length`` 是票据 / 会话令牌长度。"""
+    r = Router()
+    s = services
+
+    # ---- SDK 账号（无需凭证）----------------------------------------------
+    r.public('/sdk/Default', s.account.guest_login, udid=Device(256))
+    r.public('/sdk/Register', s.account.register, email=Email(), pwd=Md5Hex())
+    r.public('/sdk/login', s.account.login, email=Email(), pwd=Md5Hex())
+    r.public('/Role/partner', s.account.enter_realm, serverid=Text(10), userid=TicketJson(token_length))
+
+    # ---- 角色 -------------------------------------------------------------
+    r.session('/Role/Name', s.roles.create, name=Text(256), heroProtoID=Integer())
+    r.session('/Message/Messages', s.activities.marquee)
+    r.role('/Role/Default', s.roles.load)
+    r.role('/Notify/Message', s.roles.notify)
+    r.role('/Role/AvatarIndex', s.roles.set_avatar, avatarIndex=Integer())
+    r.role('/TiroGuide/save', s.stages.save_guide, stepno=Integer())
+
+    # ---- 阵容与图鉴 -----------------------------------------------------------
+    r.role('/Team/TeamNew', s.team.team_info, playerid=Raw(default=''))
+    r.role('/Team/Change', s.team.change, heroIds=Raw(default=''))
+    r.role('/Team/UpdatedTeamHero', s.team.update_slot, index=Integer(), heroID=Integer())
+    r.role('/Hero/ChangePartnerID', s.team.change_partner, index=Integer(), upHeroID=Integer())
+    r.role('/Handbook/Handbook', s.team.handbook)
+
+    # ---- 英雄成长 -----------------------------------------------------------
+    r.role('/Prop/HeroUpdLevel', s.growth.level_up, heroId=Integer(), addLv=Integer(minimum=-1))
+    r.role('/Prop/UseExpPill', s.growth.use_exp_pills, heroId=Integer(), props=Raw(default=''))
+    r.role('/Hero/Breakthrough', s.growth.breakthrough, heroid=Integer())
+    r.role('/Hero/Train', s.growth.train, heroID=Integer(), count=Integer(), isspecial=Raw(default=''))
+    r.role('/Hero/SaveTrain', s.growth.save_train, heroID=Integer())
+    r.role('/hero/RecruitHero', s.growth.recruit_by_soul, soulId=Integer())
+    r.role('/Hero/RecruitAll', s.growth.recruit_all)
+    r.role('/Hero/skilltrain', s.growth.skill_train, heroid=Integer())
+    r.role('/hero/transferpower', s.growth.transfer_stub, heroid=Integer(), toheroid=Integer(), costIngot=Integer())
+    r.role('/hero/Previewtransferpower', s.growth.transfer_stub, heroid=Integer(), toheroid=Integer())
+
+    # ---- 法宝 -------------------------------------------------------------
+    r.role('/Talisman/Talismans', s.talisman.list_all)
+    r.role('/Talisman/intensify', s.talisman.intensify, playerTalismanId=Integer(), number=Integer())
+    r.role('/Talisman/RecastInfo', s.talisman.recast_info, talismanID=Integer())
+    r.role('/Talisman/recast', s.talisman.recast, id=Integer(), type=Integer(default=1, required=False))
+    r.role('/Talisman/Lock', s.talisman.lock, talismanID=Integer(), lockQualification=Integer())
+    r.role('/Talisman/FeedTalismanNewest', s.talisman.feed, id=Integer(), ids=Raw(default=''), count=Raw(default='0'))
+    r.role('/Talisman/SyntheticAll', s.talisman.synthetic_all)
+    r.role('/Talisman/DecomposeTalisman', s.talisman.decompose, id=Integer(), type=Integer(default=1, required=False))
+    r.role('/Talisman/ComposeTalismanSoul', s.talisman.compose_soul, ids=Raw(default=''))
+    r.role('/Talisman/SellFragment', s.talisman.sell_fragment, fragmentid=Integer(), count=Integer(minimum=1))
+    r.role('/Talisman/FexchangT', s.talisman.exchange_fragment, fragmentid=Integer())
+    r.role('/Hero/Change', s.talisman.equip, heroID=Integer(), type=Integer(), id=Integer())
+    r.role('/Hero/Unloading', s.talisman.unequip, heroID=Integer(), type=Integer(), id=Integer())
+    r.role('/Hero/ChangeAll', s.talisman.equip_all, heroID=Integer())
+
+    # ---- 背包与商店 -----------------------------------------------------------
+    r.role('/Prop/GetSinglePropLst', s.inventory.list_props, propType=Raw())
+    r.role('/Prop/GetStorePropLst', s.inventory.store_list)
+    r.role('/Prop/UseProps', s.inventory.use_props, id=Raw(), count=Raw(), name=Raw(), heroId=Raw())
+    r.role('/Prop/SellProps', s.inventory.sell_props, id=Raw(), count=Raw())
+    r.role('/Prop/BuyGoods', s.inventory.buy_goods, type=Raw(), id=Raw(), count=Raw())
+    r.role('/Prop/StoreSuitPropList', s.inventory.suit_list)
+    r.role('/Mysterystore/GetMysterystoreInfo', s.inventory.mystery_info)
+    r.role('/Mysterystore/RefreshMysterystore', s.inventory.mystery_refresh)
+    r.role('/Mysterystore/BuyMysterystore', s.inventory.mystery_buy, Index=Raw())
+
+    # ---- 招募 -------------------------------------------------------------
+    r.role('/Store/StoreHeroRecruitInfo', s.recruitment.pools)
+    r.role('/Store/StoreHeroRecruit', s.recruitment.recruit, type=Raw(default=''), count=Raw(default='1'))
+
+    # ---- 关卡 -------------------------------------------------------------
+    r.role('/MapInfo/GetMapInfo', s.stages.map_info)
+    r.role('/Battle/fight', s.stages.fight, cpId=Integer(), ri=Integer(minimum=1), star=Integer(minimum=1))
+    r.role('/Battle/BattleTen', s.stages.sweep, cpId=Integer(), star=Integer(minimum=1))
+    r.role('/Battle/SubCdTime', s.stages.clear_cooldown)
+    r.role('/Battle/IsSXRewar', s.stages.chapter_status, Chapter=Integer())
+    r.role('/Battle/IsSXRewarNew', s.stages.chapter_status, Chapter=Integer())
+    r.role('/Battle/SXRewar', s.stages.chapter_reward, Chapter=Integer(), star=Integer())
+
+    # ---- 任务 -------------------------------------------------------------
+    r.role('/Mission/Missions', s.missions.list_missions)
+    r.role('/Mission/Reward', s.missions.claim, missionID=Integer())
+
+    # ---- 邮件 -------------------------------------------------------------
+    r.role('/Mailinfo/GetMailinfoList', s.mail.list_mails, index=Integer(), type=Integer())
+    r.role('/Mailinfo/GetMailinfo', s.mail.detail, mailId=Integer())
+    r.role('/Mailinfo/GetPlayerAccessory', s.mail.take_attachment, mailId=Integer())
+    r.role('/Mailinfo/SeeUnreadMailNumber', s.mail.unread)
+    r.role('/Mailinfo/DeletePlayerMailId', s.mail.delete, mailid=Integer())
+    r.role('/Mailinfo/ClickPlayerMail', s.mail.clear, mailType=Integer())
+    r.role('/Mailinfo/ClickPlayerMailRead', s.mail.clear_read, mailType=Integer())
+    r.role('/Mailinfo/SendMail', s.mail.send, toplayerid=Integer())
+
+    # ---- 活动 -------------------------------------------------------------
+    r.role('/SignMonth/GetSignInfoNew', s.activities.sign_info)
+    r.role('/SignMonth/SignMonthNew', s.activities.sign)
+    r.role('/EverydayReward/GetDayRewar', s.activities.salary_info)
+    r.role('/EverydayReward/GetToDayRewar', s.activities.take_salary)
+    r.role('/EverydayReward/GetActivity', s.activities.take_gift_bag, id=Integer())
+    r.role('/PlayerEverydayReward/EveryDayRewarInfo', s.activities.everyday_info)
+    r.role('/loginreward/SDHRewards', s.activities.seven_day_info)
+    r.role('/loginreward/getReward', s.activities.seven_day_claim, day=Integer())
+    r.role('/LevelGiftBag/GetLevelGiftBagInfo', s.activities.level_gift_info)
+    r.role('/LevelGiftBag/GetLevelGiftBagReward', s.activities.level_gift_claim, level=Integer())
+    r.role('/LevelGiftBag/GetGrowupInfo', s.activities.growup_info)
+    r.role('/LevelGiftBag/BuyGrowup', s.activities.unavailable)
+    r.role('/LevelGiftBag/GetGrowupReward', s.activities.unavailable, level=Integer())
+    r.role('/Monthcard/GetMonthcardInfo', s.activities.month_card_info)
+    r.role('/Monthcard/GetMonthcardReward', s.activities.unavailable)
+    r.role('/Monthcard/GetWeekcardReward', s.activities.unavailable)
+    r.role('/Monthcard/ChangeIngot', s.activities.unavailable, point=Integer())
+    r.role('/Recharge/RechargeLst', s.activities.recharge_list)
+    r.role('/Recharge/firstreward', s.activities.first_recharge_info)
+    r.role('/Recharge/GetFirstRechargeReward', s.activities.unavailable)
+    r.role('/Recharge/GetOrderID', s.activities.unavailable, money=Raw(default=''))
+    r.role('/Recharge/GetPointOrderID', s.activities.unavailable, money=Raw(default=''))
+
+    # ---- 争霸 -------------------------------------------------------------
+    r.role('/Duel/info', s.arena.info)
+    r.role('/Duel/Challenge', s.arena.challenge, rank=Integer(minimum=1), ri=Raw(default=''), star=Raw(default=''))
+    r.role('/Duel/TopTen', s.arena.top_ten)
+    r.role('/Duel/Exchanges', s.arena.exchanges)
+    r.role('/Duel/LimitRankExchanges', s.arena.limit_rank_exchanges)
+    r.role('/Duel/Exchange', s.arena.exchange, id=Integer())
+    r.role('/Duel/back', s.arena.clear_cooldown)
+    r.role('/duel/scores', s.arena.scores)
+    r.role('/duel/getscore', s.arena.get_score, id=Integer())
+
+    # ---- 妖王洞穴 -----------------------------------------------------------
+    r.role('/Worldboss/ActivityInfo', s.worldboss.activity_info)
+    r.role('/Worldboss/WorldbossInfo', s.worldboss.boss_info, timeTick=Integer(default=0, required=False))
+    r.role('/Worldboss/Challenge', s.worldboss.challenge, type=Integer(), bossID=Integer(), ri=Raw(default=''), star=Raw(default=''))
+    r.role('/Worldboss/Order', s.worldboss.order)
+    r.role('/Worldboss/Encouraging', s.worldboss.encourage)
+    r.role('/Worldboss/AutofightControl', s.worldboss.autofight, isAutofight=Integer())
+    r.role('/Worldboss/Resurgence', s.worldboss.resurgence, timeTick=Integer(default=0, required=False))
+    r.role('/Worldboss/RewardList', s.worldboss.reward_list)
+    r.role('/Worldboss/Reward', s.worldboss.reward, time=Raw(default=''))
+    r.role('/Worldboss/ChallengeRank', s.worldboss.challenge_rank)
+
+    # ---- 十二元辰殿 -----------------------------------------------------------
+    r.role('/Copy/PlayerCopyInfo', s.fuben.info)
+    r.role('/Copy/OpenCopy', s.fuben.open_copy, copyId=Integer(minimum=1))
+    r.role('/Copy/RefreshStarLevel', s.fuben.refresh_star, copyId=Integer(minimum=1))
+    r.role('/Copy/BattleCopy', s.fuben.battle, copyId=Integer(minimum=1), ri=Raw(default=''), star=Raw(default=''))
+    r.role('/Copy/OpenCard', s.fuben.open_card, copyId=Integer(minimum=1), selectLocation=Integer(minimum=1))
+    r.role('/Copy/GetPreviewInfo', s.fuben.preview)
+    r.role('/Copy/ResetCopy', s.fuben.reset, copyID=Integer())
+
+    # ---- 通天塔 -------------------------------------------------------------
+    r.role('/Tower/GetTowerInfo', s.tower.info)
+    r.role('/Tower/TowerBattle', s.tower.battle, type=Integer(minimum=1), ri=Raw(default=''), star=Raw(default=''))
+    r.role('/Tower/Mopping', s.tower.mopping)
+    r.role('/Tower/TowerRevive', s.tower.revive)
+    r.role('/Tower/Buffs', s.tower.buffs)
+    r.role('/Tower/Buy', s.tower.buy_buff, buyBuff=Raw(default=''))
+    r.role('/Tower/BuffPropertyAddtions', s.tower.buff_additions)
+    r.role('/Tower/GetFloorReward', s.tower.floor_reward)
+    r.role('/Tower/RankInfo', s.tower.rank)
+    r.role('/Tower/LWRanking', s.tower.rank)
+
+    # ---- 炼化炉 -------------------------------------------------------------
+    r.role('/RefiningFurnace/Refine', s.refine.refine, heros=Raw(default=''), souls=Raw(default=''),
+           talismans=Raw(default=''), fragments=Raw(default=''))
+    r.role('/RefiningFurnace/Rebirth', s.refine.rebirth, heroID=Raw(default=''), talismanID=Raw(default=''))
+
+    # ---- 好友 -------------------------------------------------------------
+    r.role('/Friend/Friends', s.friends.friends)
+    r.role('/Friend/RequestFriends', s.friends.requests)
+    r.role('/Friend/RecommendFriends', s.friends.recommend, name=Raw(default=''), level=Raw(default=''))
+    r.role('/Friend/PresentsInfo', s.friends.presents)
+    r.role('/Friend/GetAllBackPresent', s.friends.presents)
+    for path, extra in (('/Friend/AddMail', 'friendId'), ('/Friend/Add', 'friendId'), ('/Friend/Reject', 'friendId'),
+                        ('/Friend/Delete', 'friendId'), ('/Friend/Present', 'frinendID'), ('/Friend/Get', 'id'),
+                        ('/Friend/SendMail', 'friendId')):
+        r.role(path, s.friends.noop, **{extra: Raw(default='')})
+
+    # ---- 运镖 -------------------------------------------------------------
+    r.role('/Transport/GetPlayerTransportInfo', s.transport.info)
+    r.role('/Transport/GetPlayerTransportSelect', s.transport.select)
+    r.role('/Transport/StartPlayerTransport', s.transport.start, addresId=Integer(minimum=1), friendIds=Raw(default=''))
+    r.role('/Transport/EndTransport', s.transport.end)
+    r.role('/Transport/CallHorse', s.transport.call_horse, type=Integer(minimum=1))
+    r.role('/Transport/RefreshHorse', s.transport.refresh_horse, type=Raw(default=''))
+    r.role('/Transport/Bless', s.transport.bless, type=Raw(default=''))
+    r.role('/Transport/BlessInfo', s.transport.bless_info)
+    r.role('/Transport/Friends', s.transport.friends)
+    r.role('/Transport/RobFriends', s.transport.friends)
+    r.role('/Transport/Rob', s.transport.rob, enemyid=Raw(default=''), friendIds=Raw(default=''))
+    r.role('/TransportLog/GetPlayerTransportLogList', s.transport.logs, page=Raw(default=''))
+    return r

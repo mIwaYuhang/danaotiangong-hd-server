@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+
+# 运行时存档
+*.sqlite3
+*.sqlite3-*
+
+# 由 Lua 导表生成的静态表（可用 python -m game_server.tools.lua_import 重新生成）
+/data/static/

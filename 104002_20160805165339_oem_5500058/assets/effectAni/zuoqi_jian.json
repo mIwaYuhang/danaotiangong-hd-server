@@ -1,0 +1,125 @@
+{
+"bones": [
+	{ "name": "zuoqi_jian" },
+	{ "name": "zuoqi_jian_bao", "parent": "zuoqi_jian", "y": 170, "scaleX": 2, "scaleY": 2 },
+	{ "name": "zuoqi_jian_gaoji", "parent": "zuoqi_jian", "length": 440.33, "y": 1400, "rotation": 270 }
+],
+"slots": [
+	{ "name": "zuoqi_jian_gaoji", "bone": "zuoqi_jian_gaoji", "attachment": "jian" },
+	{ "name": "zuoqi_jian_01", "bone": "zuoqi_jian_bao", "color": "ffffff00", "attachment": "zuoqi_jian_01" }
+],
+"skins": {
+	"default": {
+		"zuoqi_jian_01": {
+			"zuoqi_jian_01": { "width": 271, "height": 276 },
+			"zuoqi_jian_02": { "width": 271, "height": 276 },
+			"zuoqi_jian_03": { "width": 271, "height": 276 },
+			"zuoqi_jian_04": { "width": 271, "height": 276 },
+			"zuoqi_jian_05": { "width": 271, "height": 276 },
+			"zuoqi_jian_06": { "width": 271, "height": 276 },
+			"zuoqi_jian_07": { "width": 271, "height": 276 },
+			"zuoqi_jian_08": { "width": 271, "height": 276 },
+			"zuoqi_jian_09": { "width": 271, "height": 276 },
+			"zuoqi_jian_10": { "width": 271, "height": 276 }
+		}
+	},
+	"diji": {
+		"zuoqi_jian_gaoji": {
+			"jian": { "name": "zuoqi_jian_diji", "x": 220.43, "scaleX": 2, "scaleY": 2, "rotation": 90, "width": 176, "height": 452 }
+		}
+	},
+	"gaoji": {
+		"zuoqi_jian_gaoji": {
+			"jian": { "name": "zuoqi_jian_gaoji", "x": 220.42, "y": 1.64, "scaleX": 2, "scaleY": 2, "rotation": 90.45, "width": 176, "height": 452 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"zuoqi_jian": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"zuoqi_jian_gaoji": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.2333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.7, "angle": 0, "curve": "stepped" },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": -84.19 },
+					{ "time": 0.1666, "x": 0, "y": -816.02 },
+					{ "time": 0.2333, "x": 0, "y": -734.85, "curve": "stepped" },
+					{ "time": 0.7, "x": 0, "y": -734.85, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": -734.85 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.1666, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.2333, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.7, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1 }
+				]
+			},
+			"zuoqi_jian_bao": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.1666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.1666, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"zuoqi_jian_01": {
+				"attachment": [
+					{ "time": 0.1333, "name": "zuoqi_jian_01" },
+					{ "time": 0.2333, "name": "zuoqi_jian_02" },
+					{ "time": 0.3, "name": "zuoqi_jian_03" },
+					{ "time": 0.3666, "name": "zuoqi_jian_04" },
+					{ "time": 0.4333, "name": "zuoqi_jian_05" },
+					{ "time": 0.5, "name": "zuoqi_jian_06" },
+					{ "time": 0.5666, "name": "zuoqi_jian_08" },
+					{ "time": 0.6333, "name": "zuoqi_jian_09" },
+					{ "time": 0.7, "name": "zuoqi_jian_10" },
+					{ "time": 0.7666, "name": "zuoqi_jian_10" }
+				],
+				"color": [
+					{ "time": 0.1666, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.3, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.3666, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.4333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.5, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.5666, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.6333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.7, "color": "ffffffff" },
+					{ "time": 0.7666, "color": "f3fff3ff" },
+					{ "time": 0.8333, "color": "ffffff00" }
+				]
+			},
+			"zuoqi_jian_gaoji": {
+				"color": [
+					{ "time": 0.7, "color": "ffffffff" },
+					{ "time": 1, "color": "ffffff00" }
+				]
+			}
+		}
+	}
+}
+}

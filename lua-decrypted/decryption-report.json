@@ -1,0 +1,3165 @@
+{
+  "source": "D:\\cocos2d\\104002_20160805165339_oem_5500058\\assets\\game",
+  "output": "D:\\cocos2d\\lua-decrypted",
+  "files": [
+    {
+      "path": "base/cache.lua",
+      "source_sha256": "61965907f0cb01289a0c38754a1daee15b3d17e79f31a43f3d4fc7a641f2fc48",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 604,
+      "header": "1b4c4a0102a80100",
+      "output_sha256": "9dfe77d5efd4b250a04e00e3fe813a514ca090c2d1a6143d185972cab86f8bde"
+    },
+    {
+      "path": "base/define.lua",
+      "source_sha256": "fe3582de52e71671efe40d8b4615af73f40da877787dfb4ed56930bda395790d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4131,
+      "header": "1b4c4a0102db0c00",
+      "output_sha256": "72e1743652a392c366cd7fdd3d5c45da6571b1b88c1153b4160bd94526b3f8ab"
+    },
+    {
+      "path": "base/figure.lua",
+      "source_sha256": "59dc6ff5699915f3e3f35d1de969de687102f13fa75d337a1c0917565d60bcf5",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 20526,
+      "header": "1b4c4a01020b0002",
+      "output_sha256": "7a89c896224cd08c3becc454f094e8620f62c995e327d67c4262ed88f3857314"
+    },
+    {
+      "path": "base/functions.lua",
+      "source_sha256": "91d0cdcd571ce14babe767f81fc394c545fa41a9f1b70c196cb8ed10a385f1b8",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 46009,
+      "header": "1b4c4a0102150001",
+      "output_sha256": "cd7636900ab3f3991e08b50b1dd4e1b86671ab4c3481b5c16a0b03deb28c029a"
+    },
+    {
+      "path": "base/localized.lua",
+      "source_sha256": "6423be20406f4f4fe2d066f8135e727d748ffb7fb63589a29dbfc76d763632ac",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 936,
+      "header": "1b4c4a0102110001",
+      "output_sha256": "b9e86781199db3767e13e753cf7da143cb6215621e21c7751c557acfbecd61fc"
+    },
+    {
+      "path": "base/netstate.lua",
+      "source_sha256": "5e44cca31c5435157f828d6cf4101526f7eebe00e85731cd4ab9719de95b0396",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 25976,
+      "header": "1b4c4a0102590001",
+      "output_sha256": "97ca51c5e01bf24ab6f5f23efa1aba76a6ddd72d13065243034b7f9cfae260cd"
+    },
+    {
+      "path": "base/network.lua",
+      "source_sha256": "d0fa42f591f718ee68ca8c65f03f2baae63ddbc8c449e6f694507a68663c2920",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6157,
+      "header": "1b4c4a01021a0002",
+      "output_sha256": "f05d78278949f7db458aa34df9f38de2d9cdff6d84490be6c0eb4f148d78ccd2"
+    },
+    {
+      "path": "base/notification.lua",
+      "source_sha256": "72138758142aedb401595940a9054eb15fa02aa66f9386d37eb1462a266f96ac",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 552,
+      "header": "1b4c4a0102a10100",
+      "output_sha256": "365d0bfacb2d948f0390763af4f682b11fadb5cdda40e24bd5890262176f877a"
+    },
+    {
+      "path": "base/platform.lua",
+      "source_sha256": "8c0e8208337f372be71e2325ffc7f472a068265cb395c1c3182f72bf4b6a3119",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2811,
+      "header": "1b4c4a0102ed0100",
+      "output_sha256": "d31f81411d7ee011a9f9ba8d98302ff4402fce54ee0704cd5f7b9f10dda3a010"
+    },
+    {
+      "path": "base/request.lua",
+      "source_sha256": "60d34d4fd345ae74780a0f3937c22e8ee1dd05b30c222421cb2e63b52a1583b2",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1335,
+      "header": "1b4c4a0102420002",
+      "output_sha256": "92ae41bb9745403b8aeefce13a3fe8a34a3f5c55f482922100f0d9fbc3f39701"
+    },
+    {
+      "path": "base/serverurl.lua",
+      "source_sha256": "0790d8c855861a9782f30f3aebb6f8c3d1fe967dc06b75212f4bd03dc169c9c3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 17603,
+      "header": "1b4c4a0102ba8901",
+      "output_sha256": "968a56d5978a1420e9f856493d5248982d63083024d859ab5750578a1a6ad45b"
+    },
+    {
+      "path": "config.lua",
+      "source_sha256": "0327067208fa389311fac115d2cf4a7d7c06b5db7c7f70f14ee1add10148fe60",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 863,
+      "header": "1b4c4a01020b0002",
+      "output_sha256": "c646fe1ef1512d141875662e3832349cafb528d1fcfbe6675b907280df18084a"
+    },
+    {
+      "path": "data/audio.lua",
+      "source_sha256": "e398af046aa52fd12d2d84b826cedad80529c3e33b49c24827b853439986f408",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2824,
+      "header": "1b4c4a0102801602",
+      "output_sha256": "890f127f6b4dd09ec33ba4572457250b82235fa8dae3301cd09562e5e0ab80bf"
+    },
+    {
+      "path": "data/duel.lua",
+      "source_sha256": "da2637f55e1f5b558d03e74067b8d9dfbb8a8555e0fc71be660386c3fc79ab21",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2966,
+      "header": "1b4c4a01028e1702",
+      "output_sha256": "917c0521ae8d9cd03993b88b1f3398fb307ab90dd50a63c8928f4f4213586518"
+    },
+    {
+      "path": "data/equip.lua",
+      "source_sha256": "8c3b6d3bfb86d7d13bb1a9046907dfff2d58cd10e7a773ff74dd7ce1a35f1c7e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 328922,
+      "header": "1b4c4a0102d18914",
+      "output_sha256": "a0f2df9e501dba4290f57825df8dc84e520fc692c1d05408f5f6c43f1ea81ed3"
+    },
+    {
+      "path": "data/EquipHelper.lua",
+      "source_sha256": "c9e065a47880b595da073d455e587dae8a52c15a24c81820cf7459dbd4841e5d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4491,
+      "header": "1b4c4a0102aa0100",
+      "output_sha256": "52035c8e6fdaa91fa32f254400556e0c44e6aacf286165eb748e36bf19ee60ec"
+    },
+    {
+      "path": "data/feature.lua",
+      "source_sha256": "984bc36926074a37359d4be8d2b9cef2af4c04c852d722adefff4a1f2d15a105",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 8289,
+      "header": "1b4c4a0102720001",
+      "output_sha256": "afc2d55420c8eafdbe0e256874371da1ee0ed8127db4683fee008d06948694ad"
+    },
+    {
+      "path": "data/fuben.lua",
+      "source_sha256": "a3dbea4070717d936c9031c0a5d98975049742611b917b8bbd0506d8adad4e7d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5378,
+      "header": "1b4c4a0102fa2902",
+      "output_sha256": "d89efc1d8364dfffc6956a0540a525e9d9642490c7dba4eb79d80cb7c26b7ac3"
+    },
+    {
+      "path": "data/guild.lua",
+      "source_sha256": "322e690d0d7608b9e77e37510a1ed46205e1d14da6b31964ea144a3950757649",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3314,
+      "header": "1b4c4a0102ea1902",
+      "output_sha256": "e4a6f2fce11d8959f0d9b098e73f1fcbac088596e841e3482d96aa66f0edbffb"
+    },
+    {
+      "path": "data/hero.lua",
+      "source_sha256": "b5dae5a8afb5b44a6270daca55742fe3e6cc43bcfb75bcda755db7f3f58bf788",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 331628,
+      "header": "1b4c4a0102e39e14",
+      "output_sha256": "0bea9830348b758dbb4e85870b96bbe913e2d61ffb336bcd9d9069efb81c2b9e"
+    },
+    {
+      "path": "data/item.lua",
+      "source_sha256": "21455e201c849f2a91e3f4cf406cf16ac6f61b2ae5b2d6757aea6233cea8213b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 65649,
+      "header": "1b4c4a0102e88004",
+      "output_sha256": "33be74418d7ec58c256b5de7dc9b00a781bf92385656545cc98c48b3ef14e33a"
+    },
+    {
+      "path": "data/LevelupGift.lua",
+      "source_sha256": "e02fc7b603409ea27b7bcb0bb404f1584949993722f1b538b2dfacd904b0bf4b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2019,
+      "header": "1b4c4a0102a00100",
+      "output_sha256": "f3b23a58ce521558ac4b576c97bc4008f3d9308fa707d932c2f8aafac32167f2"
+    },
+    {
+      "path": "data/localdata.lua",
+      "source_sha256": "2dd3231f17857069fe615e9f43512445ed829d9573f2d66ae7d4e20cedbc4ff7",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3444,
+      "header": "1b4c4a0102c00600",
+      "output_sha256": "a1db82447ab193becfc87a1676c894c023b066ee709d5173d40e505460b41de6"
+    },
+    {
+      "path": "data/map.lua",
+      "source_sha256": "2663700a424a122da3053ee1735d21201a9352fe4ba7637e490beb2ce7ade25d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 244284,
+      "header": "1b4c4a0102b3f40e",
+      "output_sha256": "6496c60865ab149bcb3843b48a24b95ba252b5e23dfb615a6110fa2c5ef7f717"
+    },
+    {
+      "path": "data/master.lua",
+      "source_sha256": "f7a85b7d4521b2382828caf7d22bc130c609c3a9e57010653b841834ea21e1af",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 45582,
+      "header": "1b4c4a010285e402",
+      "output_sha256": "3a35d9bfd86baff964f71744b2cd69c47fc09ca96f51b086108fbac94ca51566"
+    },
+    {
+      "path": "data/MasterHelper.lua",
+      "source_sha256": "38c016feb7e25c95e96bf705fbd72d684ff7060eed49bb40db12ef388050a2e4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3133,
+      "header": "1b4c4a0102860100",
+      "output_sha256": "45421a037e11ae75302adacf2ff4039a263b946012554a8e0e54cdb8cf09e67a"
+    },
+    {
+      "path": "data/mineral.lua",
+      "source_sha256": "36f1d981c5cbc40c92a710ca18020c2c4da16a3b345034d22a79b01f155adfd1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5991,
+      "header": "1b4c4a0102df2e02",
+      "output_sha256": "664387eac74831cc039ecba141b757cd0088441c9791896564b82a3567ba0141"
+    },
+    {
+      "path": "data/MineralHelper.lua",
+      "source_sha256": "c267de1a2f4c80c0d474a8d20200017d607ede6caff7e76377c50f97cde4314b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3009,
+      "header": "1b4c4a0102940100",
+      "output_sha256": "76198b08769b9d287fddf84acdc51e5912b2323a7cf331ad150934a7a946946e"
+    },
+    {
+      "path": "data/npc.lua",
+      "source_sha256": "3584b99127c876abce68fe843e7acf6336139ce0cd7975b7c1bf3e736ea7f997",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 196,
+      "header": "1b4c4a0102bc0102",
+      "output_sha256": "ae4a821ef5b9a54b9e4f875fd89f65664d4a09de82d60c31f89c2545bb6c5796"
+    },
+    {
+      "path": "data/npcs/npc1.lua",
+      "source_sha256": "16abf7f13a3d3b2204ec5e23710b81ff92180237cc819ea23e6b17123a999cba",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 166715,
+      "header": "1b4c4a0102b2960a",
+      "output_sha256": "9a2f7eed54b218a132a015084c5407538317259ab85f92b597278a7d7565cbfe"
+    },
+    {
+      "path": "data/npcs/npc10.lua",
+      "source_sha256": "d3f992f49fa149a27ffd8d71864cd527632c1cb310775ef942c7ad96a611204a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 164965,
+      "header": "1b4c4a0102dc880a",
+      "output_sha256": "88e0049eeac262963d46f42dbdfbbb2d40b1a0e248413efb9c7502753915b40c"
+    },
+    {
+      "path": "data/npcs/npc11.lua",
+      "source_sha256": "892c14b83b36ca92b8bdda3e484656c1681599ea1e2d0ea41b1a97259541587c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 164971,
+      "header": "1b4c4a0102e2880a",
+      "output_sha256": "fcaecf966c3c35a8ab495c1c7334f20616ba3b14bda0ed333f1c6072a84a0115"
+    },
+    {
+      "path": "data/npcs/npc12.lua",
+      "source_sha256": "5f2cae1e7f7167663ca159dee409ee182d877ee37b609830b89a72aa1f2b8f52",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 164692,
+      "header": "1b4c4a0102cb860a",
+      "output_sha256": "67612bb92242c942dce989442d51f2b6746d6026feebd80c2fa8a1b8e1372810"
+    },
+    {
+      "path": "data/npcs/npc13.lua",
+      "source_sha256": "2e80aa8a987366653fcbd9583d2887796d7aeaa51d2cd0317cfe5237843210c6",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 171206,
+      "header": "1b4c4a0102bdb90a",
+      "output_sha256": "4428849584d95af950d913ac6efc751c2362d104e6ad234a959086776a90bbe7"
+    },
+    {
+      "path": "data/npcs/npc14.lua",
+      "source_sha256": "9f76f108412c7da24dd177584584000abc98b380cc43b48498f22fb0e709c7e3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 170097,
+      "header": "1b4c4a0102e8b00a",
+      "output_sha256": "c1666f465121cae6c3efa5616fca532c602a4d5e2032d34272af9c60cec0b200"
+    },
+    {
+      "path": "data/npcs/npc15.lua",
+      "source_sha256": "d80a9f98f8b9af7a4b081c98296e1a5afa05dbc4d05e20272c58bbe3667e4724",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 65937,
+      "header": "1b4c4a0102888304",
+      "output_sha256": "9e12b2110109088e8272551346b0aecd5c9b6d2a934e8f3db1c27a9cb7c36919"
+    },
+    {
+      "path": "data/npcs/npc2.lua",
+      "source_sha256": "16d2cdc0974bbaf64a21a2d1a0ab619a1ff83bbb0fabbcfa1554ba835aecccd9",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 164925,
+      "header": "1b4c4a0102b4880a",
+      "output_sha256": "548c6263e1a5408064dd94e4e553665780865f1862754c075b4ad9ea8ecd62a0"
+    },
+    {
+      "path": "data/npcs/npc3.lua",
+      "source_sha256": "b79a35058757fc6eeaa3a416483b6eeb0ef769ba5520ee3fc4551d0675fd0cf3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 166779,
+      "header": "1b4c4a0102f2960a",
+      "output_sha256": "0f8dcf2218e6fd3ad52e72093cde9ac6d8b971c6026f778909693a137b13ee2d"
+    },
+    {
+      "path": "data/npcs/npc4.lua",
+      "source_sha256": "e4fb0883a4fe6324face8f0f3783f68595c4e46b8ad7c9c500b2d1ca13b45b2f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 166646,
+      "header": "1b4c4a0102ed950a",
+      "output_sha256": "110935e6ff5c1ef54043706742861a47a6abae4de1d8d168b9036f0cd28bfe09"
+    },
+    {
+      "path": "data/npcs/npc5.lua",
+      "source_sha256": "8b4e18ca1d8c6a73a695db5ee5266baaada732eba39a08a59b6c2e6f014a4405",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 164953,
+      "header": "1b4c4a0102d0880a",
+      "output_sha256": "4bf86e848404983866026b10a532e856c9464e826125dbb93195111939443f71"
+    },
+    {
+      "path": "data/npcs/npc6.lua",
+      "source_sha256": "42f4925bb8a640dd571765c35312a9dec9839fa18549ca7e4d0649f9e6be1b80",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 166779,
+      "header": "1b4c4a0102f2960a",
+      "output_sha256": "b97d9b764c740af42249da3ddbbc3bb8dc75063cb636914beb6ab744e7989b66"
+    },
+    {
+      "path": "data/npcs/npc7.lua",
+      "source_sha256": "9f24e10218ac96d0d0a48decf8f05d3132fa27a03dc2f9968275a34409c03b22",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 166608,
+      "header": "1b4c4a0102c7950a",
+      "output_sha256": "6b4e35ba8c4fad7020d0cd47461a43b7ab76654032ba423d0e4657ae4ff2db6e"
+    },
+    {
+      "path": "data/npcs/npc8.lua",
+      "source_sha256": "240720bade00d8d24f86042a03fc8c4d8d28f172feab1237cd70ac6bfe09294c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 164977,
+      "header": "1b4c4a0102e8880a",
+      "output_sha256": "a54e610d3b51d6f5aac727ba1def81ddb853dc5b37bd91e73e7d30656ef99646"
+    },
+    {
+      "path": "data/npcs/npc9.lua",
+      "source_sha256": "87464c5a6c968b0c5d1d632453af063ea2f32db3ad4767cc7348282cde035b74",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 166748,
+      "header": "1b4c4a0102d3960a",
+      "output_sha256": "2edac04dacb0d227ce2ed02478eeabf34e34cadd8f6722e8506eacf543919d13"
+    },
+    {
+      "path": "data/player.lua",
+      "source_sha256": "19148f13f32facdb4bfc9ad9355c00a96e68be2ca72abe6f663a25b4a2f475ab",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 31219,
+      "header": "1b4c4a0102940400",
+      "output_sha256": "4e824effe484d2989297999f1fb006b837d3cb2dfae381b80db65b002bf5b21d"
+    },
+    {
+      "path": "data/ShenQi.lua",
+      "source_sha256": "0d3761a6224155a41356eef1f24d4f05c30ea1efd1825ed6ee9943aaabb0a46f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4118,
+      "header": "1b4c4a01028e2002",
+      "output_sha256": "7deacaae783e8f58661819a74ae3afbd90ee8b93cb3c257c8259ac235a1142b2"
+    },
+    {
+      "path": "data/StoreIAP.lua",
+      "source_sha256": "8e4980777f0122fbcf26b396bcc5d426b793b998c9972ddea1380e10bf3e469a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2158,
+      "header": "1b4c4a0102ee0100",
+      "output_sha256": "c86d40c6268abc252ef9dd2e7236e9aa0cc7487fe9202b8b7dbe890d64758fe2"
+    },
+    {
+      "path": "data/task.lua",
+      "source_sha256": "17d8d8f230ea8e0484bbe143a9c90b9780f433ee844de3d99488f94804eadc0e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 16270,
+      "header": "1b4c4a0102867f02",
+      "output_sha256": "db405555f272cd07a110ccd44008967e3d11dd93a28725a52e3dbcee732a224e"
+    },
+    {
+      "path": "data/taskType.lua",
+      "source_sha256": "8505bf3327670fc90131a4363cc013f427723862f2a1704f9b984b176ee260eb",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 748,
+      "header": "1b4c4a0102e40502",
+      "output_sha256": "86a8bfff2432914fc154614d5e4ff69e34a247846a963c4f360631a2db78dbb0"
+    },
+    {
+      "path": "data/tianming.lua",
+      "source_sha256": "e4e441370d42b463b15e679b9835bc1fe2b9b44382352ffe17ee9e2cb01454f5",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 16225,
+      "header": "1b4c4a0102d97e02",
+      "output_sha256": "fddfa5e845d71baad48cb0d67c54ef48dfcc5c50ca52ec657e4d6e0eed5a6d11"
+    },
+    {
+      "path": "data/TianmingHelper.lua",
+      "source_sha256": "aa1580c6b8b45b383d47510d30937762c5d2831bf254a01ce602f0145c9b2be6",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2926,
+      "header": "1b4c4a0102980100",
+      "output_sha256": "0dbee86da8dd2b04132682b887be6017461842dbee2c5503b042e4d60f46766a"
+    },
+    {
+      "path": "data/transport.lua",
+      "source_sha256": "6dead44d9c4dfa089dd5d32b4f3b29ef3a77aaf0c1e86334ae3ad5e8f041f557",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1601,
+      "header": "1b4c4a0102570002",
+      "output_sha256": "c88d51ddd038dbad81173e45fdd5ae9d0e32dc8115b61f538127aa3d7e8b1a68"
+    },
+    {
+      "path": "data/TransportFriendsHelper.lua",
+      "source_sha256": "ff6b633e7959adcb4f443bdccbfd8e6bfe77b1edab07db049fe44c8d263b928c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1699,
+      "header": "1b4c4a0102820100",
+      "output_sha256": "b486cf3d619e5f12dc6e9dde2a02682f65424145ed6bd1032c1144522fb79291"
+    },
+    {
+      "path": "data/vip.lua",
+      "source_sha256": "a34ddefbec5b9664b3dc5e6ae9067fdf8bb7113befec86345221dece94756b2f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6591,
+      "header": "1b4c4a0102b73302",
+      "output_sha256": "0ca204fe5ac1e17111ef1bbf2acea30dd826ea9abe8f8431720a0d396c3c0a0c"
+    },
+    {
+      "path": "data/ZSZZReward.lua",
+      "source_sha256": "d3d197450f8a930f5a09d7f2db7a89200bf97f7e94ccda913a1d28b849ed871a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7083,
+      "header": "1b4c4a0102a33702",
+      "output_sha256": "b87bfa3614401c644604f368b75cc1e18bbd771b077776343f6bab742a638a56"
+    },
+    {
+      "path": "game.lua",
+      "source_sha256": "85d8830f753cbc14f8319113c49acac5cca8f8efe4ae52b00d26d370be4e8e8c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 22521,
+      "header": "1b4c4a01023f0001",
+      "output_sha256": "134846b6813fd217ed6a1f379de363a47f248949a9c90b6218177235b5168f55"
+    },
+    {
+      "path": "network/AccountRequest.lua",
+      "source_sha256": "196ec8d9cfaae9822bee4ac47871a48ba5f0537e3746471a10fed1d35038923a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2185,
+      "header": "1b4c4a0102a60100",
+      "output_sha256": "4fe36fc379858b594adc051955ac7b58506519d8ee2f15a88b965d07c5663c88"
+    },
+    {
+      "path": "network/ActivityRequest.lua",
+      "source_sha256": "73693e458d13f62b4f2e02412fbc38fe8965abec8fb6fed8e32a031b89bdba4a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9314,
+      "header": "1b4c4a0102880100",
+      "output_sha256": "ae553ad6eaa08e19f5862f140d1b36a6181bdee63828189d7db8c703674dc8f2"
+    },
+    {
+      "path": "network/AnnouncementRequest.lua",
+      "source_sha256": "eed7fd8979c685d9f8229ce6c723fee2ff0e98f8fc6bbd893b6e850338255d91",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 354,
+      "header": "1b4c4a0102870100",
+      "output_sha256": "d4ab25d944bb680354f3f440b9530673a28b6e958a1c5b4fc855a57e0d0b3e44"
+    },
+    {
+      "path": "network/BattleRequest.lua",
+      "source_sha256": "542c1549aee3ed35c29f3cf7b6868133848ef1b3b2f4a8697a99bb9182afdc5f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2366,
+      "header": "1b4c4a0102900100",
+      "output_sha256": "9d3b51356b5238fed06c0cadfba6a913f6db7566cd43628f2f5913e507758f1d"
+    },
+    {
+      "path": "network/ChampionShipRequest.lua",
+      "source_sha256": "1b465621a464e05307e072085548675fe431f5fad941b4fae1058ed39d50e365",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3249,
+      "header": "1b4c4a0102860100",
+      "output_sha256": "26520813934aee546794f850e2f1a014363b5c50182c6f001fc9545062ecca81"
+    },
+    {
+      "path": "network/ConsumeBangRequest.lua",
+      "source_sha256": "39d62597abb7a1dea1f88bc31ce2a8591df608986c9fe63a44d076a8c7adda76",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 398,
+      "header": "1b4c4a01028c0100",
+      "output_sha256": "a618b663c1461cec36dcd49631beca9dddc99aed5de161209c662d222019048b"
+    },
+    {
+      "path": "network/DailySalaryRequest.lua",
+      "source_sha256": "653009c4896cc5638828cb9cebc4c50299f92a7ca988ccc2cb681ad1df1d9891",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1828,
+      "header": "1b4c4a0102b70100",
+      "output_sha256": "1d64db25b8689b46d4c85dfe4c5f19cf92870eec761450d4fad7bd97262538a7"
+    },
+    {
+      "path": "network/DuelRequest.lua",
+      "source_sha256": "17e47c1720d6d0d104d3b120fca9b0f52cd320283e3a7defe168d6ec1c86eba5",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2586,
+      "header": "1b4c4a0102830100",
+      "output_sha256": "94db8c78e1ec7e4f6da5b70f4a94cafc0815e9d4d0a7130753c6581bd1223766"
+    },
+    {
+      "path": "network/EnhanceRequest.lua",
+      "source_sha256": "1de22a50baf661d5125a4487e6e5f829bf9e1e7b7d40f29b331f5f11d05dad30",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2269,
+      "header": "1b4c4a01028c0100",
+      "output_sha256": "6cdfc64a3bed9e919363eac535b327586fa8f180993d08abba56895b84e61550"
+    },
+    {
+      "path": "network/FriendRequest.lua",
+      "source_sha256": "ca61a139b8ec5ba501933c97436c3376167890987ab5b93634086f05664687e8",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3406,
+      "header": "1b4c4a0102b20100",
+      "output_sha256": "1fd8b9471c5634015b0aa784b6270049efc63906c674aa3dd4337c26d13ff0e4"
+    },
+    {
+      "path": "network/FubenRequest.lua",
+      "source_sha256": "65dcceee2f143fb25bda9242d1e2229747818f8af0f0f236b504731e7f5463c0",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3182,
+      "header": "1b4c4a0102890100",
+      "output_sha256": "5106d0f3f558c4fb15f7bb5cce8dc87ad8601c66f59ed50c3a42fa171dcda3b9"
+    },
+    {
+      "path": "network/GuildRequest.lua",
+      "source_sha256": "3895bb716a6e7a5226ac27478fe85e974fd391cc35a062681bd36f56d7d36c9e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 15828,
+      "header": "1b4c4a0102ab0100",
+      "output_sha256": "340011d951a96cceaadd8291840309a858dc71ecb6d35f5f2c1e0f81d58cd53b"
+    },
+    {
+      "path": "network/JiFenBangRequest.lua",
+      "source_sha256": "a0ef123406ef96b438006ca9ad57ed85c57fecd372a3cceb14515adb22d0b80a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 408,
+      "header": "1b4c4a0102980100",
+      "output_sha256": "c35a271368cd663b06dd0da6b925ae1b53538db9b0a6f37aa8587db5ae9c0be8"
+    },
+    {
+      "path": "network/MailRequest.lua",
+      "source_sha256": "0de33cb072c07be5fe8c52c7c589665fa5e6b820610953b38c6a45534803560e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2487,
+      "header": "1b4c4a01027c0004",
+      "output_sha256": "9ba4ecf35b34eae2a9a055dd6aebfb32077af57262959d61aab7ad8c833ef3b7"
+    },
+    {
+      "path": "network/MineralRequest.lua",
+      "source_sha256": "86969a4f9983b254d8838f6c7d677c8f69ad004b708553d742e806654def475b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2931,
+      "header": "1b4c4a01028a0100",
+      "output_sha256": "38f0dad38f59e3a7461a2d69e7f61b6e40f88311dcfed3893ec72f63563884f7"
+    },
+    {
+      "path": "network/NotifyRequest.lua",
+      "source_sha256": "a901734e88f3519759c8a220d25b969d8c299687e9e5042feecaa531c3673cb1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2521,
+      "header": "1b4c4a0102aa1000",
+      "output_sha256": "51fb86c797e758d310e16b1d20feacd0bc992f141081983518d7eb868c9e4d4f"
+    },
+    {
+      "path": "network/PkRequest.lua",
+      "source_sha256": "c42cf879f08b60cc4d56b6d21b93274268400e1a0469302088e8c2a8a740e8b4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1862,
+      "header": "1b4c4a0102860100",
+      "output_sha256": "2b3b5509f3fccb240d6dbc9a2e7aef93eda3af6432c7cd97e9a3a321c9ddb6df"
+    },
+    {
+      "path": "network/PlayerRequest.lua",
+      "source_sha256": "0e1b89eeda0fb8d47db341c1b8c4de96114aaeef3a1e87652eaa7d36fa47b62f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4313,
+      "header": "1b4c4a0102e21400",
+      "output_sha256": "1449d2b29fce8b0384a816d0158432c4352b313b84ea4cd05705a9c6aa768bee"
+    },
+    {
+      "path": "network/PropRequest.lua",
+      "source_sha256": "aec91a58936b73d2c043c8f5e6186ef28a01d9a4ffe6bfa7fede84f8af8405d0",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2194,
+      "header": "1b4c4a01029b0100",
+      "output_sha256": "8fd47e75991ebb0773782cf0f2abce04125dda5b053404ce42f175c10c2fe153"
+    },
+    {
+      "path": "network/QiShuRequest.lua",
+      "source_sha256": "31d4dc15d14e3bf604e705b1580a0d0cad09e94626a4a41bd9af284e04df0275",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 779,
+      "header": "1b4c4a0102de0100",
+      "output_sha256": "f6d4cefa2397dcf9216297916dc966b31f74cad04b989fcb8e31bb3d2f9ec0e7"
+    },
+    {
+      "path": "network/RankingRequest.lua",
+      "source_sha256": "72fb49330cb82404bedfe9f3deb7b31e5af54bdc3538447210ab6f46065be8d2",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 971,
+      "header": "1b4c4a01028f0100",
+      "output_sha256": "0b3a07da31a89c6141c95cee6b61fc069c883528f5b5ce6fdf9f4d6d80a22f25"
+    },
+    {
+      "path": "network/RechargeRequest.lua",
+      "source_sha256": "4d41070d4e9fc338fe8cdd44c7c45f58a438e534cc872be1ca3df486e4eee7f0",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1202,
+      "header": "1b4c4a0102b40100",
+      "output_sha256": "c1aa660218d4fe88b7f8e9542591e4b0a4ad173d869f695d6943910a0ef8efa0"
+    },
+    {
+      "path": "network/ServerListRequest.lua",
+      "source_sha256": "0ff76afb01cd7b85882b0d922fdbe57930f1e6a60ddcbb75179b7d231f9452b1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1111,
+      "header": "1b4c4a0102e80300",
+      "output_sha256": "7d6dc9c51dedb02fbb89774d9d24c322192bc13de6169e671de955d2a6017d98"
+    },
+    {
+      "path": "network/ShenqiRequest.lua",
+      "source_sha256": "273281366c7c9920215af531e613763be01b37889b1a61008fb58826ae317570",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2177,
+      "header": "1b4c4a0102b30100",
+      "output_sha256": "8904811c5b265dd7c7ba957a42d8940ff5d4c21f2db50690c3645b2b6ba65a63"
+    },
+    {
+      "path": "network/SignMonthRequest.lua",
+      "source_sha256": "f37ee1d0e321d446f5e62db4d28a4e39b972be9c48c7d6f4e77f758a9b4f7e36",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 978,
+      "header": "1b4c4a0102ab0100",
+      "output_sha256": "614c9dd481fadcc46ec9f6199e0ea2a88468f3bc0f8a3355343bbcadaab406c3"
+    },
+    {
+      "path": "network/SlaveRequest.lua",
+      "source_sha256": "10f15854c146b7a10484e54313ad639122b0cd6e0449f4286ff0e709b16dc5d6",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2521,
+      "header": "1b4c4a0102880100",
+      "output_sha256": "f2588f6153b1eaadfcf4c0f9ab842d86a222bbb620b4eff4c12ef67b8105abb5"
+    },
+    {
+      "path": "network/StoreRequest.lua",
+      "source_sha256": "42ea7983816bcbcb20dc951dd11e04c2540d0ae97acdb7f8f53fc02c3c5c7ae2",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3532,
+      "header": "1b4c4a0102860100",
+      "output_sha256": "ec9f6333768f16fc5f6789cfe47f1765bcb5b96d23b4cf42044f21b004fdcc63"
+    },
+    {
+      "path": "network/SystemRequest.lua",
+      "source_sha256": "af0c25ca88598e8910fb16d7bd87f19438647035f0f660dab2861a7728d26674",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 391,
+      "header": "1b4c4a0102880100",
+      "output_sha256": "a6dd9c4a25fbb3aaf1c3506fdb1ceb59d842bd58331969c7ad0cfc6742b2bd3c"
+    },
+    {
+      "path": "network/TeamRequest.lua",
+      "source_sha256": "34556fcccca08a6682d7777d8d04cac8eaf66cfc972bc4df671f89f91d61b4c3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5206,
+      "header": "1b4c4a0102920100",
+      "output_sha256": "d4dd1d26535307dbaa42541e6207541252be66bf88889b78939c49dbca06f0e0"
+    },
+    {
+      "path": "network/TianmingRequest.lua",
+      "source_sha256": "a2b0a01acf255dd404c5821af4ecdfe8731c2fdde78fb98ab467b26a84c86023",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4598,
+      "header": "1b4c4a0102ae0100",
+      "output_sha256": "ffabaccb14a778570674775dc01c964d46839e217d597a6f2b6c3e9c01ec8912"
+    },
+    {
+      "path": "network/TowerRequest.lua",
+      "source_sha256": "e9c2cb7f7aeaaa65c874a3a62b70e7324990109d9e5260f36d745b639eb19816",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3467,
+      "header": "1b4c4a0102820100",
+      "output_sha256": "b77ea9c1e6c00da20004f0c1c1e3e4b5279d4874997cf9f3118d147fe6dce0d8"
+    },
+    {
+      "path": "network/TransportRequest.lua",
+      "source_sha256": "ed115d63df09c2d924093a8450a929e54bb25c1823a75f75ba4530db7a86648f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3449,
+      "header": "1b4c4a01028d0100",
+      "output_sha256": "84da97371559ae94aeda4beb9d7780697fd7139af161d53af5e02b8c1c07a05b"
+    },
+    {
+      "path": "network/WorldBossRequest.lua",
+      "source_sha256": "42843878dc10760766d7da2363c93ed5cca89bc32121f578de8fccad1c1c21d4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3732,
+      "header": "1b4c4a01028c0100",
+      "output_sha256": "94e9078d7415831ab1b82f933261eaba685d646aecf3f9da17ef36fc44ec1fe0"
+    },
+    {
+      "path": "network/XunfangRequest.lua",
+      "source_sha256": "8a2872e51862de01c57578ab6a52ae90564106f58fbed8d3c757def4551d7e1a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1774,
+      "header": "1b4c4a01028a0100",
+      "output_sha256": "78c4f70859d14e05b86bc9072e689b6237768b0b5ab8980b1f8d44e03c3e718d"
+    },
+    {
+      "path": "network/ZhaoCaiFuRequest.lua",
+      "source_sha256": "8be6cdba8c8888b2b1e57f18ad9ff5607d0a650c6db7737f4f25257c739212a0",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 810,
+      "header": "1b4c4a0102e30100",
+      "output_sha256": "38b395ddf5a91aff15570cb93b2e4a6ad91e6297df7ed38d7c3cfd09ef5aebfc"
+    },
+    {
+      "path": "network/ZSZZRequest.lua",
+      "source_sha256": "bff2e07af3eda58e358c9c839f20bed92b3c6b6c6289f47fbd408ca30c6e4709",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3687,
+      "header": "1b4c4a0102870100",
+      "output_sha256": "b78573e1ea37c2cd7f859f1881d9123ac01fb15693b6a92a27ca46648d1b8787"
+    },
+    {
+      "path": "scenes/activity/ActivityScene.lua",
+      "source_sha256": "586d2502524e5b23facfb7c122367cdf7260e2a9f17abbfbe1e88af4de6a66fb",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 8498,
+      "header": "1b4c4a0102360000",
+      "output_sha256": "8fd46add3370552403796e51f34b533ac97726b404a5324b5fd78e53f6ec0a25"
+    },
+    {
+      "path": "scenes/activity/BlackMarketLayer.lua",
+      "source_sha256": "e4b94c2c31376b63e522e2c2124fe22907a960e45e426b11cf81bbed28856d68",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9748,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "15c5398a0f25fae4c41f8b76a0c164fed47e7cb77dbec23091b812ae9234d597"
+    },
+    {
+      "path": "scenes/activity/DailySalaryLayer.lua",
+      "source_sha256": "d3ca25430f64fdb8b28c620211375713dc4847527dafd79a36a314e1e37dd6a0",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 10720,
+      "header": "1b4c4a0102c10300",
+      "output_sha256": "9a2ffedc0d33c4bbb6590bf5c25a8b85a2eec327a24ba9166df6884e57383b88"
+    },
+    {
+      "path": "scenes/activity/DailyShareLayer.lua",
+      "source_sha256": "1f82275381490a1570f799659598d2071ecf441a4469fefd2973cef4613dcc28",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7286,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "27042ae29474284e3b2a0c74ae659c30193f6c1255cd9b1d094e2b8e731afe6c"
+    },
+    {
+      "path": "scenes/activity/FirstRechargeLayer.lua",
+      "source_sha256": "922f741d2f8da1cc836f521cdadedac1a88f712cd3f66f65ed18897af974a504",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3393,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "013ca754b70f9be3b5021bbf76a9d35d2d4992ad242ba7c150f05e3ccecc6e34"
+    },
+    {
+      "path": "scenes/activity/FriendPromoteLayer.lua",
+      "source_sha256": "1e04255724b8549ed6f26af2b5664a15feb0a116e2b8b8fe9a7d2caccbecf36d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 11306,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "05393521368302939f203d360b554cdfd283e9ea807cce0879a44b7bacfd22ff"
+    },
+    {
+      "path": "scenes/activity/GoldActivityLayer.lua",
+      "source_sha256": "0f99ae816732619140a5d11169b3215359a2445c6dbaea7c5e3ac3ff93d4d45e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 11039,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "028bde0a045e337bc520b4f40ec96e9c844b1e8d16f8d971c3557b5b8c0b041a"
+    },
+    {
+      "path": "scenes/activity/GrowUpPlanLayer.lua",
+      "source_sha256": "215a19cd7d8221ecfacd52fc17712dd6fd781fb717e4b892e9a8586d1320ac81",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5022,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "d93a1beb66b8f56d8d4e93c206de998456c9a02b4745c9c105592793fc517b5b"
+    },
+    {
+      "path": "scenes/activity/LevelupGiftLayer.lua",
+      "source_sha256": "d98881bd405fdbc17df5f3135c4e47aa0b7951e7f29c4698ad29044a3536f00b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4310,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "3a0603a67c8bfb333526da6f246cb2639fd1e8fd1b435e0fc7f5bb98ebeaa9bf"
+    },
+    {
+      "path": "scenes/activity/LingZhiLayer.lua",
+      "source_sha256": "c34243e0715ccef5caa91bd67e23ea2fdaae85d6e7b46bead5d23b91823c8244",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 10437,
+      "header": "1b4c4a01028c0100",
+      "output_sha256": "e3473c28d4fa24662e7e40bfd54be0f5dd075d82552ccf0fac5b9d608f6c9c91"
+    },
+    {
+      "path": "scenes/activity/LuckyDiskLayer.lua",
+      "source_sha256": "141145d51d43e0ca365e7b5bb414b295a9d082684d6b57b9ae4ebc272de2ecdf",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 19439,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "bc347cfbac01c8a91fae8b973f3beebe6bb946e452444875606664bca6682622"
+    },
+    {
+      "path": "scenes/activity/PlutusScene.lua",
+      "source_sha256": "64cc6b1d9d0980a613ed152d64af2fb07b82e4b3956e60cd706a951d3da560a6",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9125,
+      "header": "1b4c4a0102340000",
+      "output_sha256": "873d59b05a436416f4d10d2aa29cbac8a9890ea6abbff7e112aead454de522ca"
+    },
+    {
+      "path": "scenes/activity/SanHuaLayer.lua",
+      "source_sha256": "4d4bc6061643cbd3bb8fb5c0a4937dced64e5b4cd177b41cdb3ffcd193e41965",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3288,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "69aab7415c84d677770f41d9b7c0bde3d6b82bf16060c187dc85ca64fbe26911"
+    },
+    {
+      "path": "scenes/activity/SevenLoginRewardLayer.lua",
+      "source_sha256": "5978bedc2e88be8ad997b47dd8042e32e126989182e1c401f0b1891f26d34c4a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4893,
+      "header": "1b4c4a0102bf0300",
+      "output_sha256": "a538db9094f2357a009be8284c959dc72c596f644fe0cccf6499a687b16467db"
+    },
+    {
+      "path": "scenes/activity/SignMonthLayer.lua",
+      "source_sha256": "deebc5905f1558c1214141c682ed82998fa477d4a45e11e007dea6babb279cb6",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7858,
+      "header": "1b4c4a0102420001",
+      "output_sha256": "cd2eb1ed91444aece570fdb45816032ca45e4eb51cf6cb9597a0dd9999763db8"
+    },
+    {
+      "path": "scenes/activity/WeekMonthCardLayer.lua",
+      "source_sha256": "465239124db6523e54e57d5a60ed4ade68d8eb43ecc048bb617a01045d933514",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 12544,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "0fa16c934626fb2a1dc9b4540f0d84b5f31b52e7f1ba056409a401f25624940b"
+    },
+    {
+      "path": "scenes/activity/WeiLingLayer.lua",
+      "source_sha256": "45bc2bf0b8095e4599b8816c4b574f77084d4afe04bc2e9b7ca243af79d7ef55",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3366,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "0210b859b59374731aa50e1c3b82dae7cc6009661262f4f9296345acf3f8f42a"
+    },
+    {
+      "path": "scenes/bag/BagLayer.lua",
+      "source_sha256": "eeea0bdb564b14738ac43220872b1236721ce0f8e80a6b69c49439d2ddc208eb",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 14056,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "48acc1f37cf038f1d483db59bde7f1a3bece78a6b027087fd35d6288d228c969"
+    },
+    {
+      "path": "scenes/bag/BagScene.lua",
+      "source_sha256": "fdb20ff1c0a9567c9caf6484892e5665cce06848f661d1ab9e26033a155fcf2b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 722,
+      "header": "1b4c4a0102310000",
+      "output_sha256": "4c2e90500d3ac12fe2b663a8ffab794c4419d624c70c88330be05fc8b3b26a5f"
+    },
+    {
+      "path": "scenes/bag/ConfirmMessage.lua",
+      "source_sha256": "09b420512b9c68e568ddf53992192ffd60707304e07c3bb50f790545eb62e2e4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1534,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "8a535996e627dc7897987e952e6137d33f26a17536aea9cd7dfc924213dd5786"
+    },
+    {
+      "path": "scenes/bag/EnhanceHeroLayer.lua",
+      "source_sha256": "8cb68cd485970bd9a850672eda1989d17a106b9dc07e12457d88828fa5242134",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4863,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "2194b0a8ac6596c36b8446b8d7bab9ca9f536500a9c022a73e031a31aa0244e2"
+    },
+    {
+      "path": "scenes/bag/FigureLayer.lua",
+      "source_sha256": "c924ecd3f4aac9ef0b830253e484ebae792c7d093cc4440fdc40894a687a14e3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 12531,
+      "header": "1b4c4a0102c30100",
+      "output_sha256": "37396a123ddf3567a5793d953439cbbb990d1a1b869297d718e9201f65ac4c59"
+    },
+    {
+      "path": "scenes/bag/HeroEnhanceInfoLayer.lua",
+      "source_sha256": "b439f697ff42c5b7abccc79fef9e49e2cc7e85b383944882856a42d1a4b2045c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2840,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "898258d87d073247db7b580c3b4267f487296f225569ce8b0ef67393a242445a"
+    },
+    {
+      "path": "scenes/bag/HeroScene.lua",
+      "source_sha256": "48fe51e8e7c2c822880b6e87066c4b067f62474210b8d88db0a40307a25acf12",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 626,
+      "header": "1b4c4a0102320000",
+      "output_sha256": "58f32ace4200c260c2768ca7ee7df4402a69162fb2dc68239bd0151b3e95a0a0"
+    },
+    {
+      "path": "scenes/bag/MultipleChoiceLayer.lua",
+      "source_sha256": "5b46c6bb00fa183d6381752d28a55d461eea83ccbd7fc85bfda22361658dd83f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2035,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "b6bd4ab2bb08389f650cc50fe4646e307a250d9ce3d641f494d3503a840a2604"
+    },
+    {
+      "path": "scenes/bag/SoulEnhanceInfoLayer.lua",
+      "source_sha256": "382ef9b8406a452ad2c36fc5fa2310d820df99846f54ade0606d097831053a56",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4795,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "d72b4c0d829440734652cf3f55c1c4df1da5037dc9f157d3e7abbc4052185772"
+    },
+    {
+      "path": "scenes/battle/AnimationManager.lua",
+      "source_sha256": "865a2b434c9bd9c842b48e761b1558dee1c8cf0215a62ab89244076fe5bef640",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 28801,
+      "header": "1b4c4a0102a20100",
+      "output_sha256": "6fa06a632298fb62f1bc7422f83fba284ec0048c8eddbf5e7c44a143931fc635"
+    },
+    {
+      "path": "scenes/battle/BattleAudio.lua",
+      "source_sha256": "72a234a72c94aecf8ee9fc6444062ca9e103c176f619c963fce9fe4256dcdb4f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 451,
+      "header": "1b4c4a01020b0001",
+      "output_sha256": "86c7ea5e0d675a8b0ae6b3139e77c6700805fc42bfd0cb7ba93a11200c86bd08"
+    },
+    {
+      "path": "scenes/battle/BattleBGAnimation.lua",
+      "source_sha256": "4ce4f2408e2823b2235973b03ed5f4a9d35766c890d3d5f6aededc9ab85fac99",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4319,
+      "header": "1b4c4a0102410001",
+      "output_sha256": "f25b98cf379448fafc99875a191e08f69375ec56d078a70b67e8a70af89aed3a"
+    },
+    {
+      "path": "scenes/battle/BattleChatLayer.lua",
+      "source_sha256": "2b20653d07fd11a27b05f5ad3b0464057142490ba58b666bc52627e24fecea39",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5026,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "e23f5a82a159a633d79df6b7068bae7c23fdd2e1af70f327a91e0da10a468e3e"
+    },
+    {
+      "path": "scenes/battle/BattleComming.lua",
+      "source_sha256": "8ed72a82f0bc4d3c2f97f9cb1611dd1631d1bbea5dbb911bd6b01c2a6dab775e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 13494,
+      "header": "1b4c4a0102270003",
+      "output_sha256": "99358181003c8ae34e8a5092589513a1a2cecf2143546b2095e4e3068152fd20"
+    },
+    {
+      "path": "scenes/battle/BattleData.lua",
+      "source_sha256": "c5081aa672e529db2371b1fd304ac532b5219896df5f829a1a8f279b6fcfae9b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 16146,
+      "header": "1b4c4a01023c0000",
+      "output_sha256": "2c3dc7fccb71a6c85b9950e8ff802d6bbd189a9750a3e6c6e62e8f288feb62df"
+    },
+    {
+      "path": "scenes/battle/BattleEffectLayer.lua",
+      "source_sha256": "1f6e0b44c65a7c3dae6a03cbd8c94d042b6cfd7449e37907e74c19103b71492a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 19170,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "007be2a3470057a9d710b9d41200724f6d19f2c36865dd7da0a784e60d67cbc6"
+    },
+    {
+      "path": "scenes/battle/BattleOperator.lua",
+      "source_sha256": "44e5d4eeefb5c47072a965e491c66bfff906ba42ec6040570bab60fa1f24df97",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9766,
+      "header": "1b4c4a0102d70100",
+      "output_sha256": "e9db1ab6812ba595204010672b654805fefc848d3753ae8a197ec163c15500e0"
+    },
+    {
+      "path": "scenes/battle/BattlePreLayer.lua",
+      "source_sha256": "7cf05a2466797cec9bf3290974c20b21b74de80f821e5cff2e73f0fbc67144a4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3557,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "c31dc4d66eda38a6fb00240768439933a2b2427f1f0e1cd7f170c0bf31d3022b"
+    },
+    {
+      "path": "scenes/battle/BattleProgress.lua",
+      "source_sha256": "9df7ecbbe23ecf002d2c6a3734f6205c6f17899b45643436af643d4d6822c79e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 13394,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "5632464133b501b0d8a5fea14aedb4949b365814982266d778efa5f8827fc5c1"
+    },
+    {
+      "path": "scenes/battle/BattleScene.lua",
+      "source_sha256": "41d3fc1aec9f3cde1bb42c9328e65f57ce24a8c2acd7b995bbbc1e84259dc8c6",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 27076,
+      "header": "1b4c4a0102f50200",
+      "output_sha256": "777a0e6fc199c7006a45e98dc7a8831898694441540306031afcae69f61d45e2"
+    },
+    {
+      "path": "scenes/battle/BattleSetup.lua",
+      "source_sha256": "77ab5552aadcecfd5d10188509120cdc3abb539781c3013de98f0f89505626a1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 220,
+      "header": "1b4c4a0102d40102",
+      "output_sha256": "78ce72ba73e4c5d0fbface0fdf423fbd9068695f7a894150ad5b21179673238c"
+    },
+    {
+      "path": "scenes/battle/BattleSkeleton.lua",
+      "source_sha256": "6e2e9cf659187e236d0f0b30ec57bd8ae22f8c2e606f9566d808d5ea4812bc67",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7119,
+      "header": "1b4c4a0102600002",
+      "output_sha256": "35f2278a0b37456ffc3a9c82aa2a0ad9fef2a49a2956d2c7400d355ce37b79cf"
+    },
+    {
+      "path": "scenes/battle/BattleStateLayer.lua",
+      "source_sha256": "469615bb91ecd601d082a1608db9a8e6005a4e79e5a2447343a60aed9070710e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6759,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "11e4f993732c66b7a7fcda8ff8e34d79d7cf3a83ee80be9db5771c7be12817d3"
+    },
+    {
+      "path": "scenes/battle/BattleTransform.lua",
+      "source_sha256": "a6b4b3dfebf3ea633d0503ac64c5e167fd90e493b67942c2c44fdaf3741a916a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4608,
+      "header": "1b4c4a01023c0200",
+      "output_sha256": "9e08cbfa05260db9a75059c0d9806a1eb5619ae63805786fc137f94db7320945"
+    },
+    {
+      "path": "scenes/battle/BattleUILayer.lua",
+      "source_sha256": "0b8c9e7cca84d52c853cf8899a32d5dc650880050e7600a51f39b98b0683fe76",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 12779,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "88cfede86e24589dab36d35282294a39cdc85c80b8c701e3acdbb67c69d6743b"
+    },
+    {
+      "path": "scenes/battle/BattleWeather.lua",
+      "source_sha256": "675309b921146e190434c6ae4ce771c9ba8d2173e091e4e2285c857ba22d37d4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7752,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "246afdc02c10464bf89822bea890920bb7119e006b57a9b7fc1f0fe4874575ff"
+    },
+    {
+      "path": "scenes/battle/EffectConfig.lua",
+      "source_sha256": "d688fecc5e38fd7a02af729a6e3394b660570445e7343c67c8b9492ea1026a29",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 59978,
+      "header": "1b4c4a0102a70200",
+      "output_sha256": "2e566b127e1045d8d6ec9b79563972078cbfb77539733e5be0cefcdd95557276"
+    },
+    {
+      "path": "scenes/battle/HeroDragLayer.lua",
+      "source_sha256": "3ddf64c199442022b980326a0e4d9aeec915bdb233c9cc0bbb9e6e8f6053c305",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 10241,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "70ebddab50e2482fe547fbea6caeb8a7bdc8600ef3c3beceeb45ef0835567686"
+    },
+    {
+      "path": "scenes/battle/HeroTeamInfo.lua",
+      "source_sha256": "d72ca661a8adbb268e6786ac426a55f928e0279352fdb23dd954cfdec1fca994",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4214,
+      "header": "1b4c4a0102290001",
+      "output_sha256": "588f8e2aec8678fe312140659d197dea1eee3d539ef2df833a2a9e428752124e"
+    },
+    {
+      "path": "scenes/CircleLayer.lua",
+      "source_sha256": "b19a32086c6c99e43c89c6545c4fd0ac1a7c95627aa3fd718760b6689319e7b3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5070,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "a70002626ff85a005921e3a819ac579b4518b8da5b8f28fbb155e993a30f883e"
+    },
+    {
+      "path": "scenes/CommonBgLayer.lua",
+      "source_sha256": "0d03eb68b29df2ab7112a98d6eca7f4b1dc62e9a317ffb9f62a07f85596ba035",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1292,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "a9f95972d66ae77081b6c20651188e41730fc3d1b06322ef96c0744ef1aa34f8"
+    },
+    {
+      "path": "scenes/duel/DuelRankScene.lua",
+      "source_sha256": "e8d496666b7c8420f71028d64898afb25a3d209e0c7094eb95b2f0f2a917a686",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 30908,
+      "header": "1b4c4a0102360000",
+      "output_sha256": "b0f3e67777916a5d4d2f076f46a908f2f86c704ab11a5d22a710c3044e52f2d3"
+    },
+    {
+      "path": "scenes/duel/DuelReportLayer.lua",
+      "source_sha256": "63dfff943b8f5f90be16fc21b8108b3726c384977368daeca9428d7881c94345",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6733,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "75fdb635dc05e69cee55ac1290c4c88c6ec7af7aa7bd46dd3cfa660a88f32ae4"
+    },
+    {
+      "path": "scenes/duel/DuelRewardLayer.lua",
+      "source_sha256": "7af381b7df39d690f9d76ce24fb570abe364fc32843581c096f57b8150370e51",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5077,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "4f160bf89bee00c33e3b6a21a315ad14b38a0f774d3b299b40a6a2a7c196d4d5"
+    },
+    {
+      "path": "scenes/duel/PreDuelRewardLayer.lua",
+      "source_sha256": "dcff860aa6ae3d8037a364072272299fc4744246f12f29e95a7aa0992aeee566",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5120,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "7abeee474c6a2474a9b9048c245c0da41ae42d37952b2de72d7cba331570da93"
+    },
+    {
+      "path": "scenes/EllipseLayer.lua",
+      "source_sha256": "a7ed031d2babe6ca866701514acf6575e0cd7bbdebb836133efb487e92498090",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4217,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "4502fea5369182f523cd36c88f4b01bbeabf61645cde91d7edc2332a06590ea7"
+    },
+    {
+      "path": "scenes/enhance/ComposeLayer.lua",
+      "source_sha256": "bb1ecbbca17f7d39f34922802f6ccd5faccbe1a25c99b88014f528e5fef869cb",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 12355,
+      "header": "1b4c4a0102cc0100",
+      "output_sha256": "0e69caacbe681fa094b82aeae3ebe0bbf67457cf1b121afc26765dcf38e9e01e"
+    },
+    {
+      "path": "scenes/enhance/DlgResultLayer.lua",
+      "source_sha256": "dac679f89296013cc0df0f47324c6d3d47c750597e142b5a7cd55951f255c0b7",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2533,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "55e651561798a5cc376165b97fda4d1ddc307081f2d39f6b567badbebec0b9b7"
+    },
+    {
+      "path": "scenes/enhance/DlgRuleLayer.lua",
+      "source_sha256": "4503a3de26d54d410ed221dbaa21ea980a378e3eaf07074df76f18f6e91f1070",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 11232,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "3da9641094e8167c74c94a54fad085da8cb3ed853ad32d24f2d50e953809d058"
+    },
+    {
+      "path": "scenes/enhance/EnhanceLayer.lua",
+      "source_sha256": "c451d86cef9e7184a5673415efbf79b510911f17920ee6acf0d07f50cf0f3421",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 13760,
+      "header": "1b4c4a0102c70100",
+      "output_sha256": "650995237e6e9ec0ac186a52a6b798667d7f58e69261f1b9d8f8d35574435249"
+    },
+    {
+      "path": "scenes/enhance/EnhanceScene.lua",
+      "source_sha256": "867c948ed9fbddd4d333d3ee1c7eeb39b52fb9d1a7d5c23956a6b626d33298ff",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1037,
+      "header": "1b4c4a0102350000",
+      "output_sha256": "e150e445443deb3529e23ee9b6c5662e036b7923dcaf9e0b709b59472d206e29"
+    },
+    {
+      "path": "scenes/enhance/EquipComposeLayer.lua",
+      "source_sha256": "29421b7ffb5314ee3dca72e91282b87e908a078c34a80f5ef93f2961c9c81bcf",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9461,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "f7c2ff4753250e1f5d33eda44335033240f8dd982c9fabc2c82176508304b424"
+    },
+    {
+      "path": "scenes/enhance/EquipInheritLayer.lua",
+      "source_sha256": "ed6716d0060977a28e0eebb77a8fff8c2e1a99ca8c744b51717ccfd74bc128f4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3164,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "0aaa6035f84e766d9a820675a98528b6a1b1715dd31007a173c8bcb8b73755c9"
+    },
+    {
+      "path": "scenes/enhance/EquipRebirthLayer.lua",
+      "source_sha256": "88b4b71bef605c3106b5bbdda260f4277a863b398627ad630b0353d5a9ad872e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7810,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "c20f1773ad98ef18d675faf24899e6cb8e6399d604417d2ac7d7098fa06c5515"
+    },
+    {
+      "path": "scenes/enhance/EquipRefineLayer.lua",
+      "source_sha256": "384f09794be6fc83e2fab3ca6e3032fee95a70ba7e647136fb7df9dd6caaf405",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 10071,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "6c46cf524dee5beb6069c8a1866f701f024d5ac78ffcfdb8c174f29b8f42e125"
+    },
+    {
+      "path": "scenes/enhance/FragmentInfoLayer.lua",
+      "source_sha256": "87a4629be160fe3e353bc57150b52a506548663d9c6cbaa07d33b7ae5b26a6a0",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6283,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "4cd02677f432dc7e5f21c4b01fe6c9c2fc24ec96f2f5b0a1632e43046312c8df"
+    },
+    {
+      "path": "scenes/enhance/PageLayer.lua",
+      "source_sha256": "21b4e39f26bd64f0edcfe5c7efc25945f82ef11bf2d75239c59fbbdd6864cca6",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5507,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "eb0d385c130670c00151808dd0bcf00076d28dbb513282542d7dc4477a9deb55"
+    },
+    {
+      "path": "scenes/enhance/RebirthLayer.lua",
+      "source_sha256": "d16c38567ed5dff26a61e524f3da61656755b5d5bdce4bcc2b180b4b59075fe3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 11168,
+      "header": "1b4c4a0102c20100",
+      "output_sha256": "a44dce3a9576d12df00d227151a48ad1f2abd5aca9bd874a850c7e4ac7e89c2c"
+    },
+    {
+      "path": "scenes/enhance/RefineLayer.lua",
+      "source_sha256": "e9f0a85f9aaaf825234344b73485b04ead3a8cd480179690c7693274637a1ad4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 12641,
+      "header": "1b4c4a0102cc0100",
+      "output_sha256": "1e896481f0163b3005f4be103d86880fbbad621c8ce7aa8d2b7ca551772c7480"
+    },
+    {
+      "path": "scenes/enhance/RefineScene.lua",
+      "source_sha256": "4e0b3019738c69f4a8efea72272db30760f0eb0ffb94971d222307c4e74301fa",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7614,
+      "header": "1b4c4a0102340000",
+      "output_sha256": "ba8bad063d8931032ec278de9489d9e2016f73778ab04375ce0fa9c0f740420a"
+    },
+    {
+      "path": "scenes/FlashNotice.lua",
+      "source_sha256": "7b104420b472863679d5207b6943eaec1539df2d5be80e48028e5f8ea8141264",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1212,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "7cc5c1970e77e04b0dfa7fbec5f96953a153c9ed671e5cb8ffd423bdc5efae60"
+    },
+    {
+      "path": "scenes/friend/FriendListLayer.lua",
+      "source_sha256": "170120f3457dfb1db8f46e472fba9c23c5c1022c4f9fbb78a83e49f35b59eff4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6113,
+      "header": "1b4c4a01024a0000",
+      "output_sha256": "1477fc8dc3dfb1b609f28caf4d587c5988aab33b88b62e03c9f5dc4bd1176511"
+    },
+    {
+      "path": "scenes/friend/FriendScene.lua",
+      "source_sha256": "a778ca7a0e4a9b5ebc9f5986163dd93c543f8a40a48e688717657a6626215cac",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4455,
+      "header": "1b4c4a0102300002",
+      "output_sha256": "9382cd3c2b3f02c8f0758d4756e7c724f42ccdf97a7a693af73fa2fafd54dbac"
+    },
+    {
+      "path": "scenes/friend/PowerListLayer.lua",
+      "source_sha256": "e8faad86af91da77fc0122bb83b68ea548651bea28fdbe30344526c6c5d8bb27",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4239,
+      "header": "1b4c4a01024a0000",
+      "output_sha256": "9ea0c3be71b649d354bf0f15ec018e8d8120d1d71f27d896b018b9a0a3dc8907"
+    },
+    {
+      "path": "scenes/friend/RecommendListLayer.lua",
+      "source_sha256": "2bb1011948033a01eb73d7a89ce19b9a4cac74db9e9854e9aa1ed79e959a6c4b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5093,
+      "header": "1b4c4a01024a0000",
+      "output_sha256": "cac70c5aea0dca9a09009f9f25237a8d6ba213b17360da86ed2ebd8c88401a62"
+    },
+    {
+      "path": "scenes/friend/RequestListLayer.lua",
+      "source_sha256": "f692630fc8332eab3c724d1123673ce9d3b4e14f99a559bb8deed769abc58ca1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3309,
+      "header": "1b4c4a01024a0000",
+      "output_sha256": "4e8f2520eb25d0d157b3773bd24d116ce88d998bfecb4b7be9d9aaa4220d223d"
+    },
+    {
+      "path": "scenes/fuben/FubenIndexScene.lua",
+      "source_sha256": "18f40bdd44af3fd46b3d3bcca51b2bc7887f8d7e8eccb40a631fa488cf1fb11d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 15165,
+      "header": "1b4c4a0102380000",
+      "output_sha256": "223c267478992cf3f085ab182182c31607ba2325800702811567d6f3cf1e3c5e"
+    },
+    {
+      "path": "scenes/fuben/FubenProgressLayer.lua",
+      "source_sha256": "f53beb884066dc2c88c5f1b424a99438ba8b9fb2053832353336ff9560eaed35",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9026,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "74b90505be7565b570de61e511805722073b6f86b0cfa00ac1c3bad3ebd09575"
+    },
+    {
+      "path": "scenes/fuben/FubenRewardLayer.lua",
+      "source_sha256": "d071962c9edbb634bc764de99e216cd5ffb4db86c98a3989cd38929504358b67",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6230,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "c623b4e6578bfd8ade6689660e6b7bae6f8a4cd79bf3fd714a72fca5ad4a96b9"
+    },
+    {
+      "path": "scenes/fuben/FubenRewardPreviewLayer.lua",
+      "source_sha256": "8eba64898576da64426239965399a76fbdc460f554cb14ec5aa522ae1967fdd9",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2503,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "75a59458c1f335547d78daf7cbd207d0658c505a8bcbc8f188de1455cc6bff96"
+    },
+    {
+      "path": "scenes/fuben/OpenCardLayer.lua",
+      "source_sha256": "731acc6ff3b745ca83ce63ee221d0e32750b6701480fbc84dde8e0f1302fd120",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 8809,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "53a75d65a2a4588610663ba82c71657151c4018e9bc6a5ba383607253c6723fa"
+    },
+    {
+      "path": "scenes/fuben/ZSQHomeScene.lua",
+      "source_sha256": "9f5d2f9de5930a12ad9cb0cdfddf22bfd43cbf9e9287b06ec0b94587d5274afc",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 12068,
+      "header": "1b4c4a0102350000",
+      "output_sha256": "ee9450589768efb1efa9a950c2a8a66f1e925862c9ce63e23454e7cf14a080c5"
+    },
+    {
+      "path": "scenes/fuben/ZSQLogLayer.lua",
+      "source_sha256": "7b17afa2c6364855df883fc645a47c7933ef0b638fd35873c957d2303922a8db",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3115,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "bad68b9597956eb8a293ef6707f3b6cb2d94f8193918449d0baeb6ac46509929"
+    },
+    {
+      "path": "scenes/fuben/ZSZZFightScene.lua",
+      "source_sha256": "7e672080e1cdba1c039d054dd02fa69a23fd38520804a91a27ad4f0ab47c7c65",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 21083,
+      "header": "1b4c4a0102370000",
+      "output_sha256": "4cd38c6b93bc016e090975694ded83650678f686cc069d9b098dac0d7c6b3bac"
+    },
+    {
+      "path": "scenes/fuben/ZSZZGambleScene.lua",
+      "source_sha256": "c0eb70e745d995bb1e581577ff6e8bc5a20ca2395dd8a0ccd00e5768281929c1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9987,
+      "header": "1b4c4a0102380000",
+      "output_sha256": "12b49652289782b7994acf0e9f374668d41d2b406e0d77f15a5fc5352574c261"
+    },
+    {
+      "path": "scenes/fuben/ZSZZHomeScene.lua",
+      "source_sha256": "1ba89c5614d7ad199657429c640631977ca6acd1d482c4db135e41fd551ddcf3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 17617,
+      "header": "1b4c4a0102360000",
+      "output_sha256": "03c2cd899fbbd6885588249d8680ee2b8486853a649d4956278079ee2b6ccb98"
+    },
+    {
+      "path": "scenes/fuben/ZSZZInspireRecordLayer.lua",
+      "source_sha256": "36503e210e714c62c2155020d67d1adbc607731f6ec99353ead17d4043dd302e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3721,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "282a7d482ea90b3cf74e6c937d3660bb09eb5d963170ca163a1db16166591b5e"
+    },
+    {
+      "path": "scenes/fuben/ZSZZKillListLayer.lua",
+      "source_sha256": "4253834faf88fe952dea2e0cad646f136e16e83dc7b5c0c1c062cbae0729b8e8",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6298,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "edb12f0f30b317048abf55b92e044c092d44de5d7d1d7c77bd2fd856db0acf05"
+    },
+    {
+      "path": "scenes/fuben/ZSZZMakeBetLayer.lua",
+      "source_sha256": "ac79839837ad4292232fd8d33930fddde1a9585ee202f51b31870d848c5191f0",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7524,
+      "header": "1b4c4a0102460000",
+      "output_sha256": "3a4bab9c2af55822ef070dc0ae5dc5a27183cdd3ee42653b1ffd7593b139ebd8"
+    },
+    {
+      "path": "scenes/fuben/ZSZZMoreRankLayer.lua",
+      "source_sha256": "62bc8de3999e93ff1ecd41ecab07489fe0d10cfc805d4a2fd34c738c2edf50fe",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5262,
+      "header": "1b4c4a0102460000",
+      "output_sha256": "81cd56fb9719f599ecda12f3568c3c29486dd07ca8cfced448a839affb86509c"
+    },
+    {
+      "path": "scenes/fuben/ZSZZMyBattleReportLayer.lua",
+      "source_sha256": "6c0b563e5ae5a8e9cfc4251ed7a31a544b9205e9d8a5004ab5474c75273b30a3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3342,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "b3514e0fe0f525eafe93ead50c1a0e75183161e11e09a5449e0b4c861989c434"
+    },
+    {
+      "path": "scenes/fuben/ZSZZPlayerBattleInfoLayer.lua",
+      "source_sha256": "e44aff199c64f8e73c79d3f9b4b6de375215942dd4adb7ceef368e33553af6f3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5933,
+      "header": "1b4c4a0102460000",
+      "output_sha256": "6f8c0f5c2b3f42034840ec5bc1cfb1f03ac47382a8f7993e62382d0ab94176e3"
+    },
+    {
+      "path": "scenes/fuben/ZSZZRewardLayer.lua",
+      "source_sha256": "3f4525bfe5144e8bdbdf3039ca76aa9d5ff022fa6ae960b24fce8f820544d46e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5524,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "2e88dbbb1dc7c74b0356d3db6a79db4b009818c1068a7f4589920f4d31c11adf"
+    },
+    {
+      "path": "scenes/GuideLayer.lua",
+      "source_sha256": "bea2cfad50c173c501e309d785775844fd748319696d14c2d2553dbf29874695",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 8830,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "c526c01b39b3c413b3d1588497f77d97d880dec30b1c61a4937510efe940973f"
+    },
+    {
+      "path": "scenes/guild/GivePriceLayer.lua",
+      "source_sha256": "4f3f710f59ea694155d6751b66a5b3c42f5bc3c46338e5cd7b79508af617bb76",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4919,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "ac988ba212939b10d3859672a11bb2551c7d3fb0b5b6b9821183286fd597a710"
+    },
+    {
+      "path": "scenes/guild/GuildBossPreviewScene.lua",
+      "source_sha256": "fc8aa2a0d0720088abc5e94f5afd2936b06b4cf72e739e79c1dc296830fb77a2",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 15387,
+      "header": "1b4c4a01023e0000",
+      "output_sha256": "26d4da9328dacf82141678359512abeddb4eb76a9b753ecd7329bcf5a500d500"
+    },
+    {
+      "path": "scenes/guild/GuildCreateLayer.lua",
+      "source_sha256": "8730771258cc8bd928d5a4935814daf2e9dcc536f7a6f57f9608b397a897de1d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 17280,
+      "header": "1b4c4a0102460000",
+      "output_sha256": "86a31e537b03fa6b513220b978321ce44079283e38620bdb30b7d9dac230e9b6"
+    },
+    {
+      "path": "scenes/guild/GuildHallScene.lua",
+      "source_sha256": "94db4879767738c3e8f779fd9161baf7e8fbf068f61d0ff9d1d607163ad8f669",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7072,
+      "header": "1b4c4a0102370000",
+      "output_sha256": "ff9cb45659b87cd72a85662b319d1ddc6c670e65d5e83a644bf7e5e380fa8139"
+    },
+    {
+      "path": "scenes/guild/GuildHomeScene.lua",
+      "source_sha256": "477cbe2e1ac694c8c10a826706bc128772d77ffb5d416239fc1a8802f7c4c6ff",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 13990,
+      "header": "1b4c4a0102370000",
+      "output_sha256": "8a6ae5676f1aca36efce448fc6094f43651213fcad9a7373b39c01b796db6cf3"
+    },
+    {
+      "path": "scenes/guild/GuildMapScene.lua",
+      "source_sha256": "b41065ab8db0a5f25c4762b846c2bbb94b8419a00f38dfeba252c14408863920",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6334,
+      "header": "1b4c4a0102360000",
+      "output_sha256": "ba3995f116b6a62d7a6c5626078b6b6bafee2b606af5a59657f228d54ccdf7a6"
+    },
+    {
+      "path": "scenes/guild/GuildMemberScene.lua",
+      "source_sha256": "51733f076fe7ed8a42683480f38c079c853dfcab7d7e4eb96967ae4d902fd831",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 14749,
+      "header": "1b4c4a0102440001",
+      "output_sha256": "7ada3e5af4fc8ad7d6b143d7dc773fa4652f10f90b8a4e1a6326472daf25fd4e"
+    },
+    {
+      "path": "scenes/guild/GuildMsgBoardLayer.lua",
+      "source_sha256": "dae9b0e62ba6583af368c0b4a48326227858d44f8107d92af5ccfc81e6154d6a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6261,
+      "header": "1b4c4a0102460000",
+      "output_sha256": "12a1b9c4c6c93921e3d8c88468e71e8059208b9a52de453523d5105cbf25270a"
+    },
+    {
+      "path": "scenes/guild/GuildPalaceScene.lua",
+      "source_sha256": "fb6abcf539e3c6ca116bad4a43e16da9f70a90fb92ddc54823cf48cc1c4231d0",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7599,
+      "header": "1b4c4a0102390000",
+      "output_sha256": "3e2ca97559d3942f90179dc679d24c021fc00ac73c28d7bd6af438831892a026"
+    },
+    {
+      "path": "scenes/guild/GuildPeachScene.lua",
+      "source_sha256": "d2410456f6adfb45c9383dc64b4fc0ec39b42aba280b4353a9a44a21fd1e5432",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7228,
+      "header": "1b4c4a0102380000",
+      "output_sha256": "3486d05a06347c6bc8c89d91f778346a7fd453f6a733f27f4638486024a4eee3"
+    },
+    {
+      "path": "scenes/guild/GuildPersonnelScene.lua",
+      "source_sha256": "32c7673d263a897a6b6f5ad49d88ed6ed64e5457610035f35750dbdf0978346c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4893,
+      "header": "1b4c4a01023a0000",
+      "output_sha256": "0564f973e7131cd676cd35e678069f4fad165b1ab8e524aeea7a2d8814d28c44"
+    },
+    {
+      "path": "scenes/guild/GuildRequestScene.lua",
+      "source_sha256": "515b6d68d4a3f8e4a0317be5514c8a8bfb39687594df5428cbb4993e71af8406",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 8417,
+      "header": "1b4c4a0102a80600",
+      "output_sha256": "cc459d0a496a6d0afbc77f314373bd7a2453fe812fb2c6c76d109b5be949c7cf"
+    },
+    {
+      "path": "scenes/guild/GuildResurgenceLayer.lua",
+      "source_sha256": "f90f43c3d8032f8b904dca2f24d8832296709efa3a22deac69c314e4ecb4ab34",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9485,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "2862f69c8f239898ea77a75827555e6237097d075e4f7100cd9f3eb67c270692"
+    },
+    {
+      "path": "scenes/guild/GuildStoreScene.lua",
+      "source_sha256": "618b644f2e19066c83b66b7a78ccf14e9254379f1a2146a21091fa41863f233d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 17076,
+      "header": "1b4c4a0102380000",
+      "output_sha256": "2e44f23364e869f5d27b48a2df34f42a5af110e225656b1be3d3805667e7a7ee"
+    },
+    {
+      "path": "scenes/guild/GuildUpgrateScene.lua",
+      "source_sha256": "0a0a1b30e567fd82a3467d47e23652fe897938813b5aacceabbef0553f22911c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6535,
+      "header": "1b4c4a01023a0000",
+      "output_sha256": "130d7891c0c45f1c5ccb550e6e1e185044acb361e86b37234b7b89a49f571e3e"
+    },
+    {
+      "path": "scenes/home/AnnouncementScene.lua",
+      "source_sha256": "b32aa6c91c613ce5bf8414c3ed7bb6b718ff0fd266f9424fd73249c2249fa17a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1436,
+      "header": "1b4c4a01023a0000",
+      "output_sha256": "e766612ec26e740533e654d3030b1ebff4d76a26fd7d38b0b6f5c69edfa95ba7"
+    },
+    {
+      "path": "scenes/home/BangLayer.lua",
+      "source_sha256": "e45f935add0e278936dbca23a844966c2ff9f80268903b2db9abc3977df7140e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 14406,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "00b0f52af07956724ba1c20de4ecb9a84801509780fb7976ae5ffdafbeea6bb5"
+    },
+    {
+      "path": "scenes/home/GroupChatLayer.lua",
+      "source_sha256": "b1fd9f247b0a259bcbc815eb0cb6f64e8bc154ac375660fb30af89c0f90056e7",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7373,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "5c3f02844e88aefd6e4a6438c69dae6639dcce96000da8913249196f4caacc0d"
+    },
+    {
+      "path": "scenes/home/HomeScene.lua",
+      "source_sha256": "89c94cb36e01d2d8ac5c67d3cfda1a9ca9818f7c16c5ad4f0f7b150dadbc2d40",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 26751,
+      "header": "1b4c4a0102320000",
+      "output_sha256": "5a45f2db4dc1c45f6ba19164922a6bbc8cc1334d31ab215a8e6880d6009ffccb"
+    },
+    {
+      "path": "scenes/home/HomeTaskLayer.lua",
+      "source_sha256": "8803c8a27660b8672b0db695b3bb036bda567a0bb0fe0e0f29800b81175ef889",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 8937,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "bada75877841460763be18e575f3920dd6d76b93ae8d08887b3b2185b21d901e"
+    },
+    {
+      "path": "scenes/home/MarqueeLayer.lua",
+      "source_sha256": "82a9df50185fc7ad94d14fc4ad01c46000091882788652a58b4f9ef79e0dfa56",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3703,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "3038b2883dba80dd2935803cc74bac91057a8977806d2311f7d17a577ad07431"
+    },
+    {
+      "path": "scenes/home/PlayerInfoLayer.lua",
+      "source_sha256": "f2b608fa77f98e237cac0738a57e9c97f4f79395a8ef6a063bf5abd925801062",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4884,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "78dc495dde0b979deccf41605fd76e0e751d331a56584a0512d3584cc80c4b48"
+    },
+    {
+      "path": "scenes/home/RankingHomeLayer.lua",
+      "source_sha256": "f1ab2aea5b1b0dc812ea5ddfa12116a45634baa8992c62d23482e9ae44474756",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2781,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "39414edea8cd15d55d5c2f8a3594bee61cc57663fe0351414ebd46beb7556e21"
+    },
+    {
+      "path": "scenes/login/AccountLoginScene.lua",
+      "source_sha256": "713e1218185ceefb1a89893b43b6c8812e804bd3021bbf3a770e4ede017adf10",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4694,
+      "header": "1b4c4a01023a0000",
+      "output_sha256": "26d19abfd10ad27c146532a47833884e2615bd059f2f38ac78459c40728a6096"
+    },
+    {
+      "path": "scenes/login/ChangePasswordScene.lua",
+      "source_sha256": "3b02072d649ead6898fffce9f6967e12b2349ada2873e228838cb48ebd0559a9",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4823,
+      "header": "1b4c4a01023c0000",
+      "output_sha256": "1babde03404d191a62d1a265da7a0a0a84372e71da46c1d58297f6b00f59feac"
+    },
+    {
+      "path": "scenes/login/CheckUpdateScene.lua",
+      "source_sha256": "b0371450fcc9041643f641d2e26431df36d75697c3cec0747f8ca77ad55fa05a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6539,
+      "header": "1b4c4a0102390000",
+      "output_sha256": "a54809730d5e4f6f59793895243da665fa7d75894a658933e86481aa03386c89"
+    },
+    {
+      "path": "scenes/login/NicknameScene.lua",
+      "source_sha256": "30bc5b01e16d067c0d7eb28b96a1503940dbb57bcf64d38e0bd83f18ec6accb1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 8404,
+      "header": "1b4c4a0102360000",
+      "output_sha256": "dd63cca68b14e659b67c5772b2c8ebfd2f6f991f6ff2e986986b48fc4e4cb4cc"
+    },
+    {
+      "path": "scenes/login/OpeningAnimationScene.lua",
+      "source_sha256": "45210e0f72eb82425f05c2d24e656ac1ce7ffe43cdf976477a5cd3679ec81ae9",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1865,
+      "header": "1b4c4a01023e0000",
+      "output_sha256": "e4f64a887522ac0d21828c94b470f0e3854542033e1a4307a9c574431d37225d"
+    },
+    {
+      "path": "scenes/login/RegisterAccountScene.lua",
+      "source_sha256": "fa1bb9a9ef4488535161225603a737bc5e9ef3295ec8144cbfd026ea70215925",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5260,
+      "header": "1b4c4a01023d0000",
+      "output_sha256": "817ecfe34598b5f64bb8d730d451e4b06a990abdeed6373c1bae636e50411e8b"
+    },
+    {
+      "path": "scenes/login/ResetPasswordScene.lua",
+      "source_sha256": "c0a32f40cbfd55cb39124edac466207137d1512cce7dfa064e8ea2b2d306e0fc",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2785,
+      "header": "1b4c4a01023b0000",
+      "output_sha256": "bb86d39a00d1c26f9c39ab1b3fe094275892603f34edcb5e4359ecac6a874027"
+    },
+    {
+      "path": "scenes/login/ResetPasswordSucessScene.lua",
+      "source_sha256": "e112a985a6454de0e10e6b481aa5d4896d0dabca9ad923279a3dc2df8c134d4b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1967,
+      "header": "1b4c4a0102410000",
+      "output_sha256": "7526c7471c457752f4eefa9fe71c2f14e87a5c07402fe9177e48fda3d23a0aa1"
+    },
+    {
+      "path": "scenes/login/ServerListScene.lua",
+      "source_sha256": "d0b4416ac1e629ce141904f4bcf9e1781e7ae1f97e0abb436fe722b2c75da7df",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5547,
+      "header": "1b4c4a0102380000",
+      "output_sha256": "a6f53800657360c77b7483e66a7ec562d7116ecbc1d6ad74b2889248ac110e83"
+    },
+    {
+      "path": "scenes/login/StartGameScene.lua",
+      "source_sha256": "226efe89c0a6e7a64c9c6c460aa060a4f9786e3c45e17cb083b85e9b02fbebb5",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6331,
+      "header": "1b4c4a0102370000",
+      "output_sha256": "e4fc781811eeb3b2133343915d572265abfc4690ae9302bb59729eb7ec155c86"
+    },
+    {
+      "path": "scenes/mail/MailScene.lua",
+      "source_sha256": "8738a03183e48ca82dcfcc70926b450228bdc0b71065fe5da4f5df0450e5562b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 19649,
+      "header": "1b4c4a0102320000",
+      "output_sha256": "b2d301f92f21c73594f8dbc4e7647a4630a9252737fe63b96609a5719b08b604"
+    },
+    {
+      "path": "scenes/map/BattleCompleteLayer.lua",
+      "source_sha256": "f72182f51283f504f4542f29fe31595aeab1613bda74e750a83824852696b3f6",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 13684,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "ab968167de3ec6d321fd0c35d28b0220ce2894be4ba66be11b3915f3ee21a951"
+    },
+    {
+      "path": "scenes/map/BattleTenResultLayer.lua",
+      "source_sha256": "3e6622b69685aec548bf7792d9b01a5a1cbc140323c1a75578ec6ca3283bf9e4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4079,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "a0ff489aac9b3f4d31f107714e95def7e2180e99e0d2e5b9986bc8df9d618623"
+    },
+    {
+      "path": "scenes/map/FullStarRewardLayer.lua",
+      "source_sha256": "c0275711edd99a4185dd04a3bb9dd2eedcc65e2ee54c2041f9314aec28efa568",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2215,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "171fb4841d27ece2aaf7cb9e2b6b27f3597cd14a2f13cc2d5124391e62159d5d"
+    },
+    {
+      "path": "scenes/map/MapChapterLayer.lua",
+      "source_sha256": "10c2f9792b5f3d251d5940afabaf92ec6bd8e0f3704bc56ab9d7cc63f305c19f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 15403,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "f15dc28634539d0e69ae200948dc63e3541329dbe87532a2bf5fbd452c33144e"
+    },
+    {
+      "path": "scenes/map/MapChapterScene.lua",
+      "source_sha256": "fd8c9928201c737a3ad3b391f1b09c0e070c95c4cd0cea7f3c2576825ee1f901",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7469,
+      "header": "1b4c4a0102380000",
+      "output_sha256": "84855dd21c3a31c63c2f85351be18e9e5ee7423b6ecbf5a34c93f859a918a1e0"
+    },
+    {
+      "path": "scenes/map/MapWorldLayer.lua",
+      "source_sha256": "d6b4e0054de347957e3d49cbed11e85a5506bf1053187cc55cea431e967bf66a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5450,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "b235ee0898584d3af043c4914562a2a8b8edb72ca604ff1e78020ed1a0799628"
+    },
+    {
+      "path": "scenes/map/MapWorldScene.lua",
+      "source_sha256": "1b1065d2fbc405e134ca4c590fa679c7ac31a49c19d370a5c5aec114408647a1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5129,
+      "header": "1b4c4a0102360000",
+      "output_sha256": "0546d5cf56002990f1493bd08f07b3f9678d1d59d5b09eba05aec457c611f9f6"
+    },
+    {
+      "path": "scenes/map/NewSystemOpenLayer.lua",
+      "source_sha256": "c28039be02b2bfbc5f9d0b7c9c772a87e8d8952ff807780a7a81d7a45cdf618a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3069,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "ef0e8891f0a03c03cb800aa51472721bfd9b226d02a145b51a376d70eea1f6e5"
+    },
+    {
+      "path": "scenes/map/PlayerLvlupLayer.lua",
+      "source_sha256": "8b6dd60e404a99d71623aa383f5551b26fb61bbdf620a904a5f71a1365583e53",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3210,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "fc8720d5b1be670b31a01e7dd6091c4a96ae93237dbbf7028ce58ff8800c36e2"
+    },
+    {
+      "path": "scenes/map/PreviewBattleLayer.lua",
+      "source_sha256": "0de329252d361347ddd955afe3c4b8ca40af32aa2316839b0c03638c9be38ada",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 10621,
+      "header": "1b4c4a0102630001",
+      "output_sha256": "073b45b1bcc53099eb9ae683539e1a2cc0ecf89e1d17cdaafdc3138be79aee19"
+    },
+    {
+      "path": "scenes/MessageBoxLayer.lua",
+      "source_sha256": "1c46f532da637e19653be31c16772ba3a76fb88d01870afb0bdbae7113c25502",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3059,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "1bc75501c3c4704ef13b038144c9d44f99dcdf01809ec975b6edbfa9ddc0fa9b"
+    },
+    {
+      "path": "scenes/mineral/MineralBagLayer.lua",
+      "source_sha256": "eaf3f847881af898783dade1236caef0c620588dcb9f89ced423091cac84404b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4741,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "7e7a2455c99818af6469b1190274ccc6d7588835b24eeb581316afb0719ad0bf"
+    },
+    {
+      "path": "scenes/mineral/MineralGetGemLayer.lua",
+      "source_sha256": "56495286ae51ca0e028882d4fd683700f9f6340a3d89eaadeb7b394d48c8273f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2736,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "774986f787195f9d48061d7bb5654237db56f5ae45a731cf8a5e985b9e0c40df"
+    },
+    {
+      "path": "scenes/mineral/MineralHoleLayer.lua",
+      "source_sha256": "3217497d2cd41f69845e0aed099c47b83099cdf71fade0b636e7c30076a290f1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9707,
+      "header": "1b4c4a01024a0000",
+      "output_sha256": "496b4e369a8c17070774b37ed5909debdd2ac78c311b2709b71aae8b153427ae"
+    },
+    {
+      "path": "scenes/mineral/MineralHomeScene.lua",
+      "source_sha256": "13ab4e9eec3b589f850d6d5e89cc3735dd94884964a0bd1b83320ff98e73e44a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3123,
+      "header": "1b4c4a0102390000",
+      "output_sha256": "d090caa914f0dc56a0b54802e19ffbe6941934ca6a30a157f4a208260509eea3"
+    },
+    {
+      "path": "scenes/mineral/MineralInlayLayer.lua",
+      "source_sha256": "46067e765f2582cd239e8edcc0b3fcfb5103f4ca50c0fbdb9936830e667e420f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 11489,
+      "header": "1b4c4a01024a0000",
+      "output_sha256": "df94a2c1d4672a963d075185b39e6c6a87cb38449fa648033d577132be8f7a76"
+    },
+    {
+      "path": "scenes/mineral/MineralRefineLayer.lua",
+      "source_sha256": "fb599be12a4bb96f78b0051bd790257099d8b42448ec21b0385168db42c6d69b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 10176,
+      "header": "1b4c4a01024a0000",
+      "output_sha256": "b4dd98035f72320953389a37e311a90b38cbdb333cef98599fe63e0867b2b61b"
+    },
+    {
+      "path": "scenes/mineral/MineralTipLayer.lua",
+      "source_sha256": "f881af1100867e6e009a9eef63ed6773f6462e3872188cd3555d1b66fd242ca2",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4366,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "5e39c94c58a256f67020218b8072df06b3f299a4b332d4802ddda41b36f2b80f"
+    },
+    {
+      "path": "scenes/NewbieGuideLayer.lua",
+      "source_sha256": "065e1729afa5ca99751ee0668441117712f9767069f56d7188361b13504a5218",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3886,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "bee9e17e99bb55b6518ce89c287202a309449c43ec04fb0fa0d37200db40206e"
+    },
+    {
+      "path": "scenes/PageIndicator.lua",
+      "source_sha256": "f9efb053aa6ee8bb82cb5b0b6bdf4f77a3107f5fbdcf1899fde6be3b319e93b9",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2028,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "8b9da1c283b8584e0a9289c68c684db126c0cc1a942daf91f7e23956d638a694"
+    },
+    {
+      "path": "scenes/PK/CSBattleScene.lua",
+      "source_sha256": "fff960ddc0fedc959c34cbe9d090b5ec8d5ac05a40780955b096cc084a55292b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7657,
+      "header": "1b4c4a0102280000",
+      "output_sha256": "f9b859207c4ae3955ef7c080542023366c047e4663d848bc63e7dede2f7175d5"
+    },
+    {
+      "path": "scenes/PK/CSGambleScene.lua",
+      "source_sha256": "1c405bfdcfef38e35bcc885bca13e1692209d13d6992d6021936f503c8aeefa7",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 18573,
+      "header": "1b4c4a0102360200",
+      "output_sha256": "12ee36e071a410ed7870e89cfc566fee8618bb9aa9904bb2bb82512f6b1fb239"
+    },
+    {
+      "path": "scenes/PK/CSHomeScene.lua",
+      "source_sha256": "f12b9efbecbb93a2cbe9bd1dc23f54811a2c389324aa83cc34af5f3b0c5d7b53",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 12696,
+      "header": "1b4c4a0102340000",
+      "output_sha256": "028cdb57edfef38450d2920cc7aed39c8d257c2bfa3865157159e865ba99d0ed"
+    },
+    {
+      "path": "scenes/PK/CSRankScene.lua",
+      "source_sha256": "045e97ff3de7c26e0fbf220534124e52c0dc4cf51be9abf6ed8a10050547a150",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 11718,
+      "header": "1b4c4a0102720001",
+      "output_sha256": "3f4ba15a981dacdab53361103ec21a8560fafa9e03e562cc9d2a744a7c97050b"
+    },
+    {
+      "path": "scenes/PK/CSWorshipLayer.lua",
+      "source_sha256": "49944133b19ad725427ad68c0151994b613deaec845ab0992c24f3aca92bad9a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3033,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "50d7c362debb8c8e61c6089e2a34808c31afda4eb4f03e4c701024b83146ac47"
+    },
+    {
+      "path": "scenes/PK/DlgRankLayer.lua",
+      "source_sha256": "5edf5c92452a712cc504c697ab0aa16b3cc6b2ac3ecd688fb10542b8d63c64d5",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6074,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "277c0a81314970912bee40caf2c636888b38f363ee87fc14339762b39592352f"
+    },
+    {
+      "path": "scenes/PK/LimitRankLayer.lua",
+      "source_sha256": "f39ef6d10172dcadc3ef716282082d23ef0e067fdd9bb10a3ef83635ce39ca99",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4257,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "2d6aea3cdf99f0179dcd560c533f630f0f63413b764cc6ec08047d0b467a2de2"
+    },
+    {
+      "path": "scenes/PK/PKCompleteLayer.lua",
+      "source_sha256": "6ffa4235c69369345fd0f9d09a6b410b4eb0984121f117f675be1c482f87c9cc",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4987,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "78a8c3dd5b1e04dec6f47a8f53a561fc1b6d4140fb82fa6bbaa602d2db5a73d7"
+    },
+    {
+      "path": "scenes/PK/PkExchangeLayer.lua",
+      "source_sha256": "a2792fbd71ef0d2393b8f165f19097ebf41128cb1d2339860011d8fd898e202f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6660,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "2cc92fc0b340cfdc48c28071b5f05710d71fce11677d0cd29b54e56a29b55ea4"
+    },
+    {
+      "path": "scenes/PK/PKHomeLayer.lua",
+      "source_sha256": "dc4c072d07f8be21fe5470cf36f0cbae0331f467977e927e8d43b0053a60e1f5",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7591,
+      "header": "1b4c4a01026d0000",
+      "output_sha256": "6d777e0720eb101a5107b1e9791fa10679e8566af4ac9e4cb936d5e459d66bc0"
+    },
+    {
+      "path": "scenes/PK/PKMarqueeLayer.lua",
+      "source_sha256": "d219927b8c35c9d3d664871af9aa9c749d46e2f4bf750291fc765bcaf0cf8fc2",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2817,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "f9bfce05af68e36eea562ca4bc13ca5486e122aebe4c26962fb044987aface8e"
+    },
+    {
+      "path": "scenes/PK/PkRewardLayer.lua",
+      "source_sha256": "fc9a572ff6c7438313827bb16052c003f5a2e3eaff5abf4a50240f7d60eb7972",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4221,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "6774cdca1c11cc27e4634242d8aa150e30dccb97bd1cac7b18d8ecc34f693a2d"
+    },
+    {
+      "path": "scenes/PK/PKScene.lua",
+      "source_sha256": "5ccf2c92fdd631c3e6487a06d5da258c762036f5bf9784b19798cc1b25eaf34d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 20808,
+      "header": "1b4c4a0102ae0200",
+      "output_sha256": "8c7e8187cd192191f792827cd47e5ad432722542209c56be81717c6fb167386d"
+    },
+    {
+      "path": "scenes/ProgressBar.lua",
+      "source_sha256": "6777b9a6a2f035f68109f3af7599ea14916bb8d6f0d133ce2a588dbad0fa0005",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3866,
+      "header": "1b4c4a0102250000",
+      "output_sha256": "6218852a6cb851cff481d9f9cef5ef945e9c2cd7e1a7c63762cbe26a961c725a"
+    },
+    {
+      "path": "scenes/qishu/QiShuScene.lua",
+      "source_sha256": "2501bd0f4fbeb2b0dbc834f02dd216bdb3f7eb2f066cc337c745556a348a0cad",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7475,
+      "header": "1b4c4a0102fd0100",
+      "output_sha256": "4efe8ccf18c610e119bf2b5eea16bfa39c3e89f773d3656d807ba6e209ae1669"
+    },
+    {
+      "path": "scenes/qishu/TSCaveScene.lua",
+      "source_sha256": "1b723d9daeff0de5d5a6124fbbd383129018eb2fde1b6cf73c1aba0b4c5d8d91",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2522,
+      "header": "1b4c4a0102340000",
+      "output_sha256": "0361980634261df7e6af7d0e9aae9adf7a95976f7426e3b84fcd04c151b2f9e3"
+    },
+    {
+      "path": "scenes/RepeatLayer.lua",
+      "source_sha256": "82d98d8e306fc2f6eddb063dd2e6cdbea9bc94bddfa81c7e83b83db29231b3f1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2020,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "47d552206aa4f395c5a7867b06af7fef71fb405eb737121c00f5f6e32dd46a2a"
+    },
+    {
+      "path": "scenes/shenqi/ShenqiLayer.lua",
+      "source_sha256": "404504ac6cfb9b4ddfad6caf5527a81024ddb3b2a56c80d7a1c7892e79e93a10",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 21606,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "47c458662514c766736ba37d38bf9cf243e4e5535239ca55954e767f973e67a5"
+    },
+    {
+      "path": "scenes/shenqi/ShenqiRevengeLayer.lua",
+      "source_sha256": "4bf08e57a01357de25a359f2a433421599154d55ed96f4271cb15d4e6b7e4894",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3236,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "f174f391bb6860586e9d5b37ed46e4151c1150915e59abab4f591d7b3776084b"
+    },
+    {
+      "path": "scenes/shenqi/ShenqiRewardLayer.lua",
+      "source_sha256": "017788adeea311983a4f4da267e4fc94bd84463e6f1fb902d7473c4b07cf6405",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6460,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "9a6939cfe254b5a971a42c07bad6e2468c3c46bf7edcd8438bb06245e5bfe695"
+    },
+    {
+      "path": "scenes/shenqi/ShenqiRobTenLayer.lua",
+      "source_sha256": "c53f8c4afbeda8a91224b93394938bc309e3ffcc538b642d28cecc1002183ff5",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4644,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "49bcc8c1037d95c50f7d03fa3e16567e4e31aeff0febe4aaa3af478cbbc42be6"
+    },
+    {
+      "path": "scenes/shenqi/ShenqiScene.lua",
+      "source_sha256": "f1587d5d2a47ec75be27b6c3763ddbc71f05b71cdb71098b81604db90e7b3786",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 749,
+      "header": "1b4c4a0102340000",
+      "output_sha256": "0e388b6286847448f786519fc3a6172eb025fca6cc72f5903556ff7255885669"
+    },
+    {
+      "path": "scenes/shenqi/ShenqiSnatchLayer.lua",
+      "source_sha256": "55d8999607e8b10e2b6a881824d610753fa8c28718f6b5204508e782ebc21641",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6002,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "1697ae8a44869897cc4da8d5f7ab1a8fb6bcbe75750507295faeb4733d6eb2ad"
+    },
+    {
+      "path": "scenes/slave/DlgReportLayer.lua",
+      "source_sha256": "b136477212bbd85ec6f8e34a462308fcc925ce4253e07652322900909b43423d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5454,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "f84e5daadf06b2094c1ca704b1b8ebb3750b181235e0f9c8a370674158c1cf1c"
+    },
+    {
+      "path": "scenes/slave/SlaveCatchLayer.lua",
+      "source_sha256": "40445fe5884bb2027ef1c89f6912152ecab170b614670e9e6fac0fd359782f51",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9770,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "ea90dcdd6b3973c471a9b9aefe209d31d2803afdb5bc4c885370bda10f4161e0"
+    },
+    {
+      "path": "scenes/slave/SlaveRescueLayer.lua",
+      "source_sha256": "b5ef245cfb85129c8b65c9fc9e9bc1392576eafb038e357d73f1da5cd0853471",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5289,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "50ad95e90b34c1e99dc88ba40dce1d7c331226ebb8c803f7c9e9ca2aa4c27337"
+    },
+    {
+      "path": "scenes/slave/SlaveScene.lua",
+      "source_sha256": "4a45a049467cbd522470a8f6f8da11cdc3c57cdb25e56983a9b355d16817e643",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 19470,
+      "header": "1b4c4a0102330000",
+      "output_sha256": "23369d06a73d52bc2773255e045318578c3833e585b505cd6a98a544c3fa3ed7"
+    },
+    {
+      "path": "scenes/SliderLayer.lua",
+      "source_sha256": "f75c4e2dd655b78ff6ce804fe4a4463d90bacc7f97ec4b552e4dac5e4894d7ae",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 12022,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "1613cbbb26466d24fa4425486af1f06837c537ab5de99a6538d8f171de7b0abe"
+    },
+    {
+      "path": "scenes/store/DlgStoreHeroLayer.lua",
+      "source_sha256": "5a85ad618b1dd289d5343201b8fae8ad8a9485df0df761bcf16dcc112f96925a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4991,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "ee9ff77e255f31ef1a180d203562cfddd2a89eff3aa4942a1111b1dfd67c55de"
+    },
+    {
+      "path": "scenes/store/DlgStoreTenHeroesLayer.lua",
+      "source_sha256": "36db20c5c2f2d6e48ee9fa16cc7722baa89df1980bf9703c701269750523efb8",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7542,
+      "header": "1b4c4a0102460000",
+      "output_sha256": "b83bbc7b97e9d2ab839144dbcff361c34816131d41ce92535d135d50e5b690bc"
+    },
+    {
+      "path": "scenes/store/MysticStoreScene.lua",
+      "source_sha256": "7e8e987e7cc1f505b3b73881047a10ab82c038aa2ebb9289d75a2532d7acb03c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 11235,
+      "header": "1b4c4a01021e0002",
+      "output_sha256": "d84715cc4290c95c05832cf8ecb433c459034a786c04342555e9fc32089880a2"
+    },
+    {
+      "path": "scenes/store/ShowTaoTieRewardLayer.lua",
+      "source_sha256": "f546432b34f84b10e01fa6fa2bf70f63f10d34ac7424e765759426957b8828e6",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1530,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "434b50ca8ec2270a511e84db5e9a25e21a64d4d6bacf2b73bdeb3aa4e6074827"
+    },
+    {
+      "path": "scenes/store/StoreHeroLayer.lua",
+      "source_sha256": "2934569f5c99ec6a988167bc6c16540ad93a9abd10435238c02b21aed3895fbf",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 13512,
+      "header": "1b4c4a0102460000",
+      "output_sha256": "7d564b7f485a1a7f1d8267db66b78ca9775418d0b0d9b34ea066af40d349ac69"
+    },
+    {
+      "path": "scenes/store/StorePropLayer.lua",
+      "source_sha256": "41f5f9280e9e3a06e23c31c1dc3ae1b8bbfbc17b79a8e7734a2ea761adc737bb",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6777,
+      "header": "1b4c4a0102460000",
+      "output_sha256": "d2ca250fbe5404a377edf1e90fd9667d2df1088ce38f6c6d5250a2e7cc6b07c6"
+    },
+    {
+      "path": "scenes/store/StoreRechargeScene.lua",
+      "source_sha256": "775ef559ad87e2ae24c118d5497abb380db6e4b1853001dea8166e5ff0de345e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 12789,
+      "header": "1b4c4a01023b0000",
+      "output_sha256": "7934c8ba2d970643646c4f42a1fd194ddb7db2d95bd3a67d2bcbf41ccc213f12"
+    },
+    {
+      "path": "scenes/store/StoreScene.lua",
+      "source_sha256": "83c1a1481b5f83b7de15843d55dc55ae27ba020246d4b875ebe7480108f4832d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4918,
+      "header": "1b4c4a0102330000",
+      "output_sha256": "8d4d35315f4134408465862a223cf4505eecde5020cbb572fed028bfd22641cd"
+    },
+    {
+      "path": "scenes/store/StoreVipLayer.lua",
+      "source_sha256": "8732952b041bc1053e67d2d107bc51f9613d558bf9ad04961848c00afb74ff6a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6193,
+      "header": "1b4c4a0102460000",
+      "output_sha256": "31b63bb3624ab9983dad6931f3d97d18cd7ba587ca4a1dc9980d60ec3497bdac"
+    },
+    {
+      "path": "scenes/store/StoreZoneLayer.lua",
+      "source_sha256": "18cf3b285535304e3d70bd4320b0ddbf20eb8f1ad944f372bcf2f2822eec5ef7",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7790,
+      "header": "1b4c4a0102ab0100",
+      "output_sha256": "2ebcdfe8edb24dd6caa99a9de5b0832e95f4aee531ee35159c8915211cb07c58"
+    },
+    {
+      "path": "scenes/store/VipDetailInfoLayer.lua",
+      "source_sha256": "8590d22596bbc5b15bb76d1cabdd613cd92febd04d83256203cdf2d75b05b3a7",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1727,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "989d95dcc428834b19177da65264ec729c89a3dbb996d6f12ab019f201b82214"
+    },
+    {
+      "path": "scenes/system/HeroTujianLayer.lua",
+      "source_sha256": "d48ab58f82a5a681133aecf24b679359500ee044d7631f2267ed062aa530635f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4342,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "71a32585302a10d30caa7c589cadbc547e99fc97fc7a5e11d7ad75efb0d15d11"
+    },
+    {
+      "path": "scenes/system/OptionVolumeLayer.lua",
+      "source_sha256": "d098f3f2599bc378501605a2e6b8519acd75a24a49cd695a3f55ca9b58260ffa",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5954,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "d5a07ab32e70db716669a270fbb26ee747f1046dd12771eda0a3e0e9538636fd"
+    },
+    {
+      "path": "scenes/system/PropsTujianLayer.lua",
+      "source_sha256": "26f93f2e44a1b34b1b7d814e3ee033908f4ddc5be7563c6ff780f036ac368e53",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1204,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "888d339b6a541fa122e4cb967d5eccb43d839b66630013d86278f923add87ed0"
+    },
+    {
+      "path": "scenes/system/SystemLayer.lua",
+      "source_sha256": "8878726ba74b32cbd660f8a1ba85c62c1f40b5ef54e561090349acb0f67ee74f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5675,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "57f066d869b35ab511035b178eefa46e9f8019d14f2fdfc7985c5385bf21c84b"
+    },
+    {
+      "path": "scenes/system/TaskRewardLayer.lua",
+      "source_sha256": "8b96b336c729542f128f3dc1b8f00afa69ff31c567d7e42ea0962f84bff98c02",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4012,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "bfe467de8711b892f2f6a1b3c240bf585356b5e2a9b0e15e857e99ba80bedbd5"
+    },
+    {
+      "path": "scenes/system/TujianScene.lua",
+      "source_sha256": "c00dda4869b7a8fc78a4e4c7bceae0e36d3c5a31ba5d046fb8057ff146a19c4d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1879,
+      "header": "1b4c4a0102340000",
+      "output_sha256": "d4eb06982fa21d9843db853a3d731d5d59a13d39b142596c56b99c56da7302fe"
+    },
+    {
+      "path": "scenes/system/WeaponTujianLayer.lua",
+      "source_sha256": "dfea71781da0b9ca4f974f5a18a69c2ddd9e55f3e1e3abc5d86da49325796fda",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4297,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "b305f7fd7bbd0227389b9985d054055f59bad00d153238909f5e5ef11e55ae39"
+    },
+    {
+      "path": "scenes/TabLayer.lua",
+      "source_sha256": "fa82abb519a99a1eaa5e5ecbbe595d2ce5340c38a4f82e2f6f0339712b8abf34",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4867,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "e3ae5624d2f7db15cb4e002610156474e00b16be9946345848f3f3d711a670ff"
+    },
+    {
+      "path": "scenes/team/BaseHeroInfoLayer.lua",
+      "source_sha256": "c5255d91454b48d728da543f3f2189c77515fcb0aa2568105783938aabcde6a2",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 8366,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "1524629be700976b6e9dde056f6251276d313655519a2440a230fb5dbff5ffcf"
+    },
+    {
+      "path": "scenes/team/ChangeFigureScene.lua",
+      "source_sha256": "b8c2c41d8982173a821816c59440eb5ad4c79315c020e212bc9f5a4880aa2a62",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6647,
+      "header": "1b4c4a01023a0000",
+      "output_sha256": "4ea8f4cc1bcea498836b748e21587806564c58cf4ec6cd3da31bc3fd4791a0eb"
+    },
+    {
+      "path": "scenes/team/DlgBreakThroughLayer.lua",
+      "source_sha256": "25dffdaabb406083c6432cdd26dc7f6a69454894211d2100ae5b11a6d7fd5b90",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7178,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "ed50a0763d6d7dc57656c198b685fd68e5c9aab385829a3c0cc2f5f57eab7200"
+    },
+    {
+      "path": "scenes/team/DlgEquipFeedLayer.lua",
+      "source_sha256": "e824697fe9f1ca2e8f155f352284349e18721546a5187897d47f44c10ac5cff1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4916,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "2b1e7236709d8d269b5fec51153b2ee4998afd08143c78f4172d01bf1ffa5fac"
+    },
+    {
+      "path": "scenes/team/DlgShareLayer.lua",
+      "source_sha256": "08be05060f438560c4bacb49b80573265e2bdb6a74c83342625888baf1487c9e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3193,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "0d00b307ad7d40acd0e9de60871616dbde3c17f75471b7c14892a56a057cd729"
+    },
+    {
+      "path": "scenes/team/DlgWhereEquipLayer.lua",
+      "source_sha256": "d4d880a1e2c04d56fbbbf4f3b5bfc8509606ae16ad36e81b2351151994cd8dd0",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5144,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "132467262d8213a70831bd219896233179aea4023e466f1175f00825d03792bf"
+    },
+    {
+      "path": "scenes/team/EquipEnhanceLayer.lua",
+      "source_sha256": "d6cca8f90456dd74a20f639ec964469c24d9dd1475c6574c491b08ae80cdb5d7",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 21260,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "5ada52f4818aa31e6c995f1f31b6374e9bd1e41e914a365ce1f2c63930ae4984"
+    },
+    {
+      "path": "scenes/team/EquipPackageLayer.lua",
+      "source_sha256": "976445e6e9ef36e6dd307e58135e4d69d68064ae1052e60b0ff8a44315733da7",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 13651,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "42f455246c0ab23285069c9f2d471430588a314866e6136e9c3b2aecc5f907f5"
+    },
+    {
+      "path": "scenes/team/FeedEquipLayer.lua",
+      "source_sha256": "1399703362a820e6af1ec695d52410158ffe5bef123f6a8dbd9118b89e56d955",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 14590,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "9d2864cf2f01096adb9295761f3a976f584c93b1cb238f936dbd0d75c3e4836c"
+    },
+    {
+      "path": "scenes/team/FormationScene.lua",
+      "source_sha256": "6c427472e40ed0a1be8bba049708fbb4f53fd4b055cd61fb3f450c5aa1fe55bf",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4170,
+      "header": "1b4c4a0102370000",
+      "output_sha256": "727bc442005d3866d8463a8fe99ce6d0bb373af86f2c3ee3faf65dae38cdc7c0"
+    },
+    {
+      "path": "scenes/team/HeroAdditionLayer.lua",
+      "source_sha256": "28eb2df848b2e2ec6afbc118637464f06a3f28e0358f3eadc3d24c7474c5407d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7832,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "6e1e7808b325cd30ef5057989189fd07613b9cd66f3b3fdd2b70c36f8576f6c4"
+    },
+    {
+      "path": "scenes/team/HeroEquipLayer.lua",
+      "source_sha256": "71974943fb4e93b05496c3c7116c1da97144aea0c2de77748dada54a3bc06378",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 11378,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "4f0dee049724638f1dbc24c6f730d8da6992facd228e4b900aae2a5a845461a0"
+    },
+    {
+      "path": "scenes/team/HeroRebirthLayer.lua",
+      "source_sha256": "4f65bf1244440b2dd1cb181403851eea3c77b8894ca1359bd84432042332d134",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 11689,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "8f4964652f239187cff7fac755474b1b9da17d61d4b7116c3a47753ba8556a91"
+    },
+    {
+      "path": "scenes/team/HeroRebirthPreviewLayer.lua",
+      "source_sha256": "e056a2442c6835c7d12eda8d5266200795b4044a9d9ce08e7667a33c8abffd4c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5726,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "e1f56915a39414703742575c40d670bb849414f91e08eedb8ec17b7e3a5bdb82"
+    },
+    {
+      "path": "scenes/team/HeroSpellInfoLayer.lua",
+      "source_sha256": "0a550c2927e026dd00aef00600be08c223f62b4836a3ca41adbd1f843a742ebf",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9181,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "aa22d614a557f07870954f61cfe7430c46810ab8540acbb425d179ca71b368ae"
+    },
+    {
+      "path": "scenes/team/HeroTrainLayer.lua",
+      "source_sha256": "f0ecb03bab68b69ef993f3a01fd0723848e50fc6091ecba668acee0a14ad9313",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9325,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "5b57394306a1d435f1f268a1a5ca69da67e0a949d95287bea3ed63a25d2faff0"
+    },
+    {
+      "path": "scenes/team/HeroXiaohuobanLayer.lua",
+      "source_sha256": "297bb9da52f2c1b45ff2616d01699a56e482c565d7259e6ddbdaf1c5d5498dd4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 18145,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "dc8319ec64eae36abd408c6581d13c8b6864ef4bb25da1a1e4aa036fb85757f0"
+    },
+    {
+      "path": "scenes/team/OthersTeamHelper.lua",
+      "source_sha256": "8a3a218ceaca93827ae4e6e6452ed8ede4cde5dfe32bef4c4ecea05bf90d75a1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2139,
+      "header": "1b4c4a0102a70700",
+      "output_sha256": "5d13ba6fb93670646ed9deb186f9367fb32f318ab83e1953e4e9cbb7ef835d2d"
+    },
+    {
+      "path": "scenes/team/PackageOperationLayer.lua",
+      "source_sha256": "71f6e3d0dbf46fa79ed67bc51e08639c79769037eb2e1a41b4f0a6dcdf0c6151",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1749,
+      "header": "1b4c4a01022b0000",
+      "output_sha256": "babdc0d29eed2716988624f2f63a3af04607880fd28ffc8682d4390c882cf970"
+    },
+    {
+      "path": "scenes/team/TeamScene.lua",
+      "source_sha256": "183d086b1e8084f592cbf412b329230c3ce4795a7855172cddf03892ed1137d4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 14472,
+      "header": "1b4c4a0102320000",
+      "output_sha256": "f55e8b1c6b477e6d03d00fce063fc51178fca7e69e352cca48f8d3e364bb9d9b"
+    },
+    {
+      "path": "scenes/team/TransferEffectScene.lua",
+      "source_sha256": "3c1b5cc48f2f1a2e11dd9badd3726cb96fe1f7630bb83a3dbb8a800c8c2f6077",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9381,
+      "header": "1b4c4a01023c0000",
+      "output_sha256": "0a3555c7e918ae9a2d21799014afa66c76c7005f1131470243f542745514ba1e"
+    },
+    {
+      "path": "scenes/ThirdLogoScene.lua",
+      "source_sha256": "0b4dd2e60aa4afea206d010c391df6fa8535d99cd2a75eccedd2a44d0d94cb81",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1032,
+      "header": "1b4c4a0102370000",
+      "output_sha256": "aa88f9b3feafd6d5bf129462ed9aa5c4bcda356b27d530532715c3431f125421"
+    },
+    {
+      "path": "scenes/ThirdLogoScene2.lua",
+      "source_sha256": "8d7b00edb7532e4b6c33e36bdc5c77ed98637c1f1430e59d7a6f290d10c018ed",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 642,
+      "header": "1b4c4a0102380000",
+      "output_sha256": "f7f98c5e4b31057bc0cea8d658d8cbd5855c6d12c66f959f0cb5b5b6573ecd91"
+    },
+    {
+      "path": "scenes/tianming/HeroTianmingLayer.lua",
+      "source_sha256": "d3abece496b420bb57732b434ad8336288fd98c9b37e4c85ec5aaee14f7fbabe",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 14179,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "9ee5e02410abfaf7beac7ccaee4cf5556debb99498e130e0d3e3b5cda1158d46"
+    },
+    {
+      "path": "scenes/tianming/MillionHuntLayer.lua",
+      "source_sha256": "8eb22bfb812c5c316a912e7600ce72355dd2acd701c7e03f426f1523c1a97d5e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3010,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "7d58c7f334b2abee32af618c8fbb004a0a774dbb9f274107a8ae588cee9c8bea"
+    },
+    {
+      "path": "scenes/tianming/TianmingExchangeLayer.lua",
+      "source_sha256": "4b3aebe0132dcc7849585682b66dda6549224342fa57180b3a27d7cf08014c8d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4963,
+      "header": "1b4c4a0102d80100",
+      "output_sha256": "c3af812fb648220b38e87dc5adfe4290c432086ceea3e466382e0ef5aa4bf347"
+    },
+    {
+      "path": "scenes/tianming/TianmingGuLayer.lua",
+      "source_sha256": "7449163dd280697f4d69491fa2b93857c25c837ceef383e7f66e551cba9a4a00",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 15644,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "9ad36c61c2a197aafd0ab4bf905150e45461f7f8ea5bd186e21fe788ec79b3fc"
+    },
+    {
+      "path": "scenes/tianming/TianmingPackageLayer.lua",
+      "source_sha256": "626eb123a94d2cb18158f6e2f5721ce52c3e842bcbf538efd13790cc841d21d3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 11359,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "73b56cfa10015a3cd3a3d1dde1f3ef83464820890f2f420a3afc3a52f14c9f28"
+    },
+    {
+      "path": "scenes/tianming/TianmingRecruitScene.lua",
+      "source_sha256": "3a0c9928c0b4f1a5fb8b3c54d7b685b500a58f2bd88eb71100e8ff7e05d0115f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 22971,
+      "header": "1b4c4a0102960100",
+      "output_sha256": "2af2da0f466fe58e0cd47bad07b8b5e18c43e0f384ecf131c0c78fa5094de1b6"
+    },
+    {
+      "path": "scenes/tianming/TianmingScene.lua",
+      "source_sha256": "10226b1f972de42fdc3e73328b6ab8dba388f33dfb5c2c67a2eac2295fb062e3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9305,
+      "header": "1b4c4a0102360000",
+      "output_sha256": "cd984848b0921f1909863521a4354af9704bf29f4dfa2f6b4b12f4ef20388a84"
+    },
+    {
+      "path": "scenes/tianming/TianmingUpgradeLayer.lua",
+      "source_sha256": "31e7bce80c785ef3c6f9fc9b7a1616b72a93f273b0aa9b81b103da92e15de80b",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4869,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "e6884aacfed28d4cfaab75c12dd0e84bb5bc633e94fa69e9997fbc8137437dbe"
+    },
+    {
+      "path": "scenes/toollayer/class.lua",
+      "source_sha256": "f3ec5fc2a2b9fcd5085f39fc1974e6a0a4f5bbfcdba55858781eeb128f9ad3f9",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1131,
+      "header": "1b4c4a01020b0002",
+      "output_sha256": "1b9f7c54bb99051dcd875d9b91f038086899699c20702319420c1c0afd43f770"
+    },
+    {
+      "path": "scenes/toollayer/ctrl.lua",
+      "source_sha256": "5064080fda52f7559521d65faa42ff262822b20a5a312795c74acb9ef1ad65db",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 18423,
+      "header": "1b4c4a0102fd0600",
+      "output_sha256": "9be3978940cc7193e65ee306e1058ab661e11d192f0059b72e205907263416de"
+    },
+    {
+      "path": "scenes/toollayer/dialog.lua",
+      "source_sha256": "beb088d37a7d2736d792630b7c29dfba7a46052f1f8693b27ab4ec097e8ece07",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 29556,
+      "header": "1b4c4a01022f0002",
+      "output_sha256": "7a652ac4da1d219f5bc15c35cc194ff2b5596e74377a4c452e6c709ee51e7f46"
+    },
+    {
+      "path": "scenes/toollayer/equipbase.lua",
+      "source_sha256": "4d2a9d8a2fcc3d66fb875350d4b47c16904210d2b5d078c3ff2d92e3ceebd1b4",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7092,
+      "header": "1b4c4a0102ca0100",
+      "output_sha256": "44e0f0db731cd85339b077783a9f5db20c3082e742ea4d94b629a8fd50077820"
+    },
+    {
+      "path": "scenes/toollayer/event.lua",
+      "source_sha256": "b765aab35213b57ecf3a161153e3e5e14d5059a628e8c49b2142ba9df23e607c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1039,
+      "header": "1b4c4a0102590004",
+      "output_sha256": "a6922db110a2d8ab18507a232f537d27e6a6faeb988609734f282648b83452f9"
+    },
+    {
+      "path": "scenes/toollayer/herobase.lua",
+      "source_sha256": "40b4d4776e6caac3517e1d3f6dc96d5eb32a86c2f29686848d3fa2fae99e4137",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6981,
+      "header": "1b4c4a0102610002",
+      "output_sha256": "e1e4d693fe88ee4f08a4d23c8d2e6ee852d10d7a054170f5bb7a79362e176056"
+    },
+    {
+      "path": "scenes/toollayer/layer.lua",
+      "source_sha256": "818df874bd87f56e35f331cbd6e26107c50970d12b24ab34fc49caa669a6b373",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 13911,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "963d74090947a37c2249bb506f1c2b5498b0dd3b6293cd124bada2359a917499"
+    },
+    {
+      "path": "scenes/toollayer/model.lua",
+      "source_sha256": "185e0c61dda1603b186238f346a74220d399d3d2141afd4194c764bb7b6ebc94",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1248,
+      "header": "1b4c4a01020b0002",
+      "output_sha256": "4078e29ca915380c3fe026b0c66682c0065f15388a35e74ee00f20d5d120d4c0"
+    },
+    {
+      "path": "scenes/toollayer/tianmingbase.lua",
+      "source_sha256": "656553bd690c45d5f4c9655a66a362642f80ee3e7e88f61a9f01f62eb280aa4d",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2208,
+      "header": "1b4c4a0102be0200",
+      "output_sha256": "a606a27634e0fc1b218481fa00b826cd6dcb4d24e6233451a17d8cdc02a1c6df"
+    },
+    {
+      "path": "scenes/toollayer/timer.lua",
+      "source_sha256": "13c20c17479401a3215bacf2bcb04d44fbfd59609598fc68d3299652180fb37c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1042,
+      "header": "1b4c4a0102370002",
+      "output_sha256": "e5ccfc9d9683dd235625a46861cc77a1b23f6238e7af4113f69f3bf55c116084"
+    },
+    {
+      "path": "scenes/toollayer/tips.lua",
+      "source_sha256": "efe324fb87d41483b75cf49122f6f81f07ff0c967f1722127f9932ccad04ef8c",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5202,
+      "header": "1b4c4a0102de0300",
+      "output_sha256": "4bad104a3bcd2f41949b64353e4b9a0b98c361cfa3305bb317a61668293e46c1"
+    },
+    {
+      "path": "scenes/toollayer/toast.lua",
+      "source_sha256": "30c3ac0d4b7447f9342ff9f851f9a7048abc0746c403e480981cb073842709f8",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 388,
+      "header": "1b4c4a01029c0100",
+      "output_sha256": "770ed6d954513e969e4a9a0de01d475e7c1a1662785d0747a29e005d0283474d"
+    },
+    {
+      "path": "scenes/toollayer/tool.lua",
+      "source_sha256": "af010fed82515045e7cfa4184750711e1c028ae740479a50de4f12d50fa78397",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5193,
+      "header": "1b4c4a01026e0001",
+      "output_sha256": "200437cfd42231e4ef0dbdd0e7d239eb917b12abf10d4811edcee16f223f46c4"
+    },
+    {
+      "path": "scenes/ToolLayer.lua",
+      "source_sha256": "c4ec66cd88a5776d7b85f4f669529280890a65837c97b518b0bf6618520456c0",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1623,
+      "header": "1b4c4a0102860600",
+      "output_sha256": "a467af2888abfcbec93c263100f22e594ab89faceb9732d2d8208bc2d3a1b9b5"
+    },
+    {
+      "path": "scenes/Tower/AddedPropertyLayer.lua",
+      "source_sha256": "5715a535b82efa7b7490cf8c537085f2c4c8f9c491e5c0834b775c47d69c98db",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 3077,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "9feb557902ba761a5d04d6cfe36043f2524f7972e11ee948982aa21db82a86cb"
+    },
+    {
+      "path": "scenes/Tower/BuffStoreLayer.lua",
+      "source_sha256": "70a1d8a94b691cc829844aebf1381fcc7f3da5a0613f406de395aa396562d167",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7845,
+      "header": "1b4c4a01024b0000",
+      "output_sha256": "21288cfe97a0c9ee21d992ead4d6d27b5cf6dfcc1782faf603c72222eb5338ad"
+    },
+    {
+      "path": "scenes/Tower/TowerFloorLayer.lua",
+      "source_sha256": "86426154fb3e12b4829954a1a76abfe8db809a277b5900407cd92df124a38542",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 23528,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "ca2495708d1435394fd9fa70f7baad7fb81e8396b32b1dbb8186305cae635652"
+    },
+    {
+      "path": "scenes/Tower/TowerFloorScene.lua",
+      "source_sha256": "7ecbdfe0e1b23f5e709a1478df90b6fbddb1fe8f7f9767bcf57824ef310650ef",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 1235,
+      "header": "1b4c4a0102380000",
+      "output_sha256": "6ba06136381630989262855969d794cd21026beb36748a00701f701bebefe378"
+    },
+    {
+      "path": "scenes/transport/BlessInfoLayer.lua",
+      "source_sha256": "503efa63af362652277ccdfd7351807aea8f416d0d3001a145b9ac6c8c0232b2",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6377,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "b92b6598c8600b62ff15326700599c97b287258b9bd1a546aaa0c8822bc38b4e"
+    },
+    {
+      "path": "scenes/transport/StartTransportLayer.lua",
+      "source_sha256": "c4572ef9a5e528ef44b1e1e139462287246d0ff60e7da7d63661ba4b50e1e5e1",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 14557,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "0a432c9a03bc64a0d6b150e1a25a5753f252d14e343809b25269d89cbc68b5ed"
+    },
+    {
+      "path": "scenes/transport/TransportFriendsLayer.lua",
+      "source_sha256": "cae6ce250a1b4a5ac183653fd411ec2b1266420a4e9543289c063b12a28a875e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4650,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "39e22d2944c694cfb69ffd95a5c3d2c67c002b7af8940c1d96c6f433be441381"
+    },
+    {
+      "path": "scenes/transport/TransportMapLayer.lua",
+      "source_sha256": "aab089896f99f016f842245cc44e34417f7d51fe36608d9b0ee3fdef3410e08e",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7663,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "2e768c9cdce6f3a9553e81fe2d99baab6554228fbbd5cd2b03d59dee06fea8b1"
+    },
+    {
+      "path": "scenes/transport/TransportScene.lua",
+      "source_sha256": "7c3df0a05a03baf4788ea0553463bff0da55cd456ba463fdf489827ddcfe79fe",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 13996,
+      "header": "1b4c4a0102370000",
+      "output_sha256": "335e8137efd222af303f626b75c662aa7832feac9e33042fce240a2fc2f759d6"
+    },
+    {
+      "path": "scenes/WaitServerLayer.lua",
+      "source_sha256": "dae9381b221232d7e58ae3162c184e5160f1b172f7041678552a00bcf402b690",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 526,
+      "header": "1b4c4a0102240000",
+      "output_sha256": "a264ec2187affe841617b9645e1542577307d8124de4a826dab8c99dd096462f"
+    },
+    {
+      "path": "scenes/worldboss/WorldBossBaseScene.lua",
+      "source_sha256": "7d99980858b6b707174ca8cb9b34803847b0f0651d80e8f5aee0df04a36e5eee",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2061,
+      "header": "1b4c4a01023b0000",
+      "output_sha256": "1cc28707e84cfb71e2a33e11c97efebe1e8fd1413e201aa54fb042b518a48f06"
+    },
+    {
+      "path": "scenes/worldboss/WorldBossBattleResultLayer.lua",
+      "source_sha256": "486a97ec276440a57cffcaec3562762216f18650a33d7c8c4d3d89eda6b9bc0a",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 2382,
+      "header": "1b4c4a0102460000",
+      "output_sha256": "77bf6e6f8458483983e63186a127ef309ae52f0a9df8755967da193fd822fcf4"
+    },
+    {
+      "path": "scenes/worldboss/WorldBossBattleScene.lua",
+      "source_sha256": "1c13f28ca52222d83f6745fcf51f4a2136aef4282e6ce2c721598932d08bd2f3",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 17835,
+      "header": "1b4c4a0102a40600",
+      "output_sha256": "2796707cc4f03c38a22a85aa680fd694c4bfb9a9bf80e0e768653246d7666a61"
+    },
+    {
+      "path": "scenes/worldboss/WorldBossDPSRankLayer.lua",
+      "source_sha256": "aa79dfd24e69e2cc4b85bca65423ae50f0f2f466222fa20d257afa818f808706",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 5525,
+      "header": "1b4c4a0102460000",
+      "output_sha256": "22a243057012f8eec86caf722b80da62e731ba26e9586e59811d60a2bf69254a"
+    },
+    {
+      "path": "scenes/worldboss/WorldBossHomeScene.lua",
+      "source_sha256": "68e569f7fdef2ce1ebf4fb331ec83afbe94fef7428a6476469c6cace4b9b2ab9",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 10121,
+      "header": "1b4c4a01024f0001",
+      "output_sha256": "b29d5a3abe51d0dabc764ef18dd2759e192d5bd33e3ebc0661581bca406e2e45"
+    },
+    {
+      "path": "scenes/worldboss/WorldBossRewardLayer.lua",
+      "source_sha256": "f2b68375b9f4a77a9c33cf0a43ec9468d74e2f81922c83fe35e2c7a23d151f19",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 4469,
+      "header": "1b4c4a0102480000",
+      "output_sha256": "9700a13df7d3089340494d89fa1fb0edde489f4ef0866aec75728e678f0c8c4d"
+    },
+    {
+      "path": "scenes/xunfang/DlgActiveMasterLayer.lua",
+      "source_sha256": "baf62400703c3879744361caedc41db45244de69b58c38b8e3fabf1f19371459",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 8640,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "ceb35c22943bf6261789b3eb55308a42feca13421da9dd86ee61825565d92d36"
+    },
+    {
+      "path": "scenes/xunfang/XFBaishiLayer.lua",
+      "source_sha256": "6ca5a8303f9425c7f8b3047e7a06c7562ace760bd1c7828b15b98b351c7837aa",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9234,
+      "header": "1b4c4a01026d0000",
+      "output_sha256": "3480b567f3e6a6ba5a3823c4e95d97b910a9f058725a43a99db02beb6c529c2d"
+    },
+    {
+      "path": "scenes/xunfang/XFTujianLayer.lua",
+      "source_sha256": "3a302a24cd7f312de275eb300ad929e73f508bc18b19d1ff77da3ca7d276fcd7",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 6477,
+      "header": "1b4c4a01026d0000",
+      "output_sha256": "4754b27ab6204174bcf600b370ea3d15668e1e5edff015fa76aa5047b55c12f3"
+    },
+    {
+      "path": "scenes/xunfang/XunfangLayer.lua",
+      "source_sha256": "94c8a029d851d1859d68b864bd0854de2c4d3a053c9f3e6a7a028767b9b67eca",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 14886,
+      "header": "1b4c4a0102680000",
+      "output_sha256": "abb140890e362f6c6eef8e0511eeeb9d2c52f0490922f36f9716b25b75299182"
+    },
+    {
+      "path": "scenes/xunfang/XunfangScene.lua",
+      "source_sha256": "2b3472c23e99a6088d3e9b0a38d6bf1edc83293f9d036ef21600728196595d0f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 7251,
+      "header": "1b4c4a0102350000",
+      "output_sha256": "a0d48e8e004f8d64ee38fab9eb89e08b2bbefd75b23b97631bef55ef7dbe8078"
+    },
+    {
+      "path": "scenes/zhaocaifu/ZhaoCaiFuScene.lua",
+      "source_sha256": "92d98d7108f14046f97ac900dd4f0b41e844636713c5dab2b4bf758015ab2e7f",
+      "status": "decrypted",
+      "format": "luajit",
+      "size": 9592,
+      "header": "1b4c4a0102d90100",
+      "output_sha256": "573bafedc2ccf26d5b64aedcfcaa20471c08808a36e9dc0ebb9afb28bb9ed569"
+    }
+  ]
+}

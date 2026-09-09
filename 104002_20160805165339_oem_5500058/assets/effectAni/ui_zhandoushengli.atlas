@@ -1,0 +1,33 @@
+
+ui_zhandoushengli.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_zhandoushengli_di
+  rotate: false
+  xy: 85, 2
+  size: 285, 53
+  orig: 288, 53
+  offset: 2, 0
+  index: -1
+ui_zhandoushengli_guangshu
+  rotate: false
+  xy: 2, 87
+  size: 272, 12
+  orig: 272, 12
+  offset: 0, 0
+  index: -1
+ui_zhandoushengli_shan
+  rotate: true
+  xy: 2, 9
+  size: 76, 81
+  orig: 76, 81
+  offset: 0, 0
+  index: -1
+ui_zhandoushengli_zi
+  rotate: false
+  xy: 276, 57
+  size: 125, 42
+  orig: 125, 42
+  offset: 0, 0
+  index: -1

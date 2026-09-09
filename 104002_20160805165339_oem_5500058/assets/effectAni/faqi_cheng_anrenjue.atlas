@@ -1,0 +1,103 @@
+
+faqi_cheng_anrenjue-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+faqi_cheng_anrenjue_bao_01
+  rotate: false
+  xy: 411, 204
+  size: 160, 104
+  orig: 219, 198
+  offset: 29, 71
+  index: -1
+faqi_cheng_anrenjue_bao_02
+  rotate: false
+  xy: 218, 181
+  size: 191, 130
+  orig: 219, 198
+  offset: 24, 59
+  index: -1
+faqi_cheng_anrenjue_bao_03
+  rotate: false
+  xy: 2, 2
+  size: 197, 139
+  orig: 219, 198
+  offset: 11, 47
+  index: -1
+faqi_cheng_anrenjue_bao_04
+  rotate: false
+  xy: 218, 313
+  size: 218, 157
+  orig: 219, 198
+  offset: 0, 25
+  index: -1
+faqi_cheng_anrenjue_bao_05
+  rotate: false
+  xy: 2, 307
+  size: 214, 163
+  orig: 219, 198
+  offset: 2, 17
+  index: -1
+faqi_cheng_anrenjue_bao_06
+  rotate: false
+  xy: 2, 143
+  size: 214, 162
+  orig: 219, 198
+  offset: 2, 17
+  index: -1
+faqi_cheng_anrenjue_jianqi_01
+  rotate: false
+  xy: 966, 396
+  size: 55, 74
+  orig: 96, 198
+  offset: 26, 100
+  index: -1
+faqi_cheng_anrenjue_jianqi_02
+  rotate: true
+  xy: 218, 103
+  size: 76, 111
+  orig: 96, 198
+  offset: 14, 71
+  index: -1
+faqi_cheng_anrenjue_jianqi_03
+  rotate: true
+  xy: 789, 290
+  size: 93, 145
+  orig: 96, 198
+  offset: 2, 38
+  index: -1
+faqi_cheng_anrenjue_jianqi_04
+  rotate: true
+  xy: 629, 293
+  size: 94, 158
+  orig: 96, 198
+  offset: 1, 20
+  index: -1
+faqi_cheng_anrenjue_jianqi_05
+  rotate: true
+  xy: 438, 374
+  size: 96, 172
+  orig: 96, 198
+  offset: 0, 9
+  index: -1
+faqi_cheng_anrenjue_jianqi_06
+  rotate: true
+  xy: 792, 385
+  size: 85, 172
+  orig: 96, 198
+  offset: 8, 9
+  index: -1
+faqi_cheng_anrenjue_jianqi_07
+  rotate: true
+  xy: 612, 389
+  size: 81, 178
+  orig: 96, 198
+  offset: 14, 8
+  index: -1
+faqi_cheng_anrenjue_jianqi_08
+  rotate: true
+  xy: 438, 310
+  size: 62, 189
+  orig: 96, 198
+  offset: 23, 9
+  index: -1

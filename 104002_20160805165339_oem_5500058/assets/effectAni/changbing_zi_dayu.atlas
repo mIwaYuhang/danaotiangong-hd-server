@@ -1,0 +1,54 @@
+
+changbing_zi_dayu-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+duanbing_lan_baiguixing_bao
+  rotate: false
+  xy: 2, 2
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: -1
+duanbing_lan_baiguixing_ci
+  rotate: false
+  xy: 386, 32
+  size: 116, 91
+  orig: 117, 91
+  offset: 0, 0
+  index: -1
+duanbing_lan_baiguixing_gui_01
+  rotate: true
+  xy: 504, 39
+  size: 84, 121
+  orig: 91, 128
+  offset: 4, 0
+  index: -1
+duanbing_lan_baiguixing_gui_02
+  rotate: true
+  xy: 126, 32
+  size: 91, 128
+  orig: 91, 128
+  offset: 0, 0
+  index: -1
+duanbing_lan_baiguixing_gui_03
+  rotate: true
+  xy: 627, 39
+  size: 84, 121
+  orig: 91, 128
+  offset: 4, 0
+  index: -1
+duanbing_lan_baiguixing_gui_04
+  rotate: true
+  xy: 256, 32
+  size: 91, 128
+  orig: 91, 128
+  offset: 0, 0
+  index: -1
+duanbing_lan_baiguixing_qiu
+  rotate: true
+  xy: 750, 18
+  size: 105, 112
+  orig: 105, 112
+  offset: 0, 0
+  index: -1

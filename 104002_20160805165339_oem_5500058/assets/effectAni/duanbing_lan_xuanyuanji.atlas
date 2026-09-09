@@ -1,0 +1,26 @@
+
+duanbing_lan_xuanyuanji-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+duanbing_lan_xuanyuanji_bao
+  rotate: false
+  xy: 95, 2
+  size: 51, 47
+  orig: 51, 47
+  offset: 0, 0
+  index: -1
+duanbing_lan_xuanyuanji_jian
+  rotate: true
+  xy: 95, 51
+  size: 29, 119
+  orig: 29, 121
+  offset: 0, 2
+  index: -1
+duanbing_lan_xuanyuanji_xue
+  rotate: true
+  xy: 2, 2
+  size: 78, 91
+  orig: 78, 91
+  offset: 0, 0
+  index: -1

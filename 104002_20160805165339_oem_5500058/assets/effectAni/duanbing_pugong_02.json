@@ -1,0 +1,86 @@
+{
+"bones": [
+	{ "name": "duanbing_pugong_02" },
+	{ "name": "duanbing_pugong_02_biaoxue", "parent": "duanbing_pugong_02", "scaleX": 2, "scaleY": 2 },
+	{ "name": "duanbing_pugong_02_daoguang", "parent": "duanbing_pugong_02", "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{ "name": "duanbing_pugong_02_daoguang_01", "bone": "duanbing_pugong_02_daoguang", "attachment": "duanbing_pugong_02_daoguang_03" },
+	{ "name": "duanbing_pugong_02_biaoxue_01", "bone": "duanbing_pugong_02_biaoxue", "attachment": "duanbing_pugong_02_biaoxue_06" }
+],
+"skins": {
+	"default": {
+		"duanbing_pugong_02_biaoxue_01": {
+			"duanbing_pugong_02_biaoxue_01": { "width": 217, "height": 178 },
+			"duanbing_pugong_02_biaoxue_02": { "width": 217, "height": 178 },
+			"duanbing_pugong_02_biaoxue_03": { "width": 217, "height": 178 },
+			"duanbing_pugong_02_biaoxue_04": { "width": 217, "height": 178 },
+			"duanbing_pugong_02_biaoxue_05": { "width": 217, "height": 178 },
+			"duanbing_pugong_02_biaoxue_06": { "width": 217, "height": 178 }
+		},
+		"duanbing_pugong_02_daoguang_01": {
+			"duanbing_pugong_02_daoguang_01": { "width": 179, "height": 166 },
+			"duanbing_pugong_02_daoguang_02": { "width": 179, "height": 166 },
+			"duanbing_pugong_02_daoguang_03": { "width": 179, "height": 166 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"duanbing_pugong_02_daoguang": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": -135, "y": 49 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"duanbing_pugong_02_biaoxue": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.1666, "x": 0, "y": 0 },
+					{ "time": 0.2, "x": 117, "y": 41 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.1666, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"duanbing_pugong_02_biaoxue_01": {
+				"attachment": [
+					{ "time": 0.2, "name": "duanbing_pugong_02_biaoxue_01" },
+					{ "time": 0.3, "name": "duanbing_pugong_02_biaoxue_02" },
+					{ "time": 0.4, "name": "duanbing_pugong_02_biaoxue_03" },
+					{ "time": 0.4666, "name": "duanbing_pugong_02_biaoxue_04" },
+					{ "time": 0.5333, "name": "duanbing_pugong_02_biaoxue_05" },
+					{ "time": 0.6, "name": "duanbing_pugong_02_biaoxue_06" },
+					{ "time": 0.6666, "name": null }
+				],
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1666, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffffff" }
+				]
+			},
+			"duanbing_pugong_02_daoguang_01": {
+				"attachment": [
+					{ "time": 0, "name": "duanbing_pugong_02_daoguang_01" },
+					{ "time": 0.0681, "name": "duanbing_pugong_02_daoguang_02" },
+					{ "time": 0.1348, "name": "duanbing_pugong_02_daoguang_03" },
+					{ "time": 0.198, "name": null }
+				]
+			}
+		}
+	}
+}
+}

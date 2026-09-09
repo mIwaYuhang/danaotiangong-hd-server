@@ -1,0 +1,82 @@
+
+changbing_cheng_fengzhenbafang.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+changbing_cheng_fengzhenbafang_bao_01
+  rotate: false
+  xy: 166, 55
+  size: 163, 210
+  orig: 181, 229
+  offset: 18, 19
+  index: -1
+changbing_cheng_fengzhenbafang_bao_02
+  rotate: false
+  xy: 2, 36
+  size: 162, 229
+  orig: 181, 229
+  offset: 17, 0
+  index: -1
+changbing_cheng_fengzhenbafang_bao_03
+  rotate: false
+  xy: 331, 36
+  size: 148, 229
+  orig: 181, 229
+  offset: 24, 0
+  index: -1
+changbing_cheng_fengzhenbafang_bao_04
+  rotate: true
+  xy: 629, 121
+  size: 144, 141
+  orig: 181, 229
+  offset: 27, 0
+  index: -1
+changbing_cheng_fengzhenbafang_bao_05
+  rotate: true
+  xy: 854, 2
+  size: 140, 131
+  orig: 181, 229
+  offset: 22, 13
+  index: -1
+changbing_cheng_fengzhenbafang_bao_06
+  rotate: false
+  xy: 772, 144
+  size: 162, 121
+  orig: 181, 229
+  offset: 11, 40
+  index: -1
+changbing_cheng_fengzhenbafang_bao_07
+  rotate: true
+  xy: 481, 85
+  size: 180, 146
+  orig: 181, 229
+  offset: 1, 40
+  index: -1
+changbing_cheng_fengzhenbafang_guang
+  rotate: false
+  xy: 481, 5
+  size: 89, 78
+  orig: 89, 80
+  offset: 0, 0
+  index: -1
+changbing_cheng_fengzhenbafang_qi
+  rotate: true
+  xy: 762, 4
+  size: 115, 90
+  orig: 115, 90
+  offset: 0, 0
+  index: -1
+changbing_cheng_fengzhenbafang_quan
+  rotate: false
+  xy: 572, 24
+  size: 59, 59
+  orig: 59, 59
+  offset: 0, 0
+  index: -1
+changbing_cheng_fengzhenbafang_shan
+  rotate: false
+  xy: 633, 3
+  size: 127, 116
+  orig: 127, 116
+  offset: 0, 0
+  index: -1

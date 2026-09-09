@@ -1,0 +1,152 @@
+
+mohua_shudaji-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 392, 114
+  size: 87, 89
+  orig: 87, 89
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: false
+  xy: 2, 73
+  size: 239, 181
+  orig: 239, 181
+  offset: 0, 0
+  index: -1
+root_hip_01
+  rotate: true
+  xy: 74, 24
+  size: 47, 65
+  orig: 47, 65
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 2, 21
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+root_hip_03
+  rotate: false
+  xy: 352, 27
+  size: 42, 43
+  orig: 42, 43
+  offset: 0, 0
+  index: -1
+root_l_elbow
+  rotate: false
+  xy: 434, 67
+  size: 41, 19
+  orig: 41, 19
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: true
+  xy: 434, 38
+  size: 27, 30
+  orig: 27, 30
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 100, 3
+  size: 18, 19
+  orig: 18, 19
+  offset: 0, 0
+  index: -1
+root_l_knee
+  rotate: true
+  xy: 352, 2
+  size: 23, 50
+  orig: 23, 50
+  offset: 0, 0
+  index: -1
+root_l_leg
+  rotate: true
+  xy: 392, 88
+  size: 24, 85
+  orig: 24, 85
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: false
+  xy: 498, 219
+  size: 12, 35
+  orig: 12, 35
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01
+  rotate: false
+  xy: 396, 54
+  size: 36, 32
+  orig: 36, 32
+  offset: 0, 0
+  index: -1
+root_r_elbow
+  rotate: false
+  xy: 481, 153
+  size: 22, 50
+  orig: 22, 50
+  offset: 0, 0
+  index: -1
+root_r_foot
+  rotate: true
+  xy: 481, 128
+  size: 23, 29
+  orig: 23, 29
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 74, 2
+  size: 20, 24
+  orig: 20, 24
+  offset: 0, 0
+  index: -1
+root_r_knee
+  rotate: true
+  xy: 243, 34
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+root_r_leg
+  rotate: true
+  xy: 141, 33
+  size: 38, 63
+  orig: 38, 63
+  offset: 0, 0
+  index: -1
+root_r_shoulder
+  rotate: false
+  xy: 206, 36
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01
+  rotate: false
+  xy: 300, 21
+  size: 50, 49
+  orig: 50, 49
+  offset: 0, 0
+  index: -1
+root_tail
+  rotate: true
+  xy: 243, 72
+  size: 131, 147
+  orig: 131, 147
+  offset: 0, 0
+  index: -1
+root_weapon
+  rotate: true
+  xy: 243, 205
+  size: 49, 253
+  orig: 49, 253
+  offset: 0, 0
+  index: -1

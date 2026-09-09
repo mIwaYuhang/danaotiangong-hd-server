@@ -1,0 +1,152 @@
+
+npc_jiumeihulijin-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 306, 184
+  size: 61, 86
+  orig: 61, 86
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: false
+  xy: 2, 91
+  size: 169, 179
+  orig: 169, 179
+  offset: 0, 0
+  index: -1
+root_hip_01
+  rotate: true
+  xy: 306, 79
+  size: 47, 67
+  orig: 47, 67
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 306, 128
+  size: 70, 54
+  orig: 70, 54
+  offset: 0, 0
+  index: -1
+root_hip_03
+  rotate: false
+  xy: 338, 35
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+root_l_elbow
+  rotate: false
+  xy: 338, 12
+  size: 43, 21
+  orig: 43, 21
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: false
+  xy: 173, 91
+  size: 27, 30
+  orig: 27, 30
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 282, 80
+  size: 18, 19
+  orig: 18, 19
+  offset: 0, 0
+  index: -1
+root_l_knee
+  rotate: true
+  xy: 201, 16
+  size: 22, 51
+  orig: 22, 51
+  offset: 0, 0
+  index: -1
+root_l_leg
+  rotate: true
+  xy: 202, 96
+  size: 25, 59
+  orig: 25, 59
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: false
+  xy: 369, 234
+  size: 13, 36
+  orig: 13, 36
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01
+  rotate: true
+  xy: 59, 2
+  size: 36, 38
+  orig: 36, 38
+  offset: 0, 0
+  index: -1
+root_r_elbow
+  rotate: false
+  xy: 256, 45
+  size: 24, 49
+  orig: 24, 49
+  offset: 0, 0
+  index: -1
+root_r_foot
+  rotate: true
+  xy: 263, 101
+  size: 20, 32
+  orig: 20, 32
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 256, 24
+  size: 19, 24
+  orig: 20, 25
+  offset: 1, 0
+  index: -1
+root_r_knee
+  rotate: true
+  xy: 2, 2
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+root_r_leg
+  rotate: true
+  xy: 136, 4
+  size: 34, 63
+  orig: 34, 63
+  offset: 0, 0
+  index: -1
+root_r_shoulder
+  rotate: false
+  xy: 99, 2
+  size: 35, 36
+  orig: 35, 36
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01
+  rotate: false
+  xy: 282, 27
+  size: 54, 50
+  orig: 54, 50
+  offset: 0, 0
+  index: -1
+root_tail
+  rotate: false
+  xy: 173, 123
+  size: 131, 147
+  orig: 131, 147
+  offset: 0, 0
+  index: -1
+root_weapon
+  rotate: true
+  xy: 2, 40
+  size: 49, 252
+  orig: 49, 252
+  offset: 0, 0
+  index: -1

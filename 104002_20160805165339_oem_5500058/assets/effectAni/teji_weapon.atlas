@@ -1,0 +1,33 @@
+
+teji_weapon.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_weapon_f02b
+  rotate: true
+  xy: 2, 2
+  size: 238, 198
+  orig: 251, 198
+  offset: 13, 0
+  index: -1
+root_weapon_f03b
+  rotate: true
+  xy: 202, 23
+  size: 217, 191
+  orig: 251, 198
+  offset: 0, 0
+  index: -1
+root_weapon_f04b
+  rotate: true
+  xy: 395, 41
+  size: 199, 186
+  orig: 251, 198
+  offset: 0, 5
+  index: -1
+root_weapon_f0b1
+  rotate: true
+  xy: 583, 5
+  size: 235, 69
+  orig: 235, 69
+  offset: 0, 0
+  index: -1

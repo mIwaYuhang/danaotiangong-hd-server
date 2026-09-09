@@ -1,0 +1,66 @@
+{
+  "_doc": {
+    "summary": "英雄属性、战力、经验、突破、培养与阵容规则。客户端不计算任何最终属性，全部由服务端按此配置算好下发",
+    "growth_per_level": "每级成长百分比（相对 1 级模板值）：最终 = 模板 × (1 + (等级-1) × 成长)；键为英雄字段名",
+    "dimension_effects": "四维（根骨 physical / 力量 strength / 法术 mana / 敏捷 agility）每 1 点对战斗属性的加成",
+    "rebirth_percent": "每次进阶为全部主属性提供的百分比加成",
+    "rebirth_level_gates": "第 n 次进阶要求的英雄等级（来自客户端 figure.getRebirthNeedLevel）；超出列表部分按 gate_step_after_table 递增",
+    "rebirth_max_count": "进阶次数上限（客户端：橙色且评级 7 以上为 30，其余取表长）",
+    "rebirth_potency_default": "进阶描述中解析不到“潜力点{+N}”时的默认潜力奖励",
+    "exp_quality_factor": "英雄升级经验公式 need = round((等级 × 系数 + 5) ^ 2.4)，系数按品质（来自客户端 TransferEffectScene）",
+    "battle_power_weights": "战力 = Σ 属性 × 权重，四舍五入取整",
+    "train": "培养：普通/精心每次消耗与随机四维增量范围；精心必不为负",
+    "team_slot_unlock_levels": "阵容第 1..6 位开放所需玩家等级（客户端 feature.lua：第 4 位 10 级、第 5 位 15 级、第 6 位 25 级）",
+    "partner_slot_unlock_levels": "小伙伴 1..8 位开放等级（客户端 feature.lua）",
+    "rage": "怒气规则：上限、普攻获得、受击获得、释放怒气技所需",
+    "secondary_attr_scale": "暴击/韧性/命中/闪避/破击/格挡换算为概率时的除数（属性值 / 除数 = 概率）"
+  },
+  "growth_per_level": {
+    "health": 0.08,
+    "normalAttack": 0.07,
+    "normalDefense": 0.06,
+    "skillAttack": 0.07,
+    "skillDefense": 0.06,
+    "physical": 0.03,
+    "strength": 0.03,
+    "mana": 0.03,
+    "agility": 0.03
+  },
+  "dimension_effects": {
+    "physical": {"health": 4.0, "normalDefense": 0.2},
+    "strength": {"normalAttack": 0.6, "poji": 0.2},
+    "mana": {"skillAttack": 0.6, "skillDefense": 0.2},
+    "agility": {"speed": 0.5, "mingzhong": 0.3, "shanbi": 0.3}
+  },
+  "base_speed_by_profession": {"1": 90, "2": 100, "3": 95, "4": 95},
+  "rebirth_percent": 0.08,
+  "rebirth_level_gates": [1, 5, 10, 15, 20, 23, 25, 27, 29, 31, 32, 33, 35],
+  "gate_step_after_table": 5,
+  "rebirth_max_count": 30,
+  "rebirth_max_count_orange_rating": 7,
+  "rebirth_potency_default": 80,
+  "exp_quality_factor": {"1": 1.0, "2": 1.05, "3": 1.1, "4": 1.15},
+  "battle_power_weights": {
+    "health": 0.2,
+    "normalAttack": 0.6,
+    "normalDefense": 0.6,
+    "skillAttack": 0.6,
+    "skillDefense": 0.6,
+    "speed": 0.5,
+    "baoji": 0.3,
+    "renxing": 0.3,
+    "mingzhong": 0.3,
+    "shanbi": 0.3,
+    "poji": 0.3,
+    "gedang": 0.3
+  },
+  "train": {
+    "normal": {"potency": 1, "train_pill": 10, "ingot": 0, "min_delta": -3, "max_delta": 6},
+    "special": {"potency": 1, "train_pill": 15, "ingot": 2, "min_delta": 0, "max_delta": 6},
+    "dimension_cap_per_level": 5
+  },
+  "team_slot_unlock_levels": [1, 1, 1, 10, 15, 25],
+  "partner_slot_unlock_levels": [28, 33, 38, 43, 46, 49, 52, 55],
+  "rage": {"max": 200, "cost": 100, "gain_on_attack": 30, "gain_on_hit": 20, "initial": 0},
+  "secondary_attr_scale": 1000
+}

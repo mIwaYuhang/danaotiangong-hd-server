@@ -1,0 +1,50 @@
+{
+"bones": [
+	{ "name": "buff_tupo" },
+	{ "name": "buff_tupo_01", "parent": "buff_tupo", "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{ "name": "buff_tupo_01", "bone": "buff_tupo_01", "attachment": "buff_tupo_01" }
+],
+"skins": {
+	"default": {
+		"buff_tupo_01": {
+			"buff_tupo_01": { "width": 169, "height": 204 },
+			"buff_tupo_02": { "width": 169, "height": 204 },
+			"buff_tupo_03": { "width": 169, "height": 204 },
+			"buff_tupo_04": { "width": 169, "height": 204 },
+			"buff_tupo_05": { "width": 169, "height": 204 },
+			"buff_tupo_06": { "width": 169, "height": 204 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"buff_tupo_01": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"buff_tupo_01": {
+				"attachment": [
+					{ "time": 0.1, "name": "buff_tupo_02" },
+					{ "time": 0.2, "name": "buff_tupo_03" },
+					{ "time": 0.3, "name": "buff_tupo_04" },
+					{ "time": 0.4, "name": "buff_tupo_05" },
+					{ "time": 0.5, "name": "buff_tupo_06" },
+					{ "time": 0.6, "name": null }
+				]
+			}
+		}
+	}
+}
+}

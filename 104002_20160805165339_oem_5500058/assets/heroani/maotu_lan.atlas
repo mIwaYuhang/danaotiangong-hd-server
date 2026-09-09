@@ -1,0 +1,145 @@
+
+maotu_lan.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: true
+  xy: 204, 76
+  size: 63, 86
+  orig: 63, 86
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: true
+  xy: 2, 2
+  size: 188, 200
+  orig: 188, 200
+  offset: 0, 0
+  index: -1
+root_hip_01
+  rotate: false
+  xy: 416, 72
+  size: 47, 67
+  orig: 47, 67
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 292, 85
+  size: 70, 54
+  orig: 70, 54
+  offset: 0, 0
+  index: -1
+root_hip_03
+  rotate: false
+  xy: 292, 41
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+root_l_elbow
+  rotate: true
+  xy: 269, 31
+  size: 43, 21
+  orig: 43, 21
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: false
+  xy: 439, 40
+  size: 27, 30
+  orig: 27, 30
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: true
+  xy: 332, 2
+  size: 18, 19
+  orig: 18, 19
+  offset: 0, 0
+  index: -1
+root_l_knee
+  rotate: false
+  xy: 415, 19
+  size: 22, 51
+  orig: 22, 51
+  offset: 0, 0
+  index: -1
+root_l_leg
+  rotate: false
+  xy: 336, 22
+  size: 25, 61
+  orig: 25, 61
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: false
+  xy: 400, 47
+  size: 13, 36
+  orig: 13, 36
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01
+  rotate: true
+  xy: 292, 3
+  size: 36, 38
+  orig: 36, 38
+  offset: 0, 0
+  index: -1
+root_r_elbow
+  rotate: true
+  xy: 363, 21
+  size: 24, 49
+  orig: 24, 49
+  offset: 0, 0
+  index: -1
+root_r_foot
+  rotate: false
+  xy: 439, 6
+  size: 20, 32
+  orig: 20, 32
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 261, 9
+  size: 20, 25
+  orig: 20, 25
+  offset: 0, 0
+  index: -1
+root_r_knee
+  rotate: true
+  xy: 204, 2
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+root_r_leg
+  rotate: true
+  xy: 204, 40
+  size: 34, 63
+  orig: 34, 63
+  offset: 0, 0
+  index: -1
+root_r_shoulder
+  rotate: false
+  xy: 363, 47
+  size: 35, 36
+  orig: 35, 36
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01
+  rotate: true
+  xy: 364, 85
+  size: 54, 50
+  orig: 54, 50
+  offset: 0, 0
+  index: -1
+root_weapon
+  rotate: true
+  xy: 204, 141
+  size: 49, 252
+  orig: 49, 252
+  offset: 0, 0
+  index: -1

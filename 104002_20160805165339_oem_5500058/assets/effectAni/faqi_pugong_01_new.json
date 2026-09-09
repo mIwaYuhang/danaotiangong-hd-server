@@ -1,0 +1,38 @@
+{
+"bones": [
+	{ "name": "faqi_pugong_01" },
+	{ "name": "faqi_pugong_01_bao", "parent": "faqi_pugong_01", "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{ "name": "faqi_pugong_01_bao_01", "bone": "faqi_pugong_01_bao", "attachment": "faqi_pugong_01_bao_01" }
+],
+"skins": {
+	"default": {
+		"faqi_pugong_01_bao_01": {
+			"faqi_pugong_01_bao_01": { "width": 216, "height": 212 },
+			"faqi_pugong_01_bao_02": { "width": 216, "height": 212 },
+			"faqi_pugong_01_bao_03": { "width": 216, "height": 212 },
+			"faqi_pugong_01_bao_04": { "width": 216, "height": 212 },
+			"faqi_pugong_01_bao_05": { "width": 216, "height": 212 },
+			"faqi_pugong_01_bao_06": { "width": 216, "height": 212 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"slots": {
+			"faqi_pugong_01_bao_01": {
+				"attachment": [
+					{ "time": 0, "name": "faqi_pugong_01_bao_01" },
+					{ "time": 0.1, "name": "faqi_pugong_01_bao_02" },
+					{ "time": 0.2, "name": "faqi_pugong_01_bao_03" },
+					{ "time": 0.3, "name": "faqi_pugong_01_bao_04" },
+					{ "time": 0.4, "name": "faqi_pugong_01_bao_05" },
+					{ "time": 0.5, "name": "faqi_pugong_01_bao_06" },
+					{ "time": 0.6, "name": null }
+				]
+			}
+		}
+	}
+}
+}

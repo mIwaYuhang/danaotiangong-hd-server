@@ -1,0 +1,210 @@
+{
+"bones": [
+	{ "name": "ui_zhandoushengli" },
+	{ "name": "ui_zhandoushengli_di", "parent": "ui_zhandoushengli", "scaleX": 2, "scaleY": 2 },
+	{ "name": "ui_zhandoushengli_guangshu", "parent": "ui_zhandoushengli", "scaleX": 2, "scaleY": 2 },
+	{ "name": "ui_zhandoushengli_shan", "parent": "ui_zhandoushengli", "scaleX": 2, "scaleY": 2 },
+	{ "name": "ui_zhandoushengli_zi", "parent": "ui_zhandoushengli", "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{ "name": "ui_zhandoushengli_di", "bone": "ui_zhandoushengli_di", "attachment": "ui_zhandoushengli_di" },
+	{ "name": "ui_zhandoushengli_zi", "bone": "ui_zhandoushengli_zi", "attachment": "ui_zhandoushengli_zi" },
+	{ "name": "ui_zhandoushengli_guangshu", "bone": "ui_zhandoushengli_guangshu", "attachment": "ui_zhandoushengli_guangshu" },
+	{ "name": "ui_zhandoushengli_shan", "bone": "ui_zhandoushengli_shan", "attachment": "ui_zhandoushengli_shan" }
+],
+"skins": {
+	"default": {
+		"ui_zhandoushengli_di": {
+			"ui_zhandoushengli_di": { "width": 288, "height": 53 }
+		},
+		"ui_zhandoushengli_guangshu": {
+			"ui_zhandoushengli_guangshu": { "width": 272, "height": 12 }
+		},
+		"ui_zhandoushengli_shan": {
+			"ui_zhandoushengli_shan": { "width": 76, "height": 81 }
+		},
+		"ui_zhandoushengli_zi": {
+			"ui_zhandoushengli_zi": { "width": 125, "height": 42 }
+		}
+	}
+},
+"animations": {
+	"ui_zhandoushengli": {
+		"bones": {
+			"ui_zhandoushengli_di": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.2666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": -861.59, "y": 0 },
+					{ "time": 0.1666, "x": 29.07, "y": 0 },
+					{ "time": 0.2666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.1666, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.2666, "x": 1, "y": 1 }
+				]
+			},
+			"ui_zhandoushengli_zi": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.2666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 612.81, "y": 0 },
+					{ "time": 0.1666, "x": -20.46, "y": 0 },
+					{ "time": 0.2666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.1666, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.2666, "x": 1, "y": 1 }
+				]
+			},
+			"ui_zhandoushengli_guangshu": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.2333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.2666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.7666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.2333, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.2666, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.4333, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.7666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.2333, "x": 1, "y": 1 },
+					{ "time": 0.2666, "x": -0.799, "y": 1 },
+					{ "time": 0.4333, "x": 2.199, "y": 1 },
+					{ "time": 0.6666, "x": 1, "y": 1 },
+					{ "time": 0.7666, "x": 1, "y": 9 }
+				]
+			},
+			"ui_zhandoushengli_shan": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4666, "angle": 0 },
+					{ "time": 0.6666, "angle": -45 },
+					{ "time": 0.7666, "angle": -60 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.3666, "x": -112, "y": 0, "curve": "stepped" },
+					{ "time": 0.4666, "x": -112, "y": 0 },
+					{ "time": 0.6666, "x": 110.93, "y": 0 },
+					{ "time": 0.7666, "x": 189.55, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 },
+					{ "time": 0.3666, "x": 9, "y": 9 },
+					{ "time": 0.4666, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.7666, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"ui_zhandoushengli_guangshu": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2333, "color": "ffffff00" },
+					{ "time": 0.2666, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.6666, "color": "ffffffff" },
+					{ "time": 0.7666, "color": "ffffff00" }
+				]
+			},
+			"ui_zhandoushengli_shan": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.3333, "color": "ffffff00" },
+					{ "time": 0.3666, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.6666, "color": "ffffffff" },
+					{ "time": 0.7666, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"ui_zhandoushengli_dingge": {
+		"bones": {
+			"ui_zhandoushengli_di": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"ui_zhandoushengli_zi": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"ui_zhandoushengli_guangshu": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"ui_zhandoushengli_shan": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"ui_zhandoushengli_di": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				]
+			},
+			"ui_zhandoushengli_guangshu": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"ui_zhandoushengli_shan": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"ui_zhandoushengli_zi": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				]
+			}
+		}
+	}
+}
+}

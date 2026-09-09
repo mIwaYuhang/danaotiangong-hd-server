@@ -1,0 +1,25 @@
+{
+  "_doc": {
+    "summary": "任务系统。客户端状态：1 可前往（条件未满足）、2 进行中、3 可领取；已领取的任务不再下发。主线任务按顺序每次只显示最前面的 visible_plotline 条；每日任务每天重置",
+    "condition": "kind 取值：stage_clear（通关关卡 ID）、player_level（玩家等级）、hero_count（拥有英雄数）、team_size（上阵人数）、recruit_count（累计招募次数）、intensify_count（累计锻造次数）、breakthrough_count（累计进阶次数）、equip_count（累计穿装次数）、battle_count_today（今日战斗次数）、sign_today（今日已签到）、mail_read（累计读邮件）",
+    "location": "客户端跳转入口：Type 为 TaskEntryType 枚举名，ID 为关卡 ID 或英雄 ID 等"
+  },
+  "visible_plotline": 3,
+  "plotline": [
+    {"missionID": 1001, "name": "初出江湖", "description": "通关黑风山第一关", "reward": [{"Type": 1, "ID": 0, "Count": 5000}], "condition": {"kind": "stage_clear", "target": 10010}, "location": {"Type": "CheckPoint", "ID": 10010}},
+    {"missionID": 1002, "name": "招兵买马", "description": "招募一名新主将", "reward": [{"Type": 1, "ID": 0, "Count": 5000}, {"Type": 6, "ID": 200125, "Count": 10}], "condition": {"kind": "hero_count", "target": 2}, "location": {"Type": "eZhaoJiang", "ID": 0}},
+    {"missionID": 1003, "name": "小试牛刀", "description": "通关黑风山第三关", "reward": [{"Type": 9, "ID": 0, "Count": 10}], "condition": {"kind": "stage_clear", "target": 10012}, "location": {"Type": "CheckPoint", "ID": 10012}},
+    {"missionID": 1004, "name": "锻造武器", "description": "锻造任意法宝一次", "reward": [{"Type": 1, "ID": 0, "Count": 8000}], "condition": {"kind": "intensify_count", "target": 1}, "location": {"Type": "eEntryTalismanIntensify", "ID": 0}},
+    {"missionID": 1005, "name": "整装待发", "description": "为主将穿戴任意法宝", "reward": [{"Type": 1, "ID": 0, "Count": 8000}], "condition": {"kind": "equip_count", "target": 1}, "location": {"Type": "eEntryBattleHero", "ID": 0}},
+    {"missionID": 1006, "name": "黑风山霸主", "description": "通关黑风山", "reward": [{"Type": 2, "ID": 0, "Count": 50}, {"Type": 5, "ID": 100001, "Count": 2}], "condition": {"kind": "stage_clear", "target": 10019}, "location": {"Type": "CheckPoint", "ID": 10019}},
+    {"missionID": 1007, "name": "崭露头角", "description": "玩家达到 10 级", "reward": [{"Type": 2, "ID": 0, "Count": 100}], "condition": {"kind": "player_level", "target": 10}, "location": {"Type": "CheckPoint", "ID": 10020}},
+    {"missionID": 1008, "name": "主将进阶", "description": "任意主将进阶一次", "reward": [{"Type": 6, "ID": 200125, "Count": 30}], "condition": {"kind": "breakthrough_count", "target": 1}, "location": {"Type": "eEntryHeroBreakthrough", "ID": 0}},
+    {"missionID": 1009, "name": "四人成军", "description": "上阵 4 名主将", "reward": [{"Type": 1, "ID": 0, "Count": 20000}], "condition": {"kind": "team_size", "target": 4}, "location": {"Type": "eEntryBattleHero", "ID": 0}},
+    {"missionID": 1010, "name": "罗浮洞探险", "description": "通关罗浮洞", "reward": [{"Type": 2, "ID": 0, "Count": 100}, {"Type": 6, "ID": 200128, "Count": 30}], "condition": {"kind": "stage_clear", "target": 10029}, "location": {"Type": "CheckPoint", "ID": 10029}}
+  ],
+  "daily": [
+    {"missionID": 5001, "name": "每日签到", "description": "完成今日签到", "reward": [{"Type": 1, "ID": 0, "Count": 3000}], "condition": {"kind": "sign_today", "target": 1}, "location": {"Type": "eShowEverydayTask", "ID": 0}},
+    {"missionID": 5002, "name": "征战沙场", "description": "今日进行 3 次关卡战斗", "reward": [{"Type": 9, "ID": 0, "Count": 5}], "condition": {"kind": "battle_count_today", "target": 3}, "location": {"Type": "CheckPoint", "ID": 0}},
+    {"missionID": 5003, "name": "招贤纳士", "description": "今日进行 1 次寻将", "reward": [{"Type": 1, "ID": 0, "Count": 5000}], "condition": {"kind": "recruit_today", "target": 1}, "location": {"Type": "eZhaoJiang", "ID": 0}}
+  ]
+}

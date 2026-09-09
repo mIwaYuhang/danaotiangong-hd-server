@@ -1,0 +1,152 @@
+
+mohua_jiaomowang-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 629, 165
+  size: 86, 89
+  orig: 86, 89
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: true
+  xy: 396, 48
+  size: 206, 231
+  orig: 206, 231
+  offset: 0, 0
+  index: -1
+root_hip_01
+  rotate: false
+  xy: 156, 29
+  size: 38, 60
+  orig: 38, 60
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 156, 91
+  size: 79, 59
+  orig: 79, 59
+  offset: 0, 0
+  index: -1
+root_hip_03
+  rotate: false
+  xy: 237, 97
+  size: 44, 53
+  orig: 44, 53
+  offset: 0, 0
+  index: -1
+root_l_elbow
+  rotate: false
+  xy: 914, 227
+  size: 33, 27
+  orig: 33, 27
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: false
+  xy: 318, 122
+  size: 43, 28
+  orig: 43, 28
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 363, 127
+  size: 30, 23
+  orig: 33, 23
+  offset: 3, 0
+  index: -1
+root_l_knee
+  rotate: false
+  xy: 752, 199
+  size: 38, 55
+  orig: 38, 55
+  offset: 0, 0
+  index: -1
+root_l_leg
+  rotate: false
+  xy: 196, 36
+  size: 30, 53
+  orig: 30, 53
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: true
+  xy: 156, 2
+  size: 25, 33
+  orig: 25, 33
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01
+  rotate: false
+  xy: 691, 130
+  size: 22, 33
+  orig: 22, 33
+  offset: 0, 0
+  index: -1
+root_longweapon
+  rotate: true
+  xy: 2, 152
+  size: 102, 392
+  orig: 102, 392
+  offset: 0, 0
+  index: -1
+root_r_elbow
+  rotate: false
+  xy: 717, 176
+  size: 33, 78
+  orig: 33, 78
+  offset: 0, 0
+  index: -1
+root_r_foot
+  rotate: true
+  xy: 877, 221
+  size: 33, 35
+  orig: 33, 35
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 837, 225
+  size: 29, 38
+  orig: 29, 38
+  offset: 0, 0
+  index: -1
+root_r_knee
+  rotate: false
+  xy: 629, 94
+  size: 60, 69
+  orig: 60, 69
+  offset: 0, 0
+  index: -1
+root_r_leg
+  rotate: true
+  xy: 629, 53
+  size: 39, 55
+  orig: 39, 55
+  offset: 0, 0
+  index: -1
+root_r_shoulder
+  rotate: false
+  xy: 792, 225
+  size: 43, 29
+  orig: 43, 33
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01
+  rotate: false
+  xy: 283, 107
+  size: 33, 43
+  orig: 33, 43
+  offset: 0, 0
+  index: -1
+root_tail
+  rotate: true
+  xy: 2, 17
+  size: 133, 152
+  orig: 133, 152
+  offset: 0, 0
+  index: -1

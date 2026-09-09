@@ -1,0 +1,68 @@
+
+changbing_lan_tianfashenlei.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+changbing_lan_tianfashenlei_bao_01
+  rotate: false
+  xy: 506, 59
+  size: 68, 43
+  orig: 100, 74
+  offset: 14, 0
+  index: -1
+changbing_lan_tianfashenlei_bao_02
+  rotate: true
+  xy: 717, 5
+  size: 97, 64
+  orig: 100, 74
+  offset: 2, 1
+  index: -1
+changbing_lan_tianfashenlei_bao_03
+  rotate: true
+  xy: 650, 2
+  size: 100, 65
+  orig: 100, 74
+  offset: 0, 9
+  index: -1
+changbing_lan_tianfashenlei_di
+  rotate: true
+  xy: 783, 10
+  size: 92, 28
+  orig: 92, 28
+  offset: 0, 0
+  index: -1
+changbing_lan_tianfashenlei_dian01
+  rotate: true
+  xy: 478, 11
+  size: 42, 170
+  orig: 51, 250
+  offset: 0, 79
+  index: -1
+changbing_lan_tianfashenlei_dian02
+  rotate: true
+  xy: 254, 11
+  size: 42, 222
+  orig: 51, 250
+  offset: 0, 27
+  index: -1
+changbing_lan_tianfashenlei_dian03
+  rotate: true
+  xy: 2, 2
+  size: 47, 250
+  orig: 51, 250
+  offset: 0, 0
+  index: -1
+changbing_lan_tianfashenlei_dian04
+  rotate: true
+  xy: 2, 51
+  size: 51, 250
+  orig: 51, 250
+  offset: 0, 0
+  index: -1
+changbing_lan_tianfashenlei_dian05
+  rotate: true
+  xy: 254, 55
+  size: 47, 250
+  orig: 51, 250
+  offset: 0, 0
+  index: -1

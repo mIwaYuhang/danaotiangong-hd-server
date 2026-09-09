@@ -1,0 +1,44 @@
+{
+  "_doc": {
+    "listen": "HTTP 监听地址与端口；0.0.0.0 表示接受模拟器/局域网访问",
+    "public_url": "客户端业务基址，写入区服列表 ServerUrl 并用于 /health；修改端口时需同步修改，末尾不要带斜杠",
+    "realm": "区服信息：id 为区服 ID（客户端 serverid 必须一致），name 为区服名，state/heat/group_load 为区服列表展示状态",
+    "paths": "相对 data 目录的路径：database 为 SQLite 存档文件，static_data 为由 Lua 导表生成的静态表目录",
+    "http": "HTTP 传输层限制：并发工作线程数、单请求超时秒数、请求体上限字节、请求地址长度上限、查询参数数量/键长/值长上限、Server 响应头",
+    "logging": "日志级别与格式；plain_query_keys 列出允许以明文记录的查询参数（仅当取值为纯数字时），其余参数一律脱敏"
+  },
+  "listen": {
+    "host": "0.0.0.0",
+    "port": 21000
+  },
+  "public_url": "http://10.0.2.2:21000",
+  "realm": {
+    "id": 1,
+    "name": "本地单机服",
+    "state": 1,
+    "heat": 3,
+    "group_load": 1
+  },
+  "paths": {
+    "database": "local.sqlite3",
+    "static_data": "static"
+  },
+  "http": {
+    "max_workers": 16,
+    "request_timeout_seconds": 10,
+    "max_body_bytes": 65536,
+    "max_target_length": 8192,
+    "max_query_fields": 32,
+    "max_query_key_length": 64,
+    "max_query_value_length": 2048,
+    "server_header": "LocalGameServer/0.3"
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s %(levelname)s %(message)s",
+    "plain_query_keys": [
+      "user", "cpId", "star", "ri", "stepno", "serverid", "heroProtoID",
+      "Chapter", "missionID", "type", "count", "playerid", "propType", "id"
+    ]
+  }
+}

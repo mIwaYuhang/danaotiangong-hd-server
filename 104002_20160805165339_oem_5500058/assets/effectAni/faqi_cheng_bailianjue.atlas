@@ -1,0 +1,103 @@
+
+faqi_cheng_bailianjue.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+faqi_cheng_bailianjue_bao_01
+  rotate: false
+  xy: 502, 3
+  size: 138, 120
+  orig: 175, 205
+  offset: 22, 5
+  index: -1
+faqi_cheng_bailianjue_bao_02
+  rotate: true
+  xy: 663, 141
+  size: 171, 150
+  orig: 175, 205
+  offset: 2, 2
+  index: -1
+faqi_cheng_bailianjue_bao_03
+  rotate: false
+  xy: 502, 125
+  size: 159, 187
+  orig: 175, 205
+  offset: 11, 0
+  index: -1
+faqi_cheng_bailianjue_bao_04
+  rotate: false
+  xy: 325, 115
+  size: 175, 197
+  orig: 175, 205
+  offset: 0, 0
+  index: -1
+faqi_cheng_bailianjue_bao_05
+  rotate: false
+  xy: 162, 109
+  size: 161, 203
+  orig: 175, 205
+  offset: 10, 2
+  index: -1
+faqi_cheng_bailianjue_bao_06
+  rotate: false
+  xy: 2, 108
+  size: 158, 204
+  orig: 175, 205
+  offset: 10, 1
+  index: -1
+faqi_cheng_bailianjue_fashe_01
+  rotate: false
+  xy: 818, 174
+  size: 153, 138
+  orig: 161, 138
+  offset: 0, 0
+  index: -1
+faqi_cheng_bailianjue_fashe_02
+  rotate: true
+  xy: 97, 10
+  size: 96, 90
+  orig: 161, 138
+  offset: 27, 20
+  index: -1
+faqi_cheng_bailianjue_fashe_03
+  rotate: false
+  xy: 2, 9
+  size: 93, 97
+  orig: 161, 138
+  offset: 34, 14
+  index: -1
+faqi_cheng_bailianjue_fashe_04
+  rotate: false
+  xy: 818, 43
+  size: 147, 129
+  orig: 161, 138
+  offset: 9, 4
+  index: -1
+faqi_cheng_bailianjue_fashe_05
+  rotate: false
+  xy: 663, 8
+  size: 153, 131
+  orig: 161, 138
+  offset: 5, 2
+  index: -1
+faqi_cheng_bailianjue_fashe_06
+  rotate: false
+  xy: 189, 2
+  size: 122, 105
+  orig: 161, 138
+  offset: 39, 14
+  index: -1
+faqi_cheng_bailianjue_fashe_07
+  rotate: false
+  xy: 371, 5
+  size: 107, 108
+  orig: 161, 138
+  offset: 50, 12
+  index: -1
+faqi_cheng_bailianjue_feixing
+  rotate: false
+  xy: 313, 51
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1

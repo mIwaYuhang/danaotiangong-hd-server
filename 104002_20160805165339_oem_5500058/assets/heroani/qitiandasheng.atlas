@@ -1,0 +1,362 @@
+
+qitiandasheng-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 308, 225
+  size: 110, 90
+  orig: 123, 104
+  offset: 13, 13
+  index: -1
+root_chest_diji
+  rotate: false
+  xy: 841, 402
+  size: 123, 104
+  orig: 123, 104
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: false
+  xy: 2, 274
+  size: 141, 232
+  orig: 141, 232
+  offset: 0, 0
+  index: -1
+root_head_diji
+  rotate: false
+  xy: 2, 79
+  size: 123, 193
+  orig: 141, 232
+  offset: 17, 0
+  index: -1
+root_hear_01
+  rotate: false
+  xy: 680, 350
+  size: 159, 156
+  orig: 159, 156
+  offset: 0, 0
+  index: -1
+root_hear_02
+  rotate: false
+  xy: 308, 317
+  size: 158, 166
+  orig: 158, 166
+  offset: 0, 0
+  index: -1
+root_hear_03
+  rotate: false
+  xy: 145, 293
+  size: 161, 190
+  orig: 161, 190
+  offset: 0, 0
+  index: -1
+root_hear_04
+  rotate: true
+  xy: 490, 384
+  size: 122, 188
+  orig: 122, 188
+  offset: 0, 0
+  index: -1
+root_hip_01
+  rotate: true
+  xy: 681, 273
+  size: 30, 60
+  orig: 30, 60
+  offset: 0, 0
+  index: -1
+root_hip_01_diji
+  rotate: true
+  xy: 610, 250
+  size: 33, 61
+  orig: 37, 61
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 536, 254
+  size: 72, 48
+  orig: 76, 48
+  offset: 3, 0
+  index: -1
+root_hip_02_diji
+  rotate: false
+  xy: 536, 304
+  size: 76, 48
+  orig: 76, 48
+  offset: 0, 0
+  index: -1
+root_hip_03
+  rotate: false
+  xy: 253, 255
+  size: 50, 36
+  orig: 50, 36
+  offset: 0, 0
+  index: -1
+root_hip_03_diji
+  rotate: false
+  xy: 500, 217
+  size: 46, 33
+  orig: 50, 36
+  offset: 2, 0
+  index: -1
+root_l_elbow
+  rotate: true
+  xy: 276, 189
+  size: 25, 30
+  orig: 25, 30
+  offset: 0, 0
+  index: -1
+root_l_elbow_diji
+  rotate: false
+  xy: 743, 273
+  size: 25, 30
+  orig: 25, 30
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: false
+  xy: 136, 2
+  size: 29, 18
+  orig: 29, 18
+  offset: 0, 0
+  index: -1
+root_l_foot_diji
+  rotate: false
+  xy: 167, 4
+  size: 29, 16
+  orig: 29, 18
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 770, 279
+  size: 26, 25
+  orig: 26, 25
+  offset: 0, 0
+  index: -1
+root_l_head_01
+  rotate: true
+  xy: 136, 22
+  size: 72, 67
+  orig: 72, 67
+  offset: 0, 0
+  index: -1
+root_l_head_02
+  rotate: false
+  xy: 127, 96
+  size: 66, 87
+  orig: 66, 87
+  offset: 0, 0
+  index: -1
+root_l_head_03
+  rotate: true
+  xy: 145, 274
+  size: 17, 106
+  orig: 17, 106
+  offset: 0, 0
+  index: -1
+root_l_head_04
+  rotate: false
+  xy: 468, 358
+  size: 20, 125
+  orig: 20, 125
+  offset: 0, 0
+  index: -1
+root_l_knee
+  rotate: true
+  xy: 468, 317
+  size: 35, 66
+  orig: 35, 66
+  offset: 0, 0
+  index: -1
+root_l_knee_diji
+  rotate: false
+  xy: 500, 252
+  size: 34, 63
+  orig: 35, 66
+  offset: 0, 3
+  index: -1
+root_l_leg
+  rotate: true
+  xy: 308, 197
+  size: 26, 54
+  orig: 26, 54
+  offset: 0, 0
+  index: -1
+root_l_leg_diji
+  rotate: false
+  xy: 247, 199
+  size: 27, 54
+  orig: 27, 54
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: false
+  xy: 634, 219
+  size: 37, 29
+  orig: 37, 29
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01
+  rotate: true
+  xy: 614, 285
+  size: 54, 65
+  orig: 54, 65
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01_diji
+  rotate: true
+  xy: 594, 212
+  size: 36, 38
+  orig: 54, 65
+  offset: 0, 15
+  index: -1
+root_l_shoulder_02
+  rotate: false
+  xy: 199, 192
+  size: 46, 80
+  orig: 46, 80
+  offset: 0, 0
+  index: -1
+root_l_shoulder_diji
+  rotate: true
+  xy: 733, 234
+  size: 37, 29
+  orig: 37, 29
+  offset: 0, 0
+  index: -1
+root_longweapon_diji
+  rotate: true
+  xy: 145, 485
+  size: 21, 343
+  orig: 38, 343
+  offset: 8, 0
+  index: -1
+root_r_elbow
+  rotate: false
+  xy: 811, 309
+  size: 28, 39
+  orig: 28, 39
+  offset: 0, 0
+  index: -1
+root_r_elbow_diji
+  rotate: false
+  xy: 276, 216
+  size: 30, 37
+  orig: 30, 37
+  offset: 0, 0
+  index: -1
+root_r_foot
+  rotate: false
+  xy: 798, 280
+  size: 21, 24
+  orig: 21, 24
+  offset: 0, 0
+  index: -1
+root_r_foot_diji
+  rotate: true
+  xy: 1007, 485
+  size: 21, 15
+  orig: 21, 24
+  offset: 0, 1
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 821, 283
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+root_r_head_01
+  rotate: false
+  xy: 841, 316
+  size: 123, 84
+  orig: 123, 84
+  offset: 0, 0
+  index: -1
+root_r_head_02
+  rotate: true
+  xy: 2, 2
+  size: 75, 132
+  orig: 75, 132
+  offset: 0, 0
+  index: -1
+root_r_head_03
+  rotate: false
+  xy: 966, 388
+  size: 39, 118
+  orig: 39, 118
+  offset: 0, 0
+  index: -1
+root_r_head_04
+  rotate: true
+  xy: 490, 354
+  size: 28, 128
+  orig: 28, 128
+  offset: 0, 0
+  index: -1
+root_r_knee
+  rotate: false
+  xy: 966, 318
+  size: 45, 68
+  orig: 45, 68
+  offset: 0, 0
+  index: -1
+root_r_knee_diji
+  rotate: true
+  xy: 681, 305
+  size: 43, 68
+  orig: 45, 68
+  offset: 2, 0
+  index: -1
+root_r_leg
+  rotate: true
+  xy: 620, 341
+  size: 41, 58
+  orig: 41, 58
+  offset: 0, 0
+  index: -1
+root_r_leg_diji
+  rotate: true
+  xy: 751, 306
+  size: 42, 58
+  orig: 42, 58
+  offset: 0, 0
+  index: -1
+root_r_shoulder
+  rotate: true
+  xy: 364, 192
+  size: 31, 49
+  orig: 31, 49
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01
+  rotate: false
+  xy: 127, 185
+  size: 70, 87
+  orig: 70, 87
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01_diji
+  rotate: false
+  xy: 673, 229
+  size: 58, 42
+  orig: 70, 87
+  offset: 12, 24
+  index: -1
+root_r_shoulder_02
+  rotate: false
+  xy: 420, 227
+  size: 78, 88
+  orig: 78, 88
+  offset: 0, 0
+  index: -1
+root_r_shoulder_diji
+  rotate: true
+  xy: 548, 221
+  size: 31, 44
+  orig: 31, 49
+  offset: 0, 1
+  index: -1

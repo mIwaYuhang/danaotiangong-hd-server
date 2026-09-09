@@ -1,0 +1,54 @@
+
+faqi_pugong_02-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+faqi_pugong_02_bao_01
+  rotate: true
+  xy: 2, 2
+  size: 163, 153
+  orig: 163, 153
+  offset: 0, 0
+  index: -1
+faqi_pugong_02_bao_02
+  rotate: false
+  xy: 747, 36
+  size: 128, 129
+  orig: 163, 153
+  offset: 18, 11
+  index: -1
+faqi_pugong_02_bao_03
+  rotate: true
+  xy: 877, 49
+  size: 116, 117
+  orig: 163, 153
+  offset: 24, 17
+  index: -1
+faqi_pugong_02_bao_04
+  rotate: true
+  xy: 611, 30
+  size: 135, 134
+  orig: 163, 153
+  offset: 14, 7
+  index: -1
+faqi_pugong_02_bao_05
+  rotate: true
+  xy: 465, 16
+  size: 149, 144
+  orig: 163, 153
+  offset: 9, 2
+  index: -1
+faqi_pugong_02_bao_06
+  rotate: true
+  xy: 312, 5
+  size: 160, 151
+  orig: 163, 153
+  offset: 3, 0
+  index: -1
+faqi_pugong_02_bao_07
+  rotate: true
+  xy: 157, 2
+  size: 163, 153
+  orig: 163, 153
+  offset: 0, 0
+  index: -1

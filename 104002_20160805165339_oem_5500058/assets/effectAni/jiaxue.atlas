@@ -1,0 +1,19 @@
+
+jiaxue.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiaxue_guang
+  rotate: false
+  xy: 135, 25
+  size: 107, 43
+  orig: 107, 43
+  offset: 0, 0
+  index: -1
+jiaxue_xian
+  rotate: true
+  xy: 2, 2
+  size: 66, 131
+  orig: 66, 131
+  offset: 0, 0
+  index: -1

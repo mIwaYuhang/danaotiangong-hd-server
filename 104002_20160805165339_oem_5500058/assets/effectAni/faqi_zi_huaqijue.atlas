@@ -1,0 +1,68 @@
+
+faqi_zi_huaqijue.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+faqi_zi_huaqijue_bing_01
+  rotate: true
+  xy: 395, 378
+  size: 148, 71
+  orig: 201, 163
+  offset: 25, 8
+  index: -1
+faqi_zi_huaqijue_bing_02
+  rotate: false
+  xy: 205, 2
+  size: 174, 157
+  orig: 201, 163
+  offset: 10, 5
+  index: -1
+faqi_zi_huaqijue_bing_03
+  rotate: false
+  xy: 2, 145
+  size: 201, 162
+  orig: 201, 163
+  offset: 0, 0
+  index: -1
+faqi_zi_huaqijue_bing_04
+  rotate: false
+  xy: 192, 364
+  size: 201, 162
+  orig: 201, 163
+  offset: 0, 0
+  index: -1
+faqi_zi_huaqijue_bing_05
+  rotate: true
+  xy: 205, 161
+  size: 201, 162
+  orig: 201, 163
+  offset: 0, 0
+  index: -1
+faqi_zi_huaqijue_bing_06
+  rotate: false
+  xy: 369, 219
+  size: 132, 143
+  orig: 201, 163
+  offset: 41, 12
+  index: -1
+faqi_zi_huaqijue_bing_07
+  rotate: false
+  xy: 2, 11
+  size: 132, 132
+  orig: 201, 163
+  offset: 41, 12
+  index: -1
+faqi_zi_huaqijue_bing_08
+  rotate: false
+  xy: 381, 86
+  size: 130, 131
+  orig: 201, 163
+  offset: 42, 13
+  index: -1
+faqi_zi_huaqijue_qi
+  rotate: true
+  xy: 2, 309
+  size: 217, 188
+  orig: 218, 188
+  offset: 0, 0
+  index: -1

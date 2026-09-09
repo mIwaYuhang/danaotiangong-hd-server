@@ -1,0 +1,113 @@
+{
+"bones": [
+	{ "name": "faqi_cheng_anrenjue" },
+	{ "name": "faqi_cheng_anrenjue_bao", "parent": "faqi_cheng_anrenjue", "scaleX": 2, "scaleY": 2 },
+	{ "name": "faqi_cheng_anrenjue_jianqi", "parent": "faqi_cheng_anrenjue", "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{ "name": "faqi_cheng_anrenjue_bao_01", "bone": "faqi_cheng_anrenjue_bao", "attachment": "faqi_cheng_anrenjue_bao_01" },
+	{ "name": "faqi_cheng_anrenjue_jianqi_01", "bone": "faqi_cheng_anrenjue_jianqi", "attachment": "faqi_cheng_anrenjue_jianqi_01" }
+],
+"skins": {
+	"default": {
+		"faqi_cheng_anrenjue_bao_01": {
+			"faqi_cheng_anrenjue_bao_01": { "width": 219, "height": 198 },
+			"faqi_cheng_anrenjue_bao_02": { "width": 219, "height": 198 },
+			"faqi_cheng_anrenjue_bao_03": { "width": 219, "height": 198 },
+			"faqi_cheng_anrenjue_bao_04": { "width": 219, "height": 198 },
+			"faqi_cheng_anrenjue_bao_05": { "width": 219, "height": 198 },
+			"faqi_cheng_anrenjue_bao_06": { "width": 219, "height": 198 }
+		},
+		"faqi_cheng_anrenjue_jianqi_01": {
+			"faqi_cheng_anrenjue_jianqi_01": { "width": 96, "height": 198 },
+			"faqi_cheng_anrenjue_jianqi_02": { "width": 96, "height": 198 },
+			"faqi_cheng_anrenjue_jianqi_03": { "width": 96, "height": 198 },
+			"faqi_cheng_anrenjue_jianqi_04": { "width": 96, "height": 198 },
+			"faqi_cheng_anrenjue_jianqi_05": { "width": 96, "height": 198 },
+			"faqi_cheng_anrenjue_jianqi_06": { "width": 96, "height": 198 },
+			"faqi_cheng_anrenjue_jianqi_07": { "width": 96, "height": 198 },
+			"faqi_cheng_anrenjue_jianqi_08": { "width": 96, "height": 198 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"faqi_cheng_anrenjue_bao": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6333, "angle": 0, "curve": "stepped" },
+					{ "time": 1.0333, "angle": 0, "curve": "stepped" },
+					{ "time": 1.2666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.6333, "x": 0, "y": 18.96, "curve": "stepped" },
+					{ "time": 1.0333, "x": 0, "y": 18.96, "curve": "stepped" },
+					{ "time": 1.2666, "x": 0, "y": 18.96 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6333, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1.0333, "x": 1, "y": 1 },
+					{ "time": 1.2666, "x": 1.2, "y": 1.2 }
+				]
+			},
+			"faqi_cheng_anrenjue_jianqi": {
+				"rotate": [
+					{ "time": 0, "angle": 90, "curve": "stepped" },
+					{ "time": 0.4666, "angle": 90, "curve": "stepped" },
+					{ "time": 0.5666, "angle": 90, "curve": "stepped" },
+					{ "time": 0.6333, "angle": 90 }
+				],
+				"translate": [
+					{ "time": 0, "x": -445.46, "y": 47.42 },
+					{ "time": 0.4666, "x": -330.29, "y": 47.42, "curve": "stepped" },
+					{ "time": 0.5666, "x": -330.29, "y": 47.42 },
+					{ "time": 0.6333, "x": -68.77, "y": 47.42 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.4666, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.5666, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6333, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"faqi_cheng_anrenjue_bao_01": {
+				"attachment": [
+					{ "time": 0.7, "name": "faqi_cheng_anrenjue_bao_02" },
+					{ "time": 0.8, "name": "faqi_cheng_anrenjue_bao_03" },
+					{ "time": 0.9, "name": "faqi_cheng_anrenjue_bao_04" },
+					{ "time": 0.9666, "name": "faqi_cheng_anrenjue_bao_05" },
+					{ "time": 1.0333, "name": "faqi_cheng_anrenjue_bao_06" },
+					{ "time": 1.2666, "name": "faqi_cheng_anrenjue_bao_06" }
+				],
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.6, "color": "ffffff00" },
+					{ "time": 0.6333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.0333, "color": "ffffffff" },
+					{ "time": 1.2666, "color": "ffffff00" }
+				]
+			},
+			"faqi_cheng_anrenjue_jianqi_01": {
+				"attachment": [
+					{ "time": 0.0666, "name": "faqi_cheng_anrenjue_jianqi_02" },
+					{ "time": 0.1333, "name": "faqi_cheng_anrenjue_jianqi_03" },
+					{ "time": 0.2, "name": "faqi_cheng_anrenjue_jianqi_04" },
+					{ "time": 0.2666, "name": "faqi_cheng_anrenjue_jianqi_05" },
+					{ "time": 0.3333, "name": "faqi_cheng_anrenjue_jianqi_06" },
+					{ "time": 0.4, "name": "faqi_cheng_anrenjue_jianqi_07" },
+					{ "time": 0.4666, "name": "faqi_cheng_anrenjue_jianqi_08" }
+				],
+				"color": [
+					{ "time": 0.6333, "color": "ffffffff" },
+					{ "time": 0.6666, "color": "ffffff00" }
+				]
+			}
+		}
+	}
+}
+}

@@ -1,0 +1,131 @@
+
+piantou3-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+99
+  rotate: false
+  xy: 966, 161
+  size: 254, 162
+  orig: 255, 162
+  offset: 1, 0
+  index: -1
+ercishi
+  rotate: true
+  xy: 2, 17
+  size: 39, 290
+  orig: 39, 290
+  offset: 0, 0
+  index: -1
+scene05
+  rotate: false
+  xy: 2, 58
+  size: 480, 320
+  orig: 480, 320
+  offset: 0, 0
+  index: -1
+scene05_d01
+  rotate: false
+  xy: 976, 601
+  size: 379, 142
+  orig: 379, 142
+  offset: 0, 0
+  index: -1
+scene05_h_01
+  rotate: false
+  xy: 1170, 126
+  size: 12, 33
+  orig: 12, 33
+  offset: 0, 0
+  index: -1
+scene05_h_02
+  rotate: false
+  xy: 1222, 285
+  size: 14, 38
+  orig: 14, 38
+  offset: 0, 0
+  index: -1
+scene05_h_03
+  rotate: true
+  xy: 2, 2
+  size: 13, 31
+  orig: 13, 31
+  offset: 0, 0
+  index: -1
+scene05_r02
+  rotate: true
+  xy: 976, 745
+  size: 275, 355
+  orig: 275, 355
+  offset: 0, 0
+  index: -1
+scene06_b01
+  rotate: true
+  xy: 971, 325
+  size: 274, 281
+  orig: 480, 320
+  offset: 50, 6
+  index: -1
+scene06_b02
+  rotate: false
+  xy: 489, 379
+  size: 480, 320
+  orig: 480, 320
+  offset: 0, 0
+  index: -1
+scene06_b03
+  rotate: false
+  xy: 484, 57
+  size: 480, 320
+  orig: 480, 320
+  offset: 0, 0
+  index: -1
+scene06_r01
+  rotate: false
+  xy: 2, 701
+  size: 485, 319
+  orig: 500, 319
+  offset: 0, 0
+  index: -1
+scene06_r02
+  rotate: false
+  xy: 2, 380
+  size: 485, 319
+  orig: 500, 319
+  offset: 0, 0
+  index: -1
+scene06_r03
+  rotate: false
+  xy: 489, 701
+  size: 485, 319
+  orig: 500, 319
+  offset: 0, 0
+  index: -1
+scene06_r04
+  rotate: false
+  xy: 966, 14
+  size: 202, 145
+  orig: 202, 145
+  offset: 0, 0
+  index: -1
+yidaole
+  rotate: true
+  xy: 1254, 167
+  size: 432, 115
+  orig: 432, 115
+  offset: 0, 0
+  index: -1
+yuansheng
+  rotate: true
+  xy: 294, 22
+  size: 34, 119
+  orig: 34, 119
+  offset: 0, 0
+  index: -1
+zhensheng
+  rotate: false
+  xy: 1333, 893
+  size: 35, 127
+  orig: 35, 127
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,82 @@
+
+npc_she2-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest_01
+  rotate: true
+  xy: 293, 90
+  size: 115, 111
+  orig: 120, 111
+  offset: 2, 0
+  index: -1
+root_head
+  rotate: true
+  xy: 2, 30
+  size: 175, 166
+  orig: 199, 218
+  offset: 24, 8
+  index: -1
+root_head_cc1
+  rotate: false
+  xy: 2, 8
+  size: 36, 20
+  orig: 63, 46
+  offset: 14, 12
+  index: -1
+root_head_cc2
+  rotate: false
+  xy: 406, 100
+  size: 119, 105
+  orig: 119, 105
+  offset: 0, 0
+  index: -1
+root_hip_01
+  rotate: true
+  xy: 170, 81
+  size: 124, 121
+  orig: 126, 153
+  offset: 2, 15
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 453, 2
+  size: 112, 96
+  orig: 127, 102
+  offset: 8, 2
+  index: -1
+root_hip_03
+  rotate: false
+  xy: 527, 104
+  size: 101, 101
+  orig: 113, 134
+  offset: 6, 16
+  index: -1
+root_hip_04
+  rotate: true
+  xy: 403, 3
+  size: 85, 48
+  orig: 87, 70
+  offset: 0, 11
+  index: -1
+root_hip_05
+  rotate: false
+  xy: 318, 4
+  size: 83, 84
+  orig: 90, 91
+  offset: 3, 4
+  index: -1
+root_hip_06
+  rotate: false
+  xy: 567, 31
+  size: 45, 71
+  orig: 55, 109
+  offset: 1, 0
+  index: -1
+root_hip_07
+  rotate: true
+  xy: 170, 21
+  size: 58, 146
+  orig: 76, 146
+  offset: 3, 0
+  index: -1

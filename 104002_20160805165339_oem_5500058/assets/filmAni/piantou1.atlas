@@ -1,0 +1,131 @@
+
+piantou1-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+danaotiankong
+  rotate: false
+  xy: 485, 288
+  size: 365, 140
+  orig: 384, 172
+  offset: 10, 16
+  index: -1
+hei
+  rotate: false
+  xy: 2, 428
+  size: 481, 322
+  orig: 481, 322
+  offset: 0, 0
+  index: -1
+sanzhong
+  rotate: true
+  xy: 904, 291
+  size: 65, 34
+  orig: 65, 34
+  offset: 0, 0
+  index: -1
+scene01_l01
+  rotate: true
+  xy: 484, 40
+  size: 246, 362
+  orig: 257, 362
+  offset: 0, 0
+  index: -1
+scene01_l02
+  rotate: true
+  xy: 2, 2
+  size: 102, 425
+  orig: 102, 425
+  offset: 0, 0
+  index: -1
+scene01_l03
+  rotate: true
+  xy: 1163, 76
+  size: 198, 313
+  orig: 216, 314
+  offset: 17, 0
+  index: -1
+scene01_l03 -2
+  rotate: true
+  xy: 1163, 76
+  size: 198, 313
+  orig: 216, 314
+  offset: 17, 0
+  index: -1
+scene01_l04
+  rotate: false
+  xy: 967, 276
+  size: 477, 215
+  orig: 477, 215
+  offset: 0, 0
+  index: -1
+scene01_l05
+  rotate: false
+  xy: 967, 493
+  size: 485, 257
+  orig: 485, 321
+  offset: 0, 0
+  index: -1
+scene01_l06
+  rotate: false
+  xy: 2, 106
+  size: 480, 320
+  orig: 480, 320
+  offset: 0, 0
+  index: -1
+scene02_l01
+  rotate: false
+  xy: 848, 27
+  size: 313, 247
+  orig: 313, 247
+  offset: 0, 0
+  index: -1
+scene02_l02
+  rotate: false
+  xy: 485, 430
+  size: 480, 320
+  orig: 480, 320
+  offset: 0, 0
+  index: -1
+scene_02_w02
+  rotate: false
+  xy: 1163, 21
+  size: 192, 53
+  orig: 192, 53
+  offset: 0, 0
+  index: -1
+scene_02_w_01
+  rotate: true
+  xy: 1446, 321
+  size: 170, 37
+  orig: 170, 37
+  offset: 0, 0
+  index: -1
+scene_02_w_03
+  rotate: true
+  xy: 852, 283
+  size: 145, 50
+  orig: 145, 50
+  offset: 0, 0
+  index: -1
+scene_02_w_05
+  rotate: true
+  xy: 904, 358
+  size: 70, 40
+  orig: 70, 40
+  offset: 0, 0
+  index: -1
+scene_02_w_06
+  rotate: false
+  xy: 1357, 23
+  size: 98, 51
+  orig: 98, 51
+  offset: 0, 0
+  index: -1
+scene_03_w01
+  rotate: false
+  xy: 429, 13
+  size: 362, 25
+  orig: 362, 25
+  offset: 0, 0
+  index: -1

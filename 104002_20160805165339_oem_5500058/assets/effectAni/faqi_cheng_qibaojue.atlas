@@ -1,0 +1,61 @@
+
+faqi_cheng_qibaojue-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+faqi_cheng_qibaojue_bao_01
+  rotate: true
+  xy: 596, 67
+  size: 108, 95
+  orig: 135, 159
+  offset: 13, 7
+  index: -1
+faqi_cheng_qibaojue_bao_02
+  rotate: false
+  xy: 137, 22
+  size: 131, 153
+  orig: 135, 159
+  offset: 4, 4
+  index: -1
+faqi_cheng_qibaojue_bao_03
+  rotate: false
+  xy: 2, 16
+  size: 133, 159
+  orig: 135, 159
+  offset: 0, 0
+  index: -1
+faqi_cheng_qibaojue_bao_04
+  rotate: true
+  xy: 407, 2
+  size: 116, 83
+  orig: 135, 159
+  offset: 12, 21
+  index: -1
+faqi_cheng_qibaojue_bao_05
+  rotate: true
+  xy: 492, 10
+  size: 108, 74
+  orig: 135, 159
+  offset: 7, 22
+  index: -1
+faqi_cheng_qibaojue_feixing
+  rotate: true
+  xy: 568, 17
+  size: 48, 131
+  orig: 48, 132
+  offset: 0, 0
+  index: -1
+faqi_cheng_qibaojue_qi
+  rotate: false
+  xy: 407, 120
+  size: 187, 55
+  orig: 187, 55
+  offset: 0, 0
+  index: -1
+faqi_cheng_qibaojue_shan
+  rotate: true
+  xy: 270, 35
+  size: 140, 135
+  orig: 140, 136
+  offset: 0, 0
+  index: -1

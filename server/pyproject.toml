@@ -1,0 +1,12 @@
+[project]
+name = "local-game-server"
+version = "0.3.0"
+description = "本地单机游戏服务端：区服列表、账号鉴权、角色与首章玩法（仅供本地测试）"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+local-game-server = "game_server.cli:main"
+
+[tool.setuptools]
+packages = ["game_server", "game_server.protocol", "game_server.services", "game_server.tools"]

@@ -1,0 +1,61 @@
+
+changbing_cheng_fohuozhengdao-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+faqi_cheng_fohuozhengdao_bao_01
+  rotate: false
+  xy: 321, 222
+  size: 161, 190
+  orig: 169, 216
+  offset: 0, 0
+  index: -1
+faqi_cheng_fohuozhengdao_bao_02
+  rotate: true
+  xy: 484, 255
+  size: 157, 192
+  orig: 169, 216
+  offset: 4, 0
+  index: -1
+faqi_cheng_fohuozhengdao_bao_03
+  rotate: false
+  xy: 2, 2
+  size: 155, 192
+  orig: 169, 216
+  offset: 6, 3
+  index: -1
+faqi_cheng_fohuozhengdao_bao_04
+  rotate: false
+  xy: 159, 217
+  size: 160, 195
+  orig: 169, 216
+  offset: 1, 4
+  index: -1
+faqi_cheng_fohuozhengdao_bao_05
+  rotate: false
+  xy: 159, 24
+  size: 151, 191
+  orig: 169, 216
+  offset: 8, 5
+  index: -1
+faqi_cheng_fohuozhengdao_bao_06
+  rotate: false
+  xy: 2, 196
+  size: 155, 216
+  orig: 169, 216
+  offset: 14, 0
+  index: -1
+faqi_cheng_fohuozhengdao_bao_07
+  rotate: true
+  xy: 678, 269
+  size: 143, 187
+  orig: 169, 216
+  offset: 16, 28
+  index: -1
+faqi_cheng_fohuozhengdao_huo
+  rotate: false
+  xy: 867, 227
+  size: 102, 185
+  orig: 102, 188
+  offset: 0, 0
+  index: -1

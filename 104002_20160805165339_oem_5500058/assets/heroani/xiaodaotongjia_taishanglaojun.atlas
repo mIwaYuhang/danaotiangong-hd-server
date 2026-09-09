@@ -1,0 +1,201 @@
+
+xiaodaotongjia_taishanglaojun.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest_diji
+  rotate: true
+  xy: 437, 5
+  size: 68, 76
+  orig: 68, 76
+  offset: 0, 0
+  index: -1
+root_head_cc
+  rotate: true
+  xy: 659, 54
+  size: 58, 33
+  orig: 181, 148
+  offset: 88, 32
+  index: -1
+root_head_diji
+  rotate: false
+  xy: 2, 55
+  size: 181, 148
+  orig: 181, 148
+  offset: 0, 0
+  index: -1
+root_hip_01_diji
+  rotate: true
+  xy: 465, 75
+  size: 41, 99
+  orig: 41, 99
+  offset: 0, 0
+  index: -1
+root_hip_02_diji
+  rotate: true
+  xy: 694, 66
+  size: 46, 25
+  orig: 46, 25
+  offset: 0, 0
+  index: -1
+root_hip_03_diji
+  rotate: false
+  xy: 437, 76
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+root_hip_04_diji
+  rotate: false
+  xy: 329, 99
+  size: 134, 104
+  orig: 134, 104
+  offset: 0, 0
+  index: -1
+root_hip_05_diji
+  rotate: false
+  xy: 608, 114
+  size: 108, 89
+  orig: 108, 89
+  offset: 0, 0
+  index: -1
+root_hip_06_diji
+  rotate: false
+  xy: 185, 101
+  size: 142, 102
+  orig: 142, 102
+  offset: 0, 0
+  index: -1
+root_l_elbow_01_diji
+  rotate: true
+  xy: 178, 2
+  size: 29, 43
+  orig: 29, 43
+  offset: 0, 0
+  index: -1
+root_l_elbow_02_diji
+  rotate: false
+  xy: 652, 8
+  size: 33, 44
+  orig: 33, 44
+  offset: 0, 0
+  index: -1
+root_l_elbow_03_diji
+  rotate: false
+  xy: 515, 15
+  size: 49, 58
+  orig: 49, 58
+  offset: 0, 0
+  index: -1
+root_l_elbow_04_diji
+  rotate: false
+  xy: 566, 4
+  size: 41, 47
+  orig: 41, 47
+  offset: 0, 0
+  index: -1
+root_l_foot_diji
+  rotate: true
+  xy: 290, 2
+  size: 29, 15
+  orig: 29, 15
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: true
+  xy: 687, 12
+  size: 40, 16
+  orig: 40, 16
+  offset: 0, 0
+  index: -1
+root_l_shoulder_diji
+  rotate: true
+  xy: 223, 3
+  size: 28, 65
+  orig: 28, 65
+  offset: 0, 0
+  index: -1
+root_magicweapon
+  rotate: true
+  xy: 327, 41
+  size: 56, 108
+  orig: 85, 141
+  offset: 15, 18
+  index: -1
+root_magicweapon_f
+  rotate: true
+  xy: 465, 118
+  size: 85, 141
+  orig: 85, 141
+  offset: 0, 0
+  index: -1
+root_r_elbow_01_diji
+  rotate: false
+  xy: 128, 12
+  size: 48, 41
+  orig: 48, 41
+  offset: 0, 0
+  index: -1
+root_r_elbow_02_diji
+  rotate: false
+  xy: 566, 53
+  size: 35, 63
+  orig: 35, 63
+  offset: 0, 0
+  index: -1
+root_r_elbow_03_diji
+  rotate: false
+  xy: 609, 7
+  size: 41, 45
+  orig: 42, 45
+  offset: 1, 0
+  index: -1
+root_r_elbow_04_diji
+  rotate: false
+  xy: 603, 54
+  size: 54, 58
+  orig: 54, 58
+  offset: 0, 0
+  index: -1
+root_r_foot_diji
+  rotate: true
+  xy: 705, 33
+  size: 31, 17
+  orig: 31, 17
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: false
+  xy: 402, 16
+  size: 30, 23
+  orig: 30, 23
+  offset: 0, 0
+  index: -1
+root_r_hand_01_diji
+  rotate: true
+  xy: 185, 33
+  size: 66, 140
+  orig: 66, 140
+  offset: 0, 0
+  index: -1
+root_r_hand_02_diji
+  rotate: true
+  xy: 2, 4
+  size: 49, 124
+  orig: 49, 124
+  offset: 0, 0
+  index: -1
+root_r_hand_03
+  rotate: false
+  xy: 381, 2
+  size: 19, 37
+  orig: 19, 37
+  offset: 0, 0
+  index: -1
+root_r_shoulder_diji
+  rotate: true
+  xy: 327, 5
+  size: 34, 52
+  orig: 34, 52
+  offset: 0, 0
+  index: -1

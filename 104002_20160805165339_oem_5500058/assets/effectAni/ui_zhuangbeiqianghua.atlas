@@ -1,0 +1,26 @@
+
+ui_zhuangbeiqianghua.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_zhuangbeiqianghua_baidi
+  rotate: false
+  xy: 70, 40
+  size: 37, 36
+  orig: 37, 36
+  offset: 0, 0
+  index: -1
+ui_zhuangbeiqianghua_hongdi
+  rotate: false
+  xy: 70, 2
+  size: 37, 36
+  orig: 37, 36
+  offset: 0, 0
+  index: -1
+ui_zhuangbeiqianghua_huangguang
+  rotate: false
+  xy: 2, 6
+  size: 66, 70
+  orig: 66, 70
+  offset: 0, 0
+  index: -1

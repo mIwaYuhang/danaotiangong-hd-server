@@ -1,0 +1,44 @@
+{
+  "_doc": {
+    "summary": "装备（法宝）实例规则。实例主键 equipUserId，模板为 BaseEquips 的 equipId；模板只给出各主属性的上限 *Max 与成长上限 *GrowMax",
+    "main_attributes_by_type": "各部位主属性（客户端 getEquipAttrTypeList）：1 武器 2 灵符 3 头盔 4 衣服 5 项链 6 戒指",
+    "initial_ratio_of_max": "新装备初始值 = 模板 *Max × 该比例；成长值 = 模板 *GrowMax × 该比例",
+    "pinjie_bonus": "品阶 1..5 对当前属性的百分比加成",
+    "intensify": "锻造：金币费用 = round((等级 × a + b) ^ p - c) × 品质系数（客户端预估公式），每级把成长值累加到当前值；等级上限 = 玩家等级 × level_cap_multiplier",
+    "recast": "重铸：消耗重铸石，品阶进度 +1，满 pinjie_level_steps 后品阶 +1；锁定品阶消耗元宝",
+    "feed": "喂灵：进阶档来自模板 jieJiAttrs（level/mateId/mateCount/equipId/equipCount），这里只配材料不足时的提示策略",
+    "fragment_sell_price_field": "碎片出售单价取 BaseFragments 的字段",
+    "decompose_fragment_ratio": "分解装备返还的对应碎片数量 = 合成所需 exchangeCount × 比例（普通/完美）",
+    "compose_soul": "三件装备合成：结果品质与投入最低品质一致，随机同部位",
+    "bag_capacity": "装备背包上限（客户端 GameMaxNum.eEquip）"
+  },
+  "main_attributes_by_type": {
+    "1": ["normalAttack", "skillAttack"],
+    "2": ["skillAttack"],
+    "3": ["skillDefense"],
+    "4": ["normalDefense"],
+    "5": ["speed"],
+    "6": ["health"]
+  },
+  "initial_ratio_of_max": 0.4,
+  "pinjie_bonus": {"1": 0.0, "2": 0.05, "3": 0.12, "4": 0.2, "5": 0.3},
+  "pinjie_level_steps": 10,
+  "intensify": {
+    "cost_a": 0.6,
+    "cost_b": 12,
+    "cost_power": 2.4,
+    "cost_c": 200,
+    "quality_factor": {"1": 0.6, "2": 1.0, "3": 1.8, "4": 2.7},
+    "level_cap_multiplier": 3
+  },
+  "recast": {
+    "stone_cost_base": 10,
+    "stone_cost_per_pinjie": 10,
+    "lock_cost_by_pinjie": {"2": 50, "3": 100, "4": 200},
+    "fail_chance_by_pinjie": {"1": 0.0, "2": 0.15, "3": 0.3, "4": 0.45}
+  },
+  "fragment_sell_price_field": "price",
+  "decompose_fragment_ratio": {"1": 0.5, "2": 1.0},
+  "compose_soul": {"required_count": 3},
+  "bag_capacity": 300
+}

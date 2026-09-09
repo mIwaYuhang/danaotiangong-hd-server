@@ -1,0 +1,75 @@
+
+ui_zhandoukaichang-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_zhandoukaichang_longtou
+  rotate: true
+  xy: 1142, 170
+  size: 216, 149
+  orig: 216, 149
+  offset: 0, 0
+  index: -1
+ui_zhandoukaichang_menfeng
+  rotate: false
+  xy: 2, 199
+  size: 568, 24
+  orig: 568, 24
+  offset: 0, 0
+  index: -1
+ui_zhandoukaichang_shangmen
+  rotate: false
+  xy: 2, 225
+  size: 568, 161
+  orig: 568, 161
+  offset: 0, 0
+  index: -1
+ui_zhandoukaichang_shangmen_di
+  rotate: false
+  xy: 572, 225
+  size: 568, 161
+  orig: 568, 161
+  offset: 0, 0
+  index: -1
+ui_zhandoukaichang_shangzhong
+  rotate: false
+  xy: 1134, 30
+  size: 94, 138
+  orig: 94, 138
+  offset: 0, 0
+  index: -1
+ui_zhandoukaichang_shangzuo
+  rotate: false
+  xy: 572, 2
+  size: 154, 67
+  orig: 154, 67
+  offset: 0, 0
+  index: -1
+ui_zhandoukaichang_xiamen
+  rotate: false
+  xy: 2, 9
+  size: 568, 159
+  orig: 568, 159
+  offset: 0, 0
+  index: -1
+ui_zhandoukaichang_xiamen_di
+  rotate: false
+  xy: 572, 71
+  size: 560, 152
+  orig: 568, 159
+  offset: 5, 3
+  index: -1
+ui_zhandoukaichang_xiazhong
+  rotate: false
+  xy: 1230, 30
+  size: 94, 138
+  orig: 94, 138
+  offset: 0, 0
+  index: -1
+ui_zhandoukaichang_xiazuo
+  rotate: false
+  xy: 728, 2
+  size: 154, 67
+  orig: 154, 67
+  offset: 0, 0
+  index: -1

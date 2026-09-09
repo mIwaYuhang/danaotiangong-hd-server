@@ -1,0 +1,127 @@
+{
+  "_doc": {
+    "summary": "中期玩法（单机适配）：争霸、妖王洞穴、十二元辰殿、通天塔、炼化炉、好友、运镖。多人玩法用机器人对手与本地活动时段实现",
+    "arena": "争霸(/Duel/*)：robot_count 机器人数量、robot_names 名字池、初始排名 initial_rank、每日挑战次数 daily_times、次数恢复间隔、积分产出（每 score_interval 秒 + 按排名区间的每周期积分）、胜利奖励、兑换商店（Score 积分价，Reward 奖励）、排名限定奖励",
+    "worldboss": "妖王洞穴(/Worldboss/*)：每日活动时段（本地小时，开始/持续分钟）、四妖王 NPC 编号与血量、复活冷却、复活/鼓舞/预约元宝、鼓舞每次加成、伤害换银币比例、每日参与奖励",
+    "fuben": "十二元辰殿(/Copy/*)：每日元辰石 daily_keys、刷星银币费用、星级对奖励与敌方属性的倍率、每波基础奖励随殿序号递增、翻牌商品池（Cost 为星价）",
+    "tower": "通天塔(/Tower/*)：层数上限、每日挑战次数、三种难度(type)的积分与敌方倍率、每层 NPC 等级曲线、每 5 层奖励、Buff 商店（storeLevel 档、score 价、addtionProperty 属性 ID、addtionRate 加成）、扫荡所需等级/VIP",
+    "refine": "炼化炉(/RefiningFurnace/*)：主将/将魂按品质返还魂玉，绿蓝装备返银币、紫橙装备返喂灵石；重生元宝费用按品质与进阶次数",
+    "friends": "好友(/Friend/*)：好友上限、每日可领体力次数、推荐的机器人好友",
+    "transport": "运镖(/Transport/*)：每日运镖/劫镖次数、马匹五档银币与召唤费、目的地时长(秒)与倍率、免费刷新次数与付费刷新元宝、提前结束每分钟元宝"
+  },
+  "arena": {
+    "robot_count": 200,
+    "robot_names": ["逍遥子", "紫霞仙子", "白晶晶", "牛魔王", "铁扇公主", "红孩儿", "二郎神", "哪吒", "杨戬", "太白金星", "托塔天王", "巨灵神", "赤脚大仙", "南极仙翁", "月老", "嫦娥", "玉兔精", "黄袍怪", "金角大王", "银角大王", "蜘蛛精", "白骨精", "黑熊精", "六耳猕猴", "镇元子", "菩提祖师", "东海龙王", "西海龙王", "南海龙王", "北海龙王"],
+    "initial_rank": 200,
+    "daily_times": 10,
+    "recover_seconds": 1800,
+    "score_interval_seconds": 1200,
+    "score_by_rank": [[1, 1, 20], [2, 10, 12], [11, 50, 8], [51, 100, 6], [101, 100000, 5]],
+    "win_reward": [{"Type": 19, "ID": 0, "Count": 20}, {"Type": 1, "ID": 0, "Count": 5000}],
+    "lose_reward": [{"Type": 19, "ID": 0, "Count": 5}],
+    "cooldown_seconds": 0,
+    "clear_cooldown_ingot": 20,
+    "exchanges": [
+      {"id": 101, "Score": 200, "Reward": [{"Type": 6, "ID": 200125, "Count": 10}], "daily_limit": 5},
+      {"id": 102, "Score": 500, "Reward": [{"Type": 5, "ID": 100009, "Count": 1}], "daily_limit": 3},
+      {"id": 103, "Score": 1000, "Reward": [{"Type": 2, "ID": 0, "Count": 50}], "daily_limit": 1},
+      {"id": 104, "Score": 300, "Reward": [{"Type": 6, "ID": 200128, "Count": 20}], "daily_limit": 5}
+    ],
+    "limit_rank_exchanges": [
+      {"id": 201, "LimitRank": 100, "Reward": [{"Type": 1, "ID": 0, "Count": 20000}]},
+      {"id": 202, "LimitRank": 50, "Reward": [{"Type": 2, "ID": 0, "Count": 50}]},
+      {"id": 203, "LimitRank": 10, "Reward": [{"Type": 2, "ID": 0, "Count": 200}]},
+      {"id": 204, "LimitRank": 1, "Reward": [{"Type": 2, "ID": 0, "Count": 500}]}
+    ]
+  },
+  "worldboss": {
+    "sessions": [{"start_hour": 12, "start_minute": 0, "duration_minutes": 60}, {"start_hour": 20, "start_minute": 0, "duration_minutes": 60}],
+    "bosses": [
+      {"id": 1, "name": "白眉虎王", "npc_id": 60100001},
+      {"id": 2, "name": "九魅狐王", "npc_id": 60200001},
+      {"id": 3, "name": "铁臂熊王", "npc_id": 60300001},
+      {"id": 4, "name": "万灵猴王", "npc_id": 60400001}
+    ],
+    "boss_hp_per_player_level": 20000,
+    "boss_attr_multiplier": 1.0,
+    "resurgence_seconds": 60,
+    "resurgence_ingot": 20,
+    "encouraging_ingot": 10,
+    "encouraging_step": 0.1,
+    "encouraging_max": 1.0,
+    "order_ingot": 50,
+    "order_vip": 3,
+    "gold_per_damage": 0.05,
+    "rank_reward": [{"Type": 1, "ID": 0, "Count": 50000}, {"Type": 6, "ID": 200125, "Count": 20}],
+    "chest_reward": [{"Type": 1, "ID": 0, "Count": 20000}]
+  },
+  "fuben": {
+    "daily_keys": 3,
+    "unlock_prop_id": 110045,
+    "refresh_gold": 500,
+    "star_multiplier": {"1": 1.0, "2": 1.3, "3": 1.7, "4": 2.2, "5": 3.0},
+    "max_star": 5,
+    "base_gold": 1000,
+    "base_knowledge": 50,
+    "base_exp": 80,
+    "per_copy_growth": 0.25,
+    "npc_level_base": 12,
+    "npc_level_per_copy": 4,
+    "npc_multiplier": 0.7,
+    "boss_multiplier": 1.15,
+    "card_rewards": [
+      {"Type": 1, "ID": 0, "Count": 5000, "Cost": 1, "Last": 3},
+      {"Type": 6, "ID": 200125, "Count": 10, "Cost": 2, "Last": 2},
+      {"Type": 6, "ID": 200128, "Count": 20, "Cost": 2, "Last": 2},
+      {"Type": 5, "ID": 100010, "Count": 1, "Cost": 2, "Last": 2},
+      {"Type": 10, "ID": 0, "Count": 1, "quality": 2, "Cost": 3, "Last": 1},
+      {"Type": 2, "ID": 0, "Count": 20, "Cost": 4, "Last": 1}
+    ]
+  },
+  "tower": {
+    "max_floor": 80,
+    "daily_times": 3,
+    "types": {"1": {"name": "力", "score": 10, "multiplier": 1.0}, "2": {"name": "死", "score": 20, "multiplier": 1.4}, "3": {"name": "血", "score": 30, "multiplier": 1.9}},
+    "npc_level_base": 15,
+    "npc_level_per_floor": 1.2,
+    "npc_multiplier": 1.1,
+    "floors_per_reward": 5,
+    "floor_reward": [{"Type": 1, "ID": 0, "Count": 30000}, {"Type": 6, "ID": 200125, "Count": 10}],
+    "floor_reward_growth": 0.3,
+    "buff_exchange_per_floors": 3,
+    "buff_store": [
+      {"storeLevel": 1, "score": 30, "buffs": [{"index": 1, "addtionProperty": 2, "addtionRate": 0.05, "addtionName": "普攻", "range": 2}, {"index": 2, "addtionProperty": 1, "addtionRate": 0.05, "addtionName": "血量", "range": 2}]},
+      {"storeLevel": 2, "score": 100, "buffs": [{"index": 1, "addtionProperty": 4, "addtionRate": 0.08, "addtionName": "法攻", "range": 2}, {"index": 2, "addtionProperty": 3, "addtionRate": 0.08, "addtionName": "普防", "range": 2}]},
+      {"storeLevel": 3, "score": 200, "buffs": [{"index": 1, "addtionProperty": 99, "addtionRate": 0.1, "addtionName": "全属性", "range": 2}]}
+    ],
+    "sweep_level": 30,
+    "sweep_vip": 5
+  },
+  "refine": {
+    "soul_jade_by_quality": {"1": 1, "2": 3, "3": 8, "4": 20},
+    "equip_gold_by_quality": {"1": 500, "2": 1500},
+    "equip_feed_stone_by_quality": {"3": 5, "4": 12},
+    "fragment_gold": 100,
+    "hero_rebirth_ingot": {"1": 0, "2": 0, "3": 30, "4": 60},
+    "hero_rebirth_ingot_per_stage": {"3": 8, "4": 16},
+    "equip_rebirth_ingot": {"1": 0, "2": 0, "3": 40, "4": 80},
+    "intensify_refund_ratio": 0.5
+  },
+  "friends": {
+    "friend_count_max": 30,
+    "daily_energy_gets": 10,
+    "recommend_robots": [{"name": "逍遥子", "level": 20, "battlePower": 8000, "headerId": 103}, {"name": "紫霞仙子", "level": 18, "battlePower": 7200, "headerId": 105}, {"name": "牛魔王", "level": 25, "battlePower": 11000, "headerId": 110}]
+  },
+  "transport": {
+    "daily_transport_times": 3,
+    "daily_rob_times": 5,
+    "horses": {"1": {"Gold": 5000, "HaveSreward": 0, "CallCost": 0}, "2": {"Gold": 8000, "HaveSreward": 0, "CallCost": 0}, "3": {"Gold": 12000, "HaveSreward": 0, "CallCost": 0}, "4": {"Gold": 18000, "HaveSreward": 1, "CallCost": 0}, "5": {"Gold": 30000, "HaveSreward": 1, "CallCost": 50}},
+    "horse_weights": {"1": 50, "2": 30, "3": 15, "4": 4, "5": 1},
+    "destinations": {"1": {"seconds": 1200, "multiplier": 1.0, "times": 1}, "2": {"seconds": 1800, "multiplier": 2.6, "times": 2}},
+    "free_refresh_times": 3,
+    "refresh_ingot": 10,
+    "call_horse_ingot": 50,
+    "early_end_ingot_per_minute": 10,
+    "gold_per_level": 200
+  }
+}

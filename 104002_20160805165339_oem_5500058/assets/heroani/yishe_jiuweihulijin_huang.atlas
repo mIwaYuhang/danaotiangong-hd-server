@@ -1,0 +1,173 @@
+
+yishe_jiuweihulijin_huang.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 345, 43
+  size: 57, 74
+  orig: 57, 74
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: false
+  xy: 2, 26
+  size: 146, 178
+  orig: 146, 178
+  offset: 0, 0
+  index: -1
+root_head_cc
+  rotate: false
+  xy: 248, 9
+  size: 56, 31
+  orig: 146, 178
+  offset: 82, 15
+  index: -1
+root_hip_01
+  rotate: false
+  xy: 437, 2
+  size: 36, 28
+  orig: 36, 29
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 404, 99
+  size: 56, 47
+  orig: 56, 47
+  offset: 0, 0
+  index: -1
+root_hip_03
+  rotate: false
+  xy: 462, 106
+  size: 43, 40
+  orig: 43, 41
+  offset: 0, 0
+  index: -1
+root_hip_04
+  rotate: false
+  xy: 150, 74
+  size: 106, 130
+  orig: 106, 130
+  offset: 0, 0
+  index: -1
+root_hip_05
+  rotate: true
+  xy: 258, 42
+  size: 75, 85
+  orig: 75, 85
+  offset: 0, 0
+  index: -1
+root_hip_06
+  rotate: true
+  xy: 150, 10
+  size: 62, 96
+  orig: 63, 96
+  offset: 0, 0
+  index: -1
+root_l_ knee
+  rotate: true
+  xy: 306, 9
+  size: 31, 47
+  orig: 31, 48
+  offset: 0, 1
+  index: -1
+root_l_ leg
+  rotate: true
+  xy: 2, 4
+  size: 20, 44
+  orig: 20, 45
+  offset: 0, 1
+  index: -1
+root_l_elbow_02
+  rotate: true
+  xy: 480, 28
+  size: 34, 27
+  orig: 34, 27
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: false
+  xy: 489, 73
+  size: 31, 31
+  orig: 34, 31
+  offset: 1, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 87, 8
+  size: 34, 16
+  orig: 34, 16
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: false
+  xy: 461, 64
+  size: 26, 33
+  orig: 26, 33
+  offset: 0, 0
+  index: -1
+root_magicweapon
+  rotate: true
+  xy: 401, 148
+  size: 56, 108
+  orig: 85, 141
+  offset: 15, 18
+  index: -1
+root_magicweapon_f
+  rotate: true
+  xy: 258, 119
+  size: 85, 141
+  orig: 85, 141
+  offset: 0, 0
+  index: -1
+root_r_elbow_02
+  rotate: true
+  xy: 398, 2
+  size: 28, 37
+  orig: 28, 37
+  offset: 0, 0
+  index: -1
+root_r_foot
+  rotate: true
+  xy: 446, 33
+  size: 29, 32
+  orig: 29, 33
+  offset: 0, 1
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 475, 3
+  size: 23, 25
+  orig: 30, 25
+  offset: 4, 0
+  index: -1
+root_r_hand_03
+  rotate: true
+  xy: 48, 5
+  size: 19, 37
+  orig: 19, 37
+  offset: 0, 0
+  index: -1
+root_r_knee
+  rotate: true
+  xy: 404, 64
+  size: 33, 55
+  orig: 33, 55
+  offset: 0, 0
+  index: -1
+root_r_leg
+  rotate: true
+  xy: 404, 32
+  size: 30, 40
+  orig: 31, 41
+  offset: 1, 1
+  index: -1
+root_shoulder
+  rotate: true
+  xy: 355, 8
+  size: 33, 41
+  orig: 33, 43
+  offset: 0, 0
+  index: -1

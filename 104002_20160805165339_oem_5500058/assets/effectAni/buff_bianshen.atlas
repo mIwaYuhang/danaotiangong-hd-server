@@ -1,0 +1,47 @@
+
+buff_bianshen-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+buff_bianshen_01
+  rotate: false
+  xy: 2, 3
+  size: 135, 155
+  orig: 136, 163
+  offset: 0, 0
+  index: -1
+buff_bianshen_02
+  rotate: false
+  xy: 304, 4
+  size: 119, 154
+  orig: 136, 163
+  offset: 9, 0
+  index: -1
+buff_bianshen_03
+  rotate: false
+  xy: 538, 25
+  size: 128, 133
+  orig: 136, 163
+  offset: 8, 0
+  index: -1
+buff_bianshen_04
+  rotate: true
+  xy: 139, 32
+  size: 126, 163
+  orig: 136, 163
+  offset: 6, 0
+  index: -1
+buff_bianshen_05
+  rotate: false
+  xy: 425, 2
+  size: 111, 156
+  orig: 136, 163
+  offset: 12, 6
+  index: -1
+buff_bianshen_06
+  rotate: false
+  xy: 668, 6
+  size: 92, 152
+  orig: 136, 163
+  offset: 23, 9
+  index: -1

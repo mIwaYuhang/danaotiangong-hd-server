@@ -1,0 +1,49 @@
+{
+  "_doc": {
+    "summary": "道具商店与神秘商店。价格单位：CurrencyType 1 为银币(Gold)，2 为元宝(Ingot)",
+    "goods": "商店货架：PropsID 为 BaseProps 编号；price 为空时取 BaseProps.price，currency 为空时按 BaseProps.type（MoneyType）；daily_limit 0 表示不限；vip_limit 为购买所需 VIP",
+    "energy_pill": "体力丹按 EnergyChangePrices 阶梯计价（第 n 次购买落在 maxCount 区间的价格），每日购买上限按 VIP 等级取 daily_limit_by_vip（下标 = VIP 等级，越界取最后一项）",
+    "mystery_store": "神秘商店：货架条数、刷新元宝、免费刷新间隔、候选商品池（随机 Type/ID/Count 与价格）"
+  },
+  "goods": [
+    {"PropsID": 100001, "price": null, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100004, "price": null, "currency": 2, "daily_limit": 5, "vip_limit": 0},
+    {"PropsID": 100007, "price": null, "currency": 2, "daily_limit": 10, "vip_limit": 0},
+    {"PropsID": 100017, "price": null, "currency": 2, "daily_limit": 10, "vip_limit": 0},
+    {"PropsID": 100019, "price": null, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100020, "price": null, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100021, "price": null, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100022, "price": null, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100023, "price": null, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100024, "price": null, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100025, "price": null, "currency": 2, "daily_limit": 20, "vip_limit": 0},
+    {"PropsID": 100008, "price": 200, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100009, "price": 100, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100010, "price": 50, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100011, "price": 20, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100012, "price": 400, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100013, "price": 150, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100014, "price": 50, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100015, "price": 25, "currency": 2, "daily_limit": 0, "vip_limit": 0},
+    {"PropsID": 100026, "price": 200, "currency": 2, "daily_limit": 0, "vip_limit": 0}
+  ],
+  "energy_pill": {
+    "prop_id": 100001,
+    "daily_limit_by_vip": [3, 5, 8, 10, 12, 15, 20, 25, 30, 40, 50]
+  },
+  "mystery_store": {
+    "shelf_size": 6,
+    "refresh_ingot": 50,
+    "free_refresh_seconds": 14400,
+    "pool": [
+      {"Type": 6, "ID": 200125, "Count": 10, "Price": 60, "PriceType": 2},
+      {"Type": 6, "ID": 200128, "Count": 20, "Price": 40, "PriceType": 2},
+      {"Type": 5, "ID": 100008, "Count": 1, "Price": 150, "PriceType": 2},
+      {"Type": 5, "ID": 100001, "Count": 1, "Price": 25, "PriceType": 2},
+      {"Type": 5, "ID": 100012, "Count": 1, "Price": 300, "PriceType": 2},
+      {"Type": 4, "ID": 1020, "Count": 5, "Price": 200, "PriceType": 2},
+      {"Type": 4, "ID": 1030, "Count": 5, "Price": 200, "PriceType": 2},
+      {"Type": 1, "ID": 0, "Count": 20000, "Price": 20, "PriceType": 2}
+    ]
+  }
+}

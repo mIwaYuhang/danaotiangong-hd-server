@@ -1,0 +1,96 @@
+
+npc_shitouren3-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 2, 8
+  size: 137, 205
+  orig: 137, 205
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: false
+  xy: 141, 62
+  size: 127, 151
+  orig: 132, 160
+  offset: 0, 9
+  index: -1
+root_hip_01
+  rotate: false
+  xy: 270, 138
+  size: 65, 64
+  orig: 65, 64
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: true
+  xy: 337, 150
+  size: 52, 65
+  orig: 52, 65
+  offset: 0, 0
+  index: -1
+root_l_elbow
+  rotate: true
+  xy: 322, 58
+  size: 29, 38
+  orig: 37, 38
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 362, 103
+  size: 44, 45
+  orig: 44, 45
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: true
+  xy: 231, 8
+  size: 52, 45
+  orig: 52, 45
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01
+  rotate: true
+  xy: 141, 7
+  size: 53, 88
+  orig: 72, 88
+  offset: 0, 0
+  index: -1
+root_longweapon
+  rotate: true
+  xy: 2, 215
+  size: 68, 305
+  orig: 68, 305
+  offset: 0, 0
+  index: -1
+root_r_elbow
+  rotate: false
+  xy: 322, 89
+  size: 38, 47
+  orig: 38, 47
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 270, 67
+  size: 69, 50
+  orig: 69, 50
+  offset: 0, 0
+  index: -1
+root_r_shoulder
+  rotate: false
+  xy: 278, 2
+  size: 39, 63
+  orig: 39, 63
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01
+  rotate: true
+  xy: 309, 204
+  size: 79, 105
+  orig: 79, 121
+  offset: 0, 8
+  index: -1

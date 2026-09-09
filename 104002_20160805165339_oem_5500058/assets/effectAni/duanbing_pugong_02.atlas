@@ -1,0 +1,68 @@
+
+duanbing_pugong_02-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+duanbing_pugong_02_biaoxue_01
+  rotate: true
+  xy: 181, 110
+  size: 191, 178
+  orig: 217, 178
+  offset: 0, 0
+  index: -1
+duanbing_pugong_02_biaoxue_02
+  rotate: true
+  xy: 2, 89
+  size: 212, 177
+  orig: 217, 178
+  offset: 0, 1
+  index: -1
+duanbing_pugong_02_biaoxue_03
+  rotate: true
+  xy: 412, 2
+  size: 156, 176
+  orig: 217, 178
+  offset: 12, 2
+  index: -1
+duanbing_pugong_02_biaoxue_04
+  rotate: false
+  xy: 361, 160
+  size: 207, 141
+  orig: 217, 178
+  offset: 10, 0
+  index: -1
+duanbing_pugong_02_biaoxue_05
+  rotate: false
+  xy: 193, 6
+  size: 217, 102
+  orig: 217, 178
+  offset: 0, 1
+  index: -1
+duanbing_pugong_02_biaoxue_06
+  rotate: false
+  xy: 2, 25
+  size: 189, 62
+  orig: 217, 178
+  offset: 13, 1
+  index: -1
+duanbing_pugong_02_daoguang_01
+  rotate: false
+  xy: 590, 7
+  size: 173, 118
+  orig: 179, 166
+  offset: 1, 48
+  index: -1
+duanbing_pugong_02_daoguang_02
+  rotate: true
+  xy: 736, 127
+  size: 174, 148
+  orig: 179, 166
+  offset: 0, 18
+  index: -1
+duanbing_pugong_02_daoguang_03
+  rotate: true
+  xy: 570, 176
+  size: 125, 164
+  orig: 179, 166
+  offset: 54, 0
+  index: -1

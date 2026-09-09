@@ -1,0 +1,75 @@
+
+changbing_cheng_chukaihundun.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+changbing_cheng_chukaihundun_guangdian
+  rotate: false
+  xy: 662, 33
+  size: 224, 224
+  orig: 224, 224
+  offset: 0, 0
+  index: -1
+changbing_cheng_chukaihundun_neiyan_01
+  rotate: true
+  xy: 2, 11
+  size: 98, 202
+  orig: 147, 356
+  offset: 28, 3
+  index: -1
+changbing_cheng_chukaihundun_neiyan_02
+  rotate: false
+  xy: 284, 144
+  size: 146, 356
+  orig: 147, 356
+  offset: 1, 0
+  index: -1
+changbing_cheng_chukaihundun_neiyan_03
+  rotate: false
+  xy: 432, 144
+  size: 145, 356
+  orig: 147, 356
+  offset: 2, 0
+  index: -1
+changbing_cheng_chukaihundun_neiyan_04
+  rotate: true
+  xy: 206, 2
+  size: 133, 356
+  orig: 147, 356
+  offset: 10, 0
+  index: -1
+changbing_cheng_chukaihundun_neiyan_05
+  rotate: true
+  xy: 579, 373
+  size: 127, 356
+  orig: 147, 356
+  offset: 13, 0
+  index: -1
+changbing_cheng_chukaihundun_neiyan_06
+  rotate: true
+  xy: 579, 259
+  size: 112, 356
+  orig: 147, 356
+  offset: 22, 0
+  index: -1
+changbing_cheng_chukaihundun_xiantiao
+  rotate: false
+  xy: 2, 111
+  size: 161, 389
+  orig: 161, 389
+  offset: 0, 0
+  index: -1
+changbing_cheng_chukaihundun_zhao
+  rotate: true
+  xy: 564, 26
+  size: 116, 96
+  orig: 118, 98
+  offset: 2, 0
+  index: -1
+changbing_cheng_chukaihundun_zhuzi
+  rotate: false
+  xy: 165, 137
+  size: 117, 363
+  orig: 118, 363
+  offset: 1, 0
+  index: -1

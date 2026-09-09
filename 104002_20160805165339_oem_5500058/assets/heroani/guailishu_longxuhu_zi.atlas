@@ -1,0 +1,145 @@
+
+guailishu_longxuhu_zi-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 2, 19
+  size: 74, 99
+  orig: 74, 99
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: true
+  xy: 396, 6
+  size: 216, 240
+  orig: 216, 240
+  offset: 0, 0
+  index: -1
+root_hip_01
+  rotate: true
+  xy: 154, 70
+  size: 48, 57
+  orig: 48, 57
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 78, 65
+  size: 74, 53
+  orig: 74, 53
+  offset: 0, 0
+  index: -1
+root_hip_03
+  rotate: false
+  xy: 273, 74
+  size: 49, 44
+  orig: 49, 44
+  offset: 0, 0
+  index: -1
+root_l_elbow
+  rotate: false
+  xy: 250, 19
+  size: 34, 29
+  orig: 34, 29
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: false
+  xy: 267, 50
+  size: 51, 22
+  orig: 51, 22
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 348, 36
+  size: 24, 25
+  orig: 24, 25
+  offset: 0, 0
+  index: -1
+root_l_knee
+  rotate: true
+  xy: 179, 2
+  size: 25, 34
+  orig: 25, 34
+  offset: 0, 0
+  index: -1
+root_l_leg
+  rotate: true
+  xy: 213, 52
+  size: 26, 52
+  orig: 26, 52
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: false
+  xy: 286, 19
+  size: 28, 29
+  orig: 28, 29
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01
+  rotate: true
+  xy: 179, 29
+  size: 39, 25
+  orig: 39, 25
+  offset: 0, 0
+  index: -1
+root_longweapon
+  rotate: true
+  xy: 2, 120
+  size: 102, 392
+  orig: 102, 392
+  offset: 0, 0
+  index: -1
+root_r_elbow
+  rotate: true
+  xy: 324, 63
+  size: 22, 48
+  orig: 22, 48
+  offset: 0, 0
+  index: -1
+root_r_foot
+  rotate: false
+  xy: 324, 87
+  size: 48, 31
+  orig: 48, 31
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: false
+  xy: 320, 38
+  size: 26, 23
+  orig: 26, 23
+  offset: 0, 0
+  index: -1
+root_r_knee
+  rotate: false
+  xy: 142, 23
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+root_r_leg
+  rotate: true
+  xy: 213, 80
+  size: 38, 58
+  orig: 38, 58
+  offset: 0, 0
+  index: -1
+root_r_shoulder
+  rotate: false
+  xy: 215, 16
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01
+  rotate: false
+  xy: 78, 22
+  size: 62, 41
+  orig: 62, 41
+  offset: 0, 0
+  index: -1

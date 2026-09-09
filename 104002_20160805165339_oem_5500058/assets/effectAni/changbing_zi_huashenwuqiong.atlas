@@ -1,0 +1,110 @@
+
+changbing_zi_huashenwuqiong-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+changbing_zi_huashenwuqiong_bao_01
+  rotate: true
+  xy: 609, 2
+  size: 91, 106
+  orig: 169, 157
+  offset: 41, 19
+  index: -1
+changbing_zi_huashenwuqiong_bao_02
+  rotate: true
+  xy: 800, 106
+  size: 150, 117
+  orig: 169, 157
+  offset: 9, 18
+  index: -1
+changbing_zi_huashenwuqiong_bao_03
+  rotate: true
+  xy: 668, 98
+  size: 158, 130
+  orig: 169, 157
+  offset: 5, 18
+  index: -1
+changbing_zi_huashenwuqiong_bao_04
+  rotate: true
+  xy: 391, 92
+  size: 164, 141
+  orig: 169, 157
+  offset: 2, 16
+  index: -1
+changbing_zi_huashenwuqiong_bao_05
+  rotate: true
+  xy: 234, 87
+  size: 169, 155
+  orig: 169, 157
+  offset: 0, 1
+  index: -1
+changbing_zi_huashenwuqiong_bao_06
+  rotate: true
+  xy: 534, 95
+  size: 161, 132
+  orig: 169, 157
+  offset: 4, 12
+  index: -1
+changbing_zi_huashenwuqiong_feixing
+  rotate: true
+  xy: 919, 225
+  size: 31, 81
+  orig: 31, 81
+  offset: 0, 0
+  index: -1
+changbing_zi_huashenwuqiong_niao_01
+  rotate: true
+  xy: 913, 6
+  size: 98, 92
+  orig: 98, 94
+  offset: 0, 2
+  index: -1
+changbing_zi_huashenwuqiong_niao_02
+  rotate: false
+  xy: 513, 6
+  size: 94, 84
+  orig: 98, 94
+  offset: 0, 10
+  index: -1
+changbing_zi_huashenwuqiong_niao_03
+  rotate: false
+  xy: 415, 4
+  size: 96, 86
+  orig: 98, 94
+  offset: 0, 8
+  index: -1
+changbing_zi_huashenwuqiong_niao_04
+  rotate: false
+  xy: 717, 2
+  size: 98, 94
+  orig: 98, 94
+  offset: 0, 0
+  index: -1
+changbing_zi_huashenwuqiong_niao_05
+  rotate: true
+  xy: 326, 12
+  size: 73, 87
+  orig: 98, 94
+  offset: 8, 1
+  index: -1
+changbing_zi_huashenwuqiong_niao_06
+  rotate: false
+  xy: 234, 5
+  size: 90, 80
+  orig: 98, 94
+  offset: 2, 4
+  index: -1
+changbing_zi_huashenwuqiong_niao_07
+  rotate: true
+  xy: 817, 6
+  size: 98, 94
+  orig: 98, 94
+  offset: 0, 0
+  index: -1
+changbing_zi_huashenwuqiong_shan
+  rotate: false
+  xy: 2, 26
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: -1

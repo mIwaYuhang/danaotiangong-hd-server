@@ -1,0 +1,106 @@
+{
+"bones": [
+	{ "name": "faqi_pugong_01" },
+	{ "name": "faqi_pugong_01_jizhong", "parent": "faqi_pugong_01", "scaleX": 2, "scaleY": 2 },
+	{ "name": "faqi_pugong_01_shandian", "parent": "faqi_pugong_01", "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{ "name": "faqi_pugong_01_jizhong_01", "bone": "faqi_pugong_01_jizhong", "attachment": "faqi_pugong_01_jizhong_05" },
+	{ "name": "faqi_pugong_01_shandian", "bone": "faqi_pugong_01_shandian", "attachment": "faqi_pugong_01_shandian" }
+],
+"skins": {
+	"default": {
+		"faqi_pugong_01_jizhong_01": {
+			"faqi_pugong_01_jizhong_01": { "width": 188, "height": 182 },
+			"faqi_pugong_01_jizhong_02": { "width": 188, "height": 182 },
+			"faqi_pugong_01_jizhong_03": { "width": 188, "height": 182 },
+			"faqi_pugong_01_jizhong_04": { "width": 188, "height": 182 },
+			"faqi_pugong_01_jizhong_05": { "width": 188, "height": 182 }
+		},
+		"faqi_pugong_01_shandian": {
+			"faqi_pugong_01_shandian": { "width": 68, "height": 126 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"faqi_pugong_01_jizhong": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.165, "angle": 0, "curve": "stepped" },
+					{ "time": 0.465, "angle": 0, "curve": "stepped" },
+					{ "time": 0.5317, "angle": 0, "curve": "stepped" },
+					{ "time": 0.565, "angle": 0, "curve": "stepped" },
+					{ "time": 0.5983, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6317, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6983, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.165, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.465, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.5317, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.565, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.5983, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6317, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6983, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.165, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.465, "x": 1, "y": 1 },
+					{ "time": 0.5317, "x": -0.399, "y": -0.399, "curve": "stepped" },
+					{ "time": 0.565, "x": -0.399, "y": -0.399, "curve": "stepped" },
+					{ "time": 0.5983, "x": -0.399, "y": -0.399 },
+					{ "time": 0.6317, "x": 1.099, "y": 1.099, "curve": "stepped" },
+					{ "time": 0.6983, "x": 1.099, "y": 1.099 }
+				]
+			},
+			"faqi_pugong_01_shandian": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.0666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.2, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 258.55, "curve": "stepped" },
+					{ "time": 0.0666, "x": 0, "y": 258.55 },
+					{ "time": 0.1666, "x": 0, "y": 68.4, "curve": "stepped" },
+					{ "time": 0.2, "x": 0, "y": 68.4 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.0666, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.1666, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.2, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"faqi_pugong_01_jizhong_01": {
+				"attachment": [
+					{ "time": 0.1983, "name": "faqi_pugong_01_jizhong_01" },
+					{ "time": 0.265, "name": "faqi_pugong_01_jizhong_02" },
+					{ "time": 0.3317, "name": "faqi_pugong_01_jizhong_03" },
+					{ "time": 0.3983, "name": "faqi_pugong_01_jizhong_04" },
+					{ "time": 0.465, "name": "faqi_pugong_01_jizhong_05" }
+				],
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.165, "color": "ffffff00" },
+					{ "time": 0.1983, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.665, "color": "ffffffff" },
+					{ "time": 0.6983, "color": "ffffff00" }
+				]
+			},
+			"faqi_pugong_01_shandian": {
+				"color": [
+					{ "time": 0.2, "color": "ffffff00" }
+				]
+			}
+		}
+	}
+}
+}

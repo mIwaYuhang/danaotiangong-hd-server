@@ -1,0 +1,61 @@
+
+duanbing_lv_duanhunci-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+changbing_zi_jiulizhanhun_bao
+  rotate: false
+  xy: 2, 19
+  size: 90, 94
+  orig: 96, 94
+  offset: 6, 0
+  index: -1
+changbing_zi_jiulizhanhun_jianci
+  rotate: false
+  xy: 2, 204
+  size: 136, 83
+  orig: 137, 83
+  offset: 0, 0
+  index: -1
+changbing_zi_jiulizhanhun_shan
+  rotate: false
+  xy: 140, 175
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+changbing_zi_jiulizhanhun_yan01
+  rotate: true
+  xy: 99, 117
+  size: 56, 50
+  orig: 107, 87
+  offset: 0, 0
+  index: -1
+changbing_zi_jiulizhanhun_yan02
+  rotate: false
+  xy: 170, 91
+  size: 83, 82
+  orig: 107, 87
+  offset: 0, 1
+  index: -1
+changbing_zi_jiulizhanhun_yan03
+  rotate: false
+  xy: 2, 115
+  size: 95, 87
+  orig: 107, 87
+  offset: 8, 0
+  index: -1
+changbing_zi_jiulizhanhun_yan04
+  rotate: false
+  xy: 94, 26
+  size: 74, 87
+  orig: 107, 87
+  offset: 26, 0
+  index: -1
+changbing_zi_jiulizhanhun_yan05
+  rotate: false
+  xy: 170, 2
+  size: 71, 87
+  orig: 107, 87
+  offset: 35, 0
+  index: -1

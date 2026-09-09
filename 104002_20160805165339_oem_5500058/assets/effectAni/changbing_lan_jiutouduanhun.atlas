@@ -1,0 +1,68 @@
+
+changbing_lan_jiutouduanhun-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+changbing_lan_jiutouduanhun_bao_01
+  rotate: true
+  xy: 172, 113
+  size: 171, 154
+  orig: 180, 168
+  offset: 0, 14
+  index: -1
+changbing_lan_jiutouduanhun_bao_02
+  rotate: false
+  xy: 328, 121
+  size: 147, 163
+  orig: 180, 168
+  offset: 13, 2
+  index: -1
+changbing_lan_jiutouduanhun_bao_03
+  rotate: true
+  xy: 2, 104
+  size: 180, 168
+  orig: 180, 168
+  offset: 0, 0
+  index: -1
+changbing_lan_jiutouduanhun_bao_04
+  rotate: false
+  xy: 328, 5
+  size: 141, 114
+  orig: 180, 168
+  offset: 6, 32
+  index: -1
+changbing_lan_jiutouduanhun_daoguang_01
+  rotate: true
+  xy: 282, 61
+  size: 50, 41
+  orig: 232, 175
+  offset: 0, 33
+  index: -1
+changbing_lan_jiutouduanhun_daoguang_02
+  rotate: false
+  xy: 2, 28
+  size: 175, 74
+  orig: 232, 175
+  offset: 15, 0
+  index: -1
+changbing_lan_jiutouduanhun_daoguang_03
+  rotate: false
+  xy: 477, 162
+  size: 191, 122
+  orig: 232, 175
+  offset: 41, 3
+  index: -1
+changbing_lan_jiutouduanhun_daoguang_04
+  rotate: false
+  xy: 477, 5
+  size: 123, 155
+  orig: 232, 175
+  offset: 94, 5
+  index: -1
+changbing_lan_jiutouduanhun_daoguang_05
+  rotate: false
+  xy: 179, 2
+  size: 101, 109
+  orig: 232, 175
+  offset: 86, 66
+  index: -1

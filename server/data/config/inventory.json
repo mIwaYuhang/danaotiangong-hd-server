@@ -1,0 +1,54 @@
+{
+  "_doc": {
+    "summary": "账本：奖励/消耗条目 {Type, ID, Count} 的结算规则，Type 为 ItemType 枚举值",
+    "max_count": "任意资源或物品数量的上限（int32 最大值）",
+    "max_operation_count": "单次使用/出售的道具数量上限",
+    "resource_by_type": "直接映射到角色状态字段的资源类型：1 银币 Gold、2 元宝 Ingot、9 体力 Energy、11 培养丹 TrainPill、14 荣誉 Honor、18 阅历 Knowledge、21 VIP经验 VipExp、22 重铸石 RecastStone、25 魂玉 SoulJade、26 威望 Prestige、30 英雄经验池 HeroExp、36 天命经验 DestinyExp、37 天命碎片 DestinyFragment、39 授业经验 LearnExp",
+    "bag_types": "进入背包 Others 列表并需在静态表中校验存在性的类型 → 静态表名（4 将魂、5 道具、6 材料）",
+    "fragment_type": "装备碎片类型（进入 Fragments 列表，校验 BaseFragments）",
+    "experience_type": "玩家经验（只能发放）",
+    "hero_type": "英雄类型：未拥有则加入 ownedHeros，已拥有则改为发放 duplicate_soul_count 个将魂",
+    "equip_type": "装备类型：发放时按模板创建实例（可带 Level 字段指定初始锻造等级）",
+    "double_exp_type": "双倍经验时间（秒，累加到 HaveDoubleExpTime）",
+    "resource_fields": "Global.Resource 中回传给客户端的字段",
+    "prop_effects": "道具使用效果按 PropType 枚举值分派：energy 体力、double_exp 双倍经验、exp 经验池、knowledge 阅历、change_name 改名、fix_gift 固定礼包、random_gift 随机礼包、potency 潜力丹、key/treasure_box 钥匙宝箱、transport_token 运镖令、pk_token 挑战令",
+    "special_props": "静态表效果不完整需要特判的道具：rewards 为使用一个道具的收益；cap_energy 为 true 时体力不允许超过上限",
+    "random_gifts": "随机礼包与宝箱掉落表（键为道具 ID）：每次使用按权重抽 draws 次",
+    "duplicate_soul_count": "重复获得英雄时转换的将魂数量"
+  },
+  "max_count": 2147483647,
+  "max_operation_count": 9999,
+  "resource_by_type": {
+    "1": "Gold", "2": "Ingot", "9": "Energy", "11": "TrainPill", "14": "Honor", "18": "Knowledge",
+    "21": "VipExp", "22": "RecastStone", "25": "SoulJade", "26": "Prestige", "30": "HeroExp",
+    "36": "DestinyExp", "37": "DestinyFragment", "39": "LearnExp"
+  },
+  "bag_types": {"4": "BaseSouls", "5": "BaseProps", "6": "BaseMates"},
+  "fragment_type": 23,
+  "experience_type": 3,
+  "hero_type": 7,
+  "equip_type": 10,
+  "double_exp_type": 16,
+  "resource_fields": ["Gold", "Ingot", "Energy", "MaxEnergy", "Knowledge", "Exp", "NextLvExp", "HeroExp", "TrainPill", "Honor", "SoulJade", "Prestige", "RecastStone", "HaveDoubleExpTime", "LearnExp", "VipLevel", "VipExp", "NextVipExp", "Point"],
+  "prop_effects": {
+    "energy": 6, "double_exp": 8, "exp": 18, "knowledge": 19, "change_name": 25,
+    "fix_gift": 27, "random_gift": 26, "potency": 28, "key": 22, "treasure_box": 23,
+    "transport_token": 17, "pk_token": 20, "vip_random_gift": 43, "ten_hero_gift": 44
+  },
+  "special_props": {
+    "100001": {"rewards": [{"Type": 9, "ID": 0, "Count": 10}], "cap_energy": false}
+  },
+  "random_gifts": {
+    "100019": {"draws": 3, "entries": [
+      {"weight": 30, "Type": 1, "ID": 0, "Count": 50000}, {"weight": 20, "Type": 2, "ID": 0, "Count": 100},
+      {"weight": 20, "Type": 6, "ID": 200125, "Count": 30}, {"weight": 15, "Type": 5, "ID": 100009, "Count": 1},
+      {"weight": 10, "Type": 10, "ID": 0, "Count": 1, "quality": 3}, {"weight": 5, "Type": 10, "ID": 0, "Count": 1, "quality": 4}]},
+    "100021": {"draws": 2, "entries": [
+      {"weight": 40, "Type": 1, "ID": 0, "Count": 20000}, {"weight": 20, "Type": 2, "ID": 0, "Count": 30},
+      {"weight": 25, "Type": 6, "ID": 200125, "Count": 10}, {"weight": 15, "Type": 10, "ID": 0, "Count": 1, "quality": 2}]},
+    "100023": {"draws": 1, "entries": [
+      {"weight": 50, "Type": 1, "ID": 0, "Count": 8000}, {"weight": 30, "Type": 6, "ID": 200125, "Count": 5},
+      {"weight": 20, "Type": 10, "ID": 0, "Count": 1, "quality": 1}]}
+  },
+  "duplicate_soul_count": 10
+}

@@ -1,0 +1,54 @@
+
+changbing_lan_honglianyehuo.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+changbing_lan_honglianyehuo_daohuo_01
+  rotate: true
+  xy: 486, 266
+  size: 300, 160
+  orig: 300, 208
+  offset: 0, 23
+  index: -1
+changbing_lan_honglianyehuo_daohuo_02
+  rotate: false
+  xy: 212, 175
+  size: 262, 195
+  orig: 300, 208
+  offset: 37, 10
+  index: -1
+changbing_lan_honglianyehuo_daohuo_03
+  rotate: true
+  xy: 2, 273
+  size: 293, 208
+  orig: 300, 208
+  offset: 1, 0
+  index: -1
+changbing_lan_honglianyehuo_daohuo_04
+  rotate: true
+  xy: 2, 8
+  size: 263, 208
+  orig: 300, 208
+  offset: 37, 0
+  index: -1
+changbing_lan_honglianyehuo_daohuo_05
+  rotate: false
+  xy: 212, 372
+  size: 272, 194
+  orig: 300, 208
+  offset: 28, 0
+  index: -1
+changbing_lan_honglianyehuo_daohuo_06
+  rotate: true
+  xy: 476, 2
+  size: 262, 173
+  orig: 300, 208
+  offset: 37, 27
+  index: -1
+changbing_lan_honglianyehuo_jianqi
+  rotate: false
+  xy: 212, 53
+  size: 118, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1

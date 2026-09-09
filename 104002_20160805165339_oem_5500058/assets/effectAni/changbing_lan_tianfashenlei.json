@@ -1,0 +1,136 @@
+{
+"bones": [
+	{ "name": "changbing_lan_tianfashenlei" },
+	{ "name": "changbing_lan_tianfashenlei_bao", "parent": "changbing_lan_tianfashenlei", "scaleX": 2, "scaleY": 2 },
+	{ "name": "changbing_lan_tianfashenlei_di", "parent": "changbing_lan_tianfashenlei", "scaleX": 2, "scaleY": 2 },
+	{ "name": "changbing_lan_tianfashenlei_dian", "parent": "changbing_lan_tianfashenlei", "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{ "name": "dfaga", "bone": "changbing_lan_tianfashenlei" },
+	{
+		"name": "changbing_lan_tianfashenlei_di",
+		"bone": "changbing_lan_tianfashenlei_di",
+		"attachment": "changbing_lan_tianfashenlei_di"
+	},
+	{
+		"name": "changbing_lan_tianfashenlei_bao_01",
+		"bone": "changbing_lan_tianfashenlei_bao",
+		"attachment": "changbing_lan_tianfashenlei_bao_01"
+	},
+	{
+		"name": "changbing_lan_tianfashenlei_dian01",
+		"bone": "changbing_lan_tianfashenlei_dian",
+		"attachment": "changbing_lan_tianfashenlei_dian01"
+	}
+],
+"skins": {
+	"default": {
+		"changbing_lan_tianfashenlei_bao_01": {
+			"changbing_lan_tianfashenlei_bao_01": { "width": 100, "height": 74 },
+			"changbing_lan_tianfashenlei_bao_02": { "width": 100, "height": 74 },
+			"changbing_lan_tianfashenlei_bao_03": { "width": 100, "height": 74 }
+		},
+		"changbing_lan_tianfashenlei_di": {
+			"changbing_lan_tianfashenlei_di": { "width": 92, "height": 28 }
+		},
+		"changbing_lan_tianfashenlei_dian01": {
+			"changbing_lan_tianfashenlei_dian01": { "width": 51, "height": 250 },
+			"changbing_lan_tianfashenlei_dian02": { "width": 51, "height": 250 },
+			"changbing_lan_tianfashenlei_dian03": { "width": 51, "height": 250 },
+			"changbing_lan_tianfashenlei_dian04": { "width": 51, "height": 250 },
+			"changbing_lan_tianfashenlei_dian05": { "width": 51, "height": 250 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"changbing_lan_tianfashenlei_dian": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 7.69, "y": 157.65 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"changbing_lan_tianfashenlei_di": {
+				"rotate": [
+					{ "time": 0.1, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.2333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0.1, "x": 0, "y": -83.76, "curve": "stepped" },
+					{ "time": 0.1666, "x": 0, "y": -83.76, "curve": "stepped" },
+					{ "time": 0.2333, "x": 0, "y": -83.76, "curve": "stepped" },
+					{ "time": 0.3, "x": 0, "y": -83.76, "curve": "stepped" },
+					{ "time": 0.4, "x": 0, "y": -83.76 }
+				],
+				"scale": [
+					{ "time": 0.1, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": 1, "y": 1 },
+					{ "time": 0.2333, "x": 0, "y": 0 },
+					{ "time": 0.3, "x": 1, "y": 1 },
+					{ "time": 0.4, "x": 1.4, "y": 1.4 }
+				]
+			},
+			"changbing_lan_tianfashenlei_bao": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.1333, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": 0, "y": -19.65 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.1333, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.1666, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"changbing_lan_tianfashenlei_bao_01": {
+				"attachment": [
+					{ "time": 0.2333, "name": "changbing_lan_tianfashenlei_bao_02" },
+					{ "time": 0.3, "name": "changbing_lan_tianfashenlei_bao_03" },
+					{ "time": 0.3666, "name": null }
+				],
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1333, "color": "ffffff00" },
+					{ "time": 0.1666, "color": "ffffffff" }
+				]
+			},
+			"changbing_lan_tianfashenlei_di": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.0666, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1666, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.2333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.3, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				]
+			},
+			"changbing_lan_tianfashenlei_dian01": {
+				"attachment": [
+					{ "time": 0.0333, "name": "changbing_lan_tianfashenlei_dian02" },
+					{ "time": 0.0666, "name": "changbing_lan_tianfashenlei_dian03" },
+					{ "time": 0.1333, "name": "changbing_lan_tianfashenlei_dian04" },
+					{ "time": 0.2, "name": "changbing_lan_tianfashenlei_dian05" },
+					{ "time": 0.2666, "name": null }
+				]
+			}
+		}
+	}
+}
+}

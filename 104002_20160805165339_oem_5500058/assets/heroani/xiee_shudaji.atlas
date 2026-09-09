@@ -1,0 +1,152 @@
+
+xiee_shudaji.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 392, 55
+  size: 64, 84
+  orig: 64, 84
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: false
+  xy: 2, 8
+  size: 239, 182
+  orig: 239, 182
+  offset: 0, 0
+  index: -1
+root_hip_01
+  rotate: true
+  xy: 497, 143
+  size: 47, 66
+  orig: 47, 66
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 392, 2
+  size: 70, 51
+  orig: 70, 51
+  offset: 0, 0
+  index: -1
+root_hip_03
+  rotate: false
+  xy: 565, 147
+  size: 42, 43
+  orig: 42, 43
+  offset: 0, 0
+  index: -1
+root_l_elbow
+  rotate: true
+  xy: 550, 100
+  size: 41, 19
+  orig: 41, 19
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: false
+  xy: 553, 27
+  size: 27, 30
+  orig: 27, 30
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 551, 79
+  size: 18, 19
+  orig: 18, 19
+  offset: 0, 0
+  index: -1
+root_l_knee
+  rotate: true
+  xy: 498, 66
+  size: 24, 51
+  orig: 24, 51
+  offset: 0, 0
+  index: -1
+root_l_leg
+  rotate: false
+  xy: 464, 2
+  size: 25, 72
+  orig: 25, 72
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: true
+  xy: 571, 94
+  size: 13, 36
+  orig: 13, 36
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01
+  rotate: false
+  xy: 571, 59
+  size: 36, 33
+  orig: 36, 33
+  offset: 0, 0
+  index: -1
+root_r_elbow
+  rotate: false
+  xy: 529, 13
+  size: 22, 51
+  orig: 22, 51
+  offset: 0, 0
+  index: -1
+root_r_foot
+  rotate: false
+  xy: 582, 26
+  size: 24, 31
+  orig: 24, 31
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 553, 5
+  size: 20, 25
+  orig: 20, 25
+  offset: 0, 0
+  index: -1
+root_r_knee
+  rotate: false
+  xy: 491, 9
+  size: 36, 55
+  orig: 36, 55
+  offset: 0, 0
+  index: -1
+root_r_leg
+  rotate: false
+  xy: 458, 76
+  size: 38, 63
+  orig: 38, 63
+  offset: 0, 0
+  index: -1
+root_r_shoulder
+  rotate: false
+  xy: 571, 109
+  size: 35, 36
+  orig: 35, 36
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01
+  rotate: false
+  xy: 498, 92
+  size: 50, 49
+  orig: 50, 49
+  offset: 0, 0
+  index: -1
+root_tail
+  rotate: true
+  xy: 243, 8
+  size: 131, 147
+  orig: 131, 147
+  offset: 0, 0
+  index: -1
+root_weapon
+  rotate: true
+  xy: 243, 141
+  size: 49, 252
+  orig: 49, 252
+  offset: 0, 0
+  index: -1

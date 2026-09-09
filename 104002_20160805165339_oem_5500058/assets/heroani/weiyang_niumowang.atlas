@@ -1,0 +1,145 @@
+
+weiyang_niumowang.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest_gaoji
+  rotate: true
+  xy: 324, 90
+  size: 86, 109
+  orig: 86, 109
+  offset: 0, 0
+  index: -1
+root_head_gaoji
+  rotate: false
+  xy: 2, 14
+  size: 214, 213
+  orig: 214, 213
+  offset: 0, 0
+  index: -1
+root_hip_01_gaoji
+  rotate: true
+  xy: 472, 178
+  size: 49, 67
+  orig: 49, 67
+  offset: 0, 0
+  index: -1
+root_hip_02_gaoji
+  rotate: false
+  xy: 218, 79
+  size: 104, 97
+  orig: 105, 97
+  offset: 1, 0
+  index: -1
+root_hip_03_gaiji
+  rotate: true
+  xy: 218, 34
+  size: 43, 84
+  orig: 43, 84
+  offset: 0, 0
+  index: -1
+root_l_elbow_gaoji
+  rotate: false
+  xy: 304, 2
+  size: 43, 43
+  orig: 43, 43
+  offset: 0, 0
+  index: -1
+root_l_foot_gaoji
+  rotate: false
+  xy: 256, 4
+  size: 38, 28
+  orig: 38, 28
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 496, 6
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+root_l_knee_gaoji
+  rotate: true
+  xy: 386, 50
+  size: 38, 47
+  orig: 38, 47
+  offset: 0, 0
+  index: -1
+root_l_leg_gaoji
+  rotate: false
+  xy: 506, 113
+  size: 33, 63
+  orig: 34, 63
+  offset: 1, 0
+  index: -1
+root_l_shoulder
+  rotate: true
+  xy: 504, 66
+  size: 45, 35
+  orig: 45, 35
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01_gaoji
+  rotate: false
+  xy: 402, 4
+  size: 51, 44
+  orig: 52, 44
+  offset: 0, 0
+  index: -1
+root_r_elbow_gaoji
+  rotate: true
+  xy: 324, 47
+  size: 41, 60
+  orig: 41, 60
+  offset: 0, 0
+  index: -1
+root_r_foot_gaoji
+  rotate: false
+  xy: 496, 35
+  size: 29, 29
+  orig: 30, 29
+  offset: 1, 0
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 218, 2
+  size: 30, 36
+  orig: 30, 36
+  offset: 0, 0
+  index: -1
+root_r_knee_gaoji
+  rotate: false
+  xy: 455, 16
+  size: 39, 53
+  orig: 39, 53
+  offset: 0, 0
+  index: -1
+root_r_leg_gaoji
+  rotate: true
+  xy: 435, 71
+  size: 45, 67
+  orig: 46, 69
+  offset: 1, 1
+  index: -1
+root_r_shoulder
+  rotate: false
+  xy: 349, 3
+  size: 51, 42
+  orig: 51, 42
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01_gaoji
+  rotate: false
+  xy: 435, 118
+  size: 69, 58
+  orig: 70, 60
+  offset: 1, 0
+  index: -1
+root_weapon
+  rotate: true
+  xy: 218, 178
+  size: 49, 252
+  orig: 49, 252
+  offset: 0, 0
+  index: -1

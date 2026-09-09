@@ -1,0 +1,68 @@
+
+faqi_chufa.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+faqi_chufa_guang
+  rotate: true
+  xy: 2, 130
+  size: 199, 194
+  orig: 199, 194
+  offset: 0, 0
+  index: -1
+faqi_chufa_huiji_01
+  rotate: true
+  xy: 198, 145
+  size: 184, 157
+  orig: 184, 157
+  offset: 0, 0
+  index: -1
+faqi_chufa_huiji_02
+  rotate: true
+  xy: 357, 145
+  size: 184, 157
+  orig: 184, 157
+  offset: 0, 0
+  index: -1
+faqi_chufa_huiji_03
+  rotate: true
+  xy: 516, 146
+  size: 183, 157
+  orig: 184, 157
+  offset: 0, 0
+  index: -1
+faqi_chufa_huiji_04
+  rotate: false
+  xy: 2, 4
+  size: 167, 124
+  orig: 184, 157
+  offset: 0, 20
+  index: -1
+faqi_chufa_huiji_05
+  rotate: false
+  xy: 171, 2
+  size: 161, 126
+  orig: 184, 157
+  offset: 13, 23
+  index: -1
+faqi_chufa_huiji_06
+  rotate: false
+  xy: 334, 5
+  size: 113, 138
+  orig: 184, 157
+  offset: 40, 2
+  index: -1
+faqi_chufa_shan
+  rotate: true
+  xy: 449, 30
+  size: 113, 111
+  orig: 113, 111
+  offset: 0, 0
+  index: -1
+faqi_chufa_xishou
+  rotate: true
+  xy: 562, 47
+  size: 97, 102
+  orig: 100, 104
+  offset: 2, 1
+  index: -1

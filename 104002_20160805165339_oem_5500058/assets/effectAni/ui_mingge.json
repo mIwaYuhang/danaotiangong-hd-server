@@ -1,0 +1,2698 @@
+{
+"bones": [
+	{ "name": "ui_mingge" },
+	{ "name": "banquanmingge_huangse", "parent": "ui_mingge" },
+	{ "name": "huanmingge_lvse", "parent": "ui_mingge" },
+	{ "name": "qipaomingge_lanse", "parent": "ui_mingge" },
+	{ "name": "sanhuanmingge_lanse", "parent": "ui_mingge" },
+	{ "name": "taijimingge_lvse", "parent": "ui_mingge" },
+	{ "name": "weiraomingge_jinse", "parent": "ui_mingge" }
+],
+"slots": [
+	{ "name": "banquanmingge_huangse", "bone": "banquanmingge_huangse", "attachment": "banquanmingge_huangse" },
+	{ "name": "huanmingge_lvse", "bone": "huanmingge_lvse", "attachment": "huanmingge_lvse" },
+	{ "name": "taijimingge_lvse", "bone": "taijimingge_lvse", "attachment": "taijimingge_lvse" },
+	{ "name": "qipaomingge_lanse_1", "bone": "qipaomingge_lanse", "attachment": "qipaomingge_lanse_1" },
+	{ "name": "weiraomingge_jinse_01", "bone": "weiraomingge_jinse", "attachment": "weiraomingge_jinse_01" },
+	{ "name": "sanhuanmingge_lanse", "bone": "sanhuanmingge_lanse", "attachment": "sanhuanmingge_lanse" }
+],
+"skins": {
+	"default": {
+		"banquanmingge_huangse": {
+			"banquanmingge_huangse": { "width": 98, "height": 92 }
+		},
+		"huanmingge_lvse": {
+			"huanmingge_lvse": { "width": 95, "height": 94 }
+		},
+		"qipaomingge_lanse_1": {
+			"qipaomingge_lanse_1": { "width": 114, "height": 113 },
+			"qipaomingge_lanse_2": { "width": 114, "height": 113 },
+			"qipaomingge_lanse_3": { "width": 114, "height": 113 },
+			"qipaomingge_lanse_4": { "width": 114, "height": 113 },
+			"qipaomingge_lanse_5": { "width": 114, "height": 113 },
+			"qipaomingge_lanse_6": { "width": 114, "height": 113 },
+			"qipaomingge_lanse_7": { "width": 114, "height": 113 },
+			"qipaomingge_lanse_8": { "width": 114, "height": 113 }
+		},
+		"sanhuanmingge_lanse": {
+			"sanhuanmingge_lanse": { "width": 128, "height": 128 }
+		},
+		"taijimingge_lvse": {
+			"taijimingge_lvse": { "width": 93, "height": 89 }
+		},
+		"weiraomingge_jinse_01": {
+			"weiraomingge_jinse_01": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_02": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_03": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_04": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_05": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_06": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_07": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_08": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_09": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_10": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_11": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_12": { "width": 112, "height": 99 },
+			"weiraomingge_jinse_13": { "width": 112, "height": 99 }
+		}
+	}
+},
+"animations": {
+	"mingge1_cheng": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"attachment": [
+					{ "time": 0.1, "name": "weiraomingge_jinse_02" },
+					{ "time": 0.2, "name": "weiraomingge_jinse_03" },
+					{ "time": 0.3, "name": "weiraomingge_jinse_04" },
+					{ "time": 0.4, "name": "weiraomingge_jinse_05" },
+					{ "time": 0.5, "name": "weiraomingge_jinse_06" },
+					{ "time": 0.6, "name": "weiraomingge_jinse_07" },
+					{ "time": 0.7, "name": "weiraomingge_jinse_08" },
+					{ "time": 0.8, "name": "weiraomingge_jinse_09" },
+					{ "time": 0.9, "name": "weiraomingge_jinse_10" },
+					{ "time": 1, "name": "weiraomingge_jinse_11" },
+					{ "time": 1.1, "name": "weiraomingge_jinse_12" },
+					{ "time": 1.2, "name": "weiraomingge_jinse_13" },
+					{ "time": 1.2666, "name": "weiraomingge_jinse_13" }
+				],
+				"color": [
+					{ "time": 0, "color": "ffcd00ff" }
+				]
+			}
+		}
+	},
+	"mingge1_lan": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"attachment": [
+					{ "time": 0.1, "name": "weiraomingge_jinse_02" },
+					{ "time": 0.2, "name": "weiraomingge_jinse_03" },
+					{ "time": 0.3, "name": "weiraomingge_jinse_04" },
+					{ "time": 0.4, "name": "weiraomingge_jinse_05" },
+					{ "time": 0.5, "name": "weiraomingge_jinse_06" },
+					{ "time": 0.6, "name": "weiraomingge_jinse_07" },
+					{ "time": 0.7, "name": "weiraomingge_jinse_08" },
+					{ "time": 0.8, "name": "weiraomingge_jinse_09" },
+					{ "time": 0.9, "name": "weiraomingge_jinse_10" },
+					{ "time": 1, "name": "weiraomingge_jinse_11" },
+					{ "time": 1.1, "name": "weiraomingge_jinse_12" },
+					{ "time": 1.2, "name": "weiraomingge_jinse_13" },
+					{ "time": 1.2666, "name": "weiraomingge_jinse_13" }
+				],
+				"color": [
+					{ "time": 0, "color": "0048ffff" }
+				]
+			}
+		}
+	},
+	"mingge1_lv": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"attachment": [
+					{ "time": 0.1, "name": "weiraomingge_jinse_02" },
+					{ "time": 0.2, "name": "weiraomingge_jinse_03" },
+					{ "time": 0.3, "name": "weiraomingge_jinse_04" },
+					{ "time": 0.4, "name": "weiraomingge_jinse_05" },
+					{ "time": 0.5, "name": "weiraomingge_jinse_06" },
+					{ "time": 0.6, "name": "weiraomingge_jinse_07" },
+					{ "time": 0.7, "name": "weiraomingge_jinse_08" },
+					{ "time": 0.8, "name": "weiraomingge_jinse_09" },
+					{ "time": 0.9, "name": "weiraomingge_jinse_10" },
+					{ "time": 1, "name": "weiraomingge_jinse_11" },
+					{ "time": 1.1, "name": "weiraomingge_jinse_12" },
+					{ "time": 1.2, "name": "weiraomingge_jinse_13" },
+					{ "time": 1.2666, "name": "weiraomingge_jinse_13" }
+				],
+				"color": [
+					{ "time": 0, "color": "87f5ffff" }
+				]
+			}
+		}
+	},
+	"mingge1_zi": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"attachment": [
+					{ "time": 0.1, "name": "weiraomingge_jinse_02" },
+					{ "time": 0.2, "name": "weiraomingge_jinse_03" },
+					{ "time": 0.3, "name": "weiraomingge_jinse_04" },
+					{ "time": 0.4, "name": "weiraomingge_jinse_05" },
+					{ "time": 0.5, "name": "weiraomingge_jinse_06" },
+					{ "time": 0.6, "name": "weiraomingge_jinse_07" },
+					{ "time": 0.7, "name": "weiraomingge_jinse_08" },
+					{ "time": 0.8, "name": "weiraomingge_jinse_09" },
+					{ "time": 0.9, "name": "weiraomingge_jinse_10" },
+					{ "time": 1, "name": "weiraomingge_jinse_11" },
+					{ "time": 1.1, "name": "weiraomingge_jinse_12" },
+					{ "time": 1.2, "name": "weiraomingge_jinse_13" },
+					{ "time": 1.2666, "name": "weiraomingge_jinse_13" }
+				],
+				"color": [
+					{ "time": 0, "color": "b700ffff" }
+				]
+			}
+		}
+	},
+	"mingge2_cheng": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"attachment": [
+					{ "time": 0.1, "name": "qipaomingge_lanse_2" },
+					{ "time": 0.2, "name": "qipaomingge_lanse_3" },
+					{ "time": 0.3, "name": "qipaomingge_lanse_4" },
+					{ "time": 0.4, "name": "qipaomingge_lanse_5" },
+					{ "time": 0.5, "name": "qipaomingge_lanse_6" },
+					{ "time": 0.6, "name": "qipaomingge_lanse_7" },
+					{ "time": 0.7, "name": "qipaomingge_lanse_8" },
+					{ "time": 0.7666, "name": "qipaomingge_lanse_8" }
+				],
+				"color": [
+					{ "time": 0, "color": "ffae1eff" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge2_lan": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"attachment": [
+					{ "time": 0.1, "name": "qipaomingge_lanse_2" },
+					{ "time": 0.2, "name": "qipaomingge_lanse_3" },
+					{ "time": 0.3, "name": "qipaomingge_lanse_4" },
+					{ "time": 0.4, "name": "qipaomingge_lanse_5" },
+					{ "time": 0.5, "name": "qipaomingge_lanse_6" },
+					{ "time": 0.6, "name": "qipaomingge_lanse_7" },
+					{ "time": 0.7, "name": "qipaomingge_lanse_8" },
+					{ "time": 0.7666, "name": "qipaomingge_lanse_8" }
+				],
+				"color": [
+					{ "time": 0, "color": "00ffffff" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge2_lv": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"attachment": [
+					{ "time": 0.1, "name": "qipaomingge_lanse_2" },
+					{ "time": 0.2, "name": "qipaomingge_lanse_3" },
+					{ "time": 0.3, "name": "qipaomingge_lanse_4" },
+					{ "time": 0.4, "name": "qipaomingge_lanse_5" },
+					{ "time": 0.5, "name": "qipaomingge_lanse_6" },
+					{ "time": 0.6, "name": "qipaomingge_lanse_7" },
+					{ "time": 0.7, "name": "qipaomingge_lanse_8" },
+					{ "time": 0.7666, "name": "qipaomingge_lanse_8" }
+				],
+				"color": [
+					{ "time": 0, "color": "00ff6dff" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge2_zi": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"attachment": [
+					{ "time": 0.1, "name": "qipaomingge_lanse_2" },
+					{ "time": 0.2, "name": "qipaomingge_lanse_3" },
+					{ "time": 0.3, "name": "qipaomingge_lanse_4" },
+					{ "time": 0.4, "name": "qipaomingge_lanse_5" },
+					{ "time": 0.5, "name": "qipaomingge_lanse_6" },
+					{ "time": 0.6, "name": "qipaomingge_lanse_7" },
+					{ "time": 0.7, "name": "qipaomingge_lanse_8" },
+					{ "time": 0.7666, "name": "qipaomingge_lanse_8" }
+				],
+				"color": [
+					{ "time": 0, "color": "ff00fcff" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge3_cheng": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": -90 },
+					{ "time": 0.6666, "angle": 180 },
+					{ "time": 1.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1.3333, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1.3333, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ff9f00ff" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge3_lan": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": -90 },
+					{ "time": 0.6666, "angle": 180 },
+					{ "time": 1.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1.3333, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1.3333, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "00f6ffff" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge3_lv": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": -90 },
+					{ "time": 0.6666, "angle": 180 },
+					{ "time": 1.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1.3333, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1.3333, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "00ff90ff" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge3_zi": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.3333, "angle": -90 },
+					{ "time": 0.6666, "angle": 180 },
+					{ "time": 1.3333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1.3333, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1.3333, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "f700ffff" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge4_cheng": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -90 },
+					{ "time": 0.3333, "angle": 180 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ff6d00ff" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge4_lan": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -90 },
+					{ "time": 0.3333, "angle": 180 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "00daffff" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge4_lv": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -90 },
+					{ "time": 0.3333, "angle": 180 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "39ff00ff" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge4_zi": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -90 },
+					{ "time": 0.3333, "angle": 180 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "f700ffff" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge5_cheng": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -90 },
+					{ "time": 0.3333, "angle": 180 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ff7600ff" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge5_lan": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -90 },
+					{ "time": 0.3333, "angle": 180 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "0098ffff" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge5_lv": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -90 },
+					{ "time": 0.3333, "angle": 180 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "09ff00ff" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge5_zi": {
+		"bones": {
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -90 },
+					{ "time": 0.3333, "angle": 180 },
+					{ "time": 0.6666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ff00e7ff" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge6_cheng": {
+		"bones": {
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2666, "angle": -90 },
+					{ "time": 0.5, "angle": 180 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.5, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.5, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "ffa000ff" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge6_lan": {
+		"bones": {
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2666, "angle": -90 },
+					{ "time": 0.5, "angle": 180 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.5, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.5, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "0084ffff" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge6_lv": {
+		"bones": {
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2666, "angle": -90 },
+					{ "time": 0.5, "angle": 180 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.5, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.5, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "00ff2fff" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"mingge6_zi": {
+		"bones": {
+			"huanmingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"taijimingge_lvse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"qipaomingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"weiraomingge_jinse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			},
+			"banquanmingge_huangse": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2666, "angle": -90 },
+					{ "time": 0.5, "angle": 180 },
+					{ "time": 1, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.5, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.5, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"banquanmingge_huangse": {
+				"color": [
+					{ "time": 0, "color": "be00ffff" }
+				]
+			},
+			"huanmingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"qipaomingge_lanse_1": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"sanhuanmingge_lanse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"taijimingge_lvse": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			},
+			"weiraomingge_jinse_01": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" }
+				]
+			}
+		}
+	}
+}
+}

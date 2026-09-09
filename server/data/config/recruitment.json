@@ -1,0 +1,22 @@
+{
+  "_doc": {
+    "summary": "招募（寻将）。三个卡池均以元宝计价（NeedIngot 由服务端下发）；HaveTimes 为距下次免费的秒数；Type 3 有橙色保底 HaveOrangeTime",
+    "pools": "键为卡池 Type：price 单抽元宝，free_interval_seconds 免费间隔（0 表示无免费），quality_weights 抽中各品质权重，orange_pity 抽满多少次必出橙（0 表示无保底），ten_discount 十连折扣（总价 = 单价 × 10 × 折扣）",
+    "duplicate_soul_count": "抽到已拥有英雄时改为发放其将魂（BaseSouls，ID = BaseHeros.soulId）的数量",
+    "newbie": "新手引导期间（引导步骤在 eligible_guide_step_range 内且未领取）Type 3 首抽免费且按 candidate_hero_ids 顺序确定发放，记录在角色状态 claim_key 下",
+    "response_flags": "十连响应附带的折扣标志（客户端 calcTenHeroCost 使用）"
+  },
+  "pools": {
+    "1": {"name": "百里寻将", "price": 100, "free_interval_seconds": 600, "quality_weights": {"1": 60, "2": 32, "3": 7, "4": 1}, "orange_pity": 0, "ten_discount": 0.95},
+    "2": {"name": "千里寻将", "price": 300, "free_interval_seconds": 86400, "quality_weights": {"1": 20, "2": 50, "3": 25, "4": 5}, "orange_pity": 0, "ten_discount": 0.9},
+    "3": {"name": "万里寻将", "price": 500, "free_interval_seconds": 172800, "quality_weights": {"1": 0, "2": 30, "3": 55, "4": 15}, "orange_pity": 10, "ten_discount": 0.8}
+  },
+  "duplicate_soul_count": 10,
+  "newbie": {
+    "candidate_hero_ids": [102, 103],
+    "candidate_quality_range": [1, 4],
+    "eligible_guide_step_range": [1, 5],
+    "claim_key": "LocalNewbieRecruitment"
+  },
+  "response_flags": {"bGenericD": 0, "bFTenD": 0, "bSTenD": 0, "FESET": 0}
+}

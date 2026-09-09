@@ -1,0 +1,112 @@
+{
+"bones": [
+	{ "name": "changbing_lan_honglianyehuo" },
+	{ "name": "changbing_lan_honglianyehuo_daohuo", "parent": "changbing_lan_honglianyehuo", "x": -91, "scaleX": 2, "scaleY": 2 },
+	{ "name": "changbing_lan_honglianyehuo_jianqi", "parent": "changbing_lan_honglianyehuo", "x": -371.99, "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{
+		"name": "changbing_lan_honglianyehuo_jianqi",
+		"bone": "changbing_lan_honglianyehuo_jianqi",
+		"attachment": "changbing_lan_honglianyehuo_jianqi"
+	},
+	{
+		"name": "changbing_lan_honglianyehuo_daohuo_01",
+		"bone": "changbing_lan_honglianyehuo_daohuo",
+		"attachment": "changbing_lan_honglianyehuo_daohuo_06"
+	}
+],
+"skins": {
+	"default": {
+		"changbing_lan_honglianyehuo_daohuo_01": {
+			"changbing_lan_honglianyehuo_daohuo_01": { "width": 300, "height": 208 },
+			"changbing_lan_honglianyehuo_daohuo_02": { "width": 300, "height": 208 },
+			"changbing_lan_honglianyehuo_daohuo_03": { "width": 300, "height": 208 },
+			"changbing_lan_honglianyehuo_daohuo_04": { "width": 300, "height": 208 },
+			"changbing_lan_honglianyehuo_daohuo_05": { "width": 300, "height": 208 },
+			"changbing_lan_honglianyehuo_daohuo_06": { "width": 300, "height": 208 }
+		},
+		"changbing_lan_honglianyehuo_jianqi": {
+			"changbing_lan_honglianyehuo_jianqi": { "width": 120, "height": 120 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"changbing_lan_honglianyehuo_jianqi": {
+				"rotate": [
+					{ "time": 0, "angle": 21, "curve": "stepped" },
+					{ "time": 0.0666, "angle": 21, "curve": "stepped" },
+					{ "time": 0.1, "angle": 21 },
+					{ "time": 0.1666, "angle": -85.85 },
+					{ "time": 0.2, "angle": -177.31 },
+					{ "time": 0.2333, "angle": 91.14 },
+					{ "time": 0.2666, "angle": -6.2 },
+					{ "time": 0.3, "angle": -34.23 },
+					{ "time": 0.3658, "angle": -175.82 },
+					{ "time": 0.3666, "angle": -167.79 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.0666, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.1, "x": 0, "y": 0 },
+					{ "time": 0.2333, "x": 186.56, "y": 0 },
+					{ "time": 0.3658, "x": 372, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.0666, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.1, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.2333, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3658, "x": 1, "y": 1 }
+				]
+			},
+			"changbing_lan_honglianyehuo_daohuo": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3658, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3991, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3658, "x": 0, "y": 0 },
+					{ "time": 0.3991, "x": 6, "y": 18 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3658, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3991, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"changbing_lan_honglianyehuo_daohuo_01": {
+				"attachment": [
+					{ "time": 0, "name": "changbing_lan_honglianyehuo_daohuo_01" },
+					{ "time": 0.4658, "name": "changbing_lan_honglianyehuo_daohuo_02" },
+					{ "time": 0.5325, "name": "changbing_lan_honglianyehuo_daohuo_03" },
+					{ "time": 0.5991, "name": "changbing_lan_honglianyehuo_daohuo_04" },
+					{ "time": 0.6658, "name": "changbing_lan_honglianyehuo_daohuo_05" },
+					{ "time": 0.7325, "name": "changbing_lan_honglianyehuo_daohuo_06" },
+					{ "time": 0.7991, "name": null }
+				],
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.3658, "color": "ffffff00" },
+					{ "time": 0.3991, "color": "ffffffff" }
+				]
+			},
+			"changbing_lan_honglianyehuo_jianqi": {
+				"color": [
+					{ "time": 0, "color": "ffffff29" },
+					{ "time": 0.0666, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.3666, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				]
+			}
+		}
+	}
+}
+}

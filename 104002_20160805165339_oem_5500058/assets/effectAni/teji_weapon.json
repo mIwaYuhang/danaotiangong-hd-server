@@ -1,0 +1,154 @@
+{
+"bones": [
+	{ "name": "teji_weapon" },
+	{
+		"name": "root_weapon_f-copy",
+		"parent": "teji_weapon",
+		"length": 82.59,
+		"x": 376.29,
+		"y": -205.42,
+		"scaleX": 1.719,
+		"scaleY": 1.684,
+		"rotation": 90
+	},
+	{
+		"name": "root_weapon_fc-copy",
+		"parent": "teji_weapon",
+		"length": 82.59,
+		"x": 6.16,
+		"y": -172.14,
+		"scaleX": 1.983,
+		"scaleY": 2.099,
+		"rotation": 90
+	}
+],
+"slots": [
+	{ "name": "root_weapon_fc-copy", "bone": "root_weapon_fc-copy" },
+	{ "name": "root_weapon_f-copy", "bone": "root_weapon_f-copy" }
+],
+"skins": {
+	"default": {
+		"root_weapon_f-copy": {
+			"root_weapon_f0b1": { "rotation": -90, "width": 235, "height": 69 }
+		},
+		"root_weapon_fc-copy": {
+			"root_weapon_f02b": { "rotation": -90, "width": 251, "height": 198 },
+			"root_weapon_f03b": { "rotation": -90, "width": 251, "height": 198 },
+			"root_weapon_f04b": { "rotation": -90, "width": 251, "height": 198 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"teji_weapon": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1012, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1012, "x": 1.4, "y": 0, "curve": "stepped" },
+					{ "time": 0.3, "x": 1.4, "y": 0, "curve": "stepped" },
+					{ "time": 0.4333, "x": 1.4, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.1012, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.4333, "x": 1, "y": 1 }
+				]
+			},
+			"root_weapon_f-copy": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.5, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": -573.19, "y": 130.56, "curve": "stepped" },
+					{ "time": 0.3, "x": -573.19, "y": 130.56 },
+					{ "time": 0.4, "x": -267.81, "y": 131.44 },
+					{ "time": 0.4666, "x": -164.88, "y": 131.44 },
+					{ "time": 0.5, "x": 11.23, "y": 131.44 },
+					{ "time": 0.6, "x": 485.56, "y": 131.44 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.485, "y": 0.988, "curve": "stepped" },
+					{ "time": 0.3, "x": 0.485, "y": 0.988 },
+					{ "time": 0.4, "x": 0.638, "y": 1.186 },
+					{ "time": 0.4666, "x": 0.815, "y": 1.271 },
+					{ "time": 0.5, "x": 0.898, "y": 1.715, "curve": "stepped" },
+					{ "time": 0.6, "x": 0.898, "y": 1.715 }
+				]
+			},
+			"root_weapon_fc-copy": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.5, "angle": 0, "curve": "stepped" },
+					{ "time": 0.5333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 52.97, "y": 102.87, "curve": "stepped" },
+					{ "time": 0.3, "x": 52.97, "y": 102.87 },
+					{ "time": 0.4, "x": 105.39, "y": 102.87 },
+					{ "time": 0.4333, "x": 151.87, "y": 102.87 },
+					{ "time": 0.4666, "x": 175.11, "y": 102.87 },
+					{ "time": 0.5, "x": 87.96, "y": 102.87, "curve": "stepped" },
+					{ "time": 0.5333, "x": 87.96, "y": 102.87 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1.379, "y": 0.74, "curve": "stepped" },
+					{ "time": 0.3, "x": 1.379, "y": 0.74 },
+					{ "time": 0.4, "x": 1.163, "y": 1.3, "curve": "stepped" },
+					{ "time": 0.4333, "x": 1.163, "y": 1.3, "curve": "stepped" },
+					{ "time": 0.4666, "x": 1.163, "y": 1.3 },
+					{ "time": 0.5, "x": -0.141, "y": 0.488, "curve": "stepped" },
+					{ "time": 0.5333, "x": -0.141, "y": 0.488 }
+				]
+			}
+		},
+		"slots": {
+			"root_weapon_f-copy": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.3, "name": "root_weapon_f0b1" },
+					{ "time": 0.4, "name": "root_weapon_f0b1" },
+					{ "time": 0.4666, "name": "root_weapon_f0b1" },
+					{ "time": 0.5, "name": "root_weapon_f0b1" },
+					{ "time": 0.6, "name": null }
+				]
+			},
+			"root_weapon_fc-copy": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.3, "name": "root_weapon_f02b" },
+					{ "time": 0.4, "name": "root_weapon_f02b" },
+					{ "time": 0.4333, "name": "root_weapon_f03b" },
+					{ "time": 0.4666, "name": "root_weapon_f04b" },
+					{ "time": 0.5, "name": "root_weapon_f04b" },
+					{ "time": 0.5333, "name": null }
+				],
+				"color": [
+					{ "time": 0, "color": "ffffff75", "curve": "stepped" },
+					{ "time": 0.3, "color": "ffffff75" },
+					{ "time": 0.4, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.4333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.4666, "color": "ffffffff" },
+					{ "time": 0.5, "color": "ffffff96", "curve": "stepped" },
+					{ "time": 0.5333, "color": "ffffff96" }
+				]
+			}
+		}
+	}
+}
+}

@@ -1,0 +1,54 @@
+
+changbing_cheng_nuzhanjiuli.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+changbing_cheng_nuzhanjiuli_chongjibo_01
+  rotate: true
+  xy: 380, 5
+  size: 99, 57
+  orig: 130, 318
+  offset: 20, 9
+  index: -1
+changbing_cheng_nuzhanjiuli_chongjibo_02
+  rotate: true
+  xy: 2, 34
+  size: 129, 241
+  orig: 130, 318
+  offset: 1, 0
+  index: -1
+changbing_cheng_nuzhanjiuli_chongjibo_03
+  rotate: true
+  xy: 322, 165
+  size: 130, 316
+  orig: 130, 318
+  offset: 0, 2
+  index: -1
+changbing_cheng_nuzhanjiuli_chongjibo_04
+  rotate: true
+  xy: 2, 165
+  size: 130, 318
+  orig: 130, 318
+  offset: 0, 0
+  index: -1
+changbing_cheng_nuzhanjiuli_guang
+  rotate: false
+  xy: 245, 11
+  size: 133, 152
+  orig: 142, 153
+  offset: 9, 1
+  index: -1
+changbing_cheng_nuzhanjiuli_guangshu
+  rotate: false
+  xy: 640, 2
+  size: 45, 293
+  orig: 45, 293
+  offset: 0, 0
+  index: -1
+changbing_cheng_nuzhanjiuli_weiqi
+  rotate: true
+  xy: 380, 106
+  size: 57, 203
+  orig: 57, 204
+  offset: 0, 1
+  index: -1

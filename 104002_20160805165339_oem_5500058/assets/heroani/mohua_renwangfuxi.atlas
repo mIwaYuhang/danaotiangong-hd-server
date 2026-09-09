@@ -1,0 +1,187 @@
+
+mohua_renwangfuxi-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 626, 168
+  size: 73, 86
+  orig: 74, 87
+  offset: 0, 1
+  index: -1
+root_head
+  rotate: false
+  xy: 2, 61
+  size: 217, 193
+  orig: 217, 193
+  offset: 0, 0
+  index: -1
+root_head_01
+  rotate: true
+  xy: 88, 33
+  size: 26, 47
+  orig: 26, 48
+  offset: 0, 1
+  index: -1
+root_head_03
+  rotate: false
+  xy: 684, 135
+  size: 15, 31
+  orig: 15, 31
+  offset: 0, 0
+  index: -1
+root_head_06
+  rotate: false
+  xy: 385, 62
+  size: 132, 141
+  orig: 132, 141
+  offset: 0, 0
+  index: -1
+root_head_08
+  rotate: false
+  xy: 701, 177
+  size: 70, 77
+  orig: 70, 79
+  offset: 0, 2
+  index: -1
+root_hip_01
+  rotate: false
+  xy: 2, 4
+  size: 44, 55
+  orig: 44, 55
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 519, 66
+  size: 62, 59
+  orig: 63, 59
+  offset: 1, 0
+  index: -1
+root_hip_03
+  rotate: true
+  xy: 88, 2
+  size: 29, 40
+  orig: 29, 40
+  offset: 0, 0
+  index: -1
+root_l_elbow
+  rotate: false
+  xy: 920, 224
+  size: 37, 30
+  orig: 37, 30
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: false
+  xy: 773, 180
+  size: 33, 25
+  orig: 33, 25
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 959, 226
+  size: 27, 28
+  orig: 27, 28
+  offset: 0, 0
+  index: -1
+root_l_knee
+  rotate: true
+  xy: 878, 226
+  size: 28, 40
+  orig: 28, 40
+  offset: 0, 0
+  index: -1
+root_l_leg
+  rotate: false
+  xy: 583, 76
+  size: 28, 49
+  orig: 28, 49
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: false
+  xy: 48, 22
+  size: 38, 37
+  orig: 39, 37
+  offset: 1, 0
+  index: -1
+root_l_shoulder_01
+  rotate: false
+  xy: 130, 2
+  size: 28, 29
+  orig: 28, 29
+  offset: 0, 0
+  index: -1
+root_l_wing
+  rotate: false
+  xy: 519, 127
+  size: 105, 127
+  orig: 106, 127
+  offset: 1, 0
+  index: -1
+root_r_elbow
+  rotate: false
+  xy: 773, 207
+  size: 33, 47
+  orig: 33, 47
+  offset: 0, 0
+  index: -1
+root_r_foot
+  rotate: false
+  xy: 808, 183
+  size: 28, 23
+  orig: 28, 23
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 137, 33
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+root_r_knee
+  rotate: false
+  xy: 808, 208
+  size: 29, 46
+  orig: 29, 46
+  offset: 0, 0
+  index: -1
+root_r_leg
+  rotate: true
+  xy: 626, 128
+  size: 38, 56
+  orig: 38, 62
+  offset: 0, 0
+  index: -1
+root_r_shoulder
+  rotate: true
+  xy: 476, 208
+  size: 46, 41
+  orig: 46, 41
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01
+  rotate: false
+  xy: 839, 222
+  size: 37, 32
+  orig: 37, 32
+  offset: 0, 0
+  index: -1
+root_r_wing
+  rotate: true
+  xy: 221, 76
+  size: 127, 162
+  orig: 127, 162
+  offset: 0, 0
+  index: -1
+root_weapon
+  rotate: true
+  xy: 221, 205
+  size: 49, 253
+  orig: 49, 253
+  offset: 0, 0
+  index: -1

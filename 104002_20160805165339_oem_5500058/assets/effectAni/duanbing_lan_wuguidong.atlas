@@ -1,0 +1,61 @@
+
+duanbing_lan_wuguidong.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+duanbing_lan_wuguidong_bao_01
+  rotate: false
+  xy: 105, 192
+  size: 103, 91
+  orig: 113, 112
+  offset: 0, 1
+  index: -1
+duanbing_lan_wuguidong_bao_02
+  rotate: false
+  xy: 191, 25
+  size: 76, 72
+  orig: 113, 112
+  offset: 16, 20
+  index: -1
+duanbing_lan_wuguidong_bao_03
+  rotate: false
+  xy: 2, 15
+  size: 88, 80
+  orig: 113, 112
+  offset: 9, 16
+  index: -1
+duanbing_lan_wuguidong_bao_04
+  rotate: true
+  xy: 103, 2
+  size: 95, 86
+  orig: 113, 112
+  offset: 6, 12
+  index: -1
+duanbing_lan_wuguidong_bao_05
+  rotate: false
+  xy: 105, 99
+  size: 99, 91
+  orig: 113, 112
+  offset: 4, 9
+  index: -1
+duanbing_lan_wuguidong_bao_06
+  rotate: false
+  xy: 2, 189
+  size: 101, 94
+  orig: 113, 112
+  offset: 1, 5
+  index: -1
+duanbing_lan_wuguidong_duqi
+  rotate: true
+  xy: 2, 97
+  size: 90, 99
+  orig: 90, 109
+  offset: 0, 10
+  index: -1
+duanbing_lan_wuguidong_guitou
+  rotate: true
+  xy: 210, 143
+  size: 140, 56
+  orig: 147, 56
+  offset: 3, 0
+  index: -1

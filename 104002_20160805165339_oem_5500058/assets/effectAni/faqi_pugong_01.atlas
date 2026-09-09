@@ -1,0 +1,47 @@
+
+faqi_pugong_01.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+faqi_pugong_01_jizhong_01
+  rotate: false
+  xy: 2, 5
+  size: 181, 181
+  orig: 188, 182
+  offset: 7, 0
+  index: -1
+faqi_pugong_01_jizhong_02
+  rotate: true
+  xy: 541, 5
+  size: 181, 173
+  orig: 188, 182
+  offset: 1, 0
+  index: -1
+faqi_pugong_01_jizhong_03
+  rotate: true
+  xy: 716, 9
+  size: 177, 174
+  orig: 188, 182
+  offset: 8, 0
+  index: -1
+faqi_pugong_01_jizhong_04
+  rotate: true
+  xy: 364, 7
+  size: 179, 175
+  orig: 188, 182
+  offset: 6, 0
+  index: -1
+faqi_pugong_01_jizhong_05
+  rotate: true
+  xy: 185, 2
+  size: 184, 177
+  orig: 188, 182
+  offset: 4, 0
+  index: -1
+faqi_pugong_01_shandian
+  rotate: false
+  xy: 892, 60
+  size: 68, 126
+  orig: 68, 126
+  offset: 0, 0
+  index: -1

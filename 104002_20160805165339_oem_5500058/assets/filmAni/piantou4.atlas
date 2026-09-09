@@ -1,0 +1,54 @@
+
+piantou4-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bishenggongli
+  rotate: true
+  xy: 740, 348
+  size: 178, 78
+  orig: 178, 78
+  offset: 0, 0
+  index: -1
+juhua
+  rotate: false
+  xy: 740, 56
+  size: 99, 100
+  orig: 99, 100
+  offset: 0, 0
+  index: -1
+mozhun
+  rotate: true
+  xy: 782, 219
+  size: 50, 34
+  orig: 50, 34
+  offset: 0, 0
+  index: -1
+polelaozhu
+  rotate: true
+  xy: 740, 158
+  size: 188, 40
+  orig: 188, 40
+  offset: 0, 0
+  index: -1
+scene_0733
+  rotate: false
+  xy: 2, 4
+  size: 736, 522
+  orig: 736, 522
+  offset: 0, 0
+  index: -1
+yongjing
+  rotate: true
+  xy: 782, 271
+  size: 75, 49
+  orig: 75, 49
+  offset: 0, 0
+  index: -1
+yuansheng
+  rotate: false
+  xy: 740, 2
+  size: 95, 52
+  orig: 95, 52
+  offset: 0, 0
+  index: -1

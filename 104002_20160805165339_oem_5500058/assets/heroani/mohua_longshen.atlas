@@ -1,0 +1,152 @@
+
+mohua_longshen-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 614, 168
+  size: 71, 86
+  orig: 71, 86
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: false
+  xy: 396, 44
+  size: 216, 210
+  orig: 216, 210
+  offset: 0, 0
+  index: -1
+root_hip_01
+  rotate: true
+  xy: 207, 118
+  size: 32, 63
+  orig: 32, 63
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: false
+  xy: 614, 94
+  size: 62, 72
+  orig: 62, 72
+  offset: 0, 0
+  index: -1
+root_hip_03
+  rotate: false
+  xy: 126, 88
+  size: 79, 62
+  orig: 79, 62
+  offset: 0, 0
+  index: -1
+root_l_elbow
+  rotate: true
+  xy: 363, 113
+  size: 37, 25
+  orig: 37, 25
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: false
+  xy: 207, 89
+  size: 41, 27
+  orig: 41, 27
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 250, 92
+  size: 20, 24
+  orig: 20, 24
+  offset: 0, 0
+  index: -1
+root_l_knee
+  rotate: true
+  xy: 687, 173
+  size: 26, 56
+  orig: 26, 56
+  offset: 0, 0
+  index: -1
+root_l_leg
+  rotate: true
+  xy: 746, 230
+  size: 24, 61
+  orig: 24, 61
+  offset: 0, 0
+  index: -1
+root_l_shoulder
+  rotate: false
+  xy: 166, 40
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01
+  rotate: true
+  xy: 319, 113
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+root_longweapon
+  rotate: true
+  xy: 2, 152
+  size: 102, 392
+  orig: 102, 392
+  offset: 0, 0
+  index: -1
+root_r_elbow
+  rotate: true
+  xy: 746, 204
+  size: 24, 46
+  orig: 24, 47
+  offset: 0, 1
+  index: -1
+root_r_foot
+  rotate: false
+  xy: 272, 119
+  size: 45, 31
+  orig: 45, 31
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: true
+  xy: 126, 2
+  size: 21, 26
+  orig: 21, 26
+  offset: 0, 0
+  index: -1
+root_r_knee
+  rotate: true
+  xy: 614, 56
+  size: 36, 58
+  orig: 36, 58
+  offset: 0, 0
+  index: -1
+root_r_leg
+  rotate: false
+  xy: 126, 25
+  size: 38, 61
+  orig: 38, 61
+  offset: 0, 0
+  index: -1
+root_r_shoulder
+  rotate: false
+  xy: 809, 217
+  size: 40, 37
+  orig: 40, 37
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01
+  rotate: false
+  xy: 687, 201
+  size: 57, 53
+  orig: 57, 53
+  offset: 0, 0
+  index: -1
+root_tail
+  rotate: false
+  xy: 2, 4
+  size: 122, 146
+  orig: 122, 146
+  offset: 0, 0
+  index: -1

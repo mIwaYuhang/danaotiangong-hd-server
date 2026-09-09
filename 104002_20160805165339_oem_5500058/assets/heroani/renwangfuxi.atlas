@@ -1,0 +1,299 @@
+
+renwangfuxi.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+root_chest
+  rotate: false
+  xy: 2, 6
+  size: 71, 82
+  orig: 71, 82
+  offset: 0, 0
+  index: -1
+root_chest_gaoji
+  rotate: false
+  xy: 75, 6
+  size: 71, 82
+  orig: 71, 82
+  offset: 0, 0
+  index: -1
+root_head
+  rotate: false
+  xy: 2, 90
+  size: 218, 213
+  orig: 218, 214
+  offset: 0, 0
+  index: -1
+root_head_01
+  rotate: false
+  xy: 429, 19
+  size: 26, 39
+  orig: 26, 39
+  offset: 0, 0
+  index: -1
+root_head_01_gaoji
+  rotate: false
+  xy: 457, 22
+  size: 26, 38
+  orig: 26, 39
+  offset: 0, 0
+  index: -1
+root_head_03
+  rotate: false
+  xy: 828, 266
+  size: 17, 37
+  orig: 17, 37
+  offset: 0, 0
+  index: -1
+root_head_03_gaoji
+  rotate: true
+  xy: 429, 2
+  size: 15, 31
+  orig: 17, 37
+  offset: 0, 2
+  index: -1
+root_head_06
+  rotate: true
+  xy: 666, 3
+  size: 107, 140
+  orig: 107, 140
+  offset: 0, 0
+  index: -1
+root_head_06_gaoji
+  rotate: false
+  xy: 739, 112
+  size: 107, 140
+  orig: 107, 140
+  offset: 0, 0
+  index: -1
+root_head_08
+  rotate: false
+  xy: 148, 9
+  size: 70, 79
+  orig: 70, 79
+  offset: 0, 0
+  index: -1
+root_head_gaoji 
+  rotate: false
+  xy: 222, 91
+  size: 218, 212
+  orig: 218, 214
+  offset: 0, 1
+  index: -1
+root_hip_01
+  rotate: false
+  xy: 900, 17
+  size: 43, 51
+  orig: 43, 51
+  offset: 0, 0
+  index: -1
+root_hip_01_gaoji
+  rotate: true
+  xy: 808, 2
+  size: 43, 51
+  orig: 43, 51
+  offset: 0, 0
+  index: -1
+root_hip_02
+  rotate: true
+  xy: 442, 62
+  size: 67, 69
+  orig: 67, 69
+  offset: 0, 0
+  index: -1
+root_hip_02_gaoji
+  rotate: false
+  xy: 848, 88
+  size: 61, 59
+  orig: 67, 69
+  offset: 6, 1
+  index: -1
+root_hip_03
+  rotate: true
+  xy: 387, 29
+  size: 29, 40
+  orig: 29, 40
+  offset: 0, 0
+  index: -1
+root_hip_03_gaoji
+  rotate: true
+  xy: 394, 60
+  size: 29, 40
+  orig: 29, 40
+  offset: 0, 0
+  index: -1
+root_l_elbow
+  rotate: true
+  xy: 220, 4
+  size: 35, 29
+  orig: 35, 29
+  offset: 0, 0
+  index: -1
+root_l_elbow_gaoji
+  rotate: false
+  xy: 513, 5
+  size: 35, 29
+  orig: 35, 29
+  offset: 0, 0
+  index: -1
+root_l_foot
+  rotate: true
+  xy: 485, 27
+  size: 33, 26
+  orig: 33, 26
+  offset: 0, 0
+  index: -1
+root_l_hand
+  rotate: false
+  xy: 550, 5
+  size: 27, 29
+  orig: 27, 29
+  offset: 0, 0
+  index: -1
+root_l_knee
+  rotate: true
+  xy: 299, 28
+  size: 26, 40
+  orig: 26, 40
+  offset: 0, 0
+  index: -1
+root_l_knee_gaoji
+  rotate: true
+  xy: 345, 32
+  size: 26, 40
+  orig: 26, 40
+  offset: 0, 0
+  index: -1
+root_l_leg
+  rotate: true
+  xy: 848, 58
+  size: 28, 50
+  orig: 28, 50
+  offset: 0, 0
+  index: -1
+root_l_shouder_01_gaoji
+  rotate: false
+  xy: 369, 2
+  size: 27, 25
+  orig: 28, 26
+  offset: 1, 1
+  index: -1
+root_l_shoulder
+  rotate: false
+  xy: 251, 7
+  size: 38, 38
+  orig: 38, 38
+  offset: 0, 0
+  index: -1
+root_l_shoulder_01
+  rotate: false
+  xy: 579, 8
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: -1
+root_l_wing
+  rotate: false
+  xy: 848, 149
+  size: 92, 154
+  orig: 92, 154
+  offset: 0, 0
+  index: -1
+root_l_wing_gaoji
+  rotate: true
+  xy: 513, 36
+  size: 89, 151
+  orig: 92, 154
+  offset: 0, 0
+  index: -1
+root_r_elbow
+  rotate: false
+  xy: 861, 12
+  size: 33, 44
+  orig: 33, 44
+  offset: 0, 0
+  index: -1
+root_r_elbow_gaoji
+  rotate: true
+  xy: 299, 56
+  size: 33, 44
+  orig: 33, 44
+  offset: 0, 0
+  index: -1
+root_r_foot
+  rotate: false
+  xy: 398, 4
+  size: 29, 23
+  orig: 29, 23
+  offset: 0, 0
+  index: -1
+root_r_hand
+  rotate: false
+  xy: 341, 2
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+root_r_knee
+  rotate: false
+  xy: 220, 41
+  size: 29, 47
+  orig: 29, 47
+  offset: 0, 0
+  index: -1
+root_r_knee_gaoji
+  rotate: true
+  xy: 345, 60
+  size: 29, 47
+  orig: 29, 47
+  offset: 0, 0
+  index: -1
+root_r_leg
+  rotate: false
+  xy: 808, 47
+  size: 38, 63
+  orig: 38, 63
+  offset: 0, 0
+  index: -1
+root_r_shouder_01_gaoji
+  rotate: true
+  xy: 911, 70
+  size: 37, 32
+  orig: 38, 32
+  offset: 1, 0
+  index: -1
+root_r_shoulder
+  rotate: false
+  xy: 251, 47
+  size: 46, 42
+  orig: 46, 42
+  offset: 0, 0
+  index: -1
+root_r_shoulder_01
+  rotate: true
+  xy: 911, 109
+  size: 38, 32
+  orig: 38, 32
+  offset: 0, 0
+  index: -1
+root_r_wing
+  rotate: false
+  xy: 442, 131
+  size: 130, 172
+  orig: 130, 172
+  offset: 0, 0
+  index: -1
+root_r_wing_gaoji
+  rotate: true
+  xy: 574, 127
+  size: 125, 163
+  orig: 130, 172
+  offset: 1, 9
+  index: -1
+root_weapon
+  rotate: true
+  xy: 574, 254
+  size: 49, 252
+  orig: 49, 252
+  offset: 0, 0
+  index: -1

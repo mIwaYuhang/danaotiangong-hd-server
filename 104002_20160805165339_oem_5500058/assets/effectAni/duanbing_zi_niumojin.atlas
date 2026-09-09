@@ -1,0 +1,96 @@
+
+duanbing_zi_niumojin.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+duanbing_zi_niumojin_bao01
+  rotate: false
+  xy: 527, 35
+  size: 62, 64
+  orig: 114, 122
+  offset: 26, 28
+  index: -1
+duanbing_zi_niumojin_bao02
+  rotate: false
+  xy: 453, 24
+  size: 72, 73
+  orig: 114, 122
+  offset: 21, 23
+  index: -1
+duanbing_zi_niumojin_bao03
+  rotate: false
+  xy: 295, 15
+  size: 81, 82
+  orig: 114, 122
+  offset: 16, 19
+  index: -1
+duanbing_zi_niumojin_bao04
+  rotate: false
+  xy: 697, 7
+  size: 89, 91
+  orig: 114, 122
+  offset: 12, 15
+  index: -1
+duanbing_zi_niumojin_bao05
+  rotate: false
+  xy: 600, 2
+  size: 95, 99
+  orig: 114, 122
+  offset: 9, 11
+  index: -1
+duanbing_zi_niumojin_bao06
+  rotate: true
+  xy: 187, 9
+  size: 101, 106
+  orig: 114, 122
+  offset: 6, 7
+  index: -1
+duanbing_zi_niumojin_bao07
+  rotate: false
+  xy: 718, 100
+  size: 106, 113
+  orig: 114, 122
+  offset: 4, 4
+  index: -1
+duanbing_zi_niumojin_bao08
+  rotate: true
+  xy: 600, 103
+  size: 110, 116
+  orig: 114, 122
+  offset: 2, 2
+  index: -1
+duanbing_zi_niumojin_bao09
+  rotate: true
+  xy: 478, 101
+  size: 112, 120
+  orig: 114, 122
+  offset: 1, 0
+  index: -1
+duanbing_zi_niumojin_bao10
+  rotate: true
+  xy: 354, 99
+  size: 114, 122
+  orig: 114, 122
+  offset: 0, 0
+  index: -1
+duanbing_zi_niumojin_guangbo
+  rotate: false
+  xy: 378, 24
+  size: 73, 73
+  orig: 73, 73
+  offset: 0, 0
+  index: -1
+duanbing_zi_niumojin_niutou
+  rotate: false
+  xy: 187, 112
+  size: 165, 101
+  orig: 165, 101
+  offset: 0, 0
+  index: -1
+duanbing_zi_niumojin_shan
+  rotate: false
+  xy: 2, 33
+  size: 183, 180
+  orig: 183, 180
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,89 @@
+
+herundong-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hurundong_bao_01
+  rotate: true
+  xy: 2, 111
+  size: 210, 205
+  orig: 210, 214
+  offset: 0, 0
+  index: -1
+hurundong_bao_02
+  rotate: false
+  xy: 2, 323
+  size: 207, 212
+  orig: 210, 214
+  offset: 3, 1
+  index: -1
+hurundong_bao_03
+  rotate: false
+  xy: 211, 359
+  size: 203, 176
+  orig: 210, 214
+  offset: 7, 4
+  index: -1
+hurundong_bao_04
+  rotate: false
+  xy: 211, 210
+  size: 189, 147
+  orig: 210, 214
+  offset: 14, 6
+  index: -1
+hurundong_bao_05
+  rotate: true
+  xy: 402, 200
+  size: 157, 131
+  orig: 210, 214
+  offset: 30, 11
+  index: -1
+hurundong_bao_06
+  rotate: false
+  xy: 378, 45
+  size: 117, 66
+  orig: 210, 214
+  offset: 50, 43
+  index: -1
+hurundong_gouzhua_01
+  rotate: true
+  xy: 378, 113
+  size: 85, 138
+  orig: 213, 167
+  offset: 17, 4
+  index: -1
+hurundong_gouzhua_02
+  rotate: true
+  xy: 2, 8
+  size: 101, 159
+  orig: 213, 167
+  offset: 0, 0
+  index: -1
+hurundong_gouzhua_03
+  rotate: false
+  xy: 163, 2
+  size: 150, 83
+  orig: 213, 167
+  offset: 20, 78
+  index: -1
+hurundong_gouzhua_04
+  rotate: true
+  xy: 416, 366
+  size: 169, 132
+  orig: 213, 167
+  offset: 26, 35
+  index: -1
+hurundong_gouzhua_05
+  rotate: true
+  xy: 209, 87
+  size: 121, 167
+  orig: 213, 167
+  offset: 92, 0
+  index: -1
+hurundong_qibo
+  rotate: true
+  xy: 497, 5
+  size: 106, 51
+  orig: 106, 51
+  offset: 0, 0
+  index: -1

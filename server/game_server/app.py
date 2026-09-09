@@ -1,0 +1,147 @@
+"""组装根：把配置、存储、静态表、业务服务、路由表与分发器装配成一个应用。
+
+依赖方向自上而下，服务之间只通过构造参数传递依赖::
+
+    Application
+    ├── Config / Storage / Catalog / Clock
+    ├── HeroModel ─┐
+    ├── EquipmentModel ─┴─ PlayerModel ─┬─ Ledger ─┬─ InventoryService（道具/商店）
+    │                                    │          ├─ StageService（关卡）← BattleEngine
+    │                                    │          ├─ HeroGrowthService / TalismanService
+    │                                    │          ├─ RecruitmentService / MailService
+    │                                    │          ├─ ActivityService / MissionService
+    │                                    ├─ TeamService
+    │                                    └─ RoleService
+    └── Dispatcher(Router)
+
+``Application.handle(method, target)`` 是协议入口，HTTP 层与测试都只依赖它。
+"""
+from dataclasses import dataclass
+from pathlib import Path
+import random
+
+from .catalog import Catalog
+from .config import Config
+from .protocol.dispatcher import Dispatcher
+from .protocol.routes import build_router
+from .services.account import AccountService
+from .services.activities import ActivityService
+from .services.battle import BattleEngine
+from .services.clock import Clock
+from .services.dungeons import FubenService, TowerService
+from .services.equipment import EquipmentModel
+from .services.growth import HeroGrowthService
+from .services.pvp import ArenaService, WorldBossService
+from .services.social import FriendService, RefineService, TransportService
+from .services.hero_model import HeroModel
+from .services.inventory import InventoryService, Ledger
+from .services.mail import MailService
+from .services.missions import MissionEvents, MissionService
+from .services.player_state import PlayerModel
+from .services.recruitment import RecruitmentService
+from .services.roles import RoleRepository, RoleService
+from .services.stages import StageService
+from .services.talisman import TalismanService
+from .services.team import TeamService
+from .storage import Storage
+
+
+@dataclass(frozen=True)
+class Services:
+    account: AccountService
+    roles: RoleService
+    team: TeamService
+    growth: HeroGrowthService
+    talisman: TalismanService
+    inventory: InventoryService
+    recruitment: RecruitmentService
+    stages: StageService
+    missions: MissionService
+    mail: MailService
+    activities: ActivityService
+    arena: ArenaService
+    worldboss: WorldBossService
+    fuben: FubenService
+    tower: TowerService
+    refine: RefineService
+    friends: FriendService
+    transport: TransportService
+
+
+def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Clock, rng: random.Random) -> Services:
+    realm_id = config.server.realm.id
+    heroes = HeroModel(config.hero, catalog)
+    equipment = EquipmentModel(config.equipment, catalog)
+    model = PlayerModel(config.player, catalog, heroes, equipment, clock)
+    ledger = Ledger(config.inventory, catalog, model, equipment, clock, rng)
+    repository = RoleRepository(realm_id)
+    events = MissionEvents()
+    mail = MailService(ledger, clock, config.player.initial_state.get('SystemMailName', '系统'), events)
+    activities = ActivityService(config.activities, ledger, clock, events)
+    missions = MissionService(config.missions, ledger, catalog)
+    engine = BattleEngine(config.battle, config.hero, catalog, heroes, rng)
+    services = Services(
+        account=AccountService(storage, config.auth, realm_id),
+        roles=RoleService(repository, model, mail, config.activities.welcome_mail),
+        team=TeamService(model, events),
+        growth=HeroGrowthService(model, ledger, events),
+        talisman=TalismanService(model, equipment, ledger, events),
+        inventory=InventoryService(ledger, config.store, repository),
+        recruitment=RecruitmentService(config.recruitment, model, ledger, clock, events),
+        stages=StageService(config.battle, config.player, config.recruitment.newbie.claim_key,
+                            catalog, ledger, model, engine, clock, events),
+        missions=missions,
+        mail=mail,
+        activities=activities,
+        arena=ArenaService(config.features.arena, model, ledger, engine, clock),
+        worldboss=WorldBossService(config.features.worldboss, model, ledger, engine, clock),
+        fuben=FubenService(config.features.fuben, model, ledger, engine, clock),
+        tower=TowerService(config.features.tower, model, ledger, engine, clock),
+        refine=RefineService(config.features.refine, model, ledger, equipment),
+        friends=FriendService(config.features.friends, model, ledger, clock),
+        transport=TransportService(config.features.transport, model, ledger, clock),
+    )
+    model.add_notify_provider(services.arena.notify)
+    model.add_notify_provider(services.worldboss.notify)
+    model.add_notify_provider(services.friends.notify)
+
+    def notify_counts(state):
+        return {
+            'MailCount': MailService.unread_count(state),
+            'MissionShow': missions.claimable_count(state),
+            'SignRewardShow': 0 if state['Sign'].get('last_day') == clock.day_key() else 1,
+            'EverydayRewardShow': 0 if state['Daily'].get('salary_taken') else 1,
+            'SevenLoginShow': activities.seven_day_claimable(state),
+            'lgbs': activities.level_gift_claimable(state),
+        }
+    model.add_notify_provider(notify_counts)
+
+    def level_up_mail(state, old_level, new_level):
+        template = config.activities.level_up_mail
+        for level in config.activities.level_up_mail_levels:
+            if old_level < level <= new_level:
+                mail.send_system(state, template.content.replace('{level}', str(level)), list(template.attachments))
+    model.add_level_up_listener(level_up_mail)
+    return services
+
+
+class Application:
+    def __init__(self, config: Config, database: Path = None, clock: Clock = None, rng: random.Random = None):
+        """``database`` 可覆盖配置中的存档路径；``clock`` / ``rng`` 供测试注入。"""
+        self.config = config
+        self.storage = Storage(database or config.server.database)
+        self.catalog = Catalog(config.server.static_data_dir)
+        self.clock = clock or Clock(config.player.daily_reset_hour)
+        self.rng = rng or random.Random()
+        self.services = build_services(config, self.storage, self.catalog, self.clock, self.rng)
+        self.router = build_router(self.services, config.auth.token_length)
+        self.dispatcher = Dispatcher(
+            router=self.router, storage=self.storage,
+            account=self.services.account, roles=self.services.roles,
+            realm=config.server.realm, public_url=config.server.public_url,
+            limits=config.server.http, token_length=config.auth.token_length,
+            role_hooks=[self.services.missions])
+
+    def handle(self, method: str, target: str):
+        """协议入口：返回 ``(状态码, 响应体, Content-Type)``。"""
+        return self.dispatcher.handle(method, target)

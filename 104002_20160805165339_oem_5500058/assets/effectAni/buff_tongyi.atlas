@@ -1,0 +1,26 @@
+
+buff_tongyi.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+buff_tongyi_nei
+  rotate: true
+  xy: 92, 43
+  size: 49, 113
+  orig: 49, 114
+  offset: 0, 0
+  index: -1
+buff_tongyi_wai
+  rotate: false
+  xy: 92, 6
+  size: 117, 35
+  orig: 119, 35
+  offset: 1, 0
+  index: -1
+buff_tongyi_zhong
+  rotate: false
+  xy: 2, 2
+  size: 88, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1

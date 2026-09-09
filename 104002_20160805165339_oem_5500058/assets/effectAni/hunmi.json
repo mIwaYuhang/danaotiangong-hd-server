@@ -1,0 +1,49 @@
+{
+"bones": [
+	{ "name": "hunmi" }
+],
+"slots": [
+	{ "name": "hunmi01", "bone": "hunmi", "attachment": "hunmi01" }
+],
+"skins": {
+	"default": {
+		"hunmi01": {
+			"hunmi01": { "width": 169, "height": 98 },
+			"hunmi02": { "width": 169, "height": 98 },
+			"hunmi03": { "width": 169, "height": 98 },
+			"hunmi04": { "width": 169, "height": 98 },
+			"hunmi05": { "width": 169, "height": 98 },
+			"hunmi06": { "width": 169, "height": 98 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"hunmi": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.0666, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.1333, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.2, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.2666, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3333, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.4, "x": 0, "y": 0 }
+				]
+			}
+		},
+		"slots": {
+			"hunmi01": {
+				"attachment": [
+					{ "time": 0, "name": "hunmi01" },
+					{ "time": 0.0666, "name": "hunmi02" },
+					{ "time": 0.1333, "name": "hunmi03" },
+					{ "time": 0.2, "name": "hunmi04" },
+					{ "time": 0.2666, "name": "hunmi05" },
+					{ "time": 0.3333, "name": "hunmi06" }
+				]
+			}
+		}
+	}
+}
+}

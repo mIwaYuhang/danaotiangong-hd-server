@@ -1,0 +1,61 @@
+
+changbing_zi_xingtian-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+duanbing_zi_xingtian_di_
+  rotate: false
+  xy: 2, 2
+  size: 138, 122
+  orig: 138, 122
+  offset: 0, 0
+  index: -1
+duanbing_zi_xingtian_nengliangqiu_
+  rotate: false
+  xy: 358, 227
+  size: 97, 97
+  orig: 97, 97
+  offset: 0, 0
+  index: -1
+duanbing_zi_xingtian_shan
+  rotate: true
+  xy: 194, 134
+  size: 181, 156
+  orig: 181, 156
+  offset: 0, 0
+  index: -1
+xingtian_bao01
+  rotate: true
+  xy: 194, 3
+  size: 129, 154
+  orig: 195, 190
+  offset: 29, 2
+  index: -1
+xingtian_bao02
+  rotate: false
+  xy: 358, 326
+  size: 148, 180
+  orig: 195, 190
+  offset: 25, 0
+  index: -1
+xingtian_bao03
+  rotate: false
+  xy: 194, 317
+  size: 162, 189
+  orig: 195, 190
+  offset: 17, 0
+  index: -1
+xingtian_bao04
+  rotate: false
+  xy: 2, 317
+  size: 190, 189
+  orig: 195, 190
+  offset: 0, 0
+  index: -1
+xingtian_bao05
+  rotate: false
+  xy: 2, 126
+  size: 190, 189
+  orig: 195, 190
+  offset: 0, 0
+  index: -1

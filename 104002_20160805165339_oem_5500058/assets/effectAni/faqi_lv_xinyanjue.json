@@ -1,0 +1,127 @@
+{
+"bones": [
+	{ "name": "faqi_lv_xinyanjue" },
+	{ "name": "faqi_lv_xinyanjue_bao", "parent": "faqi_lv_xinyanjue", "scaleX": 2, "scaleY": 2 },
+	{ "name": "faqi_lv_xinyanjue_qi", "parent": "faqi_lv_xinyanjue", "scaleX": 2, "scaleY": 2 },
+	{ "name": "faqi_lv_xinyanjue_shan", "parent": "faqi_lv_xinyanjue", "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{ "name": "faqi_lv_xinyanjue_qi", "bone": "faqi_lv_xinyanjue_qi", "attachment": "faqi_lv_xinyanjue_qi" },
+	{ "name": "faqi_lv_xinyanjue_bao_01", "bone": "faqi_lv_xinyanjue_bao", "attachment": "faqi_lv_xinyanjue_bao_03" },
+	{ "name": "faqi_lv_xinyanjue_shan_01", "bone": "faqi_lv_xinyanjue_shan", "attachment": "faqi_lv_xinyanjue_shan_01" }
+],
+"skins": {
+	"default": {
+		"faqi_lv_xinyanjue_bao_01": {
+			"faqi_lv_xinyanjue_bao_01": { "width": 130, "height": 96 },
+			"faqi_lv_xinyanjue_bao_02": { "width": 130, "height": 96 },
+			"faqi_lv_xinyanjue_bao_03": { "width": 130, "height": 96 }
+		},
+		"faqi_lv_xinyanjue_qi": {
+			"faqi_lv_xinyanjue_qi": { "width": 111, "height": 43 }
+		},
+		"faqi_lv_xinyanjue_shan_01": {
+			"faqi_lv_xinyanjue_shan_01": { "width": 85, "height": 135 },
+			"faqi_lv_xinyanjue_shan_02": { "width": 170, "height": 294 },
+			"faqi_lv_xinyanjue_shan_03": { "width": 121, "height": 41 }
+		}
+	}
+},
+"animations": {
+	"animation": {
+		"bones": {
+			"faqi_lv_xinyanjue_shan": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.1, "angle": 0, "curve": "stepped" },
+					{ "time": 0.2333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 233.86 },
+					{ "time": 0.1, "x": 0, "y": 275.36, "curve": "stepped" },
+					{ "time": 0.2333, "x": 0, "y": 275.36 },
+					{ "time": 0.2666, "x": 13.83, "y": 83.03, "curve": "stepped" },
+					{ "time": 0.3, "x": 13.83, "y": 83.03 },
+					{ "time": 0.3333, "x": 2.13, "y": -101.55, "curve": "stepped" },
+					{ "time": 0.3666, "x": 2.13, "y": -101.55 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.1, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.2333, "x": 1, "y": 1 }
+				]
+			},
+			"faqi_lv_xinyanjue_qi": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0, "curve": "stepped" },
+					{ "time": 0.5, "angle": 0, "curve": "stepped" },
+					{ "time": 0.6333, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3333, "x": 0, "y": 0 },
+					{ "time": 0.3666, "x": 6.28, "y": -104.36, "curve": "stepped" },
+					{ "time": 0.5, "x": 6.28, "y": -104.36, "curve": "stepped" },
+					{ "time": 0.6333, "x": 6.28, "y": -104.36 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3333, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 },
+					{ "time": 0.5, "x": 2, "y": 2 },
+					{ "time": 0.6333, "x": 2.199, "y": 2.199 }
+				]
+			},
+			"faqi_lv_xinyanjue_bao": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.4, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.4, "x": 17.6, "y": -40.23 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.4, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"faqi_lv_xinyanjue_bao_01": {
+				"attachment": [
+					{ "time": 0.4, "name": "faqi_lv_xinyanjue_bao_01" },
+					{ "time": 0.4666, "name": "faqi_lv_xinyanjue_bao_02" },
+					{ "time": 0.5333, "name": "faqi_lv_xinyanjue_bao_03" },
+					{ "time": 0.6, "name": null }
+				],
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.3666, "color": "ffffff00" },
+					{ "time": 0.4, "color": "ffffffff" }
+				]
+			},
+			"faqi_lv_xinyanjue_qi": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.3333, "color": "ffffff00" },
+					{ "time": 0.3666, "color": "ffffffff" },
+					{ "time": 0.5, "color": "ffffffd8" },
+					{ "time": 0.6333, "color": "ffffff00" }
+				]
+			},
+			"faqi_lv_xinyanjue_shan_01": {
+				"attachment": [
+					{ "time": 0.2666, "name": "faqi_lv_xinyanjue_shan_02" },
+					{ "time": 0.3, "name": "faqi_lv_xinyanjue_shan_02" },
+					{ "time": 0.3333, "name": "faqi_lv_xinyanjue_shan_03" },
+					{ "time": 0.3666, "name": "faqi_lv_xinyanjue_shan_03" },
+					{ "time": 0.4, "name": null }
+				]
+			}
+		}
+	}
+}
+}

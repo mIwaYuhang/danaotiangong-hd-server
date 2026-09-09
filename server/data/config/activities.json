@@ -1,0 +1,75 @@
+{
+  "_doc": {
+    "summary": "签到、每日征收、七日登录、等级礼包、月卡、跑马灯公告、欢迎邮件",
+    "sign_in": "月签到：rewards 按当月第 n 次签到发放（不足 31 项时循环）；vip_double_level 表示达到该 VIP 后可再领一次",
+    "daily_salary": "每日征收：银币 = base_gold + 玩家等级 × gold_per_level；阅历 = base_knowledge + 等级 × knowledge_per_level；gift_bags 为活动礼包（MustPlayerLevel 等级门槛、MustDayNuber 需连续领取天数）",
+    "seven_day_login": "七日登录奖励，Time 1..7 对应累计登录天数",
+    "level_gifts": "等级礼包：达到 Level 后可领取一次",
+    "month_card": "月卡/周卡信息（尚无支付渠道，仅展示）",
+    "marquee": "跑马灯公告（/Message/Messages）",
+    "welcome_mail": "建角时发放的系统邮件"
+  },
+  "sign_in": {
+    "vip_double_level": 3,
+    "rewards": [
+      [{"Type": 1, "ID": 0, "Count": 10000}], [{"Type": 9, "ID": 0, "Count": 10}], [{"Type": 2, "ID": 0, "Count": 50}],
+      [{"Type": 5, "ID": 100011, "Count": 2}], [{"Type": 6, "ID": 200125, "Count": 10}], [{"Type": 1, "ID": 0, "Count": 20000}],
+      [{"Type": 2, "ID": 0, "Count": 100}], [{"Type": 5, "ID": 100001, "Count": 2}], [{"Type": 5, "ID": 100010, "Count": 2}],
+      [{"Type": 6, "ID": 200128, "Count": 20}], [{"Type": 1, "ID": 0, "Count": 30000}], [{"Type": 2, "ID": 0, "Count": 100}],
+      [{"Type": 5, "ID": 100014, "Count": 1}], [{"Type": 5, "ID": 100023, "Count": 1}], [{"Type": 5, "ID": 100024, "Count": 1}],
+      [{"Type": 1, "ID": 0, "Count": 50000}], [{"Type": 2, "ID": 0, "Count": 150}], [{"Type": 6, "ID": 200125, "Count": 20}],
+      [{"Type": 5, "ID": 100009, "Count": 1}], [{"Type": 5, "ID": 100001, "Count": 3}], [{"Type": 1, "ID": 0, "Count": 80000}],
+      [{"Type": 2, "ID": 0, "Count": 200}], [{"Type": 5, "ID": 100021, "Count": 1}], [{"Type": 5, "ID": 100022, "Count": 1}],
+      [{"Type": 6, "ID": 200128, "Count": 40}], [{"Type": 5, "ID": 100013, "Count": 1}], [{"Type": 1, "ID": 0, "Count": 100000}],
+      [{"Type": 2, "ID": 0, "Count": 300}], [{"Type": 5, "ID": 100008, "Count": 1}], [{"Type": 5, "ID": 100019, "Count": 1}],
+      [{"Type": 5, "ID": 100020, "Count": 1}]
+    ]
+  },
+  "daily_salary": {
+    "base_gold": 5000, "gold_per_level": 500, "base_knowledge": 100, "knowledge_per_level": 10,
+    "gift_bags": [
+      {"GifBagID": 1, "Name": "每日礼包", "MustPlayerVipLevel": 0, "MustPlayerLevel": 1, "MustDayNuber": 0, "MustNumber": 1,
+       "reward": [{"Type": 9, "ID": 0, "Count": 20}, {"Type": 1, "ID": 0, "Count": 5000}]},
+      {"GifBagID": 2, "Name": "成长礼包", "MustPlayerVipLevel": 0, "MustPlayerLevel": 10, "MustDayNuber": 0, "MustNumber": 1,
+       "reward": [{"Type": 6, "ID": 200125, "Count": 20}, {"Type": 5, "ID": 100010, "Count": 1}]},
+      {"GifBagID": 3, "Name": "贵宾礼包", "MustPlayerVipLevel": 1, "MustPlayerLevel": 1, "MustDayNuber": 0, "MustNumber": 1,
+       "reward": [{"Type": 2, "ID": 0, "Count": 100}]}
+    ]
+  },
+  "seven_day_login": [
+    [{"Type": 1, "ID": 0, "Count": 20000}],
+    [{"Type": 5, "ID": 100001, "Count": 3}],
+    [{"Type": 6, "ID": 200125, "Count": 30}],
+    [{"Type": 2, "ID": 0, "Count": 200}],
+    [{"Type": 5, "ID": 100009, "Count": 2}],
+    [{"Type": 6, "ID": 200128, "Count": 50}],
+    [{"Type": 7, "ID": 110, "Count": 1}]
+  ],
+  "level_gifts": [
+    {"Level": 5, "reward": [{"Type": 1, "ID": 0, "Count": 10000}, {"Type": 9, "ID": 0, "Count": 10}]},
+    {"Level": 10, "reward": [{"Type": 2, "ID": 0, "Count": 100}, {"Type": 6, "ID": 200125, "Count": 30}]},
+    {"Level": 15, "reward": [{"Type": 1, "ID": 0, "Count": 30000}, {"Type": 5, "ID": 100010, "Count": 2}]},
+    {"Level": 20, "reward": [{"Type": 2, "ID": 0, "Count": 200}, {"Type": 6, "ID": 200128, "Count": 50}]},
+    {"Level": 25, "reward": [{"Type": 1, "ID": 0, "Count": 50000}, {"Type": 5, "ID": 100009, "Count": 2}]},
+    {"Level": 30, "reward": [{"Type": 2, "ID": 0, "Count": 300}, {"Type": 6, "ID": 200125, "Count": 60}]},
+    {"Level": 40, "reward": [{"Type": 2, "ID": 0, "Count": 500}, {"Type": 5, "ID": 100008, "Count": 2}]},
+    {"Level": 50, "reward": [{"Type": 2, "ID": 0, "Count": 800}, {"Type": 6, "ID": 200128, "Count": 100}]}
+  ],
+  "month_card": {
+    "MonthCardConsume": 30, "WeekCardConsume": 10,
+    "MonthReward": [{"Type": 2, "ID": 0, "Count": 88}], "WeekReward": [{"Type": 2, "ID": 0, "Count": 30}],
+    "RechargePointInfo": []
+  },
+  "marquee": [
+    {"content": "欢迎来到本地单机服，祝您游戏愉快！", "repeatNumber": 1}
+  ],
+  "welcome_mail": {
+    "content": "欢迎来到大闹天宫！这是一份见面礼，请收下。",
+    "attachments": [{"Type": 1, "ID": 0, "Count": 20000}, {"Type": 5, "ID": 100001, "Count": 2}, {"Type": 6, "ID": 200125, "Count": 20}]
+  },
+  "level_up_mail": {
+    "levels": [10, 20, 30],
+    "content": "恭喜您达到{level}级！奉上一份奖励。",
+    "attachments": [{"Type": 2, "ID": 0, "Count": 50}]
+  }
+}

@@ -1,0 +1,89 @@
+
+ui_shengji-1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ui_shengji_01
+  rotate: false
+  xy: 2, 600
+  size: 309, 201
+  orig: 313, 203
+  offset: 0, 2
+  index: -1
+ui_shengji_02
+  rotate: false
+  xy: 619, 815
+  size: 312, 188
+  orig: 313, 203
+  offset: 0, 3
+  index: -1
+ui_shengji_03
+  rotate: false
+  xy: 2, 803
+  size: 312, 200
+  orig: 313, 203
+  offset: 0, 3
+  index: -1
+ui_shengji_04
+  rotate: false
+  xy: 2, 396
+  size: 307, 202
+  orig: 313, 203
+  offset: 5, 1
+  index: -1
+ui_shengji_05
+  rotate: false
+  xy: 313, 601
+  size: 300, 200
+  orig: 313, 203
+  offset: 8, 3
+  index: -1
+ui_shengji_06
+  rotate: false
+  xy: 316, 803
+  size: 301, 200
+  orig: 313, 203
+  offset: 7, 3
+  index: -1
+ui_shengji_07
+  rotate: false
+  xy: 2, 192
+  size: 307, 202
+  orig: 313, 203
+  offset: 6, 1
+  index: -1
+ui_shengji_08
+  rotate: false
+  xy: 2, 2
+  size: 303, 188
+  orig: 313, 203
+  offset: 9, 0
+  index: -1
+ui_shengji_09
+  rotate: false
+  xy: 619, 619
+  size: 295, 194
+  orig: 313, 203
+  offset: 10, 0
+  index: -1
+ui_shengji_10
+  rotate: false
+  xy: 615, 419
+  size: 278, 198
+  orig: 313, 203
+  offset: 24, 0
+  index: -1
+ui_shengji_11
+  rotate: true
+  xy: 311, 369
+  size: 229, 175
+  orig: 313, 203
+  offset: 35, 5
+  index: -1
+ui_shengji_12
+  rotate: false
+  xy: 311, 244
+  size: 96, 123
+  orig: 313, 203
+  offset: 92, 55
+  index: -1

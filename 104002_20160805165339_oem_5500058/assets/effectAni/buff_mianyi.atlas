@@ -1,0 +1,26 @@
+
+buff_mianyi.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+buff_mianyi_di
+  rotate: false
+  xy: 89, 2
+  size: 79, 21
+  orig: 79, 21
+  offset: 0, 0
+  index: -1
+buff_mianyi_qiangzhaozi
+  rotate: false
+  xy: 2, 10
+  size: 85, 100
+  orig: 85, 100
+  offset: 0, 0
+  index: -1
+buff_mianyi_ruozhaozi
+  rotate: true
+  xy: 89, 25
+  size: 85, 99
+  orig: 85, 100
+  offset: 0, 0
+  index: -1
