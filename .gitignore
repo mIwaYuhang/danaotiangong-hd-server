@@ -1,0 +1,23 @@
+# 仓库根目录忽略规则（server/ 与 server/muip-web/ 下另有各自的 .gitignore）
+
+# Node 依赖：任何位置的 node_modules 都不提交，靠 package.json + package-lock.json 还原
+node_modules/
+npm-debug.log*
+
+# Python 缓存与虚拟环境
+__pycache__/
+*.py[cod]
+.venv/
+
+# 运行时存档
+*.sqlite3
+*.sqlite3-*
+
+# 构建产物 / 派生数据（可重新生成）
+server/muip-web/dist/
+server/data/static/
+
+# 系统与编辑器杂项
+.DS_Store
+Thumbs.db
+*.apk

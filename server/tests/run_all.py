@@ -12,7 +12,8 @@
     v5  小黑屋 / 神器殿 / 宝石 / 排行榜
     v6  仙盟核心
     v7  天书洞 / 天命 / 大闹天宫 / 寻访
-    v8  仙盟商店 / 魔族巢穴 / 留言板 / 仙桃 / 百万猎命 / 诸神之战
+    v8  仙盟商店 / 魔族巢穴 / 留言板 / 仙桃 / 百万猎命 / 诸神之战 / 战三清
+    muip GM 服务：登录、玩家检索与修改、发放、邮件、封禁、公告、静态页
 """
 import re
 import subprocess
@@ -24,7 +25,10 @@ HERE = Path(__file__).resolve().parent
 
 def main(argv):
     wanted = set(argv) or None
-    scripts = sorted(HERE.glob('smoke_v*.py'), key=lambda p: int(re.search(r'v(\d+)', p.stem).group(1)))
+    def order(path: Path):
+        match = re.search(r'v(\d+)$', path.stem)
+        return (0, int(match.group(1))) if match else (1, 0)
+    scripts = sorted(HERE.glob('smoke_*.py'), key=order)
     failed = []
     for script in scripts:
         tag = script.stem.split('_')[1]

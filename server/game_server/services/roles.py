@@ -12,6 +12,7 @@ from .player_state import PlayerModel, STATE_NO_NICKNAME
 
 STATE_NAME_EXISTS = -1103001
 STATE_BAD_STARTER = -1103007
+STATE_BANNED = -1103008  # GM 封禁：客户端无专用文案，弹出服务端消息
 
 
 class RoleRepository:
@@ -53,6 +54,8 @@ class RoleService:
         if row is None:
             raise BusinessError('请先选择初始英雄并设置昵称', STATE_NO_NICKNAME)
         state = self.model.migrate(json.loads(row['state_json']))
+        if state.get('Banned'):
+            raise BusinessError('该账号已被封禁，如有疑问请联系客服', STATE_BANNED)
         for enricher in self.enrichers:
             enricher(ctx.db, state)
         return RoleContext(db=ctx.db, user=ctx.user, row=row, state=state)

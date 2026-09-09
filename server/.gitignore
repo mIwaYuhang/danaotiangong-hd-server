@@ -11,3 +11,7 @@ dist/
 
 # 由 Lua 导表生成的静态表（可用 python -m game_server.tools.lua_import 重新生成）
 /data/static/
+
+# GM 后台前端依赖与构建产物（muip-web 目录执行 npm install && npm run build 生成）
+/muip-web/node_modules/
+/muip-web/dist/

@@ -1,0 +1,14 @@
+{
+  "_doc": {
+    "listen": "GM 服务监听地址（建议只绑定内网 / 本机）",
+    "token": "GM 登录令牌：前端登录时填写，所有 API 请求需携带 Authorization: Bearer <token>",
+    "webui_dir": "前端构建产物目录（相对本文件所在目录），由 muip-web 执行 npm run build 生成",
+    "search_limit": "玩家搜索最多返回条数",
+    "mail_title": "GM 邮件在客户端显示的发件人名称"
+  },
+  "listen": {"host": "127.0.0.1", "port": 8090},
+  "token": "12345678",
+  "webui_dir": "../../muip-web/dist",
+  "search_limit": 50,
+  "mail_title": "运营团队"
+}

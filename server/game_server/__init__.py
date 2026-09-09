@@ -13,9 +13,13 @@
     ├── services/       业务层：账号、角色、英雄、法宝、背包/商店、招募、战斗、关卡、邮件、活动、任务、争霸、妖王、副本、
     │                   好友、运镖、小黑屋、神器殿、宝石/矿洞、排行榜、仙盟（含商店/魔族/留言板/仙桃）、天书洞、天命、
     │                   大闹天宫、寻访、诸神之战、战三清；玩家目录统一寻址真实玩家与机器人并支持跨玩家读写
-    └── tools/          开发工具：Lua 导表生成静态表
+    ├── tools/          开发工具：Lua 导表生成静态表
+    └── muip/           GM 管理服务（独立进程 ``python -m game_server.muip``）：/api JSON 接口 + 前端静态页
 
-    测试脚本在 ``server/tests/``：``python -B tests/run_all.py`` 依次运行 smoke_v2 … smoke_v8。
+    GM 前端在 ``server/muip-web/``（Vue 3 + Element Plus + Vite）：``npm install && npm run build`` 后由 muip 服务托管；
+    开发时 ``npm run dev`` 会把 /api 转发到本机 GM 服务。令牌与端口见 ``data/config/muip.json``。
+
+    测试脚本在 ``server/tests/``：``python -B tests/run_all.py`` 依次运行 smoke_v2 … smoke_v8 与 smoke_muip。
 
 所有可调参数都放在 ``server/data/config/`` 目录下的 JSON 中，代码中不保留数值默认值。
 """
