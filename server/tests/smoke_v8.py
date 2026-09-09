@@ -105,8 +105,10 @@ def main():
 
         print('\n== 诸神之战 ==')
         home = a.call('/CSBattle/GetCsbattleHomeInfo')['Result']
-        check('阶段 1 报名、三道各 8 种子、甲乙入选', home['CSBattleStatus'] == 1 and len(home['CsbattleRank']) == 24
-              and {s['PlayerName'] for s in home['CsbattleRank'] if s['Type'] == 2} >= {'甲', '乙'}, [(s['Type'], s['PlayerName']) for s in home['CsbattleRank'][:10]])
+        # 时间线：周期起点 +1h 创建；竞拍测试已推进 1 天 → 此刻为第 1 天 +1h（阶段 1：0–3 天）
+        check('阶段 1 报名、三道各 8 种子、乙在人界(≤45)、甲在地界', home['CSBattleStatus'] == 1 and len(home['CsbattleRank']) == 24
+              and '乙' in {s['PlayerName'] for s in home['CsbattleRank'] if s['Type'] == 1}
+              and '甲' in {s['PlayerName'] for s in home['CsbattleRank'] if s['Type'] == 2}, [(s['Type'], s['PlayerName']) for s in home['CsbattleRank'][:10]])
         check('XMHaveTime 为距开战秒数', a.role()['Notify']['XMHaveTime'] > 0)
         check('阶段 1 不能竞猜', a.call('/CSBattle/Gamble', bePlayerId=str(b.user), beServerId='1', goldRolled='1', ingotRolled='0')['State'] != 1)
         clock.advance(3 * 86400)
@@ -122,7 +124,7 @@ def main():
         check('鼓舞：扣 100 元宝得银币、加成 1%', body['State'] == 1 and body['Result']['Reward'][0]['Count'] == 5000
               and a.call('/CSBattle/GetCsbattleHomeInfo')['Result']['Encourage'][1]['PowerAddition'] == 1, body)
         check('重复鼓舞被拒', a.call('/CSBattle/Encouraging', type='2')['State'] != 1)
-        clock.advance(3 * 86400)
+        clock.advance(2 * 86400)  # 第 4 天 → 第 6 天：阶段 4 开战
         home = a.call('/CSBattle/GetCsbattleHomeInfo')['Result']
         check('阶段 4 开战、有 32 强记录、XMHaveTime=0', home['CSBattleStatus'] == 4 and home['IsTop32Exists'] == 1 and a.role()['Notify']['XMHaveTime'] == 0, home['CSBattleStatus'])
         fight = a.call('/CSBattle/GetCSbattleInfo')['Result']
@@ -136,7 +138,7 @@ def main():
         check('待领奖励含名次奖与鼓舞奖', any(r['CSBattleRewardType'] == 2 for r in rewards) and any(r['CSBattleRewardType'] == 1 for r in rewards), rewards)
         body = a.call('/CSBattle/Reward', id=str(rewards[0]['Id']))
         check('领取奖励', body['State'] == 1 and len(a.call('/CSBattle/GetRewardInfo')['Result']) == len(rewards) - 1, body)
-        clock.advance(2 * 86400)
+        clock.advance(2 * 86400)  # 第 8 天：新一届
         home = a.call('/CSBattle/GetCsbattleHomeInfo')['Result']
         check('新一届重置为阶段 1', home['CSBattleStatus'] == 1 and home['IsTop32Exists'] == 0, home['CSBattleStatus'])
     except Exception:
