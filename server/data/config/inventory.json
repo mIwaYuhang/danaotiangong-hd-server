@@ -3,7 +3,7 @@
     "summary": "账本：奖励/消耗条目 {Type, ID, Count} 的结算规则，Type 为 ItemType 枚举值",
     "max_count": "任意资源或物品数量的上限（int32 最大值）",
     "max_operation_count": "单次使用/出售的道具数量上限",
-    "resource_by_type": "直接映射到角色状态字段的资源类型：1 银币 Gold、2 元宝 Ingot、9 体力 Energy、11 培养丹 TrainPill、14 荣誉 Honor、18 阅历 Knowledge、21 VIP经验 VipExp、22 重铸石 RecastStone、25 魂玉 SoulJade、26 威望 Prestige、30 英雄经验池 HeroExp、36 天命经验 DestinyExp、37 天命碎片 DestinyFragment、39 授业经验 LearnExp",
+    "resource_by_type": "直接映射到角色状态字段的资源类型：1 银币 Gold、2 元宝 Ingot、9 体力 Energy、11 培养丹 TrainPill、14 荣誉 Honor、18 阅历 Knowledge、21 VIP经验 VipExp、22 重铸石 RecastStone、25 魂玉 SoulJade、26 威望 Prestige、27 仙盟晶石 UnionCoin、30 英雄经验池 HeroExp、36 天命经验 DestinyExp、37 天命碎片 DestinyFragment、39 授业经验 LearnExp",
     "bag_types": "进入背包 Others 列表并需在静态表中校验存在性的类型 → 静态表名（4 将魂、5 道具、6 材料）",
     "fragment_type": "装备碎片类型（进入 Fragments 列表，校验 BaseFragments）",
     "experience_type": "玩家经验（只能发放）",
@@ -20,7 +20,7 @@
   "max_operation_count": 9999,
   "resource_by_type": {
     "1": "Gold", "2": "Ingot", "9": "Energy", "11": "TrainPill", "14": "Honor", "18": "Knowledge",
-    "21": "VipExp", "22": "RecastStone", "25": "SoulJade", "26": "Prestige", "30": "HeroExp",
+    "21": "VipExp", "22": "RecastStone", "25": "SoulJade", "26": "Prestige", "27": "UnionCoin", "30": "HeroExp",
     "36": "DestinyExp", "37": "DestinyFragment", "39": "LearnExp"
   },
   "bag_types": {"4": "BaseSouls", "5": "BaseProps", "6": "BaseMates"},
@@ -29,7 +29,7 @@
   "hero_type": 7,
   "equip_type": 10,
   "double_exp_type": 16,
-  "resource_fields": ["Gold", "Ingot", "Energy", "MaxEnergy", "Knowledge", "Exp", "NextLvExp", "HeroExp", "TrainPill", "Honor", "SoulJade", "Prestige", "RecastStone", "HaveDoubleExpTime", "LearnExp", "VipLevel", "VipExp", "NextVipExp", "Point"],
+  "resource_fields": ["Gold", "Ingot", "Energy", "MaxEnergy", "Knowledge", "Exp", "NextLvExp", "HeroExp", "TrainPill", "Honor", "SoulJade", "Prestige", "UnionCoin", "RecastStone", "HaveDoubleExpTime", "LearnExp", "VipLevel", "VipExp", "NextVipExp", "Point"],
   "prop_effects": {
     "energy": 6, "double_exp": 8, "exp": 18, "knowledge": 19, "change_name": 25,
     "fix_gift": 27, "random_gift": 26, "potency": 28, "key": 22, "treasure_box": 23,

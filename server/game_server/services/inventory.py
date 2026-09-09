@@ -29,7 +29,7 @@ POSITIVE_DECIMAL = re.compile(r'[1-9][0-9]{0,9}')
 INSUFFICIENT_STATE = {'Ingot': -1108002, 'Gold': -1108001, 'Energy': -1108006}
 RESOURCE_NAMES = {'Ingot': '元宝', 'Gold': '银币', 'Energy': '体力', 'Knowledge': '阅历', 'TrainPill': '培养丹',
                   'HeroExp': '主将经验', 'RecastStone': '重铸石', 'Honor': '荣誉', 'SoulJade': '魂玉',
-                  'Prestige': '威望', 'LearnExp': '授业经验', 'VipExp': 'VIP经验'}
+                  'Prestige': '威望', 'UnionCoin': '晶石', 'LearnExp': '授业经验', 'VipExp': 'VIP经验'}
 UNLIMITED = 9999
 
 

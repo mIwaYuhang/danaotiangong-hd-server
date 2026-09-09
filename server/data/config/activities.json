@@ -48,7 +48,6 @@
   "level_gifts": [
     {"Level": 5, "reward": [{"Type": 1, "ID": 0, "Count": 10000}, {"Type": 9, "ID": 0, "Count": 10}]},
     {"Level": 10, "reward": [{"Type": 2, "ID": 0, "Count": 100}, {"Type": 6, "ID": 200125, "Count": 30}]},
-    {"Level": 14, "reward": [{"Type": 6, "ID": 200125, "Count": 30000},{"Type": 2, "ID": 0, "Count": 5000000}]},
     {"Level": 15, "reward": [{"Type": 1, "ID": 0, "Count": 30000}, {"Type": 5, "ID": 100010, "Count": 2}]},
     {"Level": 20, "reward": [{"Type": 2, "ID": 0, "Count": 200}, {"Type": 6, "ID": 200128, "Count": 50}]},
     {"Level": 25, "reward": [{"Type": 1, "ID": 0, "Count": 50000}, {"Type": 5, "ID": 100009, "Count": 2}]},
@@ -66,7 +65,7 @@
   ],
   "welcome_mail": {
     "content": "欢迎来到大闹天宫！这是一份见面礼，请收下。",
-    "attachments": [{"Type": 1, "ID": 0, "Count": 20000}, {"Type": 5, "ID": 100001, "Count": 2}, {"Type": 6, "ID": 200125, "Count": 200000}]
+    "attachments": [{"Type": 1, "ID": 0, "Count": 20000}, {"Type": 5, "ID": 100001, "Count": 2}, {"Type": 6, "ID": 200125, "Count": 20}]
   },
   "level_up_mail": {
     "levels": [10, 20, 30],

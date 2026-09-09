@@ -253,6 +253,8 @@ class RankingService:
     def __init__(self, model: PlayerModel, directory: PlayerDirectory):
         self.model = model
         self.directory = directory
+        #: ``(db, state) -> 仙盟名``，由组装根注入仙盟服务后填充。
+        self.union_name = lambda db, state: ''
 
     def _rows(self, db):
         rows = []
@@ -263,7 +265,8 @@ class RankingService:
             team = self.model.team(state)
             heroes = state['ownedHeros']
             rows.append(dict(PlayerId=user_id, HeadId=next((h['heroId'] for h in team['groupList'] if h['heroId']), 0),
-                             PlayerName=state['Name'], VipLevel=state.get('VipLevel', 0), Level=state['PLevel'], UnionGroup='',
+                             PlayerName=state['Name'], VipLevel=state.get('VipLevel', 0), Level=state['PLevel'],
+                             UnionGroup=self.union_name(db, state),
                              Power=team['battlePower'], RankChange=0,
                              AverageAdvance=round(sum(h.get('rebirthCount', 0) for h in heroes) / max(1, len(heroes)), 1),
                              MaxAdvanceHero=max(heroes, key=lambda h: h.get('rebirthCount', 0))['heroId'] if heroes else 0))

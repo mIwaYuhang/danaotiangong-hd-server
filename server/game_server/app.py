@@ -50,6 +50,7 @@ from .services.social import FriendService, RefineService, TransportService
 from .services.stages import StageService
 from .services.talisman import TalismanService
 from .services.team import TeamService
+from .services.union import UnionService
 from .storage import Storage
 
 
@@ -77,6 +78,7 @@ class Services:
     artifact: ArtifactService
     gem: GemService
     ranking: RankingService
+    union: UnionService
 
 
 def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Clock, rng: random.Random) -> Services:
@@ -121,9 +123,11 @@ def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Cl
         artifact=ArtifactService(config.features.artifact, model, ledger, engine, clock, directory),
         gem=GemService(config.features.gem, model, ledger, equipment, clock),
         ranking=RankingService(model, directory),
+        union=UnionService(config.features.union, model, ledger, clock, directory, store),
     )
+    services.ranking.union_name = services.union.union_name
     for provider in (services.arena.notify, services.worldboss.notify, services.friends.notify,
-                     services.slave.notify, services.artifact.notify):
+                     services.slave.notify, services.artifact.notify, services.union.notify):
         model.add_notify_provider(provider)
 
     def notify_counts(state):
@@ -163,6 +167,6 @@ class Application:
             limits=config.server.http, token_length=config.auth.token_length,
             role_hooks=[self.services.missions])
 
-    def handle(self, method: str, target: str):
-        """协议入口：返回 ``(状态码, 响应体, Content-Type)``。"""
-        return self.dispatcher.handle(method, target)
+    def handle(self, method: str, target: str, body: bytes = b''):
+        """协议入口：返回 ``(状态码, 响应体, Content-Type)``。POST 表单体会并入业务参数。"""
+        return self.dispatcher.handle(method, target, body)

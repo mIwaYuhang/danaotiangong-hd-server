@@ -53,12 +53,21 @@ class Dispatcher:
 
     # ---- 入口 -------------------------------------------------------------
 
-    def handle(self, method: str, target: str):
+    def handle(self, method: str, target: str, body: bytes = b''):
         path, query = parse_target(target, self.limits)
         if method == 'POST' and path == SERVER_LIST_PATH:
             return 200, self.server_list_blob, 'application/octet-stream'
-        if method != 'GET':
+        if method not in ('GET', 'POST'):
             return 404, NOT_IMPLEMENTED, None
+        if method == 'POST' and body:
+            # 客户端少数接口（仙盟公告、分晶石等）用 application/x-www-form-urlencoded 传长文本：
+            # 表单字段并入业务参数，URL 上的同名参数优先。
+            try:
+                form_text = body.decode('utf-8')
+            except UnicodeDecodeError:
+                raise BadRequest('请求体不是 UTF-8 文本')
+            _, form = parse_target(path + '?' + form_text, self.limits)
+            query = {**form, **query}
         if path == HEALTH_PATH:
             return 200, {'status': 'ok', 'service': 'local-game-server', 'game_url': self.public_url}, None
         try:

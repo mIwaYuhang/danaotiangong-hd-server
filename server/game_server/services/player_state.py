@@ -266,6 +266,7 @@ class PlayerModel:
         """每次加载角色时执行：每日重置、体力恢复、派生字段。"""
         now = self.clock.now()
         today = self.clock.day_key(now)
+        state['LastSeenAt'] = now  # 最近活跃时间：仙盟成员列表等处显示在线/离线时长
         daily = state['Daily']
         if daily.get('day') != today:
             state['Daily'] = {'day': today, 'battles': 0, 'recruits': 0, 'store_buys': {}, 'sign_done': False,
@@ -362,6 +363,6 @@ class PlayerModel:
                     'Recruit', 'TrainPending', 'MysteryStore', 'EnergyUpdatedAt', 'DoubleExpUntil', 'CdUntil',
                     'LevelGiftClaims', 'MissionClaims', 'LocalChapterClaims', 'CreatedAt', '_v', 'FriendRequestCount',
                     'Arena', 'WorldBoss', 'WorldBossRewards', 'Fuben', 'Tower', 'Transport', 'Slave', 'Artifact',
-                    'Gems', 'GemMine'):
+                    'Gems', 'GemMine', 'Union', 'LastSeenAt'):
             view.pop(key, None)
         return view
