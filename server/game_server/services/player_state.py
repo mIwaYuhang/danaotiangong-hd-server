@@ -366,12 +366,14 @@ class PlayerModel:
         view['TalismanTotalCount'] = len(view.get('Talismans', {}))
         # 客户端个人信息面板与系统设置里的“角色ID”读取 PromoterId；与其他玩家查看阵容、加好友时用的 playerid 一致。
         view['PromoterId'] = view.get('ID')
+        # 功能开关（大闹天宫 / 诸神之战 / 寻访 / 仙桃 / 广告）始终以配置为准，老存档也随之更新。
+        view['FunctionOpenControllers'] = thaw(self.config.initial_state['FunctionOpenControllers'])
         view['Notify'] = self.notify(state)
         view['IsOpenDestiny'] = view['Notify'].get('IsOpenDestiny', view.get('IsOpenDestiny', 0))
         for key in ('Talismans', 'NextIds', 'BattleSession', 'Daily', 'Sign', 'Login', 'Mail', 'Counters',
                     'Recruit', 'TrainPending', 'MysteryStore', 'EnergyUpdatedAt', 'DoubleExpUntil', 'CdUntil',
                     'LevelGiftClaims', 'MissionClaims', 'LocalChapterClaims', 'CreatedAt', '_v', 'FriendRequestCount',
                     'Arena', 'WorldBoss', 'WorldBossRewards', 'Fuben', 'Tower', 'Transport', 'Slave', 'Artifact',
-                    'Gems', 'GemMine', 'Union', 'LastSeenAt', 'Sacrifice', 'Destiny', 'Havoc', 'XunFang'):
+                    'Gems', 'GemMine', 'Union', 'LastSeenAt', 'Sacrifice', 'Destiny', 'Havoc', 'XunFang', 'CsBattle'):
             view.pop(key, None)
         return view

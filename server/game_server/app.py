@@ -31,6 +31,7 @@ from .services.account import AccountService
 from .services.activities import ActivityService
 from .services.artifact import ArtifactService, RankingService
 from .services.battle import BattleEngine
+from .services.csbattle import CsBattleService
 from .services.destiny import DestinyService
 from .services.gem import GemService
 from .services.havoc import HavocService
@@ -54,6 +55,7 @@ from .services.stages import StageService
 from .services.talisman import TalismanService
 from .services.team import TeamService
 from .services.union import UnionService
+from .services.union_ext import UnionBoardService, UnionDemonService, UnionStoreService, XiantaoService
 from .services.xunfang import XunFangService
 from .storage import Storage
 
@@ -87,6 +89,11 @@ class Services:
     destiny: DestinyService
     havoc: HavocService
     xunfang: XunFangService
+    union_store: UnionStoreService
+    union_demon: UnionDemonService
+    union_board: UnionBoardService
+    xiantao: XiantaoService
+    csbattle: CsBattleService
 
 
 def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Clock, rng: random.Random) -> Services:
@@ -131,16 +138,21 @@ def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Cl
         artifact=ArtifactService(config.features.artifact, model, ledger, engine, clock, directory),
         gem=GemService(config.features.gem, model, ledger, equipment, clock),
         ranking=RankingService(model, directory),
-        union=UnionService(config.features.union, model, ledger, clock, directory, store),
+        union=(union := UnionService(config.features.union, model, ledger, clock, directory, store)),
+        union_store=UnionStoreService(config.features.union['store'], union, ledger, clock, directory),
+        union_demon=UnionDemonService(config.features.union['demon'], union, model, ledger, engine, clock),
+        union_board=UnionBoardService(config.features.union, union, clock),
+        xiantao=XiantaoService(config.features.union['xiantao'], union, ledger, clock),
         sacrifice=SacrificeService(config.features.sacrifice, model, ledger),
         destiny=DestinyService(config.features.destiny, model, ledger, clock),
         havoc=HavocService(config.features.havoc, model, ledger, engine, clock, directory, store),
         xunfang=XunFangService(config.features.xunfang, model, ledger, clock),
+        csbattle=CsBattleService(config.features.csbattle, model, ledger, engine, clock, directory, store, config.server.realm.name),
     )
     services.ranking.union_name = services.union.union_name
     for provider in (services.arena.notify, services.worldboss.notify, services.friends.notify,
                      services.slave.notify, services.artifact.notify, services.union.notify,
-                     services.destiny.notify, services.havoc.notify):
+                     services.destiny.notify, services.havoc.notify, services.csbattle.notify):
         model.add_notify_provider(provider)
 
     def notify_counts(state):

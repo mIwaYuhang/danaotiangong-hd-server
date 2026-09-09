@@ -289,8 +289,31 @@ def build_router(services, token_length: int) -> Router:
     r.role('/Destiny/ChangeHalo', s.destiny.change_halo, afterLevel=Raw(default=''))
     r.role('/Destiny/ExchangeInfo', s.destiny.exchange_info)
     r.role('/Destiny/Exchange', s.destiny.exchange, exchangeID=Integer(minimum=1), destinyIDs=Raw(default=''))
-    r.role('/Destiny/MillionHunt', s.destiny.million_hunt, type=Raw(default=''))
-    r.role('/Destiny/GetMillionHunt', s.destiny.million_hunt)
+    r.role('/Destiny/MillionHunt', s.destiny.million_hunt, type=Integer(minimum=1, required=False, default=1))
+    r.role('/Destiny/GetMillionHunt', s.destiny.million_claim)
+
+    # ---- 仙盟扩展：商店 / 魔族巢穴 / 留言板 / 仙桃 -----------------------------------------------
+    r.role('/UnionStore/ZhenPinInfo', s.union_store.zhenpin_info)
+    r.role('/UnionStore/BuyZhenPin', s.union_store.buy_zhenpin, index=Integer(minimum=1))
+    r.role('/UnionStore/FixGoodsInfo', s.union_store.fix_goods_info)
+    r.role('/UnionStore/BuyFixGoods', s.union_store.buy_fix_goods, index=Integer(minimum=1))
+    r.role('/UnionStore/GetUnionStoreLst', s.union_store.auction_list)
+    r.role('/UnionStore/Auction', s.union_store.bid, id=Integer(minimum=1), price=Integer(minimum=1))
+    r.role('/UnionDemon/Demons', s.union_demon.list_all)
+    r.role('/UnionDemon/Demon', s.union_demon.detail, demonID=Integer(minimum=1), type=Raw(default=''))
+    r.role('/UnionDemon/DemonKing', s.union_demon.detail, demonKingID=Integer(minimum=1), type=Raw(default=''))
+    r.role('/UnionDemon/Challenge', s.union_demon.challenge, demonID=Integer(minimum=1), type=Integer(default=1, required=False),
+           ri=Raw(default=''), star=Raw(default=''))
+    r.role('/UnionDemon/ChallengeKing', s.union_demon.challenge, demonKingID=Integer(minimum=1), type=Integer(default=1, required=False),
+           ri=Raw(default=''), star=Raw(default=''))
+    r.role('/UnionDemon/GiveUp', s.union_demon.give_up, demonID=Integer(minimum=1))
+    r.role('/UnionDemon/GiveUpKing', s.union_demon.give_up, demonKingID=Integer(minimum=1))
+    r.role('/UnionDemon/Resurgence', s.union_demon.resurgence, demonID=Integer(minimum=1))
+    r.role('/UnionDemon/ResurgenceKing', s.union_demon.resurgence, demonKingID=Integer(minimum=1))
+    r.role('/UnionMessageBoard/GetUnionMes', s.union_board.list_all)
+    r.role('/UnionMessageBoard/AddUnionMes', s.union_board.add, unionContent=Raw(default=''))
+    r.role('/Union/XiantaoInfo', s.xiantao.info)
+    r.role('/Union/EatXiantao', s.xiantao.eat)
 
     # ---- 大闹天宫 -------------------------------------------------------------
     r.role('/XianmoFight/XianmoFightInfo', s.havoc.info)
@@ -311,6 +334,23 @@ def build_router(services, token_length: int) -> Router:
     r.role('/XunFang/GetApprenticeInfo', s.xunfang.apprentice_info, populationID=Integer(minimum=1))
     r.role('/XunFang/ToBeApprentice', s.xunfang.become_apprentice, ID=Integer(minimum=1))
     r.role('/XunFang/ExchangeLearnExp', s.xunfang.exchange, fromMasterID=Integer(minimum=0), toMasterID=Integer(minimum=0), count=Integer(minimum=1))
+
+    # ---- 诸神之战 / 仙魔争霸 -----------------------------------------------------------
+    r.role('/CSBattle/GetCsbattleHomeInfo', s.csbattle.home)
+    r.role('/CSBattle/GetCSbattleInfo', s.csbattle.fight_info, type=Integer(required=False, default=0))
+    r.role('/CSBattle/GetTop32CsbattleReport', s.csbattle.top32, type=Integer(required=False, default=0))
+    r.role('/CSBattle/GetTopTenRankList', s.csbattle.rank_list, type=Integer(minimum=1))
+    r.role('/CSBattle/GetMoreRankInfo', s.csbattle.rank_list, type=Integer(minimum=1))
+    r.role('/CSBattle/GetBattleReport', s.csbattle.battle_reports, PlayerID=Raw(default=''))
+    r.role('/CSBattle/GetBattleLog', s.csbattle.battle_log, id=Raw())
+    r.role('/CSBattle/GetNewTeamInfo', s.csbattle.team_info, playerID=Integer(minimum=1), serverID=Raw(default=''))
+    r.role('/CSBattle/GetGambleHomeInfo', s.csbattle.gamble_info, type=Integer(minimum=1))
+    r.role('/CSBattle/Gamble', s.csbattle.gamble, bePlayerId=Integer(minimum=1), beServerId=Raw(default=''),
+           goldRolled=Integer(minimum=0, required=False, default=0), ingotRolled=Integer(minimum=0, required=False, default=0))
+    r.role('/CSBattle/GetEncourageInfo', s.csbattle.encourage_info, type=Integer(minimum=1))
+    r.role('/CSBattle/Encouraging', s.csbattle.encourage, type=Integer(minimum=1))
+    r.role('/CSBattle/GetRewardInfo', s.csbattle.reward_list)
+    r.role('/CSBattle/Reward', s.csbattle.claim, id=Integer(minimum=1))
 
     # ---- 排行榜 -------------------------------------------------------------
     r.role('/RankList/GetRankList', s.ranking.rank_list, type=Integer(minimum=1))

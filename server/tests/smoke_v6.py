@@ -1,0 +1,129 @@
+"""v6 冒烟：仙盟（创建/列表/申请审批/成员/职位/捐献/建筑/公告 POST/分晶石/退出/解散）。"""
+import base64
+import datetime as dt
+import random
+import shutil
+import sys
+import tempfile
+import traceback
+from pathlib import Path
+from urllib.parse import quote
+
+sys.path.insert(0, str(Path(__file__).parent))
+from smoke_v5 import SERVER_DIR, Player, check, get, PASSED, FAILED  # noqa: E402
+from game_server.app import Application  # noqa: E402
+from game_server.config import load_config  # noqa: E402
+from game_server.services.clock import Clock  # noqa: E402
+
+
+def post(player, path, body: dict, **params):
+    query = '&'.join(f'{k}={quote(str(v), safe="")}' for k, v in dict(user=player.user, session=player.session, version='210',
+                                                                        resource='0', _l='Home', **params).items())
+    raw = '&'.join(f'{k}={quote(str(v), safe="")}' for k, v in body.items()).encode()
+    return player.app.handle('POST', path + '?' + query, raw)[1]
+
+
+def b64(text):
+    return base64.b64encode(text.encode()).decode()
+
+
+def main():
+    config = load_config(SERVER_DIR / 'data')
+    workdir = Path(tempfile.mkdtemp(prefix='gs_v6_'))
+    clock = Clock(config.player.daily_reset_hour)
+    clock.freeze(int(dt.datetime(2026, 9, 9, 10, 0).timestamp()))
+    try:
+        app = Application(config, workdir / 'v6.sqlite3', clock=clock, rng=random.Random(6))
+        a = Player(app, 'dev-a', '甲', 101, 40)
+        b = Player(app, 'dev-b', '乙', 112, 30)
+        c = Player(app, 'dev-c', '丙', 128, 20)
+        a.grant([{'Type': 1, 'ID': 0, 'Count': 600000}])
+
+        check('无仙盟：Notify.IfHaveUnion=0', a.role()['Notify']['IfHaveUnion'] == 0)
+        body = a.call('/Union/GetUnionInfo')
+        check('无仙盟时 GetUnionInfo -1143001', body['State'] == -1143001, body)
+        body = c.call('/Union/CreateUnion', name=b64('丙盟'))
+        check('20 级不能创建 -1143003', body['State'] == -1143003, body)
+        body = a.call('/Union/CreateUnion', name=b64('大闹天宫'))
+        check('创建仙盟：扣 50 万银币、盟主职位', body['State'] == 1 and body['Result']['PositionId'] == 1 and body['Result']['UnionName'] == '大闹天宫'
+              and body['Global']['Consume'][0] == {'Type': 1, 'ID': 0, 'Count': 500000}, body)
+        union_id = body['Result']['UnionId']
+        check('Notify.IfHaveUnion=1', a.role()['Notify']['IfHaveUnion'] == 1 and a.role()['Notify']['UnionStatus'] == 1)
+        body = a.call('/Union/CreateUnion', name=b64('第二个'))
+        check('已有仙盟不能再建 -1143002', body['State'] == -1143002, body)
+
+        lst = b.call('/Union/GetAllUnionList', page='1', count='0')['Result']
+        check('列表含新盟、盟主名', lst['TotalUnionNum'] == 1 and lst['UnionListInfo'][0]['LeaderName'] == '甲' and lst['UnionListInfo'][0]['MaxMemberCount'] == 20, lst)
+        body = b.call('/Union/UnionApply', unionId=str(union_id))
+        check('乙申请（需审批）', body['State'] == 1 and body['Result']['Joined'] == 0, body)
+        check('列表 IsApply=1', b.call('/Union/GetAllUnionList', page='1')['Result']['UnionListInfo'][0]['IsApply'] == 1)
+        check('重复申请 -1143009', b.call('/Union/UnionApply', unionId=str(union_id))['State'] == -1143009)
+        applies = a.call('/Union/GetUnionApplyList')['Result']
+        check('盟主看到申请', applies['ApplyMemberCount'] == 1 and applies['UnionApplyList'][0]['PlayerName'] == '乙', applies)
+        check('盟主红点 bNewApply', a.call('/Union/GetUnionInfo')['Result']['NotifyUnion']['bNewApply'] is True)
+        check('乙无权审批 -1143011', b.call('/Union/JoinUnion', playerId=str(b.user))['State'] == -1143001)
+        body = a.call('/Union/JoinUnion', playerId=str(b.user))
+        check('通过申请', body['State'] == 1, body)
+        info = b.call('/Union/GetUnionInfo')['Result']
+        check('乙已入盟为普通成员', info['PositionId'] == 8 and info['MemberCount'] == 2, info)
+        members = a.call('/Union/GetAllPlayerUnions')['Result']
+        check('成员列表 2 人、盟主在前', members['CurMemberCount'] == 2 and members['PlayerUnionInfoList'][0]['PlayerName'] == '甲'
+              and members['PlayerUnionInfoList'][1]['PlayerId'] == b.user, members)
+        body = a.call('/Union/ChangeUnionPosition', changePlayerId=str(b.user), changePositionId='2')
+        check('任命乙为长老', body['State'] == 1 and b.call('/Union/GetUnionInfo')['Result']['PositionId'] == 2, body)
+
+        temple = a.call('/Union/Xm')['Result']
+        check('神殿信息：3 档、3 次', len(temple['worshipInfos']) == 3 and temple['canWorshipTime'] == 3, temple)
+        body = a.call('/Union/Worship', index='1')
+        check('捐献：扣 50 元宝、得晶石、盟贡献增加', body['State'] == 1 and body['Global']['Consume'][0]['Count'] == 50
+              and body['Result']['Result']['curUnionCoin'] == 220 and a.role()['UnionCoin'] == 110, body)
+        for _ in range(2):
+            a.call('/Union/Worship', index='3')
+        check('每日 3 次用完 -1143004', a.call('/Union/Worship', index='3')['State'] == -1143004)
+        check('日志记录捐献 305', a.call('/Union/GetUnionLogList', type='0')['Result'][0]['Type'] == 305)
+
+        builds = a.call('/Union/GetUnionBuildInfo')['Result']
+        check('建筑 4 座、大厅升级需 1000', len(builds) == 4 and builds[0]['NextNeedCoin'] == 1000 and builds[0]['MaxMember'] == 20, builds)
+        check('贡献不足不能升级', a.call('/Union/Upgrade', type='1')['State'] != 1)
+        for _ in range(3):
+            b.call('/Union/Worship', index='1')
+        clock.advance(86400)
+        for _ in range(3):
+            b.call('/Union/Worship', index='1')
+        check('乙两天捐献 6 次后 bUpgrade', a.call('/Union/GetUnionInfo')['Result']['NotifyUnion']['bUpgrade'] is True, a.call('/Union/GetUnionInfo')['Result'])
+        body = a.call('/Union/Upgrade', type='1')
+        check('升级大厅：仙盟 2 级、人数上限 22', body['State'] == 1 and body['Result']['Level'] == 2 and body['Result']['MaxMember'] == 22
+              and a.call('/Union/GetUnionInfo')['Result']['UnionLv'] == 2, body)
+
+        body = post(a, '/Union/UpdateUnionNotice', {'notice': b64('今晚打Boss')})
+        check('POST 公告', body['State'] == 1 and a.call('/Union/GetUnionInfo')['Result']['Notice'] == '今晚打Boss', body)
+        body = post(b, '/Union/UpdateUnionOutNotice', {'outNotice': b64('欢迎加入')})
+        check('长老 POST 对外宣言', body['State'] == 1 and b.call('/Union/GetAllUnionList', page='1')['Result']['UnionListInfo'][0]['OutNotice'] == '欢迎加入', body)
+        tpuc = a.call('/Union/GetUnionInfo')['Result']['TPUC']
+        body = post(a, '/Union/GiveUnionCoin', {'playerIdList': str(b.user), 'coinCount': '10'})
+        check('分晶石给乙', body['State'] == 1 and body['Result']['TPUC'] == tpuc - 10 and b.role()['UnionCoin'] > 0, body)
+        check('排行榜 UnionGroup 显示盟名', a.call('/RankList/GetRankList', type='1')['Result']['LevelRankResponse'][0]['UnionGroup'] == '大闹天宫')
+
+        check('盟主不能退出 -11430023', a.call('/Union/LeftUnion')['State'] == -11430023)
+        body = b.call('/Union/LeftUnion')
+        check('乙退出、冷却 24h', body['State'] == 1 and b.call('/Union/GetAllUnionList', page='1')['Result']['NextJoinTime'] == 86400, b.call('/Union/GetAllUnionList', page='1'))
+        check('冷却期不能申请 -1143008', b.call('/Union/UnionApply', unionId=str(union_id))['State'] == -1143008)
+        a.call('/Union/ChangeUnionApplyStatus', status='1')
+        c.edit(lambda st: st.update(PLevel=26))
+        body = c.call('/Union/UnionApply', unionId=str(union_id))
+        check('免审直接入盟', body['State'] == 1 and body['Result']['Joined'] == 1 and c.role()['Notify']['IfHaveUnion'] == 1, body)
+        body = a.call('/Union/KickOutUnion', kickPlayerId=str(c.user))
+        check('踢出丙', body['State'] == 1 and c.role()['Notify']['IfHaveUnion'] == 0, body)
+        body = a.call('/Union/DeleteUnion')
+        check('解散仙盟', body['State'] == 1 and a.role()['Notify']['IfHaveUnion'] == 0 and b.call('/Union/GetAllUnionList', page='1')['Result']['TotalUnionNum'] == 0, body)
+    except Exception:
+        traceback.print_exc(); FAILED.append('未捕获异常')
+    finally:
+        shutil.rmtree(workdir, ignore_errors=True)
+    print(f'\n通过 {len(PASSED)}，失败 {len(FAILED)}')
+    if FAILED:
+        print('失败项:', FAILED); sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()

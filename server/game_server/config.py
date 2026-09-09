@@ -1003,6 +1003,7 @@ class FeaturesConfig:
     destiny: Mapping[str, Any]
     havoc: Mapping[str, Any]
     xunfang: Mapping[str, Any]
+    csbattle: Mapping[str, Any]
 
     @classmethod
     def load(cls, section: Section) -> 'FeaturesConfig':
@@ -1039,12 +1040,13 @@ class FeaturesConfig:
         section.section('destiny').integer('platform_size', 1)
         section.section('havoc').integer('daily_times', 1)
         section.section('xunfang').integer('daily_free_visits', 0)
+        section.section('csbattle').integer('seeds_per_type', 2)
         return cls(arena=section.mapping('arena'), worldboss=section.mapping('worldboss'), fuben=section.mapping('fuben'),
                    tower=section.mapping('tower'), refine=section.mapping('refine'), friends=section.mapping('friends'),
                    transport=section.mapping('transport'), slave=section.mapping('slave'),
                    artifact=section.mapping('artifact'), gem=section.mapping('gem'), union=section.mapping('union'),
                    sacrifice=section.mapping('sacrifice'), destiny=section.mapping('destiny'), havoc=section.mapping('havoc'),
-                   xunfang=section.mapping('xunfang'))
+                   xunfang=section.mapping('xunfang'), csbattle=section.mapping('csbattle'))
 
 
 # ---------------------------------------------------------------------------

@@ -49,7 +49,7 @@
     "ArtifactLv": 0,
     "PromoterName": "",
     "PromoterId": "",
-    "FunctionOpenControllers": [],
+    "FunctionOpenControllers": {"IsShowDntg": 1, "IsShowZS": 1, "IsShowXunFang": 1, "IsShowXT": 1, "IsShowAdvertisement": 0},
     "partnerTeam": [],
     "Others": [],
     "Fragments": [],

@@ -356,10 +356,54 @@ class DestinyService:
         block['Destinys'] = [self.view(instance)]
         return Reply({'Destinys': [self.view(instance)]}, block)
 
-    def million_hunt(self, ctx: RoleContext, params) -> dict:
-        data = self._state(ctx.state)
-        counts = data.setdefault('million', {'green': 0, 'blue': 0, 'purple': 0, 'orange': 0, 'fragment': 0, 'exp': 0, 'destiny': 0, 'isGet': 0})
-        return dict(counts)
+    def _million_view(self, data: dict) -> dict:
+        pending = data.get('million') or {'green': 0, 'blue': 0, 'purple': 0, 'orange': 0, 'fragment': 0, 'exp': 0, 'destinys': [], 'isGet': 1}
+        return {k: pending[k] for k in ('green', 'blue', 'purple', 'orange', 'fragment', 'exp', 'isGet')} | \
+               {'destiny': ','.join(str(d) for d in pending['destinys'])}
+
+    def million_hunt(self, ctx: RoleContext, params) -> Reply:
+        """``/Destiny/MillionHunt?type``：一次花大量银币连续猎命；绿/蓝自动转经验，紫/橙保留为天命，结果待领取。"""
+        state = ctx.state
+        data = self._state(state)
+        if data.get('million') and not data['million']['isGet']:
+            raise BusinessError('上次百万猎命的奖励尚未领取')
+        cfg = self.config['million']
+        kind = str(params.get('type') or 1)
+        if kind not in cfg['gold_by_type']:
+            raise BusinessError('猎命档位不存在')
+        outcome = self.ledger.apply(state, consume=[dict(Type=1, ID=0, Count=cfg['gold_by_type'][kind])])
+        data = self._state(state)
+        tally = {'green': 0, 'blue': 0, 'purple': 0, 'orange': 0, 'fragment': 0, 'exp': 0, 'destinys': [], 'isGet': 0}
+        names = {1: 'green', 2: 'blue', 3: 'purple', 4: 'orange'}
+        for _ in range(cfg['hunts_by_type'][kind]):
+            destiny_id = self._random_destiny(cfg['quality_weights'])
+            row = self.template(destiny_id)
+            quality = int(row['quality'])
+            tally[names.get(quality, 'green')] += 1
+            if quality >= cfg['keep_quality_from']:
+                tally['destinys'].append(destiny_id)
+            else:
+                tally['exp'] += int(row['exp'])
+            if self.ledger.rng.random() < cfg['fragment_per_hunt']:
+                tally['fragment'] += 1
+        data['million'] = tally
+        return Reply(self._million_view(data), self.ledger.global_for(state, outcome))
+
+    def million_claim(self, ctx: RoleContext, params) -> Reply:
+        """``/Destiny/GetMillionHunt``：领取百万猎命结果。"""
+        state = ctx.state
+        data = self._state(state)
+        pending = data.get('million')
+        if not pending or pending['isGet']:
+            raise BusinessError('没有可领取的百万猎命奖励')
+        rewards = [dict(Type=TYPE_EXP, ID=0, Count=pending['exp']), dict(Type=TYPE_FRAGMENT, ID=0, Count=pending['fragment'])]
+        outcome = self.ledger.apply(state, rewards=[r for r in rewards if r['Count'] > 0])
+        data = self._state(state)
+        instances = [self._create(state, d) for d in data['million']['destinys']]
+        data['million']['isGet'] = 1
+        block = self.ledger.global_for(state, outcome)
+        block['Destinys'] = [self.view(i) for i in instances]
+        return Reply(self._million_view(data), block)
 
     def notify(self, state: dict) -> dict:
         return {'IsOpenDestiny': 1 if state['PLevel'] >= self.config['open_level'] else 0}
