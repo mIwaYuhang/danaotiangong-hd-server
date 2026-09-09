@@ -95,6 +95,11 @@ class EquipmentModel:
                 instance[attr] = 0
             if attr in feed:
                 instance[attr] = instance.get(attr, 0) + int(feed[attr])
+        gem = instance.get('gem')
+        if gem:
+            for attr in ALL_BATTLE_ATTRS:
+                if gem.get(attr):
+                    instance[attr] = instance.get(attr, 0) + int(gem[attr])
         return instance
 
     def get(self, state: dict, equip_user_id) -> dict:

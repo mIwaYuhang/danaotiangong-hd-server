@@ -200,4 +200,48 @@ def build_router(services, token_length: int) -> Router:
     r.role('/Transport/RobFriends', s.transport.rob_targets)
     r.role('/Transport/Rob', s.transport.rob, enemyid=Raw(default=''), friendIds=Raw(default=''))
     r.role('/TransportLog/GetPlayerTransportLogList', s.transport.logs, page=Raw(default=''))
+
+    # ---- 小黑屋 -------------------------------------------------------------
+    r.role('/Darkhouse/Darkhouse', s.slave.home)
+    r.role('/Darkhouse/RandomCaptur', s.slave.candidates)
+    r.role('/Darkhouse/EnemyList', s.slave.candidates, page=Raw(default=''))
+    r.role('/Darkhouse/CatchCapture', s.slave.capture, location=Integer(minimum=1), capturePlayerID=Integer(minimum=1),
+           isUseProp=Raw(default='0'), ri=Raw(default=''), star=Raw(default=''))
+    r.role('/Darkhouse/GainPart', s.slave.gain, location=Integer(minimum=1))
+    r.role('/Darkhouse/BleedWhite', s.slave.bleed, location=Integer(minimum=1))
+    r.role('/Darkhouse/GetAll', s.slave.get_all, location=Integer(minimum=1))
+    r.role('/Darkhouse/Drive', s.slave.drive)
+    r.role('/Darkhouse/Revolt', s.slave.revolt, ri=Raw(default=''), star=Raw(default=''))
+    r.role('/Darkhouse/GFriendList', s.slave.rescue_list)
+    r.role('/Darkhouse/SaveFriend', s.slave.rescue, friendID=Integer(minimum=1), ri=Raw(default=''), star=Raw(default=''))
+    r.role('/Darkhouse/ReortList', s.slave.reports)
+
+    # ---- 神器殿 -------------------------------------------------------------
+    r.role('/Artifacthall/Info', s.artifact.info)
+    r.role('/Artifacthall/Perfusion', s.artifact.perfusion)
+    r.role('/Artifacthall/BeRobbed', s.artifact.be_robbed_candidates, fragmentID=Integer(minimum=1))
+    r.role('/Artifacthall/Rob', s.artifact.rob, fragmentID=Integer(minimum=1), beRobbedPlayerID=Integer(minimum=1),
+           type=Integer(default=1, required=False), ri=Raw(default=''), star=Raw(default=''))
+    r.role('/Artifacthall/RobTen', s.artifact.rob_ten, number=Integer(default=10, required=False))
+    r.role('/Artifacthall/Battlereport', s.artifact.battle_reports)
+    r.role('/Artifacthall/Revenge', s.artifact.revenge, id=Integer(minimum=1), ri=Raw(default=''), star=Raw(default=''))
+
+    # ---- 宝石与矿洞 -----------------------------------------------------------
+    r.role('/Gem/Gems', s.gem.list_all)
+    r.role('/Gem/Change', s.gem.inlay, talismanID=Integer(minimum=1), gemID=Integer(minimum=1))
+    r.role('/Gem/Unloading', s.gem.unload, talismanID=Integer(minimum=1))
+    r.role('/Gem/Synthetic', s.gem.synthetic, ids=Raw(default=''))
+    r.role('/Gem/SyntheticAll', s.gem.synthetic_all)
+    r.role('/Gem/PutAll', s.gem.put_all)
+    r.role('/Gem/Sell', s.gem.sell, ids=Raw(default=''))
+    r.role('/Gem/Buy', s.gem.buy, id=Integer(minimum=1), level=Integer(minimum=1), count=Integer(minimum=1))
+    r.role('/Gem/GemMineInfo', s.gem.mine_info)
+    r.role('/Gem/GetGem', s.gem.mine_collect)
+    r.role('/Gem/Preview', s.gem.mine_preview)
+    r.role('/Gem/BuyGoldHoe', s.gem.buy_hoe)
+
+    # ---- 排行榜 -------------------------------------------------------------
+    r.role('/RankList/GetRankList', s.ranking.rank_list, type=Integer(minimum=1))
+    r.role('/RankList/ConsumeRank', s.ranking.consume_rank)
+    r.role('/ActivityCommonlog/rank', s.ranking.consume_rank, type=Raw(default=''))
     return r

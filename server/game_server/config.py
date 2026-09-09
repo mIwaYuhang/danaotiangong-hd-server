@@ -995,6 +995,9 @@ class FeaturesConfig:
     refine: Mapping[str, Any]
     friends: Mapping[str, Any]
     transport: Mapping[str, Any]
+    slave: Mapping[str, Any]
+    artifact: Mapping[str, Any]
+    gem: Mapping[str, Any]
 
     @classmethod
     def load(cls, section: Section) -> 'FeaturesConfig':
@@ -1021,9 +1024,14 @@ class FeaturesConfig:
             level.integer('storeLevel', 1); level.integer('score', 0)
             for buff in level.sections('buffs'):
                 buff.integer('index', 1); buff.integer('addtionProperty', 1); buff.number('addtionRate', 0)
+        slave, artifact, gem = section.section('slave'), section.section('artifact'), section.section('gem')
+        slave.integers('cage_unlock_levels', 1); slave.integer('daily_free_captures', 0); slave.integer('hold_seconds', 1)
+        artifact.integer('max_step', 1); artifact.integer('daily_rob_times', 1); artifact.number('rob_success_chance', 0, 1)
+        gem.integer('max_level', 1); gem.numbers_by_int_key('base_value_by_shape'); gem.integer('bag_capacity', 1)
         return cls(arena=section.mapping('arena'), worldboss=section.mapping('worldboss'), fuben=section.mapping('fuben'),
                    tower=section.mapping('tower'), refine=section.mapping('refine'), friends=section.mapping('friends'),
-                   transport=section.mapping('transport'))
+                   transport=section.mapping('transport'), slave=section.mapping('slave'),
+                   artifact=section.mapping('artifact'), gem=section.mapping('gem'))
 
 
 # ---------------------------------------------------------------------------

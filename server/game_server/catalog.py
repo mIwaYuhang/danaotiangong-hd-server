@@ -24,7 +24,7 @@ import re
 from .errors import StaticDataError
 
 #: 源文件名（不含扩展名），与 ``tools/lua_import.py`` 共用。
-SOURCE_NAMES = ['taskType', 'hero', 'equip', 'item', 'map', 'task', 'fuben'] + [f'npcs/npc{i}' for i in range(1, 16)]
+SOURCE_NAMES = ['taskType', 'hero', 'equip', 'item', 'map', 'task', 'fuben', 'ShenQi'] + [f'npcs/npc{i}' for i in range(1, 16)]
 #: NPC 分片表名。
 NPC_SHARDS = [f'BaseNPCs{i}' for i in range(1, 16)]
 MANIFEST_VERSION = 1

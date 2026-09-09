@@ -35,10 +35,36 @@ class PlayerModel:
         self.clock = clock
         self._notify_providers = []
         self._level_up_listeners = []
+        self._team_bonus_providers = []
+        self._addition_providers = []
 
     def add_notify_provider(self, provider):
         """注册 ``provider(state) -> dict``，用于填充 Notify 红点计数。"""
         self._notify_providers.append(provider)
+
+    def add_team_bonus_provider(self, provider):
+        """注册 ``provider(state) -> {属性名: 数值}``：对全部英雄生效的固定属性加成（神器、祭坛等）。"""
+        self._team_bonus_providers.append(provider)
+
+    def add_addition_provider(self, name: str, provider):
+        """注册 ``attributeAddition`` 的一个分节：``provider(state) -> 分节内容或 None``。"""
+        self._addition_providers.append((name, provider))
+
+    def team_bonus(self, state: dict) -> dict:
+        total = {}
+        for provider in self._team_bonus_providers:
+            for attr, value in (provider(state) or {}).items():
+                total[attr] = total.get(attr, 0) + value
+        return total
+
+    def attribute_addition(self, state: dict) -> dict:
+        """角色的 ``attributeAddition``：各系统提供的加成分节（客户端“属性加成”面板）。"""
+        result = {}
+        for name, provider in self._addition_providers:
+            section = provider(state)
+            if section is not None:
+                result[name] = section
+        return result
 
     def add_level_up_listener(self, listener):
         """注册 ``listener(state, old_level, new_level)``，玩家升级时回调。"""
@@ -66,15 +92,19 @@ class PlayerModel:
         state['ownedHeros'].append(hero)
         return self.refresh_hero(state, hero)
 
-    def refresh_hero(self, state: dict, hero: dict) -> dict:
+    def refresh_hero(self, state: dict, hero: dict, team_bonus: dict = None) -> dict:
         equipped = self.equipment.equipped_by(state, hero['heroId'])
-        return self.heroes.refresh(hero, self.equipment.bonus_for_hero(state, hero['heroId']),
-                                   [deepcopy(x) for x in equipped])
+        bonus = dict(self.equipment.bonus_for_hero(state, hero['heroId']))
+        for attr, value in (self.team_bonus(state) if team_bonus is None else team_bonus).items():
+            bonus[attr] = bonus.get(attr, 0) + value
+        return self.heroes.refresh(hero, bonus, [deepcopy(x) for x in equipped])
 
     def refresh_all(self, state: dict):
+        bonus = self.team_bonus(state)
         for hero in state['ownedHeros']:
-            self.refresh_hero(state, hero)
+            self.refresh_hero(state, hero, bonus)
         state['team'] = self.team(state)
+        state['attributeAddition'] = self.attribute_addition(state)
 
     def team_heroes(self, state: dict) -> list:
         return sorted((h for h in state['ownedHeros'] if h.get('battleIx', 0) > 0), key=lambda h: h['battleIx'])
@@ -187,7 +217,8 @@ class PlayerModel:
                          'mail_read': 0},
             'Recruit': {'last_free': {}, 'orange_counter': 0},
             'TrainPending': {}, 'MysteryStore': None, 'partnerTeam': [], 'Talismans': {}, 'NextIds': {'equip': 0},
-            'BattleSession': None,
+            'BattleSession': None, 'Gems': {},
+            'GemMine': {'since': self.clock.now(), 'hoe_until': 0, 'hoe_count': 0},
         }
         for key, value in defaults.items():
             state.setdefault(key, value)
@@ -324,10 +355,13 @@ class PlayerModel:
             view['team'] = dict(view['team'], groupList=[
                 by_position.get(pos, empty_slot(pos)) for pos in range(1, self.config.team_slots + 1)])
         view['TalismanTotalCount'] = len(view.get('Talismans', {}))
+        # 客户端个人信息面板与系统设置里的“角色ID”读取 PromoterId；与其他玩家查看阵容、加好友时用的 playerid 一致。
+        view['PromoterId'] = view.get('ID')
         view['Notify'] = self.notify(state)
         for key in ('Talismans', 'NextIds', 'BattleSession', 'Daily', 'Sign', 'Login', 'Mail', 'Counters',
                     'Recruit', 'TrainPending', 'MysteryStore', 'EnergyUpdatedAt', 'DoubleExpUntil', 'CdUntil',
                     'LevelGiftClaims', 'MissionClaims', 'LocalChapterClaims', 'CreatedAt', '_v', 'FriendRequestCount',
-                    'Arena', 'WorldBoss', 'WorldBossRewards', 'Fuben', 'Tower', 'Transport'):
+                    'Arena', 'WorldBoss', 'WorldBossRewards', 'Fuben', 'Tower', 'Transport', 'Slave', 'Artifact',
+                    'Gems', 'GemMine'):
             view.pop(key, None)
         return view

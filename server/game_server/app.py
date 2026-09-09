@@ -29,7 +29,9 @@ from .protocol.dispatcher import Dispatcher
 from .protocol.routes import build_router
 from .services.account import AccountService
 from .services.activities import ActivityService
+from .services.artifact import ArtifactService, RankingService
 from .services.battle import BattleEngine
+from .services.gem import GemService
 from .services.clock import Clock
 from .services.dungeons import FubenService, TowerService
 from .services.equipment import EquipmentModel
@@ -43,6 +45,7 @@ from .services.players import Friendships, PlayerDirectory, RealmStore
 from .services.pvp import ArenaService, WorldBossService
 from .services.recruitment import RecruitmentService
 from .services.roles import RoleRepository, RoleService
+from .services.slave import SlaveService
 from .services.social import FriendService, RefineService, TransportService
 from .services.stages import StageService
 from .services.talisman import TalismanService
@@ -70,6 +73,10 @@ class Services:
     refine: RefineService
     friends: FriendService
     transport: TransportService
+    slave: SlaveService
+    artifact: ArtifactService
+    gem: GemService
+    ranking: RankingService
 
 
 def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Clock, rng: random.Random) -> Services:
@@ -110,10 +117,14 @@ def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Cl
         refine=RefineService(config.features.refine, model, ledger, equipment),
         friends=friends,
         transport=TransportService(config.features.transport, model, ledger, clock, engine, directory),
+        slave=SlaveService(config.features.slave, model, ledger, engine, clock, directory, friendships),
+        artifact=ArtifactService(config.features.artifact, model, ledger, engine, clock, directory),
+        gem=GemService(config.features.gem, model, ledger, equipment, clock),
+        ranking=RankingService(model, directory),
     )
-    model.add_notify_provider(services.arena.notify)
-    model.add_notify_provider(services.worldboss.notify)
-    model.add_notify_provider(services.friends.notify)
+    for provider in (services.arena.notify, services.worldboss.notify, services.friends.notify,
+                     services.slave.notify, services.artifact.notify):
+        model.add_notify_provider(provider)
 
     def notify_counts(state):
         return {
