@@ -116,14 +116,15 @@ def main():
         check('甲开始运镖', body['State'] == 1 and body['Result']['horseInfos'][0]['PlayerID'] == str(a.user), body)
         info = b.call('/Transport/GetPlayerTransportInfo')['Result']
         check('乙看到甲的镖车', any(h['PlayerID'] == str(a.user) for h in info['horseInfos']), info)
-        targets = b.call('/Transport/RobFriends')['Result']
-        check('可劫目标含甲', targets and targets[0]['Id'] == a.user, targets)
+        helpers = b.call('/Transport/RobFriends')['Result']
+        check('拦截邀请好友含甲', any(h.get('Id') == a.user for h in helpers), helpers)
         body = b.call('/Transport/Rob', enemyid=str(a.user), friendIds='')
         check('劫镖战斗返回战报', body['State'] == 1 and 'battleHeros' in body['Result'], body.get('Result', body))
         if body['Result']['isWin']:
             check('劫镖成功获得银币', body['Global']['Reward'] and body['Global']['Reward'][0]['Type'] == 1, body['Global'])
             check('甲的镖车记录被劫', a.call('/Transport/GetPlayerTransportInfo')['Result']['horseInfos'][0]['BeRobedTime'] == 1)
-        check('劫镖日志', len(b.call('/TransportLog/GetPlayerTransportLogList', page='1')['Result']) == 1)
+            logs = a.call('/TransportLog/GetPlayerTransportLogList', page='1')['Result']
+            check('甲被劫日志 101', logs and logs[0]['Type'] == 101 and 'PN' in logs[0]['Content'], logs)
 
         print('\n== 妖王共享 ==')
         before = a.call('/Worldboss/WorldbossInfo', timeTick='0')['Result']['bossInfos'][0]['leftHp']

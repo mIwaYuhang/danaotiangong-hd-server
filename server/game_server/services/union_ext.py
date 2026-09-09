@@ -11,13 +11,13 @@ import json
 
 from ..config import thaw
 from ..errors import BusinessError
-from .base import Reply, RoleContext, global_block
+from .base import Reply, RoleContext, decode_text, global_block
 from .battle import BattleEngine
 from .clock import Clock
 from .inventory import Ledger
 from .player_state import PlayerModel
 from .players import PlayerDirectory
-from .union import UnionService, DEMON_CAVE, SHOP, LOG_BUY, LOG_AUCTION, ascii_len, decode_text
+from .union import UnionService, DEMON_CAVE, SHOP, LOG_BUY, LOG_AUCTION, ascii_len
 
 STATUS_CLOSED, STATUS_NEED_PREVIOUS, STATUS_OPEN, STATUS_FIGHTING, STATUS_CLEARED = 0, 1, 2, 3, 4
 DEMON_KING_ID = 10
@@ -296,12 +296,14 @@ class UnionDemonService:
         outcome = self.ledger.apply(state, rewards=[r for r in rewards if r['Count'] > 0])
         mine = self._mine(state)
         self.union._save(ctx.db, union)
+        # 客户端 BattleData 把 BattleResult 当作结算 data；GuildResurgenceLayer 读 data.DemonChallenge。
+        demon = {'hp': damage, 'leftHP': node['hp'], 'challengePlayerCoin': self.config['player_coin_per_challenge'],
+                 'challengeGold': int(damage * self.config['gold_per_damage']),
+                 'remainResurgenceTime': self.config['daily_resurgences'] - mine['resurgences'],
+                 'resurgenceGold': self.config['resurgence_gold'], 'resurgenceIngot': self.config['resurgence_ingot'],
+                 'remainChallengeTime': self.config['daily_challenges'] - mine['used'], 'demonState': 0 if killed else 1}
         report.update(total=1, dropList=[], Reward=deepcopy(outcome.rewards),
-                      DemonChallenge={'hp': damage, 'leftHP': node['hp'], 'challengePlayerCoin': self.config['player_coin_per_challenge'],
-                                      'challengeGold': int(damage * self.config['gold_per_damage']),
-                                      'remainResurgenceTime': self.config['daily_resurgences'] - mine['resurgences'],
-                                      'resurgenceGold': self.config['resurgence_gold'], 'resurgenceIngot': self.config['resurgence_ingot'],
-                                      'remainChallengeTime': self.config['daily_challenges'] - mine['used'], 'demonState': 0 if killed else 1})
+                      BattleResult={'DemonChallenge': demon}, DemonChallenge=demon)
         return Reply(report, self.ledger.global_for(state, outcome))
 
     def give_up(self, ctx: RoleContext, params) -> dict:

@@ -11,7 +11,7 @@ HTTP 层只需关心传输：JSON 序列化与状态码由这里给出。
 """
 import json
 import re
-from urllib.parse import quote
+from urllib.parse import parse_qsl, unquote_plus
 import zlib
 
 from ..config import HttpConfig, RealmConfig
@@ -39,41 +39,63 @@ def server_list_payload(realm: RealmConfig, public_url: str) -> dict:
 
 
 MULTIPART_NAME = re.compile(rb'name="([^"]*)"')
-BOUNDARY = re.compile(r'boundary=("?)([^";]+)\1')
-QUERY_SAFE = re.compile(r'^[A-Za-z0-9._~%+-]*$')
+MULTIPART_NAME_BARE = re.compile(rb'name=([^;\r\n]+)')
+BOUNDARY = re.compile(r'boundary\s*=\s*("?)([^";]+)\1', re.I)
 
 
-def form_query(fields: dict) -> str:
-    """把表单字段拼成查询串以复用参数校验。
-
-    客户端在放入 multipart 之前已对值做过 URL 编码（``stringBase64AndUrlEncode``），这类值原样拼接、只解码一次；
-    含有其它字符的值再做一次编码，保证解析后得到原文。
-    """
-    parts = []
-    for key, value in fields.items():
-        parts.append(f'{quote(key, safe="")}={value if QUERY_SAFE.match(value) else quote(value, safe="")}')
-    return '&'.join(parts)
+def _multipart_boundary(body: bytes, content_type: str) -> bytes:
+    match = BOUNDARY.search(content_type or '')
+    if match is not None:
+        return b'--' + match.group(2).encode('utf-8')
+    line = body.lstrip().split(b'\r\n', 1)[0].split(b'\n', 1)[0]
+    if line.startswith(b'--') and len(line) > 2:
+        return line
+    return b''
 
 
-def form_body_as_query(body: bytes, content_type: str) -> str:
-    """把 POST 正文转成查询串：multipart/form-data 逐字段拼接；application/x-www-form-urlencoded 本身就是查询串。"""
-    kind = (content_type or '').split(';')[0].strip().lower()
+def _decode_form_value(raw: str) -> str:
+    """表单值解码一次。客户端常先 Base64 再 URL 编码；未编码的原文保持不变。"""
     try:
-        if kind != 'multipart/form-data':
-            return body.decode('utf-8')
-        match = BOUNDARY.search(content_type)
-        if match is None:
-            raise BadRequest('multipart 请求缺少 boundary')
-        boundary = b'--' + match.group(2).encode('utf-8')
+        return unquote_plus(raw, encoding='utf-8', errors='strict')
+    except UnicodeError:
+        return raw.replace('+', ' ')
+
+
+def parse_form_body(body: bytes, content_type: str) -> dict:
+    """解析 POST 正文为 ``{字段: 字符串}``，不走 URL 解析（避免 #、竖线、尾部 & 被当成非法查询）。
+
+    支持 multipart/form-data 与 application/x-www-form-urlencoded。
+    重复键后者覆盖；空字段名忽略。C++ 层拼表单时常带末尾 ``&``。
+    """
+    if not body:
+        return {}
+    kind = (content_type or '').split(';')[0].strip().lower()
+    boundary = _multipart_boundary(body, content_type)
+    looks_multipart = kind == 'multipart/form-data' or (boundary and body.lstrip().startswith(b'--'))
+    try:
+        if looks_multipart:
+            if not boundary:
+                raise BadRequest('multipart 请求缺少 boundary')
+            fields = {}
+            for part in body.split(boundary)[1:]:
+                if part.strip() in (b'', b'--'):
+                    continue
+                head, sep, value = part.partition(b'\r\n\r\n')
+                if not sep:
+                    head, sep, value = part.partition(b'\n\n')
+                name = MULTIPART_NAME.search(head) or MULTIPART_NAME_BARE.search(head)
+                if name is None:
+                    continue
+                fields[name.group(1).decode('utf-8').strip()] = _decode_form_value(
+                    value.rstrip(b'\r\n').decode('utf-8'))
+            return fields
+        text = body.decode('utf-8')
         fields = {}
-        for part in body.split(boundary)[1:]:
-            if part.strip() in (b'', b'--'):
-                continue
-            head, _, value = part.partition(b'\r\n\r\n')
-            name = MULTIPART_NAME.search(head)
-            if name is not None:
-                fields[name.group(1).decode('utf-8')] = value.rstrip(b'\r\n').decode('utf-8')
-        return form_query(fields)
+        for key, value in parse_qsl(text, keep_blank_values=True, strict_parsing=False,
+                                    encoding='utf-8', errors='replace'):
+            if key:
+                fields[key] = value
+        return fields
     except UnicodeDecodeError:
         raise BadRequest('请求体不是 UTF-8 文本')
 
@@ -116,11 +138,9 @@ class Dispatcher:
             # 客户端用内嵌 WebView 打开公告页：直接返回 HTML（每次读取文件，改公告无需重启）。
             return 200, self.announcement_html(), 'text/html; charset=utf-8'
         if method == 'POST' and body:
-            # 客户端的 POST 接口（加好友留言、仙盟公告、分晶石等）由 quick-cocos2d-x 的 addPOSTValue 发出：
-            # 正文是 multipart/form-data，且 session/version/resource/_l 也放在正文里。
-            # 表单字段并入业务参数并走同一套参数校验，URL 上的同名参数优先。
-            _, form = parse_target(path + '?' + form_body_as_query(body, content_type), self.limits)
-            query = {**form, **query}
+            # 客户端 addPOSTValue：session/version/resource/_l 与公告/留言都在正文。
+            # 直接解析表单，禁止再拼回 URL（#、竖线、末尾 & 会让 parse_target 误报 400）。
+            query = {**parse_form_body(body, content_type), **query}
         if path == HEALTH_PATH:
             return 200, {'status': 'ok', 'service': 'local-game-server', 'game_url': self.public_url}, None
         try:
@@ -140,10 +160,8 @@ class Dispatcher:
         if route.access == PUBLIC:
             return as_reply(route.handler(route.parse(query)))
         user, session = self.credentials(query)
-        unexpected = set(query) - COMMON_PARAMS - set(route.params)
-        if unexpected:
-            raise BadRequest('不支持的业务参数')
-        params = route.parse(query)
+        # 客户端 POST 常带 scene/_l、多余表单键；官方服忽略未知参数，这里只取路由声明的字段。
+        params = route.parse({k: v for k, v in query.items() if k in COMMON_PARAMS or k in route.params})
         with self.storage.transaction() as db:
             self.account.validate_session(db, user, session)
             ctx = SessionContext(db=db, user=user)

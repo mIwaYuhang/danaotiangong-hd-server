@@ -57,13 +57,25 @@ class Text(Param):
 
 
 class Raw(Param):
-    """原样传递给业务层的字符串（业务层自行校验并给出玩家可读的提示）。"""
+    """原样传递给业务层的字符串（业务层自行校验并给出玩家可读的提示）。
 
-    def __init__(self, default=None):
+    客户端 ``stringBase64AndUrlEncode`` 会先 Base64（常见实现按 76 列插入换行）再 URL 编码。
+    解码后中间会留下 CR/LF，这里先去掉再校验，避免公告/留言等字段被误判为非法。
+    """
+
+    def __init__(self, default=None, max_length=2048):
         super().__init__(required=False, default=default)
+        self.max_length = max_length
 
     def convert(self, raw, name):
-        return text(raw, name, 256) if raw else raw
+        if not raw:
+            return raw
+        cleaned = raw.replace('\r', '').replace('\n', '')
+        if len(cleaned) > self.max_length:
+            raise BadRequest('缺失或超长字段: ' + name)
+        if any(ord(c) < 32 or ord(c) == 127 for c in cleaned):
+            raise BadRequest('非法字段: ' + name)
+        return cleaned
 
 
 class Integer(Param):

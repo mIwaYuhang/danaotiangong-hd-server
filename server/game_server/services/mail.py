@@ -7,7 +7,7 @@ ReadingState(0 未读 / 1 已读), HaveAccessory(0/1), IsDealWith(0 未领 / 1 �
 from copy import deepcopy
 
 from ..errors import BusinessError
-from .base import Reply, RoleContext
+from .base import Reply, RoleContext, decode_text
 from .clock import Clock
 from .inventory import Ledger
 
@@ -133,7 +133,7 @@ class MailService:
         target = self.directory.load_state(ctx.db, target_id)
         if target is None:
             raise BusinessError('玩家不存在')
-        self.send_player(target, ctx.state, params.get('mailContent') or params.get('message') or '')
+        self.send_player(target, ctx.state, decode_text(params.get('mailContent') or params.get('message') or ''))
         self.directory.save_state(ctx.db, target_id, target)
         return {}
 

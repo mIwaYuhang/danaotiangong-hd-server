@@ -9,12 +9,11 @@ applies{user_id: 时间}, logs[], created``。
 
 客户端身份判断只看 Notify 的 ``IfHaveUnion``/``UnionStatus``，细粒度红点在 ``GetUnionInfo.NotifyUnion``。
 """
-import base64
 from copy import deepcopy
 import json
 
 from ..errors import BusinessError
-from .base import Reply, RoleContext, global_block
+from .base import Reply, RoleContext, decode_text, global_block
 from .clock import Clock
 from .inventory import Ledger
 from .player_state import PlayerModel
@@ -23,16 +22,6 @@ from .players import PlayerDirectory, RealmStore
 HALL, DEMON_CAVE, TEMPLE, SHOP = 1, 2, 3, 5
 BUILDINGS = (HALL, DEMON_CAVE, TEMPLE, SHOP)
 LOG_UPGRADE, LOG_BUILDING, LOG_BUY, LOG_AUCTION, LOG_WORSHIP, LOG_GIVE_COIN = 301, 302, 303, 304, 305, 306
-
-
-def decode_text(raw: str) -> str:
-    """客户端把名称/公告以 Base64 传输；解码失败时按原文处理。"""
-    if not raw:
-        return ''
-    try:
-        return base64.b64decode(raw, validate=True).decode('utf-8')
-    except Exception:
-        return raw
 
 
 def ascii_len(text: str) -> int:
@@ -97,6 +86,41 @@ class UnionService:
     def _leader_name(self, db, union: dict) -> str:
         leader = next((int(uid) for uid, m in union['members'].items() if m['position'] == self.positions['leader']), None)
         return self.directory.profile(db, leader)['Name'] if leader else ''
+
+    def _member_statue(self, db, user_id: int, position: int):
+        """神殿立绘：``statueAvatarID`` 必须是 ``BaseHeros`` 里的主将 ID，0 会让客户端 ``getHeroGroupWeaponId`` 报错，整页空白。"""
+        try:
+            profile = self.directory.profile(db, user_id)
+        except BusinessError:
+            return None
+        avatar = int(profile.get('Avatar') or 0)
+        if avatar <= 0:
+            return None
+        rebirth = 0
+        other = self.directory.load_state(db, user_id)
+        if other is not None:
+            heroes = self.model.team_heroes(other)
+            if heroes:
+                rebirth = int(heroes[0].get('rebirthCount') or 0)
+        names = {1: '盟主', 2: '长老', 3: '长老', 4: '青龙护法', 5: '白虎护法', 6: '朱雀护法', 7: '玄武护法', 8: '普通成员'}
+        return {'positionName': names.get(position, '普通成员'), 'statueName': profile['Name'],
+                'statueAvatarID': avatar, 'breakthroughCount': rebirth}
+
+    def _statues(self, db, union: dict) -> list:
+        members = [(int(uid), m['position']) for uid, m in union['members'].items()]
+        order = []
+        leader = next((uid for uid, pos in members if pos == self.positions['leader']), None)
+        if leader:
+            order.append((leader, self.positions['leader']))
+        for uid, pos in members:
+            if pos in self.positions['elders']:
+                order.append((uid, pos))
+        statues = []
+        for uid, pos in order:
+            item = self._member_statue(db, uid, pos)
+            if item:
+                statues.append(item)
+        return statues
 
     def _info(self, ctx: RoleContext, union: dict) -> dict:
         me = union['members'][str(ctx.user)]
@@ -395,11 +419,11 @@ class UnionService:
 
     def _temple(self, ctx: RoleContext, union: dict) -> dict:
         used = self._player(ctx.state)['worship']['used']
-        leader = self._leader_name(ctx.db, union)
         return {'additionRate': f"{union['buildings'][str(TEMPLE)] * 10}%", 'xmTempleLv': union['buildings'][str(TEMPLE)],
-                'canWorshipTime': max(0, self.config['daily_worship_times'] - used), 'curUnionCoin': union['coin'],
+                'canWorshipTime': max(0, self.config['daily_worship_times'] - used),
+                'curUnionCoin': int(ctx.state.get('UnionCoin') or 0),
                 'isWorship': 1 if used < self.config['daily_worship_times'] else 0,
-                'statueInfos': [{'positionName': '盟主', 'statueName': leader, 'statueAvatarID': 0, 'breakthroughCount': 0}],
+                'statueInfos': self._statues(ctx.db, union),
                 'worshipInfos': [dict(o) for o in self.config['worship_options']]}
 
     def temple(self, ctx: RoleContext, params) -> dict:
@@ -427,7 +451,7 @@ class UnionService:
         gained = int(option['unionCoin'] * bonus)
         union['coin'] += gained
         union['tpuc'] += int(gained * self.config['worship_tpuc_ratio'])
-        self._log(union, LOG_WORSHIP, {'NowTPName': ctx.state['Name'], 'UCoin': gained})
+        self._log(union, LOG_WORSHIP, {'PN': ctx.state['Name'], 'UCoin': gained})
         self._save(ctx.db, union)
         return Reply({'Result': self._temple(ctx, union), 'Reward': deepcopy(outcome.rewards)}, self.ledger.global_for(ctx.state, outcome))
 

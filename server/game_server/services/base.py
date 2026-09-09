@@ -1,7 +1,35 @@
 """业务处理函数共用的上下文与回复类型。"""
+import base64
 from dataclasses import dataclass, field
 import json
 from typing import Any, Optional
+from urllib.parse import unquote
+
+
+def _b64_text(raw: str):
+    compact = ''.join(raw.split())
+    return base64.b64decode(compact, validate=True).decode('utf-8')
+
+
+def decode_text(raw: str) -> str:
+    """客户端把名称/留言/公告以 Base64 传输；解码失败时按原文处理。
+
+    Lua 先 Base64 再 URL 编码；Android 表单层有时会再编一次，解析后仍可能残留 ``%2B``。
+    ``crypto.encodeBase64`` 常按 76 列换行，校验前先去掉空白。
+    """
+    if not raw:
+        return ''
+    try:
+        return _b64_text(raw)
+    except Exception:
+        pass
+    try:
+        undone = unquote(raw, encoding='utf-8', errors='strict')
+        if undone != raw:
+            return _b64_text(undone)
+    except Exception:
+        pass
+    return raw
 
 
 @dataclass

@@ -135,7 +135,7 @@ def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Cl
         tower=TowerService(config.features.tower, model, ledger, engine, clock),
         refine=RefineService(config.features.refine, model, ledger, equipment),
         friends=friends,
-        transport=TransportService(config.features.transport, model, ledger, clock, engine, directory),
+        transport=TransportService(config.features.transport, model, ledger, clock, engine, directory, friendships),
         slave=SlaveService(config.features.slave, model, ledger, engine, clock, directory, friendships),
         artifact=ArtifactService(config.features.artifact, model, ledger, engine, clock, directory),
         gem=GemService(config.features.gem, model, ledger, equipment, clock),

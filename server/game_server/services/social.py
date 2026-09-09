@@ -6,16 +6,22 @@
 运镖：召唤/刷新马匹、选择目的地开始运镖、到时或提前结束领取银币；地图上显示其他玩家在途的镖车，可劫镖（与对方阵容战斗）。
 """
 from copy import deepcopy
+import json
 import math
 
 from ..config import thaw
 from ..errors import BusinessError
-from .base import Reply, RoleContext, global_block
+from .base import Reply, RoleContext, decode_text, global_block
 from .battle import BattleEngine, ENEMY_POSITIONS
 from .clock import Clock
 from .inventory import Ledger
 from .player_state import PlayerModel
 from .players import Friendships, PlayerDirectory, ROBOT_BASE
+
+HORSE_NAMES = {1: '木船', 2: '花船', 3: '虎船', 4: '凤船', 5: '龙船'}
+DEST_NAMES = {1: '锁仙殿', 2: '离火岛'}
+DEFAULT_AVATAR = 101
+NPC_ROBOT_OFFSET = 200
 
 
 class RefineService:
@@ -197,7 +203,7 @@ class FriendService:
             self.friendships.accept(ctx.db, ctx.user, friend_id, now)
         else:
             self.directory.profile(ctx.db, friend_id)
-            self.friendships.request(ctx.db, ctx.user, friend_id, params.get('message') or '', now)
+            self.friendships.request(ctx.db, ctx.user, friend_id, decode_text(params.get('message') or ''), now)
         return {}
 
     def accept(self, ctx: RoleContext, params) -> dict:
@@ -259,65 +265,142 @@ class FriendService:
         target = self.directory.load_state(ctx.db, friend_id)
         if target is None:
             raise BusinessError('玩家不存在')
-        self.mail.send_player(target, ctx.state, params.get('message') or '')
+        self.mail.send_player(target, ctx.state, decode_text(params.get('message') or params.get('mailContent') or ''))
         self.directory.save_state(ctx.db, friend_id, target)
         return {}
 
 class TransportService:
     def __init__(self, config, model: PlayerModel, ledger: Ledger, clock: Clock, engine: BattleEngine,
-                 directory: PlayerDirectory):
+                 directory: PlayerDirectory, friendships: Friendships = None):
         self.config = config
         self.model = model
         self.ledger = ledger
         self.clock = clock
         self.engine = engine
         self.directory = directory
+        self.friendships = friendships
 
     def _state(self, state: dict) -> dict:
         tr = state.setdefault('Transport', {'day': '', 'used': 0, 'rob_used': 0, 'refreshes': 0, 'horse': 1,
-                                            'run': None, 'reward': None, 'logs': [], 'unread': 0})
+                                            'run': None, 'reward': None, 'logs': [], 'unread': 0,
+                                            'bless': {'level': 1, 'exp': 0, 'used': {}}, 'npcs': []})
+        tr.setdefault('bless', {'level': 1, 'exp': 0, 'used': {}})
+        tr.setdefault('npcs', [])
         if tr.get('day') != self.clock.day_key():
             tr.update(day=self.clock.day_key(), used=0, rob_used=0, refreshes=0)
+            tr['bless']['used'] = {}
         self._settle(state, tr)
-        return tr
+        return state['Transport']
 
     def _settle(self, state: dict, tr: dict):
         run = tr.get('run')
         if run and self.clock.now() >= run['end']:
             self._finish(state, tr)
 
+    def _pending_reward(self, tr: dict):
+        reward = tr.get('reward')
+        if not isinstance(reward, dict) or 'Gold' not in reward:
+            if reward:
+                tr['reward'] = None
+            return None
+        return reward
+
     def _finish(self, state: dict, tr: dict):
+        """到站结算。``ledger.apply`` 会 deepcopy 后整表写回，必须改回写后的 ``Transport``，否则 run 清不掉，进镖局会反复弹 getReward。"""
         run = tr['run']
-        gold = max(0, run['gold'] - run.get('lost', 0))
-        self.ledger.apply(state, rewards=[dict(Type=1, ID=0, Count=gold)] if gold else [])
-        tr['reward'] = {'BeRobedTime': run.get('robbed', 0), 'LostGold': run.get('lost', 0), 'Gold': gold, 'SurpriseReward': []}
-        self._log(tr, 101, {'gold': gold, 'address': run['address'], 'lost': run.get('lost', 0)})
+        gold = max(0, int(run.get('gold') or 0) - int(run.get('lost') or 0))
+        surprise = []
+        horse_id = int(run.get('horse') or 1)
+        address = int(run.get('address') or 1)
+        horse_cfg = self.config['horses'].get(str(horse_id)) or self.config['horses']['1']
+        if int(horse_cfg.get('HaveSreward') or 0):
+            surprise = [dict(item) for item in self.config.get('surprise_reward') or [{'Type': 2, 'ID': 0, 'Count': 10}]]
+        rewards = ([dict(Type=1, ID=0, Count=gold)] if gold else []) + surprise
+        self.ledger.apply(state, rewards=rewards)
+        tr = state['Transport']
+        tr['reward'] = {'BeRobedTime': int(run.get('robbed') or 0), 'LostGold': int(run.get('lost') or 0),
+                        'Gold': gold, 'SurpriseReward': surprise if surprise else None}
+        if surprise:
+            extra = '、'.join(str(item.get('Count', 0)) for item in surprise)
+            self._log(tr, 103, {'HORSE': HORSE_NAMES.get(horse_id, HORSE_NAMES[1]),
+                                'ADDR': DEST_NAMES.get(address, DEST_NAMES[1]), 'GD': gold, 'EXT': extra})
+        else:
+            self._log(tr, 104, {'HORSE': HORSE_NAMES.get(horse_id, HORSE_NAMES[1]),
+                                'ADDR': DEST_NAMES.get(address, DEST_NAMES[1]), 'GD': gold})
         tr['run'] = None
 
-    @staticmethod
-    def _log(tr: dict, kind: int, content: dict, now: int = 0):
-        import json
-        tr.setdefault('logs', []).insert(0, {'Times': now, 'Content': json.dumps(content, ensure_ascii=False), 'Type': kind})
+    def _log(self, tr: dict, kind: int, content: dict, now: int = 0):
+        tr.setdefault('logs', []).insert(0, {'Times': now or self.clock.now(),
+                                             'Content': json.dumps(content, ensure_ascii=False), 'Type': kind})
         tr['logs'] = tr['logs'][:30]
         tr['unread'] = tr.get('unread', 0) + 1
 
     def _horse_gold(self, state: dict, horse: int) -> int:
         return int(self.config['horses'][str(horse)]['Gold']) + int(self.config['gold_per_level']) * state['PLevel']
 
-    def _horse_list(self, state: dict) -> dict:
-        return {k: dict(Gold=self._horse_gold(state, int(k)), HaveSreward=v['HaveSreward'], CallCost=v['CallCost'])
-                for k, v in self.config['horses'].items()}
+    def _horse_list(self, state: dict) -> list:
+        """JSON 数组，对应客户端 ``HorseLst[1..5]``（对象键 ``\"1\"`` 在 Lua 里取不到）。"""
+        rows = []
+        for index in range(1, 6):
+            item = self.config['horses'][str(index)]
+            rows.append(dict(Gold=self._horse_gold(state, index), HaveSreward=item['HaveSreward'],
+                             CallCost=item['CallCost'], Knowledge=int(item.get('Knowledge') or 0)))
+        return rows
 
-    def _horse_info(self, state: dict, run: dict, robbed_times: int = 0) -> dict:
+    def _dest_list(self) -> list:
+        rows = []
+        for index in (1, 2):
+            dest = self.config['destinations'][str(index)]
+            rows.append({'Times': dest['seconds'] // 60})
+        return rows
+
+    def _avatar(self, state: dict) -> int:
         lead = self.model.team_heroes(state)
-        return dict(HourseType=run['horse'], AdressId=run['address'], HaveTime=Clock.remaining(run['end'], self.clock.now()),
+        hero_id = int(lead[0]['heroId']) if lead else 0
+        return hero_id if hero_id > 0 else DEFAULT_AVATAR
+
+    def _horse_info(self, state: dict, run: dict) -> dict:
+        return dict(HourseType=int(run['horse']), AdressId=int(run['address']),
+                    HaveTime=Clock.remaining(run['end'], self.clock.now()),
                     PlayerID=str(state['ID']), PlayerName=state['Name'], Plv=state['PLevel'],
-                    AvatarId=lead[0]['heroId'] if lead else 0, TotalPower=self.model.team(state)['battlePower'],
+                    AvatarId=self._avatar(state), TotalPower=self.model.team(state)['battlePower'],
                     BeRobedTime=run.get('robbed', 0), TotalCanBeRobedTime=self.config['max_robbed_times'],
                     RobRewardGold=int(run['gold'] * self.config['rob_ratio']))
 
+    def _npc_info(self, npc: dict) -> dict:
+        return dict(HourseType=int(npc['horse']), AdressId=int(npc['address']),
+                    HaveTime=Clock.remaining(npc['end'], self.clock.now()),
+                    PlayerID=str(npc['id']), PlayerName=npc['name'], Plv=npc['level'],
+                    AvatarId=int(npc['avatar'] or DEFAULT_AVATAR), TotalPower=npc['power'],
+                    BeRobedTime=npc.get('robbed', 0), TotalCanBeRobedTime=self.config['max_robbed_times'],
+                    RobRewardGold=int(npc['gold'] * self.config['rob_ratio']))
+
+    def _roll_horse(self) -> int:
+        weights = self.config['horse_weights']
+        return int(self.ledger.rng.choices(list(weights), weights=list(weights.values()), k=1)[0])
+
+    def _refresh_npcs(self, ctx: RoleContext, tr: dict):
+        """地图 NPC 镖车；存在 ``tr.npcs`` 里，劫镖时按 ID 查找。"""
+        now = self.clock.now()
+        count = int(self.config.get('npc_count') or 8)
+        npcs = []
+        for index in range(count):
+            robot_id = ROBOT_BASE + NPC_ROBOT_OFFSET + index + 1
+            try:
+                profile = self.directory.profile(ctx.db, robot_id)
+            except BusinessError:
+                continue
+            horse = 1 + (index % 5)
+            address = 1 if index % 3 else 2
+            dest = self.config['destinations'][str(address)]
+            remain = max(30, int(dest['seconds'] * (0.25 + 0.7 * ((index * 37) % 100) / 100)))
+            gold = int(self._horse_gold(ctx.state, horse) * dest['multiplier'] * 0.6)
+            npcs.append({'id': robot_id, 'name': profile['Name'], 'level': profile['Level'],
+                         'avatar': int(profile.get('Avatar') or DEFAULT_AVATAR), 'power': profile['BattlePower'],
+                         'horse': horse, 'address': address, 'end': now + remain, 'gold': gold, 'robbed': 0, 'lost': 0})
+        tr['npcs'] = npcs
+
     def _others_running(self, db, me: int) -> list:
-        """其他玩家在途的镖车：``[(玩家状态, run)]``。"""
         result = []
         for user_id in self.directory.all_user_ids(db):
             if user_id == me:
@@ -328,21 +411,53 @@ class TransportService:
                 result.append((other, run))
         return result
 
+    def _bless_view(self, bless: dict) -> dict:
+        cfg = self.config.get('bless') or {}
+        level = max(1, int(bless.get('level') or 1))
+        used = bless.get('used') or {}
+        return {'incenseLevel': level, 'curExp': int(bless.get('exp') or 0),
+                'upgradeExp': int(cfg.get('exp_per_level') or 2000) * level,
+                'transportAddition': (level - 1) * int(cfg.get('addition_per_level') or 2),
+                'tenEnable': 0 if used.get('4') else 1, 'hundredEnable': 0 if used.get('5') else 1,
+                'thousandEnable': 0 if used.get('6') else 1}
+
+    def _friend_ids(self, raw) -> list:
+        return [self.ledger.positive(part) for part in str(raw or '').split(',') if part.strip()][:3]
+
+    def _friend_bonus(self, db, my_power: int, friend_ids) -> float:
+        bonus = 0.0
+        for friend_id in friend_ids:
+            try:
+                profile = self.directory.profile(db, friend_id)
+            except BusinessError:
+                continue
+            ratio = profile['BattlePower'] / max(1, my_power) * 0.1
+            bonus += min(0.2, max(0.01, ratio)) * 100
+        return bonus
+
     def info(self, ctx: RoleContext, params) -> dict:
         """``/Transport/GetPlayerTransportInfo``。"""
         state = ctx.state
         tr = self._state(state)
         cfg = self.config
         run = tr.get('run')
-        result = {'HaveTime': Clock.remaining(run['end'], self.clock.now()) if run else (-1 if tr['used'] == 0 and not tr['reward'] else 0),
-                  'HaveTransTime': cfg['daily_transport_times'] - tr['used'], 'HaveRobTime': cfg['daily_rob_times'] - tr['rob_used'],
+        pending = self._pending_reward(tr)
+        have_time = Clock.remaining(run['end'], self.clock.now()) if run else (0 if pending else -1)
+        result = {'HaveTime': have_time,
+                  'HaveTransTime': max(0, cfg['daily_transport_times'] - tr['used']),
+                  'HaveRobTime': max(0, cfg['daily_rob_times'] - tr['rob_used']),
                   'IsHaveUnReadLog': 1 if tr.get('unread') else 0, 'horseInfos': [], 'budgetReward': {}}
         if run:
             result['horseInfos'].append(self._horse_info(state, run))
-            result['budgetReward'] = {'Gold': run['gold'], 'HaveSreward': cfg['horses'][str(run['horse'])]['HaveSreward'], 'Addition': 0}
+            result['budgetReward'] = {'Gold': run['gold'],
+                                      'HaveSreward': cfg['horses'][str(run['horse'])]['HaveSreward'],
+                                      'Addition': int(run.get('addition') or 0)}
         for other, other_run in self._others_running(ctx.db, ctx.user):
             result['horseInfos'].append(self._horse_info(other, other_run))
-        if tr.get('reward'):
+        self._refresh_npcs(ctx, tr)
+        result['horseInfos'].extend(self._npc_info(npc) for npc in tr['npcs']
+                                    if Clock.remaining(npc['end'], self.clock.now()) > 0)
+        if pending:
             result['getReward'] = tr.pop('reward')
         return result
 
@@ -350,15 +465,11 @@ class TransportService:
         state = ctx.state
         tr = self._state(state)
         cfg = self.config
-        return {'HorseType': tr['horse'], 'Blessing': 0, 'HaveTransTime': cfg['daily_transport_times'] - tr['used'],
+        return {'HorseType': tr['horse'], 'Blessing': self._bless_view(tr['bless'])['transportAddition'],
+                'HaveTransTime': max(0, cfg['daily_transport_times'] - tr['used']),
                 'HaveRefreshTime': max(0, cfg['free_refresh_times'] - tr['refreshes']),
                 'RefreshNeedIngot': 0 if tr['refreshes'] < cfg['free_refresh_times'] else cfg['refresh_ingot'],
-                'HorseLst': self._horse_list(state),
-                'AddLst': {k: {'Times': v['seconds'] // 60} for k, v in cfg['destinations'].items()}}
-
-    def _roll_horse(self) -> int:
-        weights = self.config['horse_weights']
-        return int(self.ledger.rng.choices(list(weights), weights=list(weights.values()), k=1)[0])
+                'HorseLst': self._horse_list(state), 'AddLst': self._dest_list()}
 
     def refresh_horse(self, ctx: RoleContext, params) -> Reply:
         tr = self._state(ctx.state)
@@ -390,10 +501,14 @@ class TransportService:
             raise BusinessError('已有镖车在途')
         if tr['used'] + dest['times'] > cfg['daily_transport_times']:
             raise BusinessError('今日运镖次数不足')
+        friends = self._friend_ids(params.get('friendIds'))
+        addition = self._friend_bonus(ctx.db, self.model.team(state)['battlePower'], friends)
+        blessing = self._bless_view(tr['bless'])['transportAddition']
+        gold = int(self._horse_gold(state, tr['horse']) * dest['multiplier'] * (1 + blessing / 100) * (1 + addition / 100))
         tr['used'] += dest['times']
         now = self.clock.now()
         tr['run'] = {'horse': tr['horse'], 'address': params['addresId'], 'start': now, 'end': now + dest['seconds'],
-                     'gold': int(self._horse_gold(state, tr['horse']) * dest['multiplier']), 'robbed': 0, 'lost': 0}
+                     'gold': gold, 'robbed': 0, 'lost': 0, 'addition': int(addition), 'friends': friends}
         tr['horse'] = 1
         return Reply(self.info(ctx, params))
 
@@ -411,16 +526,58 @@ class TransportService:
         return Reply(self.info(ctx, params), self.ledger.global_for(state, outcome))
 
     def bless_info(self, ctx: RoleContext, params) -> dict:
-        return {'incenseLevel': 1, 'curExp': 0, 'upgradeExp': 100, 'transportAddition': 0, 'tenEnable': 1,
-                'hundredEnable': 1, 'thousandEnable': 1}
+        return self._bless_view(self._state(ctx.state)['bless'])
 
-    def bless(self, ctx: RoleContext, params):
-        raise BusinessError('祝福功能尚未开放')
+    def bless(self, ctx: RoleContext, params) -> Reply:
+        """``/Transport/Bless?type``：type 为客户端 ``BlessType`` 4/5/6。"""
+        kind = str(self.ledger.positive(params.get('type') or '0'))
+        options = (self.config.get('bless') or {}).get('types') or {}
+        option = options.get(kind)
+        if option is None:
+            raise BusinessError('香型不存在')
+        tr = self._state(ctx.state)
+        bless = tr['bless']
+        if bless.get('used', {}).get(kind):
+            raise BusinessError('该香今日已上过')
+        consume = [dict(Type=int(option['consume']['Type']), ID=0, Count=int(option['consume']['Count']))]
+        rewards = [dict(Type=18, ID=0, Count=int(option['knowledge']))]
+        outcome = self.ledger.apply(ctx.state, consume=consume, rewards=rewards)
+        tr = self._state(ctx.state)
+        bless = tr['bless']
+        bless.setdefault('used', {})[kind] = 1
+        bless['exp'] = int(bless.get('exp') or 0) + int(option['exp'])
+        cfg = self.config.get('bless') or {}
+        per = int(cfg.get('exp_per_level') or 2000)
+        cap = int(cfg.get('max_level') or 20)
+        while bless['level'] < cap and bless['exp'] >= per * bless['level']:
+            bless['exp'] -= per * bless['level']
+            bless['level'] += 1
+        return Reply(self._bless_view(bless), self.ledger.global_for(ctx.state, outcome))
 
-    def rob_targets(self, ctx: RoleContext, params) -> list:
-        """``/Transport/RobFriends`` / ``/Transport/Friends``：可劫的在途镖车。"""
-        return [dict(Id=other['ID'], Name=other['Name'], Power=self.model.team(other)['battlePower'])
-                for other, run in self._others_running(ctx.db, ctx.user) if run.get('robbed', 0) < self.config['max_robbed_times']]
+    def helpers(self, ctx: RoleContext, params) -> list:
+        """``/Transport/Friends`` 与 ``/Transport/RobFriends``：护送/拦截时可邀请的好友。"""
+        rows = []
+        if self.friendships is None:
+            return rows
+        for friend_id in self.friendships.friends_of(ctx.db, ctx.user):
+            try:
+                profile = self.directory.profile(ctx.db, friend_id)
+            except BusinessError:
+                continue
+            rows.append(dict(Id=friend_id, Name=profile['Name'], Power=profile['BattlePower']))
+        return rows
+
+    def _lookup_cart(self, ctx: RoleContext, enemy_id: int):
+        if self.directory.is_robot(enemy_id):
+            for npc in self._state(ctx.state).get('npcs') or []:
+                if int(npc['id']) == enemy_id and self.clock.now() < npc['end']:
+                    return None, npc
+            raise BusinessError('对方的镖车已到达')
+        other = self.directory.load_state(ctx.db, enemy_id)
+        run = (other or {}).get('Transport', {}).get('run')
+        if not run or self.clock.now() >= run['end']:
+            raise BusinessError('对方的镖车已到达')
+        return other, run
 
     def rob(self, ctx: RoleContext, params) -> Reply:
         """``/Transport/Rob?enemyid``：与对方阵容战斗，胜利夺取镖银的一部分。"""
@@ -429,14 +586,17 @@ class TransportService:
         if tr['rob_used'] >= self.config['daily_rob_times']:
             raise BusinessError('今日劫镖次数已用完')
         enemy_id = self.ledger.positive(params.get('enemyid') or '0')
-        other = self.directory.load_state(db, enemy_id)
-        run = (other or {}).get('Transport', {}).get('run')
-        if not run or self.clock.now() >= run['end']:
-            raise BusinessError('对方的镖车已到达')
+        other, run = self._lookup_cart(ctx, enemy_id)
         if run.get('robbed', 0) >= self.config['max_robbed_times']:
             raise BusinessError('该镖车已被劫过多次')
         allies = [self.engine.hero_unit(h) for h in self.model.team_heroes(state)]
-        enemies = [self.engine.hero_unit(dict(h, battleIx=pos)) for h, pos in zip(self.model.team_heroes(other), ENEMY_POSITIONS)]
+        if other is None:
+            heroes = self.directory.battle_team(db, enemy_id)
+            enemy_name = self.directory.profile(db, enemy_id)['Name']
+        else:
+            heroes = self.model.team_heroes(other)
+            enemy_name = other['Name']
+        enemies = [self.engine.hero_unit(dict(h, battleIx=pos)) for h, pos in zip(heroes, ENEMY_POSITIONS)]
         for unit in enemies:
             unit.side = 1
         report = self.engine.simulate(allies, enemies)
@@ -446,15 +606,17 @@ class TransportService:
             stolen = int(run['gold'] * self.config['rob_ratio'])
             run['robbed'] = run.get('robbed', 0) + 1
             run['lost'] = run.get('lost', 0) + stolen
-            other.setdefault('Transport', {})['run'] = run
-            self._log(other['Transport'], 102, {'robber': state['Name'], 'lost': stolen}, self.clock.now())
-            self.directory.save_state(db, enemy_id, other)
+            if other is not None:
+                other['Transport']['run'] = run
+                self._log(other['Transport'], 101, {'PN': state['Name'], 'GD': stolen}, self.clock.now())
+                self.directory.save_state(db, enemy_id, other)
             rewards = [dict(Type=1, ID=0, Count=stolen)]
-            self._log(tr, 103, {'target': other['Name'], 'gold': stolen}, self.clock.now())
-        else:
-            self._log(tr, 104, {'target': other['Name']}, self.clock.now())
+        elif other is not None:
+            self._log(other['Transport'], 102, {'PN': state['Name']}, self.clock.now())
+            self.directory.save_state(db, enemy_id, other)
         outcome = self.ledger.apply(state, rewards=rewards)
-        report.update(total=1, dropList=[], Reward=deepcopy(outcome.rewards), BattleResult={}, enemy={'Name': other['Name'], 'Vip': 0})
+        report.update(total=1, dropList=[], Reward=deepcopy(outcome.rewards), BattleResult={},
+                      enemy={'Name': enemy_name, 'Vip': 0})
         return Reply(report, self.ledger.global_for(state, outcome))
 
     def logs(self, ctx: RoleContext, params) -> list:

@@ -27,11 +27,20 @@ def b64(text):
     return base64.b64encode(text.encode()).decode()
 
 
+def post_client(player, path, body: dict, **params):
+    """模拟客户端真实 POST：URL 只有 user，正文 urlencoded 且常带末尾 &，_l 为「场景|场景」。"""
+    query = f'user={player.user}'
+    fields = dict(session=player.session, version='210', resource='0', _l='GuildHomeScene|HomeScene', **body, **params)
+    raw = ('&'.join(f'{k}={quote(str(v), safe="")}' for k, v in fields.items()) + '&').encode()
+    return player.app.handle('POST', path + '?' + query, raw, 'application/x-www-form-urlencoded')[1]
+
+
 def post_multipart(player, path, body: dict, **params):
     """模拟 quick-cocos2d-x addPOSTValue：multipart/form-data，session 等也放在正文里。"""
     boundary = '----quickcocos'
+    scene = params.pop('_l', 'Home')
     query = '&'.join(f'{k}={quote(str(v), safe="")}' for k, v in dict(user=player.user, **params).items())
-    fields = dict(body, session=player.session, version='210', resource='0', _l='Home')
+    fields = dict(body, session=player.session, version='210', resource='0', _l=scene)
     raw = ''.join(f'--{boundary}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n' for k, v in fields.items()) + f'--{boundary}--\r\n'
     return player.app.handle('POST', path + '?' + query, raw.encode(), f'multipart/form-data; boundary={boundary}')[1]
 
@@ -83,9 +92,12 @@ def main():
 
         temple = a.call('/Union/Xm')['Result']
         check('神殿信息：3 档、3 次', len(temple['worshipInfos']) == 3 and temple['canWorshipTime'] == 3, temple)
+        check('神殿立绘是真实主将', temple['statueInfos'] and temple['statueInfos'][0]['statueAvatarID'] > 0
+              and temple['statueInfos'][0]['positionName'] == '盟主', temple['statueInfos'])
+        check('我的晶石是玩家 UnionCoin', temple['curUnionCoin'] == a.role()['UnionCoin'], temple)
         body = a.call('/Union/Worship', index='1')
         check('捐献：扣 50 元宝、得晶石、盟贡献增加', body['State'] == 1 and body['Global']['Consume'][0]['Count'] == 50
-              and body['Result']['Result']['curUnionCoin'] == 220 and a.role()['UnionCoin'] == 110, body)
+              and body['Result']['Result']['curUnionCoin'] == 110 and a.role()['UnionCoin'] == 110, body)
         for _ in range(2):
             a.call('/Union/Worship', index='3')
         check('每日 3 次用完 -1143004', a.call('/Union/Worship', index='3')['State'] == -1143004)
@@ -106,12 +118,31 @@ def main():
 
         body = post(a, '/Union/UpdateUnionNotice', {'notice': b64('今晚打Boss')})
         check('POST 公告', body['State'] == 1 and a.call('/Union/GetUnionInfo')['Result']['Notice'] == '今晚打Boss', body)
+        body = post_client(b, '/Union/UpdateUnionOutNotice', {'outNotice': quote(b64('欢迎加入本盟'), safe='.-')})
+        check('客户端真实 POST 对外宣言（URL 仅 user、正文末尾 &、_l 含竖线）',
+              body['State'] == 1 and b.call('/Union/GetAllUnionList', page='1')['Result']['UnionListInfo'][0]['OutNotice'] == '欢迎加入本盟', body)
         body = post(b, '/Union/UpdateUnionOutNotice', {'outNotice': b64('欢迎加入')})
         check('长老 POST 对外宣言', body['State'] == 1 and b.call('/Union/GetAllUnionList', page='1')['Result']['UnionListInfo'][0]['OutNotice'] == '欢迎加入', body)
         body = post_multipart(a, '/Union/UpdateUnionNotice', {'notice': quote(b64('多部分表单+公告'), safe='')})
         check('multipart POST 公告（客户端真实格式，值已 URL 编码）', body['State'] == 1 and a.call('/Union/GetUnionInfo')['Result']['Notice'] == '多部分表单+公告', body)
-        body = post_multipart(a, '/Friend/AddMail', {'message': quote(b64('加个好友'), safe='')}, friendId=str(c.user))
-        check('multipart 加好友申请', body['State'] == 1 and c.call('/Friend/RequestFriends')['Result'][0]['content'] == b64('加个好友'), body)
+        long_notice = '今晚八点准时开打魔族巢穴各位仙友不要迟到准备复活丹'
+        wrapped = '\r\n'.join(b64(long_notice)[i:i + 76] for i in range(0, len(b64(long_notice)), 76))
+        body = post_multipart(a, '/Union/UpdateUnionNotice', {'notice': quote(wrapped, safe='.-')})
+        check('multipart 公告含 Base64 换行（客户端真实编码）', body['State'] == 1 and a.call('/Union/GetUnionInfo')['Result']['Notice'] == long_notice, body)
+        greet = '仰慕大仙久矣，可否加在下为好友？'
+        wrapped = '\r\n'.join(b64(greet)[i:i + 76] for i in range(0, len(b64(greet)), 76))
+        body = post_multipart(a, '/Friend/AddMail', {'message': quote(wrapped, safe='.-')}, friendId=str(c.user),
+                              _l='RecommendListLayer|FriendScene')
+        check('multipart 加好友申请存明文（客户端会原样显示 content）',
+              body['State'] == 1 and c.call('/Friend/RequestFriends')['Result'][0]['content'] == greet,
+              c.call('/Friend/RequestFriends')['Result'])
+        note = '上仙，心里想你直痒痒，联络信息要常发！'
+        wrapped = '\r\n'.join(b64(note)[i:i + 76] for i in range(0, len(b64(note)), 76))
+        body = post_multipart(a, '/Friend/SendMail', {'message': quote(wrapped, safe='.-')}, friendId=str(c.user),
+                              _l='FriendScene|HomeScene')
+        check('multipart 好友留言不报 400', body['State'] == 1, body)
+        mails = c.call('/Mailinfo/GetMailinfoList', index='1', type='3')['Result']['MailList']
+        check('好友邮件正文是明文', any(m['MessageContent'] == note for m in mails), mails)
         tpuc = a.call('/Union/GetUnionInfo')['Result']['TPUC']
         body = post(a, '/Union/GiveUnionCoin', {'playerIdList': str(b.user), 'coinCount': '10'})
         check('分晶石给乙', body['State'] == 1 and body['Result']['TPUC'] == tpuc - 10 and b.role()['UnionCoin'] > 0, body)

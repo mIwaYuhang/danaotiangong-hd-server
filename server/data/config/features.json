@@ -8,7 +8,7 @@
     "tower": "通天塔(/Tower/*)：层数上限、每日挑战次数、三种难度(type)的积分与敌方倍率、每层 NPC 等级曲线、每 5 层奖励、Buff 商店（storeLevel 档、score 价、addtionProperty 属性 ID、addtionRate 加成）、扫荡所需等级/VIP",
     "refine": "炼化炉(/RefiningFurnace/*)：主将/将魂按品质返还魂玉，绿蓝装备返银币、紫橙装备返喂灵石；重生元宝费用按品质与进阶次数",
     "friends": "好友(/Friend/*)：好友上限、每日可领体力次数、推荐的机器人好友",
-    "transport": "运镖(/Transport/*)：每日运镖/劫镖次数、马匹五档银币与召唤费、目的地时长(秒)与倍率、免费刷新次数与付费刷新元宝、提前结束每分钟元宝"
+    "transport": "运镖(/Transport/*)：每日运镖/劫镖次数、马匹五档银币与召唤费、目的地时长(秒)与倍率、免费刷新次数与付费刷新元宝、提前结束每分钟元宝；bless 为上香（客户端 BlessType 4/5/6）；npc_count 为地图机器人镖车数"
   },
   "arena": {
     "robot_count": 200,
@@ -334,7 +334,7 @@
   "transport": {
     "daily_transport_times": 3,
     "daily_rob_times": 5,
-    "horses": {"1": {"Gold": 5000, "HaveSreward": 0, "CallCost": 0}, "2": {"Gold": 8000, "HaveSreward": 0, "CallCost": 0}, "3": {"Gold": 12000, "HaveSreward": 0, "CallCost": 0}, "4": {"Gold": 18000, "HaveSreward": 1, "CallCost": 0}, "5": {"Gold": 30000, "HaveSreward": 1, "CallCost": 50}},
+    "horses": {"1": {"Gold": 5000, "HaveSreward": 0, "CallCost": 0, "Knowledge": 0}, "2": {"Gold": 8000, "HaveSreward": 0, "CallCost": 0, "Knowledge": 0}, "3": {"Gold": 12000, "HaveSreward": 0, "CallCost": 0, "Knowledge": 0}, "4": {"Gold": 18000, "HaveSreward": 1, "CallCost": 0, "Knowledge": 50}, "5": {"Gold": 30000, "HaveSreward": 1, "CallCost": 50, "Knowledge": 100}},
     "horse_weights": {"1": 50, "2": 30, "3": 15, "4": 4, "5": 1},
     "destinations": {"1": {"seconds": 1200, "multiplier": 1.0, "times": 1}, "2": {"seconds": 1800, "multiplier": 2.6, "times": 2}},
     "free_refresh_times": 3,
@@ -343,6 +343,18 @@
     "early_end_ingot_per_minute": 10,
     "gold_per_level": 200,
     "max_robbed_times": 3,
-    "rob_ratio": 0.1
+    "rob_ratio": 0.1,
+    "npc_count": 8,
+    "surprise_reward": [{"Type": 2, "ID": 0, "Count": 10}],
+    "bless": {
+      "exp_per_level": 2000,
+      "addition_per_level": 2,
+      "max_level": 20,
+      "types": {
+        "4": {"consume": {"Type": 1, "Count": 5000}, "exp": 1000, "knowledge": 500},
+        "5": {"consume": {"Type": 2, "Count": 20}, "exp": 3000, "knowledge": 1000},
+        "6": {"consume": {"Type": 2, "Count": 100}, "exp": 5000, "knowledge": 10000}
+      }
+    }
   }
 }

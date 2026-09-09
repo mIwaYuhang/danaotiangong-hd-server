@@ -72,6 +72,8 @@ def main():
         body = a.call('/UnionDemon/Challenge', demonID='1', type='1', ri='1', star='')
         check('挑战魔族返回 DemonChallenge', body['State'] == 1 and 'DemonChallenge' in body['Result'] and body['Result']['DemonChallenge']['hp'] > 0
               and body['Result']['DemonChallenge']['remainChallengeTime'] == 2, body.get('Result', {}).get('DemonChallenge', body))
+        check('DemonChallenge 挂在 BattleResult 供战后结算层读取',
+              (body['Result'].get('BattleResult') or {}).get('DemonChallenge', {}).get('remainResurgenceTime') is not None, body['Result'].get('BattleResult'))
         detail = a.call('/UnionDemon/Demon', demonID='1', type='1')['Result']
         check('伤害榜有甲、血量下降', detail['damageRanks'][0]['name'] == '甲' and detail['leftHPRate'] < 100, detail['damageRanks'])
         if body['Result']['DemonChallenge']['demonState'] != 0:

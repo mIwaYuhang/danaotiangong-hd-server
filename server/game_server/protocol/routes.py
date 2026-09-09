@@ -185,7 +185,8 @@ def build_router(services, token_length: int) -> Router:
     r.role('/Friend/Delete', s.friends.remove, friendId=Raw(default=''))
     r.role('/Friend/Present', s.friends.present, frinendID=Raw(default=''))
     r.role('/Friend/Get', s.friends.get_present, id=Raw(default=''))
-    r.role('/Friend/SendMail', s.friends.send_mail, friendId=Raw(default=''), message=Raw(default=''))
+    r.role('/Friend/SendMail', s.friends.send_mail, friendId=Raw(default=''), message=Raw(default=''),
+           mailContent=Raw(default=''))
 
     # ---- 运镖 -------------------------------------------------------------
     r.role('/Transport/GetPlayerTransportInfo', s.transport.info)
@@ -196,8 +197,8 @@ def build_router(services, token_length: int) -> Router:
     r.role('/Transport/RefreshHorse', s.transport.refresh_horse, type=Raw(default=''))
     r.role('/Transport/Bless', s.transport.bless, type=Raw(default=''))
     r.role('/Transport/BlessInfo', s.transport.bless_info)
-    r.role('/Transport/Friends', s.transport.rob_targets)
-    r.role('/Transport/RobFriends', s.transport.rob_targets)
+    r.role('/Transport/Friends', s.transport.helpers)
+    r.role('/Transport/RobFriends', s.transport.helpers)
     r.role('/Transport/Rob', s.transport.rob, enemyid=Raw(default=''), friendIds=Raw(default=''))
     r.role('/TransportLog/GetPlayerTransportLogList', s.transport.logs, page=Raw(default=''))
 

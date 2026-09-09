@@ -157,18 +157,32 @@ def main():
         check('好友列表空且上限 30', p.call('/Friend/Friends')['Result']['friendCountMax'] == 30)
         check('推荐好友机器人', len(p.call('/Friend/RecommendFriends', name='', level='')['Result']) == 3)
         check('加机器人好友自动同意', p.call('/Friend/AddMail', friendId=str(100000001))['State'] == 1 and len(p.call('/Friend/Friends')['Result']['friendList']) == 1)
+        idle = p.call('/Transport/GetPlayerTransportInfo')['Result']
+        check('空闲 HaveTime=-1 且地图有镖车', idle['HaveTime'] == -1 and len(idle['horseInfos']) >= 8, idle)
+        helpers = p.call('/Transport/Friends')['Result']
+        check('护送好友含已加机器人', any(h.get('Id') == 100000001 and h.get('Power') for h in helpers), helpers)
         sel = p.call('/Transport/GetPlayerTransportSelect')['Result']
-        check('运镖选择：五档马匹', len(sel['HorseLst']) == 5 and sel['HaveTransTime'] == 3, sel)
+        check('运镖选择：五档数组马匹', isinstance(sel['HorseLst'], list) and len(sel['HorseLst']) == 5
+              and 'Gold' in sel['HorseLst'][0] and 'Knowledge' in sel['HorseLst'][0]
+              and isinstance(sel['AddLst'], list) and sel['AddLst'][0]['Times'] == 20
+              and sel['HaveTransTime'] == 3, sel)
+        bless = p.call('/Transport/BlessInfo')['Result']
+        check('上香信息', bless['incenseLevel'] == 1 and bless['tenEnable'] == 1, bless)
+        body = p.call('/Transport/Bless', type='4')
+        check('上十里香', body['State'] == 1 and body['Result']['tenEnable'] == 0, body)
         body = p.call('/Transport/RefreshHorse', type='')
         check('免费刷新马匹', body['State'] == 1 and body['Global']['Consume'] == [], body)
-        body = p.call('/Transport/StartPlayerTransport', addresId='1', friendIds='')
+        body = p.call('/Transport/StartPlayerTransport', addresId='1', friendIds=str(100000001))
         check('开始运镖', body['State'] == 1 and body['Result']['HaveTime'] == 1200 and body['Result']['horseInfos'], body)
         clock.advance(1300)
         gold_before = p.role()['Gold']
         body = p.call('/Transport/GetPlayerTransportInfo')['Result']
         check('到时结算 getReward', body.get('getReward', {}).get('Gold', 0) > 0 and body['HaveTime'] == 0, body)
         check('银币已到账', p.role()['Gold'] > gold_before or True)
-        check('日志', len(p.call('/TransportLog/GetPlayerTransportLogList', page='1')['Result']) == 1)
+        again = p.call('/Transport/GetPlayerTransportInfo')['Result']
+        check('再进镖局不再弹结算', again['HaveTime'] == -1 and 'getReward' not in again, again)
+        logs = p.call('/TransportLog/GetPlayerTransportLogList', page='1')['Result']
+        check('日志 104 含 HORSE/ADDR/GD', logs and logs[0]['Type'] in (103, 104) and 'HORSE' in logs[0]['Content'], logs)
     except Exception:
         traceback.print_exc(); FAILED.append('未捕获异常')
     finally:

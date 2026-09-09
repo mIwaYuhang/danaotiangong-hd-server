@@ -44,6 +44,8 @@ def parse_target(target: str, limits: HttpConfig):
         for key, value in query.items():
             if not key or len(key) > limits.max_query_key_length or len(value) > limits.max_query_value_length:
                 raise BadRequest('参数过长或名称为空')
+    except BadRequest:
+        raise
     except (ValueError, UnicodeError) as exc:
         raise BadRequest('查询参数无效') from exc
     return url.path, query
