@@ -374,6 +374,6 @@ class PlayerModel:
                     'Recruit', 'TrainPending', 'MysteryStore', 'EnergyUpdatedAt', 'DoubleExpUntil', 'CdUntil',
                     'LevelGiftClaims', 'MissionClaims', 'LocalChapterClaims', 'CreatedAt', '_v', 'FriendRequestCount',
                     'Arena', 'WorldBoss', 'WorldBossRewards', 'Fuben', 'Tower', 'Transport', 'Slave', 'Artifact',
-                    'Gems', 'GemMine', 'Union', 'LastSeenAt', 'Sacrifice', 'Destiny', 'Havoc', 'XunFang', 'CsBattle', 'Salary'):
+                    'Gems', 'GemMine', 'Union', 'LastSeenAt', 'Sacrifice', 'Destiny', 'Havoc', 'XunFang', 'CsBattle', 'Salary', 'Sanqing'):
             view.pop(key, None)
         return view

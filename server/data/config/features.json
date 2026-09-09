@@ -222,6 +222,20 @@
     ],
     "encourager_reward": [{"Type": 1, "ID": 0, "Count": 50000}]
   },
+  "sanqing": {
+    "realm_by_level": {"1": [1, 40], "2": [41, 70], "3": [71, 999]},
+    "closed_weekdays": [5, 6],
+    "throne_names": {"1": "太清", "2": "上清", "3": "玉清"},
+    "robot_level_offset": {"1": 5, "2": 3, "3": 0},
+    "chests": [
+      {"type": 1, "wins": 3, "chest": [{"Type": 1, "ID": 0, "Count": 20000}, {"Type": 18, "ID": 0, "Count": 200}]},
+      {"type": 2, "wins": 6, "chest": [{"Type": 1, "ID": 0, "Count": 50000}, {"Type": 11, "ID": 0, "Count": 20}]},
+      {"type": 3, "wins": 0, "chest": [{"Type": 2, "ID": 0, "Count": 100}, {"Type": 22, "ID": 0, "Count": 10}]}
+    ],
+    "win_reward": [{"Type": 1, "ID": 0, "Count": 5000}],
+    "log_limit": 20,
+    "marquee": [{"content": "战三清每周一至周五开放，占领宝座可获丰厚奖励！", "time": 2}]
+  },
   "xunfang": {
     "open_level": 45,
     "population_unlock_levels": {"1": 45, "2": 80, "3": 90, "4": 100},

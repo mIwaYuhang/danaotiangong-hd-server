@@ -103,6 +103,25 @@ def main():
         check('领取：isGet=1、紫橙天命入背包', body['State'] == 1 and body['Result']['isGet'] == 1
               and len(a.call('/Destiny/PlayerDestinys')['Result']) == (len(kept.split(',')) if kept else 0), body)
 
+        print('\n== 战三清 ==')
+        # 当前冻结时刻为周期起点 +1 天 +1h；确保不是周末再测
+        weekday = dt.datetime.fromtimestamp(clock.now()).weekday()
+        if weekday >= 5:
+            clock.advance((7 - weekday) * 86400)
+        check('跑马灯', len(a.call('/Fightsanqing/RotateInfo')['Result']) >= 1)
+        info = a.call('/Fightsanqing/FightsanqingInfo', type='2')['Result']
+        check('魔界三座由机器人占据、我在魔界(50级)、宝箱 3 个未开', len(info['sanqings']) == 3 and info['sanqings'][0]['rank'] == 1
+              and info['myType'] == 2 and [c['state'] for c in info['chests']] == [0, 0, 0], info)
+        check('人界不能挑战', a.call('/Fightsanqing/Fightsanqing', type='1', rank='3', ri='1', star='')['State'] != 1)
+        body = a.call('/Fightsanqing/Fightsanqing', type='2', rank='3', ri='1', star='')
+        check('挑战魔界玉清返回战报', body['State'] == 1 and 'battleHeros' in body['Result'] and body['Result']['enemy']['Name'], body.get('Result', body))
+        if body['Result']['isWin']:
+            info = a.call('/Fightsanqing/FightsanqingInfo', type='2')['Result']
+            check('胜利后占据 3 号宝座、连胜 1', info['sanqings'][2]['playerID'] == a.user and info['sanqings'][2]['continueWinTime'] == 1, info['sanqings'][2])
+            check('已占座不能再挑战', a.call('/Fightsanqing/Fightsanqing', type='2', rank='1', ri='1', star='')['State'] != 1)
+            logs = a.call('/Fightsanqing/Reports', sanqingPlayerID=str(a.user))['Result']
+            check('战报 502 占领', logs and logs[0]['Type'] == 502 and '"G": 2' in logs[0]['Content'], logs)
+
         print('\n== 诸神之战 ==')
         home = a.call('/CSBattle/GetCsbattleHomeInfo')['Result']
         # 时间线：周期起点 +1h 创建；竞拍测试已推进 1 天 → 此刻为第 1 天 +1h（阶段 1：0–3 天）

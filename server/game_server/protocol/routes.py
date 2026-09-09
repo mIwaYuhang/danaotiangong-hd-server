@@ -335,6 +335,13 @@ def build_router(services, token_length: int) -> Router:
     r.role('/XunFang/ToBeApprentice', s.xunfang.become_apprentice, ID=Integer(minimum=1))
     r.role('/XunFang/ExchangeLearnExp', s.xunfang.exchange, fromMasterID=Integer(minimum=0), toMasterID=Integer(minimum=0), count=Integer(minimum=1))
 
+    # ---- 战三清 -------------------------------------------------------------
+    r.role('/Fightsanqing/FightsanqingInfo', s.sanqing.info, type=Integer(minimum=1))
+    r.role('/Fightsanqing/Fightsanqing', s.sanqing.fight, type=Integer(minimum=1), rank=Integer(minimum=1), ri=Raw(default=''), star=Raw(default=''))
+    r.role('/Fightsanqing/RotateInfo', s.sanqing.rotate_info)
+    r.role('/Fightsanqing/ChestInfo', s.sanqing.chest_info, type=Integer(minimum=1), chestType=Integer(minimum=1))
+    r.role('/Fightsanqing/Reports', s.sanqing.reports, sanqingPlayerID=Integer(minimum=1))
+
     # ---- 诸神之战 / 仙魔争霸 -----------------------------------------------------------
     r.role('/CSBattle/GetCsbattleHomeInfo', s.csbattle.home)
     r.role('/CSBattle/GetCSbattleInfo', s.csbattle.fight_info, type=Integer(required=False, default=0))

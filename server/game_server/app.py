@@ -49,6 +49,7 @@ from .services.pvp import ArenaService, WorldBossService
 from .services.recruitment import RecruitmentService
 from .services.roles import RoleRepository, RoleService
 from .services.sacrifice import SacrificeService
+from .services.sanqing import SanqingService
 from .services.slave import SlaveService
 from .services.social import FriendService, RefineService, TransportService
 from .services.stages import StageService
@@ -94,6 +95,7 @@ class Services:
     union_board: UnionBoardService
     xiantao: XiantaoService
     csbattle: CsBattleService
+    sanqing: SanqingService
 
 
 def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Clock, rng: random.Random) -> Services:
@@ -148,8 +150,11 @@ def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Cl
         havoc=HavocService(config.features.havoc, model, ledger, engine, clock, directory, store),
         xunfang=XunFangService(config.features.xunfang, model, ledger, clock),
         csbattle=CsBattleService(config.features.csbattle, model, ledger, engine, clock, directory, store, config.server.realm.name),
+        sanqing=SanqingService(config.features.sanqing, model, ledger, engine, clock, directory, store),
     )
     services.ranking.union_name = services.union.union_name
+    services.sanqing.union_name = lambda db, player_id: ('' if directory.is_robot(player_id) else
+                                                         services.union.union_name(db, directory.load_state(db, player_id) or {}))
     for provider in (services.arena.notify, services.worldboss.notify, services.friends.notify,
                      services.slave.notify, services.artifact.notify, services.union.notify,
                      services.destiny.notify, services.havoc.notify, services.csbattle.notify):
