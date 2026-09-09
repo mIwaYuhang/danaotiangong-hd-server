@@ -27,6 +27,15 @@ def b64(text):
     return base64.b64encode(text.encode()).decode()
 
 
+def post_multipart(player, path, body: dict, **params):
+    """模拟 quick-cocos2d-x addPOSTValue：multipart/form-data，session 等也放在正文里。"""
+    boundary = '----quickcocos'
+    query = '&'.join(f'{k}={quote(str(v), safe="")}' for k, v in dict(user=player.user, **params).items())
+    fields = dict(body, session=player.session, version='210', resource='0', _l='Home')
+    raw = ''.join(f'--{boundary}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n' for k, v in fields.items()) + f'--{boundary}--\r\n'
+    return player.app.handle('POST', path + '?' + query, raw.encode(), f'multipart/form-data; boundary={boundary}')[1]
+
+
 def main():
     config = load_config(SERVER_DIR / 'data')
     workdir = Path(tempfile.mkdtemp(prefix='gs_v6_'))
@@ -99,6 +108,10 @@ def main():
         check('POST 公告', body['State'] == 1 and a.call('/Union/GetUnionInfo')['Result']['Notice'] == '今晚打Boss', body)
         body = post(b, '/Union/UpdateUnionOutNotice', {'outNotice': b64('欢迎加入')})
         check('长老 POST 对外宣言', body['State'] == 1 and b.call('/Union/GetAllUnionList', page='1')['Result']['UnionListInfo'][0]['OutNotice'] == '欢迎加入', body)
+        body = post_multipart(a, '/Union/UpdateUnionNotice', {'notice': quote(b64('多部分表单+公告'), safe='')})
+        check('multipart POST 公告（客户端真实格式，值已 URL 编码）', body['State'] == 1 and a.call('/Union/GetUnionInfo')['Result']['Notice'] == '多部分表单+公告', body)
+        body = post_multipart(a, '/Friend/AddMail', {'message': quote(b64('加个好友'), safe='')}, friendId=str(c.user))
+        check('multipart 加好友申请', body['State'] == 1 and c.call('/Friend/RequestFriends')['Result'][0]['content'] == b64('加个好友'), body)
         tpuc = a.call('/Union/GetUnionInfo')['Result']['TPUC']
         body = post(a, '/Union/GiveUnionCoin', {'playerIdList': str(b.user), 'coinCount': '10'})
         check('分晶石给乙', body['State'] == 1 and body['Result']['TPUC'] == tpuc - 10 and b.role()['UnionCoin'] > 0, body)

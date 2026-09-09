@@ -295,11 +295,17 @@ def run(app, clock):
     check('签到成功', body['State'] == 1 and body['Result']['MonthSignDay'] == 1 and body['Global']['Reward'], body)
     check('重复签到 -1124001', p.call('/SignMonth/SignMonthNew')['State'] == -1124001)
     body = p.call('/PlayerEverydayReward/EveryDayRewarInfo')
-    check('每日征收信息', body['State'] == 1 and body['Result']['Salary']['ToDay'] == 0 and len(body['Result']['GiftBag']) == 3, body)
+    check('每日征收信息：今日可征收 1 次、礼包带 icon/ListCrr', body['State'] == 1 and body['Result']['Salary']['ToDay'] == 1
+          and body['Result']['Salary']['AllDay'] == 7 and len(body['Result']['GiftBag']) == 3
+          and all('icon' in g and 'ListCrr' in g for g in body['Result']['GiftBag']), body)
     body = p.call('/EverydayReward/GetToDayRewar')
-    check('领取征收', body['State'] == 1 and body['Result']['ToDay'] == 1, body)
+    check('领取征收：剩余 0 次、连续 1 天、倒计时', body['State'] == 1 and body['Result']['ToDay'] == 0
+          and body['Result']['ContinuousDay'] == 1 and body['Result']['CountDown'] > 0, body)
     check('重复征收被拒', p.call('/EverydayReward/GetToDayRewar')['State'] == -1131001)
     check('领取每日礼包 1', p.call('/EverydayReward/GetActivity', id='1')['State'] == 1)
+    bag = p.call('/PlayerEverydayReward/EveryDayRewarInfo')['Result']['GiftBag'][0]
+    check('领取后 DayNuber=1 达到 MustDayNuber（客户端据此禁用按钮）', bag['DayNuber'] == 1 and bag['MustDayNuber'] == 1 and bag['MustNumber'] == -1, bag)
+    check('重复领取礼包被拒', p.call('/EverydayReward/GetActivity', id='1')['State'] == -1131001)
     body = p.call('/loginreward/SDHRewards')
     check('七日登录第 1 天可领', body['Result']['GetSverDaysReward'][0]['Status'] == 1 and body['Result']['GetSverDaysReward'][1]['Status'] == 3, body)
     check('领取第 1 天', p.call('/loginreward/getReward', day='1')['State'] == 1)

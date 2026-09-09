@@ -342,7 +342,7 @@ def build_router(services, token_length: int) -> Router:
     r.role('/CSBattle/GetTopTenRankList', s.csbattle.rank_list, type=Integer(minimum=1))
     r.role('/CSBattle/GetMoreRankInfo', s.csbattle.rank_list, type=Integer(minimum=1))
     r.role('/CSBattle/GetBattleReport', s.csbattle.battle_reports, PlayerID=Raw(default=''))
-    r.role('/CSBattle/GetBattleLog', s.csbattle.battle_log, id=Raw())
+    r.role('/CSBattle/GetBattleLog', s.csbattle.battle_log, id=Raw(), ri=Raw(default=''), star=Raw(default=''))
     r.role('/CSBattle/GetNewTeamInfo', s.csbattle.team_info, playerID=Integer(minimum=1), serverID=Raw(default=''))
     r.role('/CSBattle/GetGambleHomeInfo', s.csbattle.gamble_info, type=Integer(minimum=1))
     r.role('/CSBattle/Gamble', s.csbattle.gamble, bePlayerId=Integer(minimum=1), beServerId=Raw(default=''),

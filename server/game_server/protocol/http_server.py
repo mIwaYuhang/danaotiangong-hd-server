@@ -194,7 +194,8 @@ def make_http_server(application, config: ServerConfig, known_paths) -> BoundedH
                     self.reply(400, {'error': 'incomplete_request'})
                     return
                 try:
-                    status, data, content_type = application.handle(self.command, self.path, body)
+                    status, data, content_type = application.handle(self.command, self.path, body,
+                                                                    self.headers.get('Content-Type', ''))
                     if isinstance(data, dict) and type(data.get('State')) is int:
                         self.business_state = data['State']
                     if not content_type:

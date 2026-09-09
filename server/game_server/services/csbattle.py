@@ -115,12 +115,14 @@ class CsBattleService:
                     winner, loser = (attacker, defender) if report['isWin'] else (defender, attacker)
                     winner['KillCount'] += 1
                     log_id = f"{kind}-{len(data['logs']) + 1}"
-                    data['logs'].append({'Id': log_id, 'Type': int(kind), 'IsWin': 1 if report['isWin'] else 0,
+                    # 客户端战报列表读 ``Id``，回放入口读 ``ID``，两者都给。
+                    data['logs'].append({'Id': log_id, 'ID': log_id, 'Type': int(kind), 'IsWin': 1 if report['isWin'] else 0,
                                          **{f'Attack{k}': v for k, v in self._side(attacker, addition).items()},
                                          **{f'Defend{k}': v for k, v in self._side(defender, addition).items()},
                                          'KillCountChange': 1, 'PropertyChange': 0})
-                    data['reports'][log_id] = {'battleHeros': report['battleHeros'], 'battleRecords': report['battleRecords'],
-                                               'isWin': report['isWin'], 'total': 1}
+                    # 回放走通用战斗场景，需要与其它战斗回复相同的外围字段。
+                    report.update(total=1, dropList=[], Reward=[], BattleResult={}, enemy={'Name': defender['PlayerName'], 'Vip': 0})
+                    data['reports'][log_id] = report
             seeds.sort(key=lambda s: (-s['KillCount'], -s['TotalPower']))
             for rank, seed in enumerate(seeds, 1):
                 seed['Rank'] = rank

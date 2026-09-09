@@ -33,6 +33,10 @@ class FubenService:
         today = self.clock.day_key()
         if fuben.get('day') != today:
             fuben.update(day=today, keys=self.config['daily_keys'])
+        # 修补旧存档：早期生成的翻牌奖励里可能还有 ID 为 0 的“随机装备”，客户端查表会崩溃。
+        for entry in fuben['copies'].values():
+            for card in entry.get('cards') or ():
+                self._concrete_card(card)
         return fuben
 
     def _data(self, copy_id: int) -> dict:
@@ -40,6 +44,12 @@ class FubenService:
         if data is None:
             raise BusinessError('副本不存在')
         return data
+
+    def _concrete_card(self, card: dict) -> dict:
+        """翻牌奖励必须是具体物品：客户端用 Type/ID 查名称与图标，装备 ID 为 0（按品质随机）会导致查表失败而崩溃。"""
+        if card.get('Type') == 10 and not card.get('ID'):
+            card['ID'] = self.model.equipment.random_template_id(self.ledger.rng, card.pop('quality', 2))
+        return card
 
     def _rewards_base(self, copy_id: int, star: int) -> dict:
         cfg = self.config
@@ -66,9 +76,21 @@ class FubenService:
     # ---- 接口 -------------------------------------------------------------
 
     def info(self, ctx: RoleContext, params) -> dict:
-        """``/Copy/PlayerCopyInfo``。"""
-        fuben = self._state(ctx.state)
-        copies = [self._view(int(k), v) for k, v in sorted(fuben['copies'].items(), key=lambda kv: int(kv[0]))]
+        """``/Copy/PlayerCopyInfo``。
+
+        客户端按 ``Copys[副本ID]`` 取值：为 ``nil`` 显示“N 级解锁”并禁用入口，因此数组下标必须等于副本 ID，
+        等级未到的殿用 ``null`` 占位；已达等级但从未开启的殿返回一条 ``IsComplete=1`` 的空记录，客户端据此允许用元辰石开启。
+        """
+        state = ctx.state
+        fuben = self._state(state)
+        copies = []
+        for copy_id in sorted(int(k) for k in self.catalog['FubenData']):
+            data = self._data(copy_id)
+            if state['PLevel'] < int(data.get('unlockLevel', 1)):
+                copies.append(None)
+                continue
+            entry = fuben['copies'].get(str(copy_id)) or {'round': None, 'star': 1, 'stars': 0, 'complete': 1, 'cards': None}
+            copies.append(self._view(copy_id, entry))
         return {'Key': fuben['keys'], 'Copys': copies}
 
     def open_copy(self, ctx: RoleContext, params) -> Reply:
@@ -137,7 +159,7 @@ class FubenService:
             entry['round'] = wave
             if wave >= FUBEN_ROUNDS:
                 entry['round'] = None
-                entry['cards'] = [dict(Location=i + 1, Status=0, **{k: v for k, v in thaw(card).items()})
+                entry['cards'] = [dict(Location=i + 1, Status=0, **self._concrete_card(thaw(card)))
                                   for i, card in enumerate(cfg['card_rewards'])]
         outcome = self.ledger.apply(state, rewards=rewards)
         entry = self._entry(state, copy_id)

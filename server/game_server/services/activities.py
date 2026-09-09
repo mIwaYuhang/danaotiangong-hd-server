@@ -17,11 +17,12 @@ SEVEN_CLAIMABLE, SEVEN_CLAIMED, SEVEN_LOCKED = 1, 2, 3
 
 
 class ActivityService:
-    def __init__(self, config: ActivitiesConfig, ledger: Ledger, clock: Clock, events=None):
+    def __init__(self, config: ActivitiesConfig, ledger: Ledger, clock: Clock, events=None, model=None):
         self.config = config
         self.ledger = ledger
         self.clock = clock
         self.events = events
+        self.model = model  # 用于把“按品质随机装备”解析成具体模板
 
     # ---- 签到 -------------------------------------------------------------
 
@@ -63,19 +64,23 @@ class ActivityService:
     # ---- 每日征收 -----------------------------------------------------------
 
     def _salary(self, state: dict) -> dict:
+        """客户端字段：ContinuousDay 已连续征收天数、AllDay 连续目标天数、ToDay 今日剩余次数、CountDown 下次可征收倒计时。"""
         rule = self.config.salary
         level = state['PLevel']
         reward = [dict(Type=1, ID=0, Count=rule['base_gold'] + level * rule['gold_per_level']),
                   dict(Type=18, ID=0, Count=rule['base_knowledge'] + level * rule['knowledge_per_level'])]
-        return {'ContinuousDay': state['Login'].get('days', 1), 'AllDay': state['Login'].get('days', 1),
-                'ToDay': 1 if state['Daily'].get('salary_taken') else 0,
-                'CountDown': self.clock.seconds_until_next_day(), 'Reward': reward}
+        streak = state.setdefault('Salary', {'streak': 0, 'last_day': ''})
+        taken = state['Daily'].get('salary_taken')
+        return {'ContinuousDay': streak['streak'], 'AllDay': rule['streak_target_days'], 'ToDay': 0 if taken else 1,
+                'CountDown': self.clock.seconds_until_next_day() if taken else 0, 'Reward': reward}
 
     def _gift_bags(self, state: dict) -> list:
+        """礼包列表：客户端用 ``icon`` 拼图标路径、用 ``ListCrr`` 展示奖励明细，二者缺失会导致界面崩溃。"""
         bags = []
         for bag in self.config.salary_gift_bags:
             item = {k: v for k, v in thaw(bag).items() if k != 'reward'}
-            item['DayNuber'] = 1 if bag['GifBagID'] in state['Daily'].get('gift_bags', []) else 0
+            item['ListCrr'] = thaw(bag['reward'])
+            item['DayNuber'] = state['Daily'].get('gift_bags', []).count(bag['GifBagID'])  # 今日已领次数
             item['PlayerVipLevel'] = state.get('VipLevel', 0)
             item['PlayerLevel'] = state['PLevel']
             bags.append(item)
@@ -95,8 +100,20 @@ class ActivityService:
         if state['Daily'].get('salary_taken'):
             raise BusinessError('今日已领取', STATE_REWARD_TAKEN)
         info = self._salary(state)
-        outcome = self.ledger.apply(state, rewards=info['Reward'])
+        rewards = list(info['Reward'])
+        streak = state['Salary']
+        yesterday = self.clock.day_key(self.clock.now() - 86400)
+        new_streak = streak['streak'] + 1 if streak['last_day'] == yesterday else 1
+        rule = self.config.salary
+        if new_streak >= rule['streak_target_days']:
+            for extra in thaw(rule['streak_reward']):
+                if extra.get('Type') == 10 and not extra.get('ID'):
+                    extra['ID'] = self.model.equipment.random_template_id(self.ledger.rng, extra.pop('quality', 2))
+                rewards.append(extra)
+            new_streak = 0
+        outcome = self.ledger.apply(state, rewards=rewards)
         state['Daily']['salary_taken'] = True
+        state['Salary'] = {'streak': new_streak, 'last_day': self.clock.day_key()}
         return Reply(self._salary(state), self.ledger.global_for(state, outcome))
 
     def take_gift_bag(self, ctx: RoleContext, params) -> Reply:
@@ -105,12 +122,11 @@ class ActivityService:
         bag = next((b for b in self.config.salary_gift_bags if b['GifBagID'] == params['id']), None)
         if bag is None:
             raise BusinessError('礼包不存在')
-        if bag['GifBagID'] in state['Daily'].get('gift_bags', []):
+        claimed = state['Daily'].get('gift_bags', []).count(bag['GifBagID'])
+        if bag['MustNumber'] == 0 or (bag['MustDayNuber'] > 0 and claimed >= bag['MustDayNuber']):
             raise BusinessError('今日已领取该礼包', STATE_REWARD_TAKEN)
         if state['PLevel'] < bag['MustPlayerLevel'] or state.get('VipLevel', 0) < bag['MustPlayerVipLevel']:
             raise BusinessError('尚未满足领取条件')
-        if state['Login'].get('days', 0) < bag['MustDayNuber']:
-            raise BusinessError('登录天数不足')
         outcome = self.ledger.apply(state, rewards=thaw(bag['reward']))
         state['Daily'].setdefault('gift_bags', []).append(bag['GifBagID'])
         return Reply({}, self.ledger.global_for(state, outcome))

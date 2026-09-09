@@ -104,7 +104,9 @@ def main():
 
         print('\n== 十二元辰殿 ==')
         body = p.call('/Copy/PlayerCopyInfo')['Result']
-        check('元辰石 3', body['Key'] == 3 and body['Copys'] == [], body)
+        check('元辰石 3、Copys 按副本 ID 下标（已解锁殿为可开启的空记录，未解锁为 null）', body['Key'] == 3 and len(body['Copys']) == 12
+              and body['Copys'][0]['CopyID'] == 1 and body['Copys'][0]['IsComplete'] == 1 and body['Copys'][0]['RoundID'] is None
+              and body['Copys'][-1] is None, body)
         body = p.call('/Copy/OpenCopy', copyId='1')
         check('开启子鼠殿', body['State'] == 1 and body['Result']['CopyID'] == 1 and body['Result']['RoundID'] == 0, body)
         body = p.call('/Copy/RefreshStarLevel', copyId='1')

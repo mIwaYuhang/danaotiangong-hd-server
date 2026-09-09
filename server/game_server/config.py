@@ -896,9 +896,11 @@ class ActivitiesConfig:
         sign, salary = section.section('sign_in'), section.section('daily_salary')
         bags = []
         for bag in salary.sections('gift_bags'):
-            for key in ('GifBagID', 'MustPlayerVipLevel', 'MustPlayerLevel', 'MustDayNuber', 'MustNumber'):
+            for key in ('GifBagID', 'MustPlayerVipLevel', 'MustPlayerLevel', 'MustDayNuber'):
                 bag.integer(key, 0)
+            bag.integer('MustNumber', -1)  # 礼包库存，-1 表示不限
             bag.string('Name')
+            bag.string('icon')  # 客户端 libao/ 目录下的图标文件名
             bag.rewards('reward', allow_empty=False)
             bags.append(freeze(bag.data))
         gifts = []
@@ -916,8 +918,10 @@ class ActivitiesConfig:
         return cls(
             sign_rewards=sign.reward_groups('rewards'),
             sign_vip_double_level=sign.integer('vip_double_level', 0),
-            salary=MappingProxyType({k: salary.integer(k, 0) for k in
-                                     ('base_gold', 'gold_per_level', 'base_knowledge', 'knowledge_per_level')}),
+            salary=MappingProxyType({**{k: salary.integer(k, 0) for k in
+                                        ('base_gold', 'gold_per_level', 'base_knowledge', 'knowledge_per_level')},
+                                     'streak_target_days': salary.integer('streak_target_days', 1),
+                                     'streak_reward': salary.rewards('streak_reward')}),
             salary_gift_bags=tuple(bags),
             seven_day_login=section.reward_groups('seven_day_login'),
             level_gifts=tuple(sorted(gifts, key=lambda g: g['Level'])),

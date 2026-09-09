@@ -108,7 +108,7 @@ def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Cl
     friendships = Friendships(realm_id)
     events = MissionEvents()
     mail = MailService(ledger, clock, config.player.initial_state.get('SystemMailName', '系统'), events, directory)
-    activities = ActivityService(config.activities, ledger, clock, events)
+    activities = ActivityService(config.activities, ledger, clock, events, model)
     missions = MissionService(config.missions, ledger, catalog)
     engine = BattleEngine(config.battle, config.hero, catalog, heroes, rng)
     roles = RoleService(repository, model, mail, config.activities.welcome_mail)
@@ -190,8 +190,8 @@ class Application:
             account=self.services.account, roles=self.services.roles,
             realm=config.server.realm, public_url=config.server.public_url,
             limits=config.server.http, token_length=config.auth.token_length,
-            role_hooks=[self.services.missions])
+            role_hooks=[self.services.missions], announcement_file=config.config_dir / 'announcement.html')
 
-    def handle(self, method: str, target: str, body: bytes = b''):
-        """协议入口：返回 ``(状态码, 响应体, Content-Type)``。POST 表单体会并入业务参数。"""
-        return self.dispatcher.handle(method, target, body)
+    def handle(self, method: str, target: str, body: bytes = b'', content_type: str = ''):
+        """协议入口：返回 ``(状态码, 响应体, Content-Type)``。POST 表单体（multipart 或 urlencoded）会并入业务参数。"""
+        return self.dispatcher.handle(method, target, body, content_type)

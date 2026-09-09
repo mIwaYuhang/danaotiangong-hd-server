@@ -10,6 +10,8 @@
 HTTP 层只需关心传输：JSON 序列化与状态码由这里给出。
 """
 import json
+import re
+from urllib.parse import quote
 import zlib
 
 from ..config import HttpConfig, RealmConfig
@@ -21,6 +23,9 @@ from .router import PUBLIC, ROLE, Router
 
 SERVER_LIST_PATH = '/ServerList.aspx'
 HEALTH_PATH = '/health'
+ANNOUNCEMENT_PATH = '/Announcement/Index'
+FALLBACK_ANNOUNCEMENT = '<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>公告</title></head>' \
+                        '<body style="font-family:sans-serif;padding:16px">暂无公告。</body></html>'
 #: 客户端 ``network.lua`` 自动附加的公共参数；``sign`` 为旧签名，当前不校验。
 COMMON_PARAMS = frozenset(('user', 'session', 'serverid', 'sign', 'version', 'resource', '_l', 'deviceToken'))
 NOT_IMPLEMENTED = {'error': 'not_implemented'}
@@ -33,11 +38,53 @@ def server_list_payload(realm: RealmConfig, public_url: str) -> dict:
         'ServerState': realm.state, 'ServerHeat': realm.heat, 'GroupLoad': realm.group_load}]}
 
 
+MULTIPART_NAME = re.compile(rb'name="([^"]*)"')
+BOUNDARY = re.compile(r'boundary=("?)([^";]+)\1')
+QUERY_SAFE = re.compile(r'^[A-Za-z0-9._~%+-]*$')
+
+
+def form_query(fields: dict) -> str:
+    """把表单字段拼成查询串以复用参数校验。
+
+    客户端在放入 multipart 之前已对值做过 URL 编码（``stringBase64AndUrlEncode``），这类值原样拼接、只解码一次；
+    含有其它字符的值再做一次编码，保证解析后得到原文。
+    """
+    parts = []
+    for key, value in fields.items():
+        parts.append(f'{quote(key, safe="")}={value if QUERY_SAFE.match(value) else quote(value, safe="")}')
+    return '&'.join(parts)
+
+
+def form_body_as_query(body: bytes, content_type: str) -> str:
+    """把 POST 正文转成查询串：multipart/form-data 逐字段拼接；application/x-www-form-urlencoded 本身就是查询串。"""
+    kind = (content_type or '').split(';')[0].strip().lower()
+    try:
+        if kind != 'multipart/form-data':
+            return body.decode('utf-8')
+        match = BOUNDARY.search(content_type)
+        if match is None:
+            raise BadRequest('multipart 请求缺少 boundary')
+        boundary = b'--' + match.group(2).encode('utf-8')
+        fields = {}
+        for part in body.split(boundary)[1:]:
+            if part.strip() in (b'', b'--'):
+                continue
+            head, _, value = part.partition(b'\r\n\r\n')
+            name = MULTIPART_NAME.search(head)
+            if name is not None:
+                fields[name.group(1).decode('utf-8')] = value.rstrip(b'\r\n').decode('utf-8')
+        return form_query(fields)
+    except UnicodeDecodeError:
+        raise BadRequest('请求体不是 UTF-8 文本')
+
+
 class Dispatcher:
     def __init__(self, router: Router, storage, account, roles, realm: RealmConfig,
-                 public_url: str, limits: HttpConfig, token_length: int, role_hooks=()):
-        """``role_hooks``：角色接口前后执行的对象列表，需提供 ``snapshot(state)`` 与 ``sync(snapshot, state, reply)``。"""
+                 public_url: str, limits: HttpConfig, token_length: int, role_hooks=(), announcement_file=None):
+        """``role_hooks``：角色接口前后执行的对象列表，需提供 ``snapshot(state)`` 与 ``sync(snapshot, state, reply)``。
+        ``announcement_file``：公告页 HTML 文件路径（客户端 WebView 打开 ``/Announcement/Index``）。"""
         self.router = router
+        self.announcement_file = announcement_file
         self.storage = storage
         self.account = account
         self.roles = roles
@@ -53,20 +100,26 @@ class Dispatcher:
 
     # ---- 入口 -------------------------------------------------------------
 
-    def handle(self, method: str, target: str, body: bytes = b''):
+    def announcement_html(self) -> bytes:
+        try:
+            return self.announcement_file.read_bytes() if self.announcement_file else FALLBACK_ANNOUNCEMENT.encode('utf-8')
+        except OSError:
+            return FALLBACK_ANNOUNCEMENT.encode('utf-8')
+
+    def handle(self, method: str, target: str, body: bytes = b'', content_type: str = ''):
         path, query = parse_target(target, self.limits)
         if method == 'POST' and path == SERVER_LIST_PATH:
             return 200, self.server_list_blob, 'application/octet-stream'
         if method not in ('GET', 'POST'):
             return 404, NOT_IMPLEMENTED, None
+        if path == ANNOUNCEMENT_PATH:
+            # 客户端用内嵌 WebView 打开公告页：直接返回 HTML（每次读取文件，改公告无需重启）。
+            return 200, self.announcement_html(), 'text/html; charset=utf-8'
         if method == 'POST' and body:
-            # 客户端少数接口（仙盟公告、分晶石等）用 application/x-www-form-urlencoded 传长文本：
-            # 表单字段并入业务参数，URL 上的同名参数优先。
-            try:
-                form_text = body.decode('utf-8')
-            except UnicodeDecodeError:
-                raise BadRequest('请求体不是 UTF-8 文本')
-            _, form = parse_target(path + '?' + form_text, self.limits)
+            # 客户端的 POST 接口（加好友留言、仙盟公告、分晶石等）由 quick-cocos2d-x 的 addPOSTValue 发出：
+            # 正文是 multipart/form-data，且 session/version/resource/_l 也放在正文里。
+            # 表单字段并入业务参数并走同一套参数校验，URL 上的同名参数优先。
+            _, form = parse_target(path + '?' + form_body_as_query(body, content_type), self.limits)
             query = {**form, **query}
         if path == HEALTH_PATH:
             return 200, {'status': 'ok', 'service': 'local-game-server', 'game_url': self.public_url}, None
