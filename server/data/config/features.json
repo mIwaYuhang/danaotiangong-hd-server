@@ -160,6 +160,53 @@
     "gold_hoe_seconds": 86400,
     "gold_hoe_multiplier": 2
   },
+  "sacrifice": {
+    "open_level": 35,
+    "max_level": 20,
+    "knowledge_base": 50,
+    "knowledge_growth": 1.25,
+    "value_per_level": {"1": 50, "2": 10, "3": 4, "4": 10, "5": 4, "6": 2, "7": 2, "8": 2, "9": 2, "10": 2, "11": 2, "12": 1}
+  },
+  "destiny": {
+    "open_level": 40,
+    "platform_size": 14,
+    "hunt_gold": 20000,
+    "call_ingot": 50,
+    "daily_calls": 5,
+    "quality_weights_gold": {"1": 60, "2": 30, "3": 9, "4": 1},
+    "quality_weights_ingot": {"1": 20, "2": 45, "3": 30, "4": 5},
+    "max_level": 10,
+    "exchanges": [
+      {"id": 1, "fragment": 10, "quality": 2},
+      {"id": 2, "fragment": 30, "quality": 3},
+      {"id": 3, "fragment": 60, "quality": 4}
+    ]
+  },
+  "havoc": {
+    "open_level": 41,
+    "season_days": 3,
+    "groups": 4,
+    "daily_times": 10,
+    "recover_seconds": 3600,
+    "extra_fight_ingot": 20,
+    "closed_hours": [23],
+    "candidates": 3,
+    "robot_candidates": 3,
+    "log_limit": 20
+  },
+  "xunfang": {
+    "open_level": 45,
+    "population_unlock_levels": {"1": 45, "2": 80, "3": 90, "4": 100},
+    "daily_free_visits": 3,
+    "normal_prop_id": 140010,
+    "high_prop_id": 140011,
+    "high_ingot_base": 50,
+    "high_ingot_step": 10,
+    "high_cards": 5,
+    "card_max_count": 10,
+    "quality_weights": {"1": 50, "2": 30, "3": 15, "4": 5},
+    "front_positions": [1, 2, 3]
+  },
   "union": {
     "create_level": 26,
     "create_gold": 500000,

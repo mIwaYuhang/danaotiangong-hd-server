@@ -36,6 +36,7 @@ class PlayerModel:
         self._notify_providers = []
         self._level_up_listeners = []
         self._team_bonus_providers = []
+        self._hero_bonus_providers = []
         self._addition_providers = []
 
     def add_notify_provider(self, provider):
@@ -45,6 +46,10 @@ class PlayerModel:
     def add_team_bonus_provider(self, provider):
         """注册 ``provider(state) -> {属性名: 数值}``：对全部英雄生效的固定属性加成（神器、祭坛等）。"""
         self._team_bonus_providers.append(provider)
+
+    def add_hero_bonus_provider(self, provider):
+        """注册 ``provider(state, hero) -> {属性名: 数值}``：只对某个英雄生效的加成（天命、寻访前后排等），可顺带写入英雄展示字段。"""
+        self._hero_bonus_providers.append(provider)
 
     def add_addition_provider(self, name: str, provider):
         """注册 ``attributeAddition`` 的一个分节：``provider(state) -> 分节内容或 None``。"""
@@ -97,6 +102,9 @@ class PlayerModel:
         bonus = dict(self.equipment.bonus_for_hero(state, hero['heroId']))
         for attr, value in (self.team_bonus(state) if team_bonus is None else team_bonus).items():
             bonus[attr] = bonus.get(attr, 0) + value
+        for provider in self._hero_bonus_providers:
+            for attr, value in (provider(state, hero) or {}).items():
+                bonus[attr] = bonus.get(attr, 0) + value
         return self.heroes.refresh(hero, bonus, [deepcopy(x) for x in equipped])
 
     def refresh_all(self, state: dict):
@@ -359,10 +367,11 @@ class PlayerModel:
         # 客户端个人信息面板与系统设置里的“角色ID”读取 PromoterId；与其他玩家查看阵容、加好友时用的 playerid 一致。
         view['PromoterId'] = view.get('ID')
         view['Notify'] = self.notify(state)
+        view['IsOpenDestiny'] = view['Notify'].get('IsOpenDestiny', view.get('IsOpenDestiny', 0))
         for key in ('Talismans', 'NextIds', 'BattleSession', 'Daily', 'Sign', 'Login', 'Mail', 'Counters',
                     'Recruit', 'TrainPending', 'MysteryStore', 'EnergyUpdatedAt', 'DoubleExpUntil', 'CdUntil',
                     'LevelGiftClaims', 'MissionClaims', 'LocalChapterClaims', 'CreatedAt', '_v', 'FriendRequestCount',
                     'Arena', 'WorldBoss', 'WorldBossRewards', 'Fuben', 'Tower', 'Transport', 'Slave', 'Artifact',
-                    'Gems', 'GemMine', 'Union', 'LastSeenAt'):
+                    'Gems', 'GemMine', 'Union', 'LastSeenAt', 'Sacrifice', 'Destiny', 'Havoc', 'XunFang'):
             view.pop(key, None)
         return view

@@ -268,6 +268,50 @@ def build_router(services, token_length: int) -> Router:
     r.role('/Union/GetUnionBuildInfo', s.union.buildings)
     r.role('/Union/Upgrade', s.union.upgrade, type=Integer(minimum=1))
 
+    # ---- 天书洞 -------------------------------------------------------------
+    r.role('/Sacrifice/GetTechnologyInfo', s.sacrifice.info)
+    r.role('/Sacrifice/UpdTechnologyMagic', s.sacrifice.upgrade, bpt=Integer(minimum=1))
+
+    # ---- 天命 -------------------------------------------------------------
+    r.role('/Destiny/Info', s.destiny.info)
+    r.role('/Destiny/Hunt', s.destiny.hunt, type=Integer(minimum=1), id=Raw(default=''))
+    r.role('/Destiny/HuntAll', s.destiny.hunt_all)
+    r.role('/Destiny/Get', s.destiny.collect, index=Integer(minimum=1))
+    r.role('/Destiny/Decompose', s.destiny.decompose, type=Integer(minimum=1), indexOrID=Integer(minimum=1))
+    r.role('/Destiny/Select', s.destiny.select_quality, quality=Integer(minimum=1))
+    r.role('/Destiny/DecomposeAll', s.destiny.decompose_all, type=Integer(minimum=1), quality=Integer(required=False, default=0))
+    r.role('/Destiny/PlayerDestinys', s.destiny.bag)
+    r.role('/Destiny/Change', s.destiny.equip, index=Integer(minimum=1), location=Integer(minimum=1), destinyID=Integer(minimum=1))
+    r.role('/Destiny/Unloading', s.destiny.unequip, index=Integer(minimum=0, required=False, default=0), destinyID=Integer(minimum=1))
+    r.role('/Destiny/ChangeAll', s.destiny.equip_all, index=Integer(minimum=1))
+    r.role('/Destiny/Upgrade', s.destiny.upgrade, id=Integer(minimum=1))
+    r.role('/Destiny/HaloUpgrade', s.destiny.halo_upgrade, index=Integer(minimum=1))
+    r.role('/Destiny/ChangeHalo', s.destiny.change_halo, afterLevel=Raw(default=''))
+    r.role('/Destiny/ExchangeInfo', s.destiny.exchange_info)
+    r.role('/Destiny/Exchange', s.destiny.exchange, exchangeID=Integer(minimum=1), destinyIDs=Raw(default=''))
+    r.role('/Destiny/MillionHunt', s.destiny.million_hunt, type=Raw(default=''))
+    r.role('/Destiny/GetMillionHunt', s.destiny.million_hunt)
+
+    # ---- 大闹天宫 -------------------------------------------------------------
+    r.role('/XianmoFight/XianmoFightInfo', s.havoc.info)
+    r.role('/XianmoFight/Ballot', s.havoc.ballot)
+    r.role('/XianmoFight/Challenge', s.havoc.challenge, bePlayerId=Integer(minimum=1), ri=Raw(default=''), star=Raw(default=''))
+    r.role('/XianmoFight/RefreshChallenge', s.havoc.refresh)
+    r.role('/XianmoFight/GetEnemys', s.havoc.enemies)
+    r.role('/XianmoFight/Revenge', s.havoc.revenge, enemyId=Integer(minimum=1), ri=Raw(default=''), star=Raw(default=''))
+    r.role('/XianmoFight/GetSingleRankLst', s.havoc.rank_list, type=Integer(minimum=1))
+    r.role('/XianmoFight/GetRankRewardLst', s.havoc.reward_list)
+    r.role('/XianmoFight/GetRankReward', s.havoc.claim, ID=Raw())
+    r.role('/XianmoFight/XianmoFightLog', s.havoc.logs)
+
+    # ---- 寻访 -------------------------------------------------------------
+    r.role('/XunFang/GetMasterInfo', s.xunfang.info)
+    r.role('/XunFang/XunFangMaster', s.xunfang.visit, populationID=Integer(minimum=1), xunFangType=Integer(minimum=1))
+    r.role('/XunFang/GetHandBookDetail', s.xunfang.handbook)
+    r.role('/XunFang/GetApprenticeInfo', s.xunfang.apprentice_info, populationID=Integer(minimum=1))
+    r.role('/XunFang/ToBeApprentice', s.xunfang.become_apprentice, ID=Integer(minimum=1))
+    r.role('/XunFang/ExchangeLearnExp', s.xunfang.exchange, fromMasterID=Integer(minimum=0), toMasterID=Integer(minimum=0), count=Integer(minimum=1))
+
     # ---- 排行榜 -------------------------------------------------------------
     r.role('/RankList/GetRankList', s.ranking.rank_list, type=Integer(minimum=1))
     r.role('/RankList/ConsumeRank', s.ranking.consume_rank)

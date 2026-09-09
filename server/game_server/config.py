@@ -999,6 +999,10 @@ class FeaturesConfig:
     artifact: Mapping[str, Any]
     gem: Mapping[str, Any]
     union: Mapping[str, Any]
+    sacrifice: Mapping[str, Any]
+    destiny: Mapping[str, Any]
+    havoc: Mapping[str, Any]
+    xunfang: Mapping[str, Any]
 
     @classmethod
     def load(cls, section: Section) -> 'FeaturesConfig':
@@ -1031,10 +1035,16 @@ class FeaturesConfig:
         gem.integer('max_level', 1); gem.numbers_by_int_key('base_value_by_shape'); gem.integer('bag_capacity', 1)
         union = section.section('union')
         union.integer('create_level', 1); union.integer('create_gold', 0); union.integers('members_by_hall_level', 1)
+        section.section('sacrifice').integer('max_level', 1)
+        section.section('destiny').integer('platform_size', 1)
+        section.section('havoc').integer('daily_times', 1)
+        section.section('xunfang').integer('daily_free_visits', 0)
         return cls(arena=section.mapping('arena'), worldboss=section.mapping('worldboss'), fuben=section.mapping('fuben'),
                    tower=section.mapping('tower'), refine=section.mapping('refine'), friends=section.mapping('friends'),
                    transport=section.mapping('transport'), slave=section.mapping('slave'),
-                   artifact=section.mapping('artifact'), gem=section.mapping('gem'), union=section.mapping('union'))
+                   artifact=section.mapping('artifact'), gem=section.mapping('gem'), union=section.mapping('union'),
+                   sacrifice=section.mapping('sacrifice'), destiny=section.mapping('destiny'), havoc=section.mapping('havoc'),
+                   xunfang=section.mapping('xunfang'))
 
 
 # ---------------------------------------------------------------------------
