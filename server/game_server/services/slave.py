@@ -59,6 +59,11 @@ class SlaveService:
                                     'TriggerPlayerId': content.get('playerId', 0), 'isCanRevolt': 0})
         slave['reports'] = slave['reports'][:30]
 
+    def _client_report(self, report: dict) -> dict:
+        row = deepcopy(report)
+        row['Times'] = self.clock.age(row.get('Times'))
+        return row
+
     def _cage_view(self, location: int, cage: dict) -> dict:
         if cage['state'] == CAGE_EMPTY:
             return dict(location=location, state=CAGE_EMPTY)
@@ -96,7 +101,7 @@ class SlaveService:
                                 'totolFreeCaptureNumber': self.config['daily_free_captures'], 'getTimes': 1, 'bleedWhiteTimes': 1,
                                 'captures': captures},
                 'beCapturedInfo': be_captured,
-                'battleReport': slave['reports'][0] if slave['reports'] else None}
+                'battleReport': self._client_report(slave['reports'][0]) if slave['reports'] else None}
 
     def _candidate(self, db, player_id: int, me: int) -> dict:
         profile = self.directory.profile(db, player_id)
@@ -338,7 +343,7 @@ class SlaveService:
         return Reply(report, self.ledger.global_for(state, outcome))
 
     def reports(self, ctx: RoleContext, params) -> list:
-        return deepcopy(self._state(ctx.state)['reports'])
+        return [self._client_report(row) for row in self._state(ctx.state)['reports']]
 
     def notify(self, state: dict) -> dict:
         slave = self._state(state)

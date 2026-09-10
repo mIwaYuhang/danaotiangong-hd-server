@@ -221,7 +221,12 @@ class ArtifactService:
         return Reply({'robTenRewards': results}, self.ledger.global_for(state, outcome))
 
     def battle_reports(self, ctx: RoleContext, params) -> list:
-        return [{k: v for k, v in r.items() if k != 'robber'} for r in self._state(ctx.state)['reports']]
+        rows = []
+        for report in self._state(ctx.state)['reports']:
+            row = {k: v for k, v in report.items() if k != 'robber'}
+            row['time'] = self.clock.age(report.get('time'))
+            rows.append(row)
+        return rows
 
     def revenge(self, ctx: RoleContext, params) -> Reply:
         """``/Artifacthall/Revenge?id``：向抢过自己的玩家复仇。"""

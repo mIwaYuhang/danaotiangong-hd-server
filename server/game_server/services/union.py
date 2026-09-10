@@ -393,7 +393,7 @@ class UnionService:
         return self._set_text(ctx, 'out_notice', params.get('outNotice') or '', max(self.positions['elders']))
 
     def logs(self, ctx: RoleContext, params) -> list:
-        return deepcopy(self._mine(ctx)['logs'])
+        return [dict(row, Times=self.clock.age(row.get('Times'))) for row in self._mine(ctx)['logs']]
 
     def give_coin(self, ctx: RoleContext, params) -> dict:
         union = self._mine(ctx)

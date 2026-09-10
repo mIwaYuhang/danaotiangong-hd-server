@@ -280,6 +280,8 @@ def run(app, clock):
     print('\n== 邮件 ==')
     body = p.call('/Mailinfo/GetMailinfoList', index='1', type='0')
     check('邮件列表含欢迎邮件', body['State'] == 1 and body['Result']['MailList'] and body['Result']['MailList'][-1]['HaveAccessory'] == 1, body)
+    check('邮件 SendTime 是距今秒数（客户端按此时长显示“X天前”）',
+          0 <= body['Result']['MailList'][-1]['SendTime'] < 86400, body['Result']['MailList'][-1])
     pkid = body['Result']['MailList'][-1]['PKID']
     body = p.call('/Mailinfo/GetMailinfo', mailId=str(pkid))
     check('邮件详情含附件', body['State'] == 1 and body['Result']['MailAccessory'] and body['Result']['NickName'] == '大闹天宫HD运营团队', body)

@@ -3,6 +3,8 @@
 邮件对象（客户端 MailScene）：``PKID, MailType(1 系统 / 2 战斗 / 3 好友 / 4 包裹), MessageContent, SendTime,
 ReadingState(0 未读 / 1 已读), HaveAccessory(0/1), IsDealWith(0 未领 / 1 已领), PlayerID, NickName, MailAccessory[]``。
 没有独立标题字段，列表与正文都显示 ``MessageContent``。
+
+存档里的 ``SendTime`` 是 Unix 秒；下发给客户端时改成距今秒数（``MailScene.getMailSendTime`` 按时长显示「X天前」）。
 """
 from copy import deepcopy
 
@@ -69,7 +71,12 @@ class MailService:
         start = (page - 1) * PAGE_SIZE
         chunk = items[start:start + PAGE_SIZE]
         fields = ('PKID', 'MessageContent', 'SendTime', 'ReadingState', 'HaveAccessory', 'IsDealWith', 'MailType')
-        return {'MailList': [{k: m[k] for k in fields} for m in chunk], 'isnext': 1 if len(items) > start + PAGE_SIZE else 0}
+        rows = []
+        for mail in chunk:
+            row = {k: mail[k] for k in fields}
+            row['SendTime'] = self.clock.age(mail.get('SendTime'))
+            rows.append(row)
+        return {'MailList': rows, 'isnext': 1 if len(items) > start + PAGE_SIZE else 0}
 
     def detail(self, ctx: RoleContext, params) -> dict:
         """``/Mailinfo/GetMailinfo?mailId``：读取即标记已读。"""
@@ -78,7 +85,9 @@ class MailService:
             mail['ReadingState'] = 1
             ctx.state['Counters']['mail_read'] = ctx.state['Counters'].get('mail_read', 0) + 1
             self._emit(ctx.state, 'mail_read', 1)
-        return deepcopy(mail)
+        view = deepcopy(mail)
+        view['SendTime'] = self.clock.age(mail.get('SendTime'))
+        return view
 
     def take_attachment(self, ctx: RoleContext, params) -> Reply:
         """``/Mailinfo/GetPlayerAccessory?mailId``。"""

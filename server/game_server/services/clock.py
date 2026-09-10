@@ -52,3 +52,17 @@ class Clock:
     def remaining(until: int, now: int) -> int:
         """倒计时剩余秒数（不为负）。"""
         return max(0, int(until) - now)
+
+    def age(self, timestamp) -> int:
+        """距 ``timestamp`` 已经过去的秒数。
+
+        客户端 ``getMailSendTime`` / ``getFormatCountDownTime`` 把这个数直接拆成天/时/分显示「X天前」，
+        不能下发 Unix 时间戳（否则会显示成一两万天前）。缺省或 0 视为刚刚。
+        """
+        try:
+            ts = int(timestamp or 0)
+        except (TypeError, ValueError):
+            return 0
+        if ts <= 0:
+            return 0
+        return max(0, self.now() - ts)

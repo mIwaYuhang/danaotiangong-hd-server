@@ -225,14 +225,16 @@ class HavocService:
             self.store.set(db, 'havoc:scores', scores)
             if revenge:
                 data['revenge'] = [r for r in data['revenge'] if r != target_id]
-        data['logs'].insert(0, {'Content': f"{'复仇' if revenge else '挑战'}{profile['Name']}{'胜利' if report['isWin'] else '失败'}",
+        data['logs'].insert(0, {'Times': self.clock.now(),
+                                'Content': f"{'复仇' if revenge else '挑战'}{profile['Name']}{'胜利' if report['isWin'] else '失败'}",
                                 'Type': 1 if report['isWin'] else 2})
         data['logs'] = data['logs'][:self.config['log_limit']]
         if not self.directory.is_robot(target_id):
             other = self.directory.load_state(db, target_id)
             if other is not None:
                 theirs = self._player(other)
-                theirs['logs'].insert(0, {'Content': f"{state['Name']}向你发起挑战，你{'落败' if report['isWin'] else '获胜'}",
+                theirs['logs'].insert(0, {'Times': self.clock.now(),
+                                          'Content': f"{state['Name']}向你发起挑战，你{'落败' if report['isWin'] else '获胜'}",
                                           'Type': 2 if report['isWin'] else 1})
                 if report['isWin'] and ctx.user not in theirs['revenge']:
                     theirs['revenge'].insert(0, ctx.user)
@@ -255,11 +257,12 @@ class HavocService:
             profile = self.directory.profile(ctx.db, uid)
             rows.append({'PlayerID': str(uid), 'PlayerName': profile['Name'], 'AvatarID': profile['Avatar'], 'Lv': profile['Level'],
                          'Power': profile['BattlePower'], **PlayerDirectory.figure_of(profile)})
-        return {'LogLst': deepcopy(data['logs']), 'RevengeLst': rows}
+        return {'LogLst': [dict(log, Times=self.clock.age(log.get('Times'))) for log in data['logs']], 'RevengeLst': rows}
 
     def logs(self, ctx: RoleContext, params) -> list:
         _, data = self._open(ctx)
-        return [{'Times': self.clock.now(), 'Type': 0, 'Content': log['Content']} for log in data['logs']]
+        return [{'Times': self.clock.age(log.get('Times')), 'Type': log.get('Type', 0), 'Content': log['Content']}
+                for log in data['logs']]
 
     def rank_list(self, ctx: RoleContext, params) -> list:
         season, _ = self._open(ctx)

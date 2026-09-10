@@ -625,4 +625,4 @@ class TransportService:
     def logs(self, ctx: RoleContext, params) -> list:
         tr = self._state(ctx.state)
         tr['unread'] = 0
-        return deepcopy(tr.get('logs', []))
+        return [dict(row, Times=self.clock.age(row.get('Times'))) for row in tr.get('logs', [])]

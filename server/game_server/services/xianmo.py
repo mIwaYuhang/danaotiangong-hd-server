@@ -263,7 +263,8 @@ class XianmoService:
             vip = (other or {}).get('VipLevel', 0)
         return {'PlayerName': seed['Name'], 'Level': seed['Level'], 'VipLevel': vip,
                 'WorshipCnt': log['WorshipCnt'], 'SplitCnt': log['SplitCnt'],
-                'AvatarId': seed['Avatar'], 'WorshipLogInfo': deepcopy(log['rows'])}
+                'AvatarId': seed['Avatar'],
+                'WorshipLogInfo': [dict(row, Times=self.clock.age(row.get('Times'))) for row in log['rows']]}
 
     # ---- 排行与奖励展示 -----------------------------------------------------------
 

@@ -104,7 +104,7 @@ class SanqingService:
         for kind in THRONES:
             data = self._thrones(ctx.db, kind)
             if str(holder) in data['logs']:
-                return deepcopy(data['logs'][str(holder)])
+                return [dict(row, Times=self.clock.age(row.get('Times'))) for row in data['logs'][str(holder)]]
         return []
 
     def fight(self, ctx: RoleContext, params) -> Reply:
