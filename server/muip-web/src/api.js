@@ -34,6 +34,7 @@ export const api = {
   grant: (id, rewards) => http.post(`/players/${id}/grant`, { rewards }),
   mail: (id, content, attachments) => http.post(`/players/${id}/mail`, { content, attachments }),
   resetDaily: (id) => http.post(`/players/${id}/reset-daily`),
+  maxOut: (id) => http.post(`/players/${id}/max-out`, {}, { timeout: 120000 }),
   broadcast: (content, attachments) => http.post('/mail/broadcast', { content, attachments }),
   items: (type, q) => http.get('/items', { params: { type, q } }),
   unions: () => http.get('/unions'),
@@ -71,6 +72,7 @@ export const portalApi = {
   me: () => portalHttp.get('/me'),
   items: (type, q) => portalHttp.get('/items', { params: { type, q } }),
   send: (rewards) => portalHttp.post('/send', { rewards }),
+  maxout: () => portalHttp.post('/maxout', {}, { timeout: 120000 }),
 }
 
 export const formatTime = (ts) => (ts ? new Date(ts * 1000).toLocaleString('zh-CN', { hour12: false }) : '-')

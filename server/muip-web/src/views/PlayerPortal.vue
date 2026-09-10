@@ -13,6 +13,7 @@ const me = ref(null)
 const resourceTypes = ref({})
 const rewards = ref([])
 const sending = ref(false)
+const maxing = ref(false)
 
 async function refresh() {
   const res = await portalApi.me()
@@ -59,6 +60,28 @@ async function send() {
     /* 错误提示由拦截器统一弹出 */
   } finally {
     sending.value = false
+  }
+}
+
+async function maxout() {
+  try {
+    await ElMessageBox.confirm(
+      '将解锁全部主将，账户升至满级，培养（等级 / 进阶 / 四维 / 怒气技）拉满，并为每名主将穿戴缘分或专属法宝（满锻造、满品阶）。此操作直接改写你的角色存档，确定？',
+      '一键全满',
+      { type: 'warning', confirmButtonText: '执行' },
+    )
+  } catch {
+    return
+  }
+  maxing.value = true
+  try {
+    const res = await portalApi.maxout()
+    me.value = { ...me.value, player: res.player, quota: res.quota }
+    ElMessage.success(`已全满：账户 ${res.playerLevel} 级、${res.heroes} 名主将、穿戴 ${res.talismansEquipped} 件法宝。请重新登录游戏查看。`)
+  } catch {
+    /* 错误提示由拦截器统一弹出 */
+  } finally {
+    maxing.value = false
   }
 }
 
@@ -118,6 +141,12 @@ onUnmounted(() => window.removeEventListener('portal:logout', logout))
         <el-descriptions-item label="战力">{{ me.player.battlePower }}</el-descriptions-item>
         <el-descriptions-item label="上次在线" :span="3">{{ formatTime(me.player.lastSeenAt) }}</el-descriptions-item>
       </el-descriptions>
+
+      <el-alert type="warning" :closable="false" style="margin-bottom: 14px"
+        title="一键全满：解锁全部主将、账户满级、培养拉满，并为每名主将穿戴自己的缘分 / 专属法宝。直接写入存档，进游戏后重新登录即可看到。" />
+      <el-button type="danger" :loading="maxing" style="margin-bottom: 18px; width: 100%" @click="maxout">
+        一键全满（全角色 / 满级 / 满培养 / 缘分法宝）
+      </el-button>
 
       <el-alert type="info" :closable="false" style="margin-bottom: 14px"
         :title="`今日还可自助发送 ${me.quota.remaining}/${me.quota.daily} 封（单封最多 ${me.quota.maxLines} 种、每种不超过 ${me.quota.maxCount} 个），物品通过游戏内邮件送达`" />

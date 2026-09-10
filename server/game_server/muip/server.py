@@ -137,6 +137,8 @@ def make_handler(gm: GmService, config: MuipConfig):
                     return self.send_json(200, {'items': gm.search_items(item_type, first('q'))})
                 if path == '/api/portal/send' and method == 'POST':
                     return self.send_json(200, gm.portal_send(user_id, body.get('rewards') if isinstance(body, dict) else None))
+                if path == '/api/portal/maxout' and method == 'POST':
+                    return self.send_json(200, gm.portal_maxout(user_id))
             except GmError as exc:
                 return self.send_json(400, {'error': str(exc)})
             except Exception as exc:
@@ -163,6 +165,8 @@ def make_handler(gm: GmService, config: MuipConfig):
                     return gm.send_mail(user_id, body.get('content'), body.get('attachments'))
                 if method == 'POST' and action == '/reset-daily':
                     return gm.reset_daily(user_id)
+                if method == 'POST' and action == '/max-out':
+                    return gm.max_out(user_id)
                 return None
             if path == '/api/mail/broadcast' and method == 'POST':
                 return gm.broadcast_mail(body.get('content'), body.get('attachments'))

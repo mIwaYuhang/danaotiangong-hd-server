@@ -1,4 +1,4 @@
-"""GM 服务（MUIP）冒烟：登录、检索、改数值、发放、邮件、封禁、公告、静态页、玩家自助门户。"""
+"""GM 服务（MUIP）冒烟：登录、检索、改数值、发放、邮件、封禁、公告、静态页、玩家自助门户、一键全满。"""
 import base64
 import datetime as dt
 import json
@@ -22,13 +22,13 @@ from game_server.muip.service import GmService  # noqa: E402
 from game_server.services.clock import Clock  # noqa: E402
 
 
-def call(base, method, path, body=None, token=None):
+def call(base, method, path, body=None, token=None, timeout=10):
     data = json.dumps(body).encode() if body is not None else None
     req = urllib.request.Request(base + path, data=data, method=method, headers={'Content-Type': 'application/json'})
     if token:
         req.add_header('Authorization', f'Bearer {token}')
     try:
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
             raw = resp.read()
             return resp.status, (json.loads(raw) if resp.headers.get('Content-Type', '').startswith('application/json') else raw)
     except urllib.error.HTTPError as exc:
@@ -95,6 +95,40 @@ def main():
         check('资源类型检索', status == 200 and body['items'] == [{'id': 0, 'name': '银币'}], body)
         status, body = call(base, 'POST', f'/api/players/{a.user}/reset-daily', token=token)
         check('重置每日', status == 200 and body['userId'] == a.user, body)
+        status, body = call(base, 'POST', f'/api/players/{a.user}/max-out', {}, token, timeout=60)
+        role = a.role()
+        catalog = app.catalog
+        hero_total = len(catalog['BaseHeros'])
+        max_level = app.config.player.level_up.max_level
+        heroes_model = app.services.roles.model.heroes
+        equipment = app.services.roles.model.equipment
+        check('一键全满：账户满级且解锁全部主将', status == 200 and role['PLevel'] == max_level
+              and len(role['ownedHeros']) == hero_total and body.get('heroes') == hero_total, (status, body, len(role['ownedHeros'])))
+        sample = role['ownedHeros'][0]
+        sample_tmpl = heroes_model.template(sample['heroId'])
+        dim_cap = max_level * heroes_model.config.train_dimension_cap_per_level
+        check('一键全满：培养拉满', sample['level'] == max_level
+              and sample['rebirthCount'] == heroes_model.rebirth_max(sample_tmpl)
+              and sample['trainDims']['physical'] == dim_cap and sample.get('rageTrained') == max_level, sample)
+        fate_hero, fate_ids = None, set()
+        for hero in role['ownedHeros']:
+            tmpl = catalog['BaseHeros'][str(hero['heroId'])]
+            group = tmpl.get('groupEquips') or {}
+            rows = group.values() if isinstance(group, dict) else group
+            ids = {int(item['equipId']) for item in (rows or [])
+                   if item.get('equipId') and str(item['equipId']) in catalog['BaseEquips']}
+            if ids:
+                fate_hero, fate_ids = hero, ids
+                break
+        worn_ids = {int(e['equipId']) for e in (fate_hero.get('equipList') or [])} if fate_hero else set()
+        check('一键全满：缘分法宝已穿戴', fate_hero is not None and fate_ids <= worn_ids, (fate_ids, worn_ids))
+        try:
+            max_pinjie = max(int(v) for v in catalog['EquipPinjieType'].values())
+        except KeyError:
+            max_pinjie = 5
+        forge_cap = equipment.level_cap(max_level)
+        check('一键全满：法宝满锻造满品阶', fate_hero and all(e['level'] >= forge_cap and e.get('pinJie', 0) >= max_pinjie
+              for e in fate_hero['equipList']), fate_hero.get('equipList') if fate_hero else None)
         status, body = call(base, 'PUT', '/api/announcement', {'html': '<p>new</p>'}, token)
         check('保存公告', status == 200 and announcement.read_text(encoding='utf-8') == '<p>new</p>', body)
         check('读取公告', call(base, 'GET', '/api/announcement', token=token)[1]['html'] == '<p>new</p>')
@@ -138,6 +172,13 @@ def main():
             deviceToken='x', name=base64.b64encode('丙'.encode()).decode(), heroProtoID='128')
         status, body = call(base, 'POST', '/api/portal/login', {'email': 'p@x.com', 'password': '123456'})
         check('门户：邮箱+明文密码登录', status == 200 and body['player']['name'] == '丙', body)
+        ctoken = body['token']
+        status, body = call(base, 'POST', '/api/portal/maxout', {}, ctoken, timeout=60)
+        check('门户：一键全满', status == 200 and body['player']['level'] == max_level
+              and body['heroes'] == hero_total, body)
+        gm.portal['maxout'] = False
+        check('门户：一键全满开关关闭后被拒', call(base, 'POST', '/api/portal/maxout', {}, ctoken)[0] == 400)
+        gm.portal['maxout'] = True
         check('门户：错误密码 400', call(base, 'POST', '/api/portal/login', {'email': 'p@x.com', 'password': 'bad'})[0] == 400)
         # 封禁角色不能登录门户
         call(base, 'POST', f'/api/players/{b.user}/update', {'fields': {'Banned': True}}, token)

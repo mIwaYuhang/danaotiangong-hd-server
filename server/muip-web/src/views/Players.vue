@@ -94,6 +94,21 @@ async function doResetDaily() {
   ElMessage.success('已重置')
   await refresh()
 }
+async function doMaxOut() {
+  await ElMessageBox.confirm(
+    '将解锁全部主将，账户升至满级，培养（等级 / 进阶 / 四维 / 怒气技）拉满，并为每名主将穿戴缘分或专属法宝（满锻造、满品阶）。此操作直接改写存档，确定？',
+    '一键全满',
+    { type: 'warning', confirmButtonText: '执行' },
+  )
+  busy.value = true
+  try {
+    const res = await api.maxOut(detail.value.summary.userId)
+    ElMessage.success(`已全满：${res.heroes} 名主将、穿戴 ${res.talismansEquipped} 件法宝`)
+    await refresh()
+  } finally {
+    busy.value = false
+  }
+}
 </script>
 
 <template>
@@ -144,6 +159,7 @@ async function doResetDaily() {
           <el-form-item>
             <el-button type="primary" :loading="busy" @click="saveFields">保存修改</el-button>
             <el-button type="warning" plain @click="doResetDaily">重置每日次数</el-button>
+            <el-button type="danger" plain :loading="busy" @click="doMaxOut">一键全满</el-button>
           </el-form-item>
         </el-form>
       </el-tab-pane>

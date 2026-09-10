@@ -8,7 +8,7 @@ from ..errors import ConfigError
 
 #: 玩家自助门户默认配置（muip.json 的 portal 段可覆盖任意字段）。
 PORTAL_DEFAULTS = {'enabled': True, 'daily_mails': 5, 'max_lines': 8, 'max_count': 1000000,
-                   'token_ttl': 86400, 'mail_content': '自助补给已送达，请注意查收。'}
+                   'token_ttl': 86400, 'mail_content': '自助补给已送达，请注意查收。', 'maxout': True}
 
 
 @dataclass(frozen=True)
