@@ -15,10 +15,14 @@ const fmtUptime = (s) => `${Math.floor(s / 3600)} 小时 ${Math.floor((s % 3600)
         { title: '角色总数', value: status.players },
         { title: '账号总数', value: status.accounts },
         { title: '24 小时活跃', value: status.active24h },
-        { title: '仙盟数量', value: status.unions },
+        { title: '封禁中', value: status.banned || 0 },
       ]" :key="card.title">
         <el-card shadow="hover"><el-statistic :title="card.title" :value="card.value" /></el-card>
       </el-col>
+    </el-row>
+    <el-row :gutter="16" style="margin-top: 16px">
+      <el-col :span="6"><el-card shadow="hover"><el-statistic title="仙盟数量" :value="status.unions" /></el-card></el-col>
+      <el-col :span="6"><el-card shadow="hover"><el-statistic title="本服最高等级" :value="status.maxLevel || 0" /></el-card></el-col>
     </el-row>
     <el-card style="margin-top: 16px" shadow="never">
       <template #header>服务器信息 <el-button link type="primary" style="float: right" @click="load">刷新</el-button></template>

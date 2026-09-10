@@ -7,18 +7,22 @@ import Players from './views/Players.vue'
 import Broadcast from './views/Broadcast.vue'
 import Announcement from './views/Announcement.vue'
 import Unions from './views/Unions.vue'
+import Catalog from './views/Catalog.vue'
+import Ranks from './views/Ranks.vue'
 import PlayerPortal from './views/PlayerPortal.vue'
 
 // /player 路径进入玩家自助门户（独立登录，与 GM 后台互不相通）
 const playerMode = window.location.pathname.startsWith('/player')
 
-const views = { dashboard: Dashboard, players: Players, broadcast: Broadcast, announcement: Announcement, unions: Unions }
+const views = { dashboard: Dashboard, players: Players, broadcast: Broadcast, announcement: Announcement, unions: Unions, ranks: Ranks, catalog: Catalog }
 const menu = [
   { key: 'dashboard', label: '概览', icon: 'DataBoard' },
   { key: 'players', label: '玩家管理', icon: 'User' },
-  { key: 'broadcast', label: '全服邮件', icon: 'Message' },
-  { key: 'announcement', label: '服务器公告', icon: 'Document' },
+  { key: 'broadcast', label: '运营邮件', icon: 'Message' },
+  { key: 'ranks', label: '争霸榜', icon: 'Trophy' },
   { key: 'unions', label: '仙盟', icon: 'OfficeBuilding' },
+  { key: 'catalog', label: '图鉴检索', icon: 'Search' },
+  { key: 'announcement', label: '服务器公告', icon: 'Document' },
 ]
 
 const loggedIn = ref(false)

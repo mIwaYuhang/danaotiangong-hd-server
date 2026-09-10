@@ -1,4 +1,4 @@
-"""GM 服务（MUIP）冒烟：登录、检索、改数值、发放、邮件、封禁、公告、静态页、玩家自助门户、一键全满。"""
+"""GM 服务（MUIP）冒烟：登录、检索、改档、发放、进度、英雄、VIP、邮件箱、背包、仙盟、争霸榜、门户、一键全满。"""
 import base64
 import datetime as dt
 import json
@@ -64,13 +64,16 @@ def main():
         check('错误令牌 401', call(base, 'POST', '/api/login', {'token': 'bad'})[0] == 401)
         check('登录成功', call(base, 'POST', '/api/login', {'token': token})[1] == {'ok': True})
         status, body = call(base, 'GET', '/api/status', token=token)
-        check('概览：2 名角色', status == 200 and body['players'] == 2 and body['realm']['id'] == 1 and 'PLevel' in body['editableFields'], body)
+        check('概览：2 名角色', status == 200 and body['players'] == 2 and body['realm']['id'] == 1
+              and 'PLevel' in body['editableFields'] and body.get('banned') == 0 and body.get('maxLevel') == 30, body)
         status, body = call(base, 'GET', '/api/players?q=%E7%94%B2', token=token)
         check('按昵称搜索', status == 200 and [p['name'] for p in body['players']] == ['甲'], body)
         status, body = call(base, 'GET', f'/api/players?q={b.user}', token=token)
         check('按 ID 搜索', status == 200 and body['players'][0]['userId'] == b.user, body)
         status, body = call(base, 'GET', f'/api/players/{a.user}', token=token)
         check('玩家详情', status == 200 and body['summary']['level'] == 30 and body['resources']['Gold'] == a.role()['Gold'] and len(body['heroes']) >= 1, body.get('summary'))
+        check('玩家详情：进度与邮箱结构', isinstance(body.get('mails'), list) and 'mailCount' in body
+              and 'progress' in body and 'limits' in body and 'rechargeTotal' in body, list(body))
         status, body = call(base, 'POST', f'/api/players/{a.user}/update', {'fields': {'Gold': 123456, 'PLevel': 45, 'Name': '甲甲'}}, token)
         role = a.role()
         check('改银币 / 等级 / 昵称', status == 200 and role['Gold'] == 123456 and role['PLevel'] == 45 and role['Name'] == '甲甲' and role['MaxEnergy'] > 0, body)
@@ -95,6 +98,59 @@ def main():
         check('资源类型检索', status == 200 and body['items'] == [{'id': 0, 'name': '银币'}], body)
         status, body = call(base, 'POST', f'/api/players/{a.user}/reset-daily', token=token)
         check('重置每日', status == 200 and body['userId'] == a.user, body)
+        status, body = call(base, 'GET', '/api/status', token=token)
+        check('概览：改档后最高等级', status == 200 and body.get('maxLevel') == 45 and body.get('banned') == 0, body)
+        status, detail = call(base, 'GET', f'/api/players/{a.user}', token=token)
+        owned = {h['heroId'] for h in detail['heroes']}
+        unused = next(int(k) for k in app.catalog['BaseHeros'] if int(k) not in owned)
+        status, body = call(base, 'POST', f'/api/players/{a.user}/hero', {'heroId': unused}, token)
+        check('发放主将', status == 200 and body['heroId'] == unused and body['name'], body)
+        check('重复发放主将 400', call(base, 'POST', f'/api/players/{a.user}/hero', {'heroId': unused}, token)[0] == 400)
+        check('不存在的主将 400', call(base, 'POST', f'/api/players/{a.user}/hero', {'heroId': 999999999}, token)[0] == 400)
+        status, body = call(base, 'POST', f'/api/players/{a.user}/hero-update',
+                            {'heroId': unused, 'level': 20, 'rebirthCount': 0, 'rageTrained': 8}, token)
+        check('改主将等级与技能训练', status == 200 and body['hero']['level'] == 20 and body['hero']['rageTrained'] == 8, body)
+        first_stage = app.catalog.first_stage_id()
+        next_stage = app.catalog.next_stage_id(first_stage)
+        tower_max = int(app.config.features.tower['max_floor'])
+        status, body = call(base, 'POST', f'/api/players/{a.user}/progress',
+                            {'fields': {'maxStage': next_stage, 'towerFloor': 5, 'tiroMaxStep': 3}}, token)
+        check('改关卡/塔/引导', status == 200 and body['progress']['maxStage'] == next_stage
+              and body['progress']['towerFloor'] == 5 and body['progress']['tiroMaxStep'] == 3, body)
+        check('非法关卡 400', call(base, 'POST', f'/api/players/{a.user}/progress', {'fields': {'maxStage': 0}}, token)[0] == 400)
+        check('塔层超限 400', call(base, 'POST', f'/api/players/{a.user}/progress',
+                                  {'fields': {'towerFloor': tower_max + 1}}, token)[0] == 400)
+        guide_step = app.config.player.guide_protect_until_step
+        status, body = call(base, 'POST', f'/api/players/{a.user}/skip-guide', token=token)
+        check('跳过引导', status == 200 and body['progress']['tiroMaxStep'] == guide_step, body)
+        status, body = call(base, 'POST', f'/api/players/{a.user}/recharge', {'ingot': 1000}, token)
+        check('补累计充值并升 VIP', status == 200 and body['rechargeTotal'] >= 1000 and body['vip'] >= 3, body)
+        status, body = call(base, 'POST', f'/api/players/{a.user}/month-card', {'days': 30}, token)
+        check('开通月卡', status == 200 and body['monthCardLeft'] >= 30 * 86400 - 10, body)
+        status, body = call(base, 'POST', f'/api/players/{a.user}/growup', token=token)
+        check('开通成长计划', status == 200 and body['growupBought'] is True, body)
+        status, detail = call(base, 'GET', f'/api/players/{a.user}', token=token)
+        mail_id, mail_count = detail['mails'][0]['id'], detail['mailCount']
+        status, body = call(base, 'POST', f'/api/players/{a.user}/delete-mail', {'mailId': mail_id}, token)
+        check('删除一封邮件', status == 200 and body['removed'] == 1, body)
+        check('邮件数减 1', call(base, 'GET', f'/api/players/{a.user}', token=token)[1]['mailCount'] == mail_count - 1)
+        status, body = call(base, 'POST', f'/api/players/{a.user}/clear-mails', token=token)
+        check('清空邮箱', status == 200 and body['removed'] >= 1, body)
+        check('清空后邮件数为 0', call(base, 'GET', f'/api/players/{a.user}', token=token)[1]['mailCount'] == 0)
+        prop = next((o for o in detail['others'] if o.get('ID') == 100010), None)
+        check('背包含发放道具', prop is not None and prop['Count'] >= 3, prop)
+        status, body = call(base, 'POST', f'/api/players/{a.user}/bag-remove',
+                            {'Type': 5, 'ID': 100010, 'Count': (prop or {}).get('Count') or 3}, token)
+        check('扣除背包道具', status == 200, body)
+        check('道具已扣除', all(o.get('ID') != 100010 for o in call(base, 'GET', f'/api/players/{a.user}', token=token)[1]['others']))
+        status, body = call(base, 'POST', '/api/mail/many',
+                            {'userIds': [a.user, b.user, 999999], 'content': '指定邮件'}, token)
+        check('指定玩家邮件', status == 200 and body['sent'] == 2 and body['missing'] == [999999], body)
+        status, body = call(base, 'GET', '/api/ranks?limit=5', token=token)
+        check('争霸榜', status == 200 and len(body['ranks']) == 5 and body['ranks'][0]['rank'] == 1
+              and 'robot' in body['ranks'][0], body)
+        check('仙盟不存在 400', call(base, 'GET', f'/api/unions/1', token=token)[0] == 400)
+        check('未入盟退盟 400', call(base, 'POST', f'/api/players/{a.user}/leave-union', token=token)[0] == 400)
         status, body = call(base, 'POST', f'/api/players/{a.user}/max-out', {}, token, timeout=60)
         role = a.role()
         catalog = app.catalog
@@ -132,7 +188,27 @@ def main():
         status, body = call(base, 'PUT', '/api/announcement', {'html': '<p>new</p>'}, token)
         check('保存公告', status == 200 and announcement.read_text(encoding='utf-8') == '<p>new</p>', body)
         check('读取公告', call(base, 'GET', '/api/announcement', token=token)[1]['html'] == '<p>new</p>')
-        check('仙盟列表', call(base, 'GET', '/api/unions', token=token)[1] == {'unions': []})
+        call(base, 'POST', f'/api/players/{a.user}/grant', {'rewards': [{'Type': 1, 'ID': 0, 'Count': 1200000}]}, token)
+        created = a.call('/Union/CreateUnion', name=base64.b64encode('天庭'.encode()).decode())
+        check('游戏内创建仙盟', created['State'] == 1, created)
+        union_id = created['Result']['UnionId']
+        status, body = call(base, 'GET', '/api/unions', token=token)
+        check('仙盟列表', status == 200 and body['unions'] and body['unions'][0]['name'] == '天庭', body)
+        status, body = call(base, 'GET', f'/api/unions/{union_id}', token=token)
+        check('仙盟详情', status == 200 and body['id'] == union_id and body['members'][0]['userId'] == a.user, body)
+        status, body = call(base, 'POST', f'/api/unions/{union_id}/update',
+                            {'fields': {'notice': '对内', 'outNotice': '对外', 'coin': 88}}, token)
+        check('改仙盟公告与贡献', status == 200 and body['coin'] == 88 and body['notice'] == '对内'
+              and body['outNotice'] == '对外', body)
+        status, body = call(base, 'POST', f'/api/players/{a.user}/leave-union', token=token)
+        check('盟主独自退盟即解散', status == 200, body)
+        check('退盟后仙盟列表为空', call(base, 'GET', '/api/unions', token=token)[1] == {'unions': []})
+        created = a.call('/Union/CreateUnion', name=base64.b64encode('花果山'.encode()).decode())
+        check('再次创建仙盟', created['State'] == 1, created)
+        union_id = created['Result']['UnionId']
+        status, body = call(base, 'POST', f'/api/unions/{union_id}/dissolve', token=token)
+        check('GM 解散仙盟', status == 200 and body['dissolved'] == union_id, body)
+        check('解散后仙盟列表为空', call(base, 'GET', '/api/unions', token=token)[1] == {'unions': []})
         status, body = call(base, 'GET', '/')
         check('前端首页可访问（已构建）', status == 200 and b'<div id="app">' in body, (status, body[:80]) if isinstance(body, bytes) else body)
         status, body = call(base, 'GET', '/players')

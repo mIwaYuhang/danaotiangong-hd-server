@@ -81,20 +81,72 @@ class GmService:
                 'createdAt': state.get('CreatedAt', 0), 'lastSeenAt': state.get('LastSeenAt', 0),
                 'union': self.services.union.union_name(db, state)}
 
+    def _item_name(self, kind, ident) -> str:
+        if kind in RESOURCE_TYPES:
+            return RESOURCE_TYPES[kind]
+        table = CATALOG_TABLES.get(kind) or ({23: ('BaseFragments', 'name')}.get(kind))
+        if table is None:
+            return f'#{ident}'
+        try:
+            row = self.services.roles.model.catalog[table[0]].get(str(ident))
+        except (KeyError, TypeError):
+            return f'#{ident}'
+        return str((row or {}).get(table[1], ident))
+
+    def _hero_name(self, hero_id: int) -> str:
+        row = self.services.roles.model.catalog['BaseHeros'].get(str(hero_id))
+        return str((row or {}).get('name', hero_id))
+
+    def _hero_row(self, hero: dict) -> dict:
+        return {'heroId': hero['heroId'], 'name': self._hero_name(hero['heroId']), 'level': hero['level'],
+                'rebirthCount': hero.get('rebirthCount', 0), 'battlePower': hero.get('battlePower', 0),
+                'battleIx': hero.get('battleIx', 0), 'rageTrained': hero.get('rageTrained', 1)}
+
+    def _mail_row(self, mail: dict) -> dict:
+        return {'id': mail['PKID'], 'content': mail.get('MessageContent', ''), 'time': mail.get('SendTime', 0),
+                'read': bool(mail.get('ReadingState')), 'hasAttachment': bool(mail.get('HaveAccessory')),
+                'claimed': bool(mail.get('IsDealWith')), 'from': mail.get('NickName', ''),
+                'attachments': list(mail.get('MailAccessory') or [])}
+
+    def _progress_limits(self) -> dict:
+        catalog = self.services.roles.model.catalog
+        return {'firstStage': catalog.first_stage_id(), 'lastStage': max(map(int, catalog['BaseStages'])),
+                'towerMax': int(self.app.config.features.tower['max_floor']),
+                'guideStep': self.app.config.player.guide_protect_until_step,
+                'playerMaxLevel': self.app.config.player.level_up.max_level}
+
+    def _arena_rank(self, db, user_id: int) -> int:
+        row = db.execute('SELECT rank FROM arena_ranks WHERE server_id = ? AND user_id = ?',
+                         (self.services.arena.realm_id, user_id)).fetchone()
+        return int(row['rank']) if row else 0
+
+    def _progress(self, db, user_id: int, state: dict) -> dict:
+        return {'maxStage': int((state.get('Map') or {}).get('MaxPID') or 0),
+                'towerFloor': int((state.get('Tower') or {}).get('floor') or 0),
+                'tiroMaxStep': int(state.get('TiroMaxStep') or 0),
+                'arenaRank': self._arena_rank(db, user_id),
+                'unionId': int((state.get('Union') or {}).get('id') or 0)}
+
     # ---- 概览 -------------------------------------------------------------
 
     def status(self) -> dict:
+        day_ago = int(time.time()) - 86400
+        active = banned = max_level = 0
         with self.app.storage.transaction() as db:
             players = db.execute('SELECT COUNT(*) FROM roles').fetchone()[0]
             accounts = db.execute('SELECT COUNT(*) FROM game_users').fetchone()[0]
-            day_ago = int(time.time()) - 86400
-            active = sum(1 for (state_json,) in db.execute('SELECT state_json FROM roles')
-                         if json.loads(state_json).get('LastSeenAt', 0) >= day_ago)
+            for (state_json,) in db.execute('SELECT state_json FROM roles'):
+                state = json.loads(state_json)
+                if state.get('LastSeenAt', 0) >= day_ago:
+                    active += 1
+                if state.get('Banned'):
+                    banned += 1
+                max_level = max(max_level, int(state.get('PLevel') or 0))
             unions = len(self.services.union._index(db))
         realm = self.app.config.server.realm
         return {'realm': {'id': realm.id, 'name': realm.name}, 'gameUrl': self.app.config.server.public_url,
-                'players': players, 'accounts': accounts, 'active24h': active, 'unions': unions,
-                'uptime': int(time.time()) - self.started_at, 'database': str(self.app.storage.path),
+                'players': players, 'accounts': accounts, 'active24h': active, 'banned': banned, 'maxLevel': max_level,
+                'unions': unions, 'uptime': int(time.time()) - self.started_at, 'database': str(self.app.storage.path),
                 'editableFields': EDITABLE_FIELDS, 'resourceTypes': RESOURCE_TYPES}
 
     # ---- 玩家 -------------------------------------------------------------
@@ -120,12 +172,20 @@ class GmService:
             row, state = self._open(db, user_id)
             view = self.services.roles.model.presentation(state)
             summary = self._summary(db, row, state)
-            heroes = [{'heroId': h['heroId'], 'level': h['level'], 'rebirthCount': h.get('rebirthCount', 0), 'battlePower': h.get('battlePower', 0),
-                       'battleIx': h.get('battleIx', 0)} for h in state['ownedHeros']]
+            heroes = [self._hero_row(h) for h in state['ownedHeros']]
+            others = [dict(item, name=self._item_name(item.get('Type'), item.get('ID'))) for item in view.get('Others', [])]
+            fragments = [dict(item, name=self._item_name(23, item.get('ID'))) for item in view.get('Fragments', [])]
+            mails = [self._mail_row(m) for m in state['Mail']['items'][:80]]
+            card = state.get('MonthCard') or {}
+            now = self.services.roles.model.clock.now()
             return {'summary': summary, 'resources': {k: state.get(k, 0) for k in EDITABLE_FIELDS},
-                    'heroes': heroes, 'others': view.get('Others', []), 'fragments': view.get('Fragments', []),
-                    'talismans': len(state.get('Talismans', {})), 'mails': len(state['Mail']['items']),
-                    'banned': bool(state.get('Banned')), 'tiroMaxStep': state.get('TiroMaxStep', 0)}
+                    'heroes': heroes, 'others': others, 'fragments': fragments,
+                    'talismans': len(state.get('Talismans', {})), 'mails': mails, 'mailCount': len(state['Mail']['items']),
+                    'banned': bool(state.get('Banned')), 'progress': self._progress(db, user_id, state),
+                    'rechargeTotal': int((state.get('Recharge') or {}).get('total') or 0),
+                    'monthCardLeft': max(0, int(card.get('month_until') or 0) - now),
+                    'growupBought': bool((state.get('Growup') or {}).get('bought')),
+                    'limits': self._progress_limits()}
 
     def update_player(self, user_id: int, fields: dict) -> dict:
         """改写资源 / 等级 / VIP；``Name`` 改名；``Banned`` 封禁开关。"""
@@ -209,6 +269,296 @@ class GmService:
             self.services.roles.model.tick(state)
             self._save(db, user_id, state)
             return self._summary(db, row, state)
+
+    def grant_hero(self, user_id: int, hero_id) -> dict:
+        try:
+            hero_id = int(hero_id)
+        except (TypeError, ValueError):
+            raise GmError('英雄 ID 必须是整数')
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            if str(hero_id) not in self.services.roles.model.catalog['BaseHeros']:
+                raise GmError('英雄配置不存在')
+            if self.services.roles.model.has_hero(state, hero_id):
+                raise GmError('已拥有该主将')
+            try:
+                self.services.growth.ledger.apply(state, rewards=[dict(Type=7, ID=hero_id, Count=1)])
+            except BusinessError as exc:
+                raise GmError(str(exc))
+            self._save(db, user_id, state)
+            return {'heroId': hero_id, 'name': self._hero_name(hero_id), 'summary': self._summary(db, row, state)}
+
+    def update_hero(self, user_id: int, body) -> dict:
+        if not isinstance(body, dict):
+            raise GmError('请求体必须是 JSON 对象')
+        try:
+            hero_id = int(body.get('heroId'))
+        except (TypeError, ValueError):
+            raise GmError('英雄 ID 必须是整数')
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            try:
+                hero = self.services.roles.model.find_hero(state, hero_id)
+            except BusinessError as exc:
+                raise GmError(str(exc))
+            heroes = self.services.roles.model.heroes
+            template = heroes.template(hero_id)
+            if 'level' in body:
+                if type(body['level']) is not int or not 1 <= body['level'] <= state['PLevel']:
+                    raise GmError(f'主将等级须在 1 到账户等级 {state["PLevel"]} 之间')
+                hero['level'] = body['level']
+                hero['curExp'] = 0
+            if 'rebirthCount' in body:
+                cap = heroes.rebirth_max(template)
+                if type(body['rebirthCount']) is not int or not 0 <= body['rebirthCount'] <= cap:
+                    raise GmError(f'进阶次数须在 0 到 {cap} 之间')
+                hero['rebirthCount'] = body['rebirthCount']
+            if 'rageTrained' in body:
+                if type(body['rageTrained']) is not int or not 1 <= body['rageTrained'] <= hero['level']:
+                    raise GmError(f'技能训练等级须在 1 到主将等级 {hero["level"]} 之间')
+                hero['rageTrained'] = body['rageTrained']
+            self._save(db, user_id, state)
+            hero = self.services.roles.model.find_hero(state, hero_id)
+            return {'hero': self._hero_row(hero), 'summary': self._summary(db, row, state)}
+
+    def set_progress(self, user_id: int, fields) -> dict:
+        if not isinstance(fields, dict) or not fields:
+            raise GmError('没有要修改的进度')
+        catalog = self.services.roles.model.catalog
+        stages = set(map(int, catalog['BaseStages']))
+        tower_max = int(self.app.config.features.tower['max_floor'])
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            if 'maxStage' in fields:
+                if type(fields['maxStage']) is not int or fields['maxStage'] not in stages:
+                    raise GmError('关卡不存在')
+                state.setdefault('Map', {})['MaxPID'] = fields['maxStage']
+            if 'towerFloor' in fields:
+                if type(fields['towerFloor']) is not int or not 0 <= fields['towerFloor'] <= tower_max:
+                    raise GmError(f'通天塔层数须在 0 到 {tower_max} 之间')
+                tower = state.setdefault('Tower', {'day': '', 'floor': 0, 'score': 0, 'used': 0, 'buff_times': 0,
+                                                   'bought': [], 'reward_floor': 0})
+                tower['floor'] = fields['towerFloor']
+                tower['reward_floor'] = min(int(tower.get('reward_floor') or 0), fields['towerFloor'])
+            if 'tiroMaxStep' in fields:
+                if type(fields['tiroMaxStep']) is not int or fields['tiroMaxStep'] < 0:
+                    raise GmError('引导进度必须是非负整数')
+                state['TiroMaxStep'] = fields['tiroMaxStep']
+            self._save(db, user_id, state)
+            return {'progress': self._progress(db, user_id, state), 'summary': self._summary(db, row, state)}
+
+    def skip_guide(self, user_id: int) -> dict:
+        step = self.app.config.player.guide_protect_until_step
+        return self.set_progress(user_id, {'tiroMaxStep': step})
+
+    def clear_mails(self, user_id: int) -> dict:
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            removed = len(state['Mail']['items'])
+            state['Mail']['items'] = []
+            self._save(db, user_id, state)
+            return {'removed': removed, 'summary': self._summary(db, row, state)}
+
+    def delete_mail(self, user_id: int, mail_id) -> dict:
+        try:
+            mail_id = int(mail_id)
+        except (TypeError, ValueError):
+            raise GmError('邮件 ID 必须是整数')
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            before = len(state['Mail']['items'])
+            state['Mail']['items'] = [m for m in state['Mail']['items'] if m['PKID'] != mail_id]
+            if len(state['Mail']['items']) == before:
+                raise GmError('邮件不存在')
+            self._save(db, user_id, state)
+            return {'removed': 1, 'summary': self._summary(db, row, state)}
+
+    def remove_bag_item(self, user_id: int, item) -> dict:
+        if not isinstance(item, dict) or any(type(item.get(k)) is not int for k in ('Type', 'ID', 'Count')):
+            raise GmError('须提供整数 Type / ID / Count')
+        if item['Count'] <= 0:
+            raise GmError('数量必须大于 0')
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            try:
+                self.services.growth.ledger.apply(state, consume=[dict(Type=item['Type'], ID=item['ID'], Count=item['Count'])])
+            except BusinessError as exc:
+                raise GmError(str(exc))
+            self._save(db, user_id, state)
+            return {'summary': self._summary(db, row, state)}
+
+    def credit_recharge(self, user_id: int, ingot) -> dict:
+        try:
+            ingot = int(ingot)
+        except (TypeError, ValueError):
+            raise GmError('充值元宝必须是整数')
+        if ingot <= 0:
+            raise GmError('充值元宝必须大于 0')
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            rec = self.services.activities._recharge(state)
+            rec['total'] += ingot
+            rec['max_single'] = max(int(rec.get('max_single') or 0), ingot)
+            self.services.activities.apply_vip(state)
+            try:
+                self.services.growth.ledger.apply(state, rewards=[dict(Type=2, ID=0, Count=ingot)])
+            except BusinessError as exc:
+                raise GmError(str(exc))
+            self._save(db, user_id, state)
+            return {'rechargeTotal': rec['total'], 'vip': state.get('VipLevel', 0),
+                    'summary': self._summary(db, row, state)}
+
+    def grant_month_card(self, user_id: int, days) -> dict:
+        try:
+            days = int(days if days is not None else self.app.config.activities.month_card['month_days'])
+        except (TypeError, ValueError, KeyError):
+            days = 30
+        if days <= 0:
+            raise GmError('月卡天数必须大于 0')
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            card = self.services.activities._month_card(state)
+            now = self.services.roles.model.clock.now()
+            card['month_until'] = max(now, int(card.get('month_until') or 0)) + days * 86400
+            self._save(db, user_id, state)
+            return {'monthCardLeft': card['month_until'] - now, 'summary': self._summary(db, row, state)}
+
+    def grant_growup(self, user_id: int) -> dict:
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            state.setdefault('Growup', {'bought': False, 'claimed': []})['bought'] = True
+            self._save(db, user_id, state)
+            return {'growupBought': True, 'summary': self._summary(db, row, state)}
+
+    def leave_union(self, user_id: int) -> dict:
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            info = state.get('Union') or {}
+            union_id = int(info.get('id') or 0)
+            if not union_id:
+                raise GmError('该玩家未加入仙盟')
+            union = self.services.union._load(db, union_id)
+            if union is None:
+                info['id'] = 0
+            else:
+                if str(user_id) in union['members'] and self.services.union._position(union, user_id) == self.services.union.positions['leader'] and len(union['members']) > 1:
+                    raise GmError('盟主请先转让职位或解散仙盟')
+                self.services.union._remove_member(db, union, user_id, left=True)
+                if union['members']:
+                    self.services.union._save(db, union)
+                else:
+                    self.services.union.store.set(db, 'union:index', [i for i in self.services.union._index(db) if i != union_id])
+                    self.services.union.store.delete_prefix(db, f'union:{union_id}')
+                # _remove_member 另存了一份状态；这里同步本事务里的 Union，避免 _save 把退盟写回去
+                info.update(id=0, left_at=self.services.roles.model.clock.now())
+            self._save(db, user_id, state)
+            return {'summary': self._summary(db, row, state)}
+
+    def mail_many(self, user_ids, content: str, attachments=None) -> dict:
+        content = (content or '').strip()
+        if not content:
+            raise GmError('邮件内容不能为空')
+        if not isinstance(user_ids, list) or not user_ids:
+            raise GmError('请提供玩家 ID 列表')
+        ids = []
+        for raw in user_ids:
+            try:
+                ids.append(int(raw))
+            except (TypeError, ValueError):
+                raise GmError('玩家 ID 必须是整数')
+        attachments = check_rewards(attachments) if attachments else []
+        sent, missing = 0, []
+        with self.app.storage.transaction() as db:
+            for uid in ids:
+                try:
+                    _, state = self._open(db, uid)
+                except GmError:
+                    missing.append(uid)
+                    continue
+                self.services.mail.send_system(state, content, attachments)
+                self._save(db, uid, state)
+                sent += 1
+        return {'sent': sent, 'missing': missing}
+
+    def union_detail(self, union_id: int) -> dict:
+        with self.app.storage.transaction() as db:
+            union = self.services.union._load(db, union_id)
+            if union is None:
+                raise GmError('仙盟不存在')
+            members = []
+            for uid, member in union['members'].items():
+                try:
+                    profile = self.services.union.directory.profile(db, int(uid))
+                except BusinessError:
+                    profile = {'Name': f'#{uid}', 'Level': 0, 'BattlePower': 0}
+                members.append({'userId': int(uid), 'name': profile['Name'], 'level': profile.get('Level', 0),
+                                'battlePower': profile.get('BattlePower', 0), 'position': member['position']})
+            members.sort(key=lambda m: (m['position'], -m['battlePower']))
+            return {'id': union['id'], 'name': union['name'], 'level': union['level'], 'coin': union['coin'],
+                    'notice': union['notice'], 'outNotice': union.get('out_notice', ''),
+                    'members': members, 'created': union['created'], 'leader': self.services.union._leader_name(db, union)}
+
+    def update_union(self, union_id: int, fields) -> dict:
+        if not isinstance(fields, dict) or not fields:
+            raise GmError('没有要修改的字段')
+        with self.app.storage.transaction() as db:
+            union = self.services.union._load(db, union_id)
+            if union is None:
+                raise GmError('仙盟不存在')
+            if 'notice' in fields:
+                union['notice'] = str(fields['notice'] or '')
+            if 'outNotice' in fields:
+                union['out_notice'] = str(fields['outNotice'] or '')
+            if 'coin' in fields:
+                if type(fields['coin']) is not int or fields['coin'] < 0:
+                    raise GmError('仙盟贡献必须是非负整数')
+                union['coin'] = fields['coin']
+            self.services.union._save(db, union)
+            return {'id': union['id'], 'notice': union['notice'], 'outNotice': union.get('out_notice', ''),
+                    'coin': union['coin']}
+
+    def kick_union_member(self, union_id: int, user_id) -> dict:
+        try:
+            user_id = int(user_id)
+        except (TypeError, ValueError):
+            raise GmError('玩家 ID 必须是整数')
+        with self.app.storage.transaction() as db:
+            union = self.services.union._load(db, union_id)
+            if union is None:
+                raise GmError('仙盟不存在')
+            if str(user_id) not in union['members']:
+                raise GmError('该玩家不在此仙盟')
+            if self.services.union._position(union, user_id) == self.services.union.positions['leader'] and len(union['members']) > 1:
+                raise GmError('不能踢出仍有成员的盟主，请先解散或让其退盟')
+            self.services.union._remove_member(db, union, user_id, left=True)
+            if union['members']:
+                self.services.union._save(db, union)
+            else:
+                self.services.union.store.set(db, 'union:index', [i for i in self.services.union._index(db) if i != union_id])
+                self.services.union.store.delete_prefix(db, f'union:{union_id}')
+            return {'kicked': user_id, 'members': len(union['members'])}
+
+    def dissolve_union(self, union_id: int) -> dict:
+        with self.app.storage.transaction() as db:
+            union = self.services.union._load(db, union_id)
+            if union is None:
+                raise GmError('仙盟不存在')
+            for uid in list(union['members']):
+                self.services.union._remove_member(db, union, int(uid), left=False)
+            self.services.union.store.set(db, 'union:index', [i for i in self.services.union._index(db) if i != union_id])
+            self.services.union.store.delete_prefix(db, f'union:{union_id}')
+            return {'dissolved': union_id}
+
+    def arena_ranks(self, limit: int = 30) -> dict:
+        limit = max(1, min(int(limit or 30), 80))
+        rows = []
+        with self.app.storage.transaction() as db:
+            for rank in range(1, limit + 1):
+                profile = self.services.arena._profile_at(db, rank)
+                rows.append({'rank': profile['Ranking'], 'userId': profile['PlayerId'], 'name': profile['PlayerName'],
+                             'level': profile['Level'], 'battlePower': profile['Fighting'],
+                             'robot': int(profile['PlayerId']) >= 100_000_000})
+        return {'ranks': rows}
 
     def max_out(self, user_id: int) -> dict:
         """一键全满：解锁全部主将、账户满级、培养拉满、穿戴缘分 / 专属法宝。"""

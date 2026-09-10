@@ -15,6 +15,7 @@ from .service import GmError, GmService
 
 MAX_BODY = 2 * 1024 * 1024
 PLAYER_ID = re.compile(r'^/api/players/(\d+)(/[a-z-]+)?$')
+UNION_ID = re.compile(r'^/api/unions/(\d+)(/[a-z-]+)?$')
 
 
 def make_handler(gm: GmService, config: MuipConfig):
@@ -167,9 +168,51 @@ def make_handler(gm: GmService, config: MuipConfig):
                     return gm.reset_daily(user_id)
                 if method == 'POST' and action == '/max-out':
                     return gm.max_out(user_id)
+                if method == 'POST' and action == '/hero':
+                    return gm.grant_hero(user_id, body.get('heroId') if isinstance(body, dict) else None)
+                if method == 'POST' and action == '/hero-update':
+                    return gm.update_hero(user_id, body)
+                if method == 'POST' and action == '/progress':
+                    return gm.set_progress(user_id, body.get('fields') if isinstance(body, dict) else None)
+                if method == 'POST' and action == '/skip-guide':
+                    return gm.skip_guide(user_id)
+                if method == 'POST' and action == '/clear-mails':
+                    return gm.clear_mails(user_id)
+                if method == 'POST' and action == '/delete-mail':
+                    return gm.delete_mail(user_id, body.get('mailId') if isinstance(body, dict) else None)
+                if method == 'POST' and action == '/bag-remove':
+                    return gm.remove_bag_item(user_id, body)
+                if method == 'POST' and action == '/recharge':
+                    return gm.credit_recharge(user_id, body.get('ingot') if isinstance(body, dict) else None)
+                if method == 'POST' and action == '/month-card':
+                    return gm.grant_month_card(user_id, body.get('days') if isinstance(body, dict) else None)
+                if method == 'POST' and action == '/growup':
+                    return gm.grant_growup(user_id)
+                if method == 'POST' and action == '/leave-union':
+                    return gm.leave_union(user_id)
+                return None
+            union_match = UNION_ID.match(path)
+            if union_match:
+                union_id, action = int(union_match.group(1)), union_match.group(2) or ''
+                if method == 'GET' and not action:
+                    return gm.union_detail(union_id)
+                if method == 'POST' and action == '/update':
+                    return gm.update_union(union_id, body.get('fields') if isinstance(body, dict) else None)
+                if method == 'POST' and action == '/kick':
+                    return gm.kick_union_member(union_id, body.get('userId') if isinstance(body, dict) else None)
+                if method == 'POST' and action == '/dissolve':
+                    return gm.dissolve_union(union_id)
                 return None
             if path == '/api/mail/broadcast' and method == 'POST':
                 return gm.broadcast_mail(body.get('content'), body.get('attachments'))
+            if path == '/api/mail/many' and method == 'POST':
+                return gm.mail_many(body.get('userIds'), body.get('content'), body.get('attachments'))
+            if path == '/api/ranks' and method == 'GET':
+                try:
+                    limit = int(first('limit', '30'))
+                except ValueError:
+                    raise GmError('limit 必须是整数')
+                return gm.arena_ranks(limit)
             if path == '/api/items' and method == 'GET':
                 try:
                     item_type = int(first('type', '5'))
