@@ -1,0 +1,55 @@
+{
+  "open_level": 40,
+  "platform_size": 14,
+  "hunt_gold": 20000,
+  "call_ingot": 50,
+  "daily_calls": 5,
+  "quality_weights_gold": {
+    "1": 60,
+    "2": 30,
+    "3": 9,
+    "4": 1
+  },
+  "quality_weights_ingot": {
+    "1": 20,
+    "2": 45,
+    "3": 30,
+    "4": 5
+  },
+  "max_level": 10,
+  "exchanges": [
+    {
+      "id": 1,
+      "fragment": 10,
+      "quality": 2
+    },
+    {
+      "id": 2,
+      "fragment": 30,
+      "quality": 3
+    },
+    {
+      "id": 3,
+      "fragment": 60,
+      "quality": 4
+    }
+  ],
+  "million": {
+    "gold_by_type": {
+      "1": 1000000,
+      "2": 10000000
+    },
+    "hunts_by_type": {
+      "1": 50,
+      "2": 500
+    },
+    "quality_weights": {
+      "1": 55,
+      "2": 30,
+      "3": 12,
+      "4": 3
+    },
+    "fragment_per_hunt": 0.1,
+    "keep_quality_from": 3
+  }
+}

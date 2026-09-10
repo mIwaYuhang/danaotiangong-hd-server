@@ -223,15 +223,18 @@ class HeroGrowthService:
     # ---- 技能训练 -----------------------------------------------------------
 
     def skill_train(self, ctx: RoleContext, params) -> Reply:
-        """``/Hero/skilltrain?heroid``：怒气技等级不超过主将等级，每级消耗阅历 = 100 × 当前等级。"""
+        """``/Hero/skilltrain?heroid``：训练等级不超过主将等级，每级消耗阅历 = 100 × 已训练等级。
+
+        下发的 ``rageSkillLevel`` = 训练等级 + 进阶赠送（见 ``HeroModel.rage_bonus``）。
+        """
         state = ctx.state
         hero = self.model.find_hero(state, params['heroid'])
-        level = hero.get('rageSkillLevel', 1)
-        if level >= hero['level']:
+        trained = hero.get('rageTrained', hero.get('rageSkillLevel', 1))
+        if trained >= hero['level']:
             raise BusinessError('技能等级不能超过主将等级', STATE_HERO_ERROR)
-        outcome = self.ledger.apply(state, consume=[dict(Type=18, ID=0, Count=SKILL_TRAIN_KNOWLEDGE_BASE * level)])
+        outcome = self.ledger.apply(state, consume=[dict(Type=18, ID=0, Count=SKILL_TRAIN_KNOWLEDGE_BASE * trained)])
         hero = self.model.find_hero(state, hero['heroId'])
-        hero['rageSkillLevel'] = level + 1
+        hero['rageTrained'] = trained + 1
         self.model.refresh_hero(state, hero)
         outcome.heros.append(deepcopy(hero))
         return Reply({'SkillLevel': hero['rageSkillLevel']},

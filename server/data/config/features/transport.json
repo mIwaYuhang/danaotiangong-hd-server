@@ -1,0 +1,102 @@
+{
+  "_doc": "运镖(/Transport/*)：每日运镖/劫镖次数、马匹五档银币与召唤费、目的地时长(秒)与倍率、免费刷新次数与付费刷新元宝、提前结束每分钟元宝；bless 为上香（客户端 BlessType 4/5/6）；npc_count 为地图机器人镖车数；friends.present_energy 每份体力赠送领取时获得的体力；transport.max_robbed_times 单次运镖最多被劫次数，rob_ratio 每次被劫损失镖银比例",
+  "daily_transport_times": 3,
+  "daily_rob_times": 5,
+  "horses": {
+    "1": {
+      "Gold": 5000,
+      "HaveSreward": 0,
+      "CallCost": 0,
+      "Knowledge": 0
+    },
+    "2": {
+      "Gold": 8000,
+      "HaveSreward": 0,
+      "CallCost": 0,
+      "Knowledge": 0
+    },
+    "3": {
+      "Gold": 12000,
+      "HaveSreward": 0,
+      "CallCost": 0,
+      "Knowledge": 0
+    },
+    "4": {
+      "Gold": 18000,
+      "HaveSreward": 1,
+      "CallCost": 0,
+      "Knowledge": 50
+    },
+    "5": {
+      "Gold": 30000,
+      "HaveSreward": 1,
+      "CallCost": 50,
+      "Knowledge": 100
+    }
+  },
+  "horse_weights": {
+    "1": 50,
+    "2": 30,
+    "3": 15,
+    "4": 4,
+    "5": 1
+  },
+  "destinations": {
+    "1": {
+      "seconds": 1200,
+      "multiplier": 1.0,
+      "times": 1
+    },
+    "2": {
+      "seconds": 1800,
+      "multiplier": 2.6,
+      "times": 2
+    }
+  },
+  "free_refresh_times": 3,
+  "refresh_ingot": 10,
+  "call_horse_ingot": 50,
+  "early_end_ingot_per_minute": 10,
+  "gold_per_level": 200,
+  "max_robbed_times": 3,
+  "rob_ratio": 0.1,
+  "npc_count": 8,
+  "surprise_reward": [
+    {
+      "Type": 2,
+      "ID": 0,
+      "Count": 10
+    }
+  ],
+  "bless": {
+    "exp_per_level": 2000,
+    "addition_per_level": 2,
+    "max_level": 20,
+    "types": {
+      "4": {
+        "consume": {
+          "Type": 1,
+          "Count": 5000
+        },
+        "exp": 1000,
+        "knowledge": 500
+      },
+      "5": {
+        "consume": {
+          "Type": 2,
+          "Count": 20
+        },
+        "exp": 3000,
+        "knowledge": 1000
+      },
+      "6": {
+        "consume": {
+          "Type": 2,
+          "Count": 100
+        },
+        "exp": 5000,
+        "knowledge": 10000
+      }
+    }
+  }
+}

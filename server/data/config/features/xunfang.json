@@ -1,0 +1,27 @@
+{
+  "open_level": 45,
+  "population_unlock_levels": {
+    "1": 45,
+    "2": 80,
+    "3": 90,
+    "4": 100
+  },
+  "daily_free_visits": 3,
+  "normal_prop_id": 140010,
+  "high_prop_id": 140011,
+  "high_ingot_base": 50,
+  "high_ingot_step": 10,
+  "high_cards": 5,
+  "card_max_count": 10,
+  "quality_weights": {
+    "1": 50,
+    "2": 30,
+    "3": 15,
+    "4": 5
+  },
+  "front_positions": [
+    1,
+    2,
+    3
+  ]
+}

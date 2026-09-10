@@ -229,12 +229,13 @@ class BattleEngine:
 
     def template_unit(self, hero_id: int, level: int, pos: int, side: int = 1, rebirth: int = 0,
                       multiplier: float = 1.0, rage_level: int = 1) -> Unit:
-        """按英雄模板生成一个指定等级的单位（争霸机器人、他人阵容等）。"""
+        """按英雄模板生成一个指定等级的单位（争霸机器人、他人阵容等）；怒气技吃进阶赠送等级。"""
         template = self.heroes.template(hero_id)
         attrs = self.heroes.base_attributes(template, max(1, level), rebirth, None, multiplier)
         hp = max(1, int(attrs['health']))
         return Unit(pos=pos, side=side, name=template['name'], attrs=attrs, hero_id=hero_id,
-                    skill_id=template.get('skillId', 0), skill_level=rage_level, talent_id=template.get('talentId', 0),
+                    skill_id=template.get('skillId', 0), skill_level=rage_level + self.heroes.rage_bonus(template, rebirth),
+                    talent_id=template.get('talentId', 0),
                     rebirth=rebirth, hp=hp, hp_max=hp, rage=self.hero_config.rage.initial)
 
     def npc_unit(self, npc_id: int, level: int, pos: int, multiplier: float = 1.0, hp_override: int = None) -> Unit:

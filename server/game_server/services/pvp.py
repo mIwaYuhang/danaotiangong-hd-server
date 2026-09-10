@@ -103,7 +103,7 @@ class ArenaService:
         heroes = []
         for pos, hero_id in enumerate(rng.sample(hero_ids, size), 1):
             hero = new_hero_record(hero_id, pos)
-            hero.update(level=level, rebirthCount=level // 15, rageSkillLevel=max(1, level // 5))
+            hero.update(level=level, rebirthCount=level // 15, rageTrained=max(1, level // 5))
             equips = self._robot_equipment(rng, robot_id, hero_id, pos, level)
             self.model.heroes.refresh(hero, self.model.equipment.bonus_of(equips), equips)
             heroes.append(hero)

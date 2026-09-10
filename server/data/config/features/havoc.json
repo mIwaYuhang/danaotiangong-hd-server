@@ -1,0 +1,14 @@
+{
+  "open_level": 41,
+  "season_days": 3,
+  "groups": 4,
+  "daily_times": 10,
+  "recover_seconds": 3600,
+  "extra_fight_ingot": 20,
+  "closed_hours": [
+    23
+  ],
+  "candidates": 3,
+  "robot_candidates": 3,
+  "log_limit": 20
+}

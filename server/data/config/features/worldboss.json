@@ -1,0 +1,66 @@
+{
+  "_doc": "妖王洞穴(/Worldboss/*)：每日活动时段（服务器时区小时、开始/持续分钟）、四妖王 NPC 编号，血量 = boss_hp_per_player_level × 30 为全区服玩家共享；复活冷却、复活/鼓舞/预约元宝、鼓舞每次加成、伤害换银币比例、场次结束后的排名与宝箱奖励",
+  "sessions": [
+    {
+      "start_hour": 12,
+      "start_minute": 0,
+      "duration_minutes": 60
+    },
+    {
+      "start_hour": 20,
+      "start_minute": 0,
+      "duration_minutes": 60
+    }
+  ],
+  "bosses": [
+    {
+      "id": 1,
+      "name": "白眉虎王",
+      "npc_id": 60100001
+    },
+    {
+      "id": 2,
+      "name": "九魅狐王",
+      "npc_id": 60200001
+    },
+    {
+      "id": 3,
+      "name": "铁臂熊王",
+      "npc_id": 60300001
+    },
+    {
+      "id": 4,
+      "name": "万灵猴王",
+      "npc_id": 60400001
+    }
+  ],
+  "boss_hp_per_player_level": 20000,
+  "boss_attr_multiplier": 1.0,
+  "resurgence_seconds": 60,
+  "resurgence_ingot": 20,
+  "encouraging_ingot": 10,
+  "encouraging_step": 0.1,
+  "encouraging_max": 1.0,
+  "order_ingot": 50,
+  "order_vip": 3,
+  "gold_per_damage": 0.05,
+  "rank_reward": [
+    {
+      "Type": 1,
+      "ID": 0,
+      "Count": 50000
+    },
+    {
+      "Type": 6,
+      "ID": 200125,
+      "Count": 20
+    }
+  ],
+  "chest_reward": [
+    {
+      "Type": 1,
+      "ID": 0,
+      "Count": 20000
+    }
+  ]
+}

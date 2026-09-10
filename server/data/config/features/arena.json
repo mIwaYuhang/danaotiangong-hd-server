@@ -1,0 +1,184 @@
+{
+  "_doc": "争霸(/Duel/*)：robot_count 机器人填充的名次数、robot_names 名字池、initial_rank 新玩家起始名次（排在此之后）、每日挑战次数 daily_times、次数恢复间隔、积分产出（每 score_interval 秒 + 按排名区间的每周期积分）、胜利奖励、兑换商店（Score 积分价，Reward 奖励）、排名限定奖励",
+  "robot_count": 200,
+  "robot_names": [
+    "逍遥子",
+    "紫霞仙子",
+    "白晶晶",
+    "牛魔王",
+    "铁扇公主",
+    "红孩儿",
+    "二郎神",
+    "哪吒",
+    "杨戬",
+    "太白金星",
+    "托塔天王",
+    "巨灵神",
+    "赤脚大仙",
+    "南极仙翁",
+    "月老",
+    "嫦娥",
+    "玉兔精",
+    "黄袍怪",
+    "金角大王",
+    "银角大王",
+    "蜘蛛精",
+    "白骨精",
+    "黑熊精",
+    "六耳猕猴",
+    "镇元子",
+    "菩提祖师",
+    "东海龙王",
+    "西海龙王",
+    "南海龙王",
+    "北海龙王"
+  ],
+  "initial_rank": 200,
+  "daily_times": 10,
+  "recover_seconds": 1800,
+  "score_interval_seconds": 1200,
+  "score_by_rank": [
+    [
+      1,
+      1,
+      20
+    ],
+    [
+      2,
+      10,
+      12
+    ],
+    [
+      11,
+      50,
+      8
+    ],
+    [
+      51,
+      100,
+      6
+    ],
+    [
+      101,
+      100000,
+      5
+    ]
+  ],
+  "win_reward": [
+    {
+      "Type": 19,
+      "ID": 0,
+      "Count": 20
+    },
+    {
+      "Type": 1,
+      "ID": 0,
+      "Count": 5000
+    }
+  ],
+  "lose_reward": [
+    {
+      "Type": 19,
+      "ID": 0,
+      "Count": 5
+    }
+  ],
+  "cooldown_seconds": 0,
+  "clear_cooldown_ingot": 20,
+  "exchanges": [
+    {
+      "id": 101,
+      "Score": 200,
+      "Reward": [
+        {
+          "Type": 6,
+          "ID": 200125,
+          "Count": 10
+        }
+      ],
+      "daily_limit": 5
+    },
+    {
+      "id": 102,
+      "Score": 500,
+      "Reward": [
+        {
+          "Type": 5,
+          "ID": 100009,
+          "Count": 1
+        }
+      ],
+      "daily_limit": 3
+    },
+    {
+      "id": 103,
+      "Score": 1000,
+      "Reward": [
+        {
+          "Type": 2,
+          "ID": 0,
+          "Count": 50
+        }
+      ],
+      "daily_limit": 1
+    },
+    {
+      "id": 104,
+      "Score": 300,
+      "Reward": [
+        {
+          "Type": 6,
+          "ID": 200128,
+          "Count": 20
+        }
+      ],
+      "daily_limit": 5
+    }
+  ],
+  "limit_rank_exchanges": [
+    {
+      "id": 201,
+      "LimitRank": 100,
+      "Reward": [
+        {
+          "Type": 1,
+          "ID": 0,
+          "Count": 20000
+        }
+      ]
+    },
+    {
+      "id": 202,
+      "LimitRank": 50,
+      "Reward": [
+        {
+          "Type": 2,
+          "ID": 0,
+          "Count": 50
+        }
+      ]
+    },
+    {
+      "id": 203,
+      "LimitRank": 10,
+      "Reward": [
+        {
+          "Type": 2,
+          "ID": 0,
+          "Count": 200
+        }
+      ]
+    },
+    {
+      "id": 204,
+      "LimitRank": 1,
+      "Reward": [
+        {
+          "Type": 2,
+          "ID": 0,
+          "Count": 500
+        }
+      ]
+    }
+  ]
+}

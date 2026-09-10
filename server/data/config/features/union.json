@@ -1,0 +1,299 @@
+{
+  "create_level": 26,
+  "create_gold": 500000,
+  "name_max_chars": 7,
+  "notice_max_ascii": 200,
+  "max_applies": 3,
+  "rejoin_cooldown_seconds": 86400,
+  "max_level": 20,
+  "no_dissolve_above_level": 11,
+  "members_by_hall_level": [
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+    42,
+    44,
+    46,
+    48,
+    50,
+    52,
+    54,
+    56,
+    60
+  ],
+  "building_upgrade_coin_base": 1000,
+  "building_upgrade_coin_growth": 1.5,
+  "building_open_union_level": {
+    "2": 3,
+    "3": 2,
+    "5": 2
+  },
+  "daily_worship_times": 3,
+  "worship_options": [
+    {
+      "costGold": 0,
+      "costIngot": 50,
+      "playerCoin": 100,
+      "unionCoin": 200
+    },
+    {
+      "costGold": 0,
+      "costIngot": 20,
+      "playerCoin": 40,
+      "unionCoin": 80
+    },
+    {
+      "costGold": 10000,
+      "costIngot": 0,
+      "playerCoin": 10,
+      "unionCoin": 20
+    }
+  ],
+  "worship_tpuc_ratio": 0.1,
+  "log_limit": 50,
+  "positions": {
+    "leader": 1,
+    "elders": [
+      2,
+      3
+    ],
+    "guardians": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "member": 8
+  },
+  "store": {
+    "zhenpin_refresh_seconds": 14400,
+    "zhenpin_count": 4,
+    "zhenpin_pool": [
+      {
+        "Price": 120,
+        "PriceType": 27,
+        "RewardItem": [
+          {
+            "Type": 6,
+            "ID": 200200,
+            "Count": 1
+          }
+        ]
+      },
+      {
+        "Price": 80,
+        "PriceType": 27,
+        "RewardItem": [
+          {
+            "Type": 11,
+            "ID": 0,
+            "Count": 20
+          }
+        ]
+      },
+      {
+        "Price": 150,
+        "PriceType": 27,
+        "RewardItem": [
+          {
+            "Type": 22,
+            "ID": 0,
+            "Count": 5
+          }
+        ]
+      },
+      {
+        "Price": 60,
+        "PriceType": 27,
+        "RewardItem": [
+          {
+            "Type": 18,
+            "ID": 0,
+            "Count": 500
+          }
+        ]
+      },
+      {
+        "Price": 200,
+        "PriceType": 27,
+        "RewardItem": [
+          {
+            "Type": 37,
+            "ID": 0,
+            "Count": 10
+          }
+        ]
+      },
+      {
+        "Price": 100,
+        "PriceType": 27,
+        "RewardItem": [
+          {
+            "Type": 36,
+            "ID": 0,
+            "Count": 100
+          }
+        ]
+      }
+    ],
+    "fix_goods": [
+      {
+        "Price": 30,
+        "PriceType": 27,
+        "Level": 1,
+        "Limit": 5,
+        "RewardItem": [
+          {
+            "Type": 1,
+            "ID": 0,
+            "Count": 20000
+          }
+        ]
+      },
+      {
+        "Price": 50,
+        "PriceType": 27,
+        "Level": 1,
+        "Limit": 3,
+        "RewardItem": [
+          {
+            "Type": 30,
+            "ID": 0,
+            "Count": 5000
+          }
+        ]
+      },
+      {
+        "Price": 90,
+        "PriceType": 27,
+        "Level": 2,
+        "Limit": 2,
+        "RewardItem": [
+          {
+            "Type": 5,
+            "ID": 100025,
+            "Count": 1
+          }
+        ]
+      },
+      {
+        "Price": 160,
+        "PriceType": 27,
+        "Level": 3,
+        "Limit": -1,
+        "RewardItem": [
+          {
+            "Type": 5,
+            "ID": 110062,
+            "Count": 1
+          }
+        ]
+      }
+    ],
+    "auction_seconds": 86400,
+    "auction_items": [
+      {
+        "AuctionPrice": 100,
+        "Reward": [
+          {
+            "Type": 6,
+            "ID": 200204,
+            "Count": 2
+          }
+        ]
+      },
+      {
+        "AuctionPrice": 200,
+        "Reward": [
+          {
+            "Type": 37,
+            "ID": 0,
+            "Count": 30
+          }
+        ]
+      },
+      {
+        "AuctionPrice": 150,
+        "Reward": [
+          {
+            "Type": 22,
+            "ID": 0,
+            "Count": 20
+          }
+        ]
+      }
+    ]
+  },
+  "demon": {
+    "daily_challenges": 3,
+    "daily_resurgences": 2,
+    "resurgence_gold": 20000,
+    "resurgence_ingot": 10,
+    "hp_base": 200000,
+    "hp_growth": 1.6,
+    "npc_level_offset": 5,
+    "attr_multiplier": 1.0,
+    "gold_per_damage": 0.05,
+    "player_coin_per_challenge": 5,
+    "union_coin_per_kill": 200,
+    "player_coin_per_kill": 30,
+    "king_requires_wins": 5,
+    "npc_ids": [
+      60100001,
+      60200001,
+      60300001,
+      60400001
+    ]
+  },
+  "message_board_limit": 50,
+  "xiantao": {
+    "daily_free": 2,
+    "ingot": 20,
+    "fixed_reward_every": 5,
+    "fixed_reward": [
+      {
+        "Type": 27,
+        "ID": 0,
+        "Count": 50
+      }
+    ],
+    "random_rewards": [
+      [
+        {
+          "Type": 1,
+          "ID": 0,
+          "Count": 20000
+        }
+      ],
+      [
+        {
+          "Type": 18,
+          "ID": 0,
+          "Count": 300
+        }
+      ],
+      [
+        {
+          "Type": 11,
+          "ID": 0,
+          "Count": 10
+        }
+      ],
+      [
+        {
+          "Type": 27,
+          "ID": 0,
+          "Count": 10
+        }
+      ]
+    ]
+  }
+}

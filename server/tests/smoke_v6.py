@@ -105,6 +105,8 @@ def main():
         temple = a.call('/Union/Xm')['Result']
         lead = next(h for h in a.role()['team']['groupList'] if h['heroId'] == 101)
         check('进阶 12 后阵容带 rebirthCount', lead['rebirthCount'] == 12, lead)
+        # 进阶表第 3/7/11 档各送 5 级怒气技（hero.lua rebirthList 描述「@怒气法术…提升5级」）
+        check('进阶 12 怒气技 = 训练 1 + 赠送 15', lead['rageSkillLevel'] == 16, lead['rageSkillLevel'])
         check('神殿立绘带 +12 进阶，才会换 dengji2 皮', temple['statueInfos'][0]['statueAvatarID'] == 101
               and temple['statueInfos'][0]['breakthroughCount'] == 12, temple['statueInfos'][0])
         check('神殿立绘带武器', temple['statueInfos'][0].get('statueWeaponID', 0) > 0, temple['statueInfos'][0])

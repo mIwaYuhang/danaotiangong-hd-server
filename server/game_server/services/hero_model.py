@@ -9,8 +9,12 @@
 - 战力 = Σ 属性 × 权重
 - 升级经验 need(level) = round((level × 品质系数 + 5) ^ 2.4)（客户端 TransferEffectScene 同款公式）
 
-英雄记录的持久字段：``heroId, battleIx, level, curExp, rebirthCount, potency, rageSkillLevel,
+英雄记录的持久字段：``heroId, battleIx, level, curExp, rebirthCount, potency, rageTrained,
 madSkillLevel, trainDims``；其余展示字段由 ``refresh()`` 每次重算。
+
+``rageSkillLevel``（客户端显示与战斗用的怒气技等级）是派生字段 = ``rageTrained``（技能训练次数）
++ 进阶赠送等级：``rebirthList`` 描述中的「@怒气法术【…】提升N级」按已达成档位累加（超出表长的
+档位复用最后一档，通常为每档 +1）。旧存档没有 ``rageTrained`` 时以当时的 ``rageSkillLevel`` 初始化。
 """
 import re
 
@@ -27,12 +31,13 @@ SECONDARY = ('baoji', 'renxing', 'mingzhong', 'shanbi', 'poji', 'gedang')
 PRIMARY = ('health', 'normalAttack', 'normalDefense', 'skillAttack', 'skillDefense')
 ALL_BATTLE_ATTRS = PRIMARY + ('speed',) + SECONDARY
 POTENCY_PATTERN = re.compile(r'潜力点\{\+?(\d+)\}')
+RAGE_BONUS_PATTERN = re.compile(r'怒气法术【[^】]*】提升(\d+)级')
 
 
 def new_hero_record(hero_id: int, battle_ix: int = 0) -> dict:
     """新获得英雄的持久字段。"""
     return dict(heroId=hero_id, battleIx=battle_ix, level=1, curExp=0, rebirthCount=0, potency=0,
-                rageSkillLevel=1, madSkillLevel=0,
+                rageTrained=1, rageSkillLevel=1, madSkillLevel=0,
                 trainDims={dim: 0 for dim in DIMENSIONS})
 
 
@@ -83,11 +88,12 @@ class HeroModel:
         template = self.template(hero['heroId'])
         hero.setdefault('trainDims', {dim: 0 for dim in DIMENSIONS})
         hero.setdefault('potency', 0)
-        hero.setdefault('rageSkillLevel', 1)
         hero.setdefault('madSkillLevel', 0)
         hero.setdefault('rebirthCount', 0)
         hero.setdefault('curExp', 0)
         hero.setdefault('level', 1)
+        # 旧存档：rageSkillLevel 尚未包含进阶加成，直接作为已训练等级迁移
+        hero.setdefault('rageTrained', max(1, int(hero.get('rageSkillLevel') or 1)))
         attrs = self.base_attributes(template, hero['level'], hero['rebirthCount'], hero['trainDims'])
         for attr, value in (equipment_bonus or {}).items():
             attrs[attr] = attrs.get(attr, 0) + value
@@ -99,6 +105,7 @@ class HeroModel:
         hero.setdefault('destinyList', [])
         hero.setdefault('attributeAddition', {})
         hero['talentLevel'] = self.talent_level(template, hero['rebirthCount'])
+        hero['rageSkillLevel'] = hero['rageTrained'] + self.rage_bonus(template, hero['rebirthCount'])
         # 部分界面读 BreakthroughCount（商店预览、神殿），与 rebirthCount 保持同一值
         hero['BreakthroughCount'] = hero['rebirthCount']
         return hero
@@ -110,6 +117,30 @@ class HeroModel:
             if int(key) <= rebirth:
                 best = max(best, int(stage.get('talentDescIndex', 0)))
         return best
+
+    @staticmethod
+    def _stage_rage_bonus(stage: dict) -> int:
+        """单个进阶档描述里的怒气技加成：「@怒气法术【…】提升N级」，没有则为 0。"""
+        desc = stage.get('desc') or {}
+        blocks = desc.values() if isinstance(desc, dict) else desc
+        for block in blocks:
+            values = block.values() if isinstance(block, dict) else [block]
+            for text in values:
+                if isinstance(text, str):
+                    match = RAGE_BONUS_PATTERN.search(text)
+                    if match:
+                        return int(match.group(1))
+        return 0
+
+    def rage_bonus(self, template: dict, rebirth: int) -> int:
+        """进阶累计赠送的怒气技等级；超出表长的档位复用最后一档（客户端 min(count,13) 同款规则）。"""
+        stages = template.get('rebirthList') or {}
+        if rebirth <= 0 or not stages:
+            return 0
+        keys = sorted(int(k) for k in stages)
+        per_stage = {k: self._stage_rage_bonus(stages[str(k)]) for k in keys}
+        last = keys[-1]
+        return sum(per_stage[min(k, last)] for k in range(1, rebirth + 1))
 
     # ---- 升级 -------------------------------------------------------------
 

@@ -1,0 +1,35 @@
+{
+  "_doc": "炼化炉(/RefiningFurnace/*)：主将/将魂按品质返还魂玉，绿蓝装备返银币、紫橙装备返喂灵石；重生元宝费用按品质与进阶次数",
+  "soul_jade_by_quality": {
+    "1": 1,
+    "2": 3,
+    "3": 8,
+    "4": 20
+  },
+  "equip_gold_by_quality": {
+    "1": 500,
+    "2": 1500
+  },
+  "equip_feed_stone_by_quality": {
+    "3": 5,
+    "4": 12
+  },
+  "fragment_gold": 100,
+  "hero_rebirth_ingot": {
+    "1": 0,
+    "2": 0,
+    "3": 30,
+    "4": 60
+  },
+  "hero_rebirth_ingot_per_stage": {
+    "3": 8,
+    "4": 16
+  },
+  "equip_rebirth_ingot": {
+    "1": 0,
+    "2": 0,
+    "3": 40,
+    "4": 80
+  },
+  "intensify_refund_ratio": 0.5
+}

@@ -1,0 +1,85 @@
+{
+  "open_level": 14,
+  "cycle_days": 7,
+  "phase_days": {
+    "1": 3,
+    "2": 2,
+    "3": 1,
+    "4": 1
+  },
+  "seeds_per_type": 8,
+  "type_level_bands": {
+    "1": [
+      1,
+      45
+    ],
+    "2": [
+      46,
+      60
+    ],
+    "3": [
+      61,
+      999
+    ]
+  },
+  "gamble_gold": 1000,
+  "gamble_ingot": 10,
+  "max_gold_rolled": 10,
+  "max_ingot_rolled": 5,
+  "gamble_payout": 2,
+  "encourage_ingot": 100,
+  "encourage_reward_gold": 5000,
+  "encourage_addition_percent": 1,
+  "rank_rewards": [
+    {
+      "rank_min": 1,
+      "rank_max": 1,
+      "rewards": [
+        {
+          "Type": 2,
+          "ID": 0,
+          "Count": 500
+        },
+        {
+          "Type": 1,
+          "ID": 0,
+          "Count": 500000
+        }
+      ]
+    },
+    {
+      "rank_min": 2,
+      "rank_max": 3,
+      "rewards": [
+        {
+          "Type": 2,
+          "ID": 0,
+          "Count": 200
+        },
+        {
+          "Type": 1,
+          "ID": 0,
+          "Count": 200000
+        }
+      ]
+    },
+    {
+      "rank_min": 4,
+      "rank_max": 8,
+      "rewards": [
+        {
+          "Type": 1,
+          "ID": 0,
+          "Count": 100000
+        }
+      ]
+    }
+  ],
+  "encourager_reward": [
+    {
+      "Type": 1,
+      "ID": 0,
+      "Count": 50000
+    }
+  ]
+}

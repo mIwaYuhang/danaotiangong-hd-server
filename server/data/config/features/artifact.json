@@ -1,0 +1,21 @@
+{
+  "fragment_base_id": 200200,
+  "fragments_per_step": 4,
+  "max_step": 10,
+  "max_level": 10,
+  "perfusion_nodes": 10,
+  "daily_rob_times": 10,
+  "rob_recover_seconds": 900,
+  "rob_ten_ingot": 50,
+  "rob_token_prop_id": 110062,
+  "rob_success_chance": 0.5,
+  "rob_prestige": 10,
+  "rob_exp": 20,
+  "daily_be_robbed_limit": 5,
+  "fragment_drop_chance_by_type": {
+    "1": 0.7,
+    "2": 0.5,
+    "3": 0.35
+  },
+  "attr_scale_per_level": 0.1
+}

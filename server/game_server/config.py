@@ -22,8 +22,12 @@ recruitment.json    RecruitmentConfig    卡池、免费间隔、保底、新手
 store.json          StoreConfig          商店货架、体力丹阶梯、神秘商店
 activities.json     ActivitiesConfig     签到、征收、七日登录、等级礼包、月卡、公告、邮件
 missions.json       MissionsConfig       主线与每日任务
+features/<系统>.json FeaturesConfig       中期玩法，一个系统一个文件（争霸、妖王、仙盟、运镖等 17 个）
 client_routes.json  frozenset[str]       客户端接口路径（仅用于日志脱敏）
 ==================  ===================  ==========================================
+
+另有 ``data/static/``（由 ``tools/lua_import`` 从客户端 Lua 解包数据生成）：BaseHeros、关卡、NPC、
+装备、道具等静态表。它们必须与客户端一致，因此不手工编辑；服务端可调的只是本目录下的规则参数。
 """
 from dataclasses import dataclass
 import json
@@ -986,12 +990,17 @@ class MissionsConfig:
 
 
 # ---------------------------------------------------------------------------
-# features.json（中期玩法）
+# features/<系统>.json（中期玩法，一个系统一个文件）
 # ---------------------------------------------------------------------------
+
+#: features 目录下的系统文件名（不含 .json），与 FeaturesConfig 字段一一对应。
+FEATURE_NAMES = ('arena', 'worldboss', 'fuben', 'tower', 'refine', 'friends', 'transport', 'slave',
+                 'artifact', 'gem', 'union', 'sacrifice', 'destiny', 'havoc', 'xunfang', 'csbattle', 'sanqing')
+
 
 @dataclass(frozen=True)
 class FeaturesConfig:
-    """争霸、妖王洞穴、十二元辰殿、通天塔、炼化炉、好友、运镖的参数（只读映射，各服务自行读取）。"""
+    """争霸、妖王洞穴、十二元辰殿、通天塔、炼化炉、好友、运镖等玩法参数（只读映射，各服务自行读取）。"""
     arena: Mapping[str, Any]
     worldboss: Mapping[str, Any]
     fuben: Mapping[str, Any]
@@ -1011,9 +1020,8 @@ class FeaturesConfig:
     sanqing: Mapping[str, Any]
 
     @classmethod
-    def load(cls, section: Section) -> 'FeaturesConfig':
-        arena, boss, fuben, tower = (section.section('arena'), section.section('worldboss'),
-                                     section.section('fuben'), section.section('tower'))
+    def load(cls, sections: Mapping[str, Section]) -> 'FeaturesConfig':
+        arena, boss, fuben, tower = sections['arena'], sections['worldboss'], sections['fuben'], sections['tower']
         arena.integer('robot_count', 1); arena.strings('robot_names'); arena.integer('daily_times', 1)
         arena.rewards('win_reward'); arena.rewards('lose_reward')
         for item in arena.sections('exchanges'):
@@ -1035,25 +1043,20 @@ class FeaturesConfig:
             level.integer('storeLevel', 1); level.integer('score', 0)
             for buff in level.sections('buffs'):
                 buff.integer('index', 1); buff.integer('addtionProperty', 1); buff.number('addtionRate', 0)
-        slave, artifact, gem = section.section('slave'), section.section('artifact'), section.section('gem')
+        slave, artifact, gem = sections['slave'], sections['artifact'], sections['gem']
         slave.integers('cage_unlock_levels', 1); slave.integer('daily_free_captures', 0); slave.integer('hold_seconds', 1)
         artifact.integer('max_step', 1); artifact.integer('daily_rob_times', 1); artifact.number('rob_success_chance', 0, 1)
         gem.integer('max_level', 1); gem.numbers_by_int_key('base_value_by_shape'); gem.integer('bag_capacity', 1)
-        union = section.section('union')
+        union = sections['union']
         union.integer('create_level', 1); union.integer('create_gold', 0); union.integers('members_by_hall_level', 1)
-        section.section('sacrifice').integer('max_level', 1)
-        section.section('destiny').integer('platform_size', 1)
-        section.section('havoc').integer('daily_times', 1)
-        section.section('xunfang').integer('daily_free_visits', 0)
-        section.section('csbattle').integer('seeds_per_type', 2)
-        for chest in section.section('sanqing').sections('chests'):
+        sections['sacrifice'].integer('max_level', 1)
+        sections['destiny'].integer('platform_size', 1)
+        sections['havoc'].integer('daily_times', 1)
+        sections['xunfang'].integer('daily_free_visits', 0)
+        sections['csbattle'].integer('seeds_per_type', 2)
+        for chest in sections['sanqing'].sections('chests'):
             chest.integer('type', 1); chest.rewards('chest', allow_empty=False)
-        return cls(arena=section.mapping('arena'), worldboss=section.mapping('worldboss'), fuben=section.mapping('fuben'),
-                   tower=section.mapping('tower'), refine=section.mapping('refine'), friends=section.mapping('friends'),
-                   transport=section.mapping('transport'), slave=section.mapping('slave'),
-                   artifact=section.mapping('artifact'), gem=section.mapping('gem'), union=section.mapping('union'),
-                   sacrifice=section.mapping('sacrifice'), destiny=section.mapping('destiny'), havoc=section.mapping('havoc'),
-                   xunfang=section.mapping('xunfang'), csbattle=section.mapping('csbattle'), sanqing=section.mapping('sanqing'))
+        return cls(**{name: freeze(sections[name].data) for name in FEATURE_NAMES})
 
 
 # ---------------------------------------------------------------------------
@@ -1083,7 +1086,7 @@ def _read_section(config_dir: Path, name: str) -> Section:
     data = load_json_file(path)
     if not isinstance(data, dict):
         raise ConfigError(f'配置文件 {path} 顶层必须是 JSON 对象')
-    return Section({k: v for k, v in data.items() if not k.startswith('_')}, path.name)
+    return Section({k: v for k, v in data.items() if not k.startswith('_')}, f'{name}.json')
 
 
 def load_config(data_dir: Path) -> Config:
@@ -1108,7 +1111,7 @@ def load_config(data_dir: Path) -> Config:
         store=StoreConfig.load(read('store')),
         activities=ActivitiesConfig.load(read('activities')),
         missions=MissionsConfig.load(read('missions')),
-        features=FeaturesConfig.load(read('features')),
+        features=FeaturesConfig.load({name: read(f'features/{name}') for name in FEATURE_NAMES}),
         client_routes=frozenset(routes),
         config_dir=config_dir,
     )

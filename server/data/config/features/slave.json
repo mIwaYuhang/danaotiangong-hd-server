@@ -1,0 +1,21 @@
+{
+  "cage_unlock_levels": [
+    20,
+    22,
+    24,
+    27
+  ],
+  "daily_free_captures": 5,
+  "capture_prop_id": 100025,
+  "super_capture_prop_id": 100018,
+  "hold_seconds": 43200,
+  "knowledge_per_hour_per_level": 4,
+  "train_pill_per_hour": 1,
+  "bleed_ingot_base": 20,
+  "bleed_ingot_per_level": 0.4,
+  "bleed_multiplier": 3,
+  "drive_ingot_base": 20,
+  "drive_ingot_per_level": 1,
+  "daily_rescues": 3,
+  "robot_candidates": 4
+}

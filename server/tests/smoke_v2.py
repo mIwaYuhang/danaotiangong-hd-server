@@ -253,8 +253,10 @@ def run(app, clock):
     check('保存培养', body['State'] == 1 and 'Slots' in body['Global'], body)
     body = p.call('/Hero/SaveTrain', heroID='101')
     check('重复保存被拒', body['State'] == 99, body)
+    p.grant([{'Type': 18, 'ID': 0, 'Count': 100}])
     body = p.call('/Hero/skilltrain', heroid='101')
-    check('技能训练（阅历不足或成功）', body['State'] in (1, 99), body)
+    check('技能训练：训练 1→2 级（+1 阶无怒气技加成）', body['State'] == 1 and body['Result']['SkillLevel'] == 2
+          and next(s for s in body['Global']['Slots'] if s['heroId'] == 101)['rageSkillLevel'] == 2, body)
     p.grant([{'Type': 4, 'ID': 1030, 'Count': 60}])
     body = p.call('/hero/RecruitHero', soulId='1030')
     check('将魂招募 103', body['State'] == 1 and body['Global']['Heros'][0]['heroId'] == 103, body)

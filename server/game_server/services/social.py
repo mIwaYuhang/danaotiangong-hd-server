@@ -99,7 +99,7 @@ class RefineService:
                     rewards.append(dict(Type=4, ID=int(data['soulId']), Count=int(data['soulCount'])))
             outcome = self.ledger.apply(state, rewards=rewards, consume=[dict(Type=2, ID=0, Count=cost)] if cost else [])
             hero = self.model.find_hero(state, hero['heroId'])
-            hero.update(level=1, curExp=0, rebirthCount=0, potency=0, rageSkillLevel=1,
+            hero.update(level=1, curExp=0, rebirthCount=0, potency=0, rageTrained=1, rageSkillLevel=1,
                         trainDims={k: 0 for k in hero.get('trainDims', {})})
             self.model.refresh_hero(state, hero)
             outcome.heros.append(deepcopy(hero))

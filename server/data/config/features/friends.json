@@ -1,0 +1,26 @@
+{
+  "_doc": "好友(/Friend/*)：好友上限、每日可领体力次数、推荐的机器人好友；friends.present_energy 每份体力赠送领取时获得的体力；transport.max_robbed_times 单次运镖最多被劫次数，rob_ratio 每次被劫损失镖银比例",
+  "friend_count_max": 30,
+  "daily_energy_gets": 10,
+  "present_energy": 2,
+  "recommend_robots": [
+    {
+      "name": "逍遥子",
+      "level": 20,
+      "battlePower": 8000,
+      "headerId": 103
+    },
+    {
+      "name": "紫霞仙子",
+      "level": 18,
+      "battlePower": 7200,
+      "headerId": 105
+    },
+    {
+      "name": "牛魔王",
+      "level": 25,
+      "battlePower": 11000,
+      "headerId": 110
+    }
+  ]
+}

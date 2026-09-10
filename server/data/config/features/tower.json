@@ -1,0 +1,97 @@
+{
+  "_doc": "通天塔(/Tower/*)：层数上限、每日挑战次数、三种难度(type)的积分与敌方倍率、每层 NPC 等级曲线、每 5 层奖励、Buff 商店（storeLevel 档、score 价、addtionProperty 属性 ID、addtionRate 加成）、扫荡所需等级/VIP",
+  "max_floor": 80,
+  "daily_times": 3,
+  "types": {
+    "1": {
+      "name": "力",
+      "score": 10,
+      "multiplier": 1.0
+    },
+    "2": {
+      "name": "死",
+      "score": 20,
+      "multiplier": 1.4
+    },
+    "3": {
+      "name": "血",
+      "score": 30,
+      "multiplier": 1.9
+    }
+  },
+  "npc_level_base": 15,
+  "npc_level_per_floor": 1.2,
+  "npc_multiplier": 1.1,
+  "floors_per_reward": 5,
+  "floor_reward": [
+    {
+      "Type": 1,
+      "ID": 0,
+      "Count": 30000
+    },
+    {
+      "Type": 6,
+      "ID": 200125,
+      "Count": 10
+    }
+  ],
+  "floor_reward_growth": 0.3,
+  "buff_exchange_per_floors": 3,
+  "buff_store": [
+    {
+      "storeLevel": 1,
+      "score": 30,
+      "buffs": [
+        {
+          "index": 1,
+          "addtionProperty": 2,
+          "addtionRate": 0.05,
+          "addtionName": "普攻",
+          "range": 2
+        },
+        {
+          "index": 2,
+          "addtionProperty": 1,
+          "addtionRate": 0.05,
+          "addtionName": "血量",
+          "range": 2
+        }
+      ]
+    },
+    {
+      "storeLevel": 2,
+      "score": 100,
+      "buffs": [
+        {
+          "index": 1,
+          "addtionProperty": 4,
+          "addtionRate": 0.08,
+          "addtionName": "法攻",
+          "range": 2
+        },
+        {
+          "index": 2,
+          "addtionProperty": 3,
+          "addtionRate": 0.08,
+          "addtionName": "普防",
+          "range": 2
+        }
+      ]
+    },
+    {
+      "storeLevel": 3,
+      "score": 200,
+      "buffs": [
+        {
+          "index": 1,
+          "addtionProperty": 99,
+          "addtionRate": 0.1,
+          "addtionName": "全属性",
+          "range": 2
+        }
+      ]
+    }
+  ],
+  "sweep_level": 30,
+  "sweep_vip": 5
+}
