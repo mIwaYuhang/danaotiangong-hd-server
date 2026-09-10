@@ -1,0 +1,17 @@
+{
+  "_doc": "月签到：rewards 按当月第 n 次签到发放（不足 31 项时循环）；vip_double_level 表示达到该 VIP 后签到双倍",
+  "vip_double_level": 3,
+  "rewards": [
+    [{"Type": 1, "ID": 0, "Count": 10000}], [{"Type": 9, "ID": 0, "Count": 10}], [{"Type": 2, "ID": 0, "Count": 50}],
+    [{"Type": 5, "ID": 100011, "Count": 2}], [{"Type": 6, "ID": 200125, "Count": 10}], [{"Type": 1, "ID": 0, "Count": 20000}],
+    [{"Type": 2, "ID": 0, "Count": 100}], [{"Type": 5, "ID": 100001, "Count": 2}], [{"Type": 5, "ID": 100010, "Count": 2}],
+    [{"Type": 6, "ID": 200128, "Count": 20}], [{"Type": 1, "ID": 0, "Count": 30000}], [{"Type": 2, "ID": 0, "Count": 100}],
+    [{"Type": 5, "ID": 100014, "Count": 1}], [{"Type": 5, "ID": 100023, "Count": 1}], [{"Type": 5, "ID": 100024, "Count": 1}],
+    [{"Type": 1, "ID": 0, "Count": 50000}], [{"Type": 2, "ID": 0, "Count": 150}], [{"Type": 6, "ID": 200125, "Count": 20}],
+    [{"Type": 5, "ID": 100009, "Count": 1}], [{"Type": 5, "ID": 100001, "Count": 3}], [{"Type": 1, "ID": 0, "Count": 80000}],
+    [{"Type": 2, "ID": 0, "Count": 200}], [{"Type": 5, "ID": 100021, "Count": 1}], [{"Type": 5, "ID": 100022, "Count": 1}],
+    [{"Type": 6, "ID": 200128, "Count": 40}], [{"Type": 5, "ID": 100013, "Count": 1}], [{"Type": 1, "ID": 0, "Count": 100000}],
+    [{"Type": 2, "ID": 0, "Count": 300}], [{"Type": 5, "ID": 100008, "Count": 1}], [{"Type": 5, "ID": 100019, "Count": 1}],
+    [{"Type": 5, "ID": 100020, "Count": 1}]
+  ]
+}

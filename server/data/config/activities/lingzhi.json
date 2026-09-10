@@ -1,0 +1,13 @@
+{
+  "_doc": "采灵芝（/Pickganoderma/*）：每日可服用 daily_eat 次（服用给选中灵芝的 addPotential 潜力）；每日免费随机选 free_refresh 次，用尽后每次 refresh_cost_ingot 元宝；callCost>0 的灵芝可花元宝直接指定",
+  "daily_eat": 5,
+  "free_refresh": 5,
+  "refresh_cost_ingot": 10,
+  "ganodermas": [
+    {"type": 1, "name": "百年灵芝", "addPotential": 1, "callCost": 0},
+    {"type": 2, "name": "五百年灵芝", "addPotential": 2, "callCost": 0},
+    {"type": 3, "name": "千年灵芝", "addPotential": 3, "callCost": 0},
+    {"type": 4, "name": "万年灵芝", "addPotential": 5, "callCost": 50},
+    {"type": 5, "name": "灵芝王", "addPotential": 10, "callCost": 100}
+  ]
+}

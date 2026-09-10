@@ -125,8 +125,14 @@ def main():
         print('\n== 通天塔 ==')
         info = p.call('/Tower/GetTowerInfo')['Result']
         check('塔信息', info['Floor'] == 0 and info['RemainTowerChallengeTime'] == 3, info)
+        # 客户端 refreshFloorInfoLayer 以 ExtRewardDifficultyType ~= 0 走额外奖励分支，缺失(nil)会让塔界面空白
+        check('塔信息带 ExtRewardDifficultyType=0', info['ExtRewardDifficultyType'] == 0, info)
         results = [p.call('/Tower/TowerBattle', type='1', ri='1', star='') for _ in range(3)]
         check('三次挑战', all(r['State'] == 1 and 'Towerinfo' in r['Result'] for r in results), results[-1])
+        # 客户端结算回调读的是 BattleResult.Towerinfo（BattleData.BattleReward），缺失会导致打赢不涨层
+        check('Towerinfo 同时挂在 BattleResult 供爬塔动画读取',
+              all(r['Result']['BattleResult'].get('Towerinfo', {}).get('Floor') == r['Result']['Towerinfo']['Floor']
+                  for r in results), results[-1]['Result']['BattleResult'])
         check('第四次次数不足', p.call('/Tower/TowerBattle', type='1', ri='1', star='')['State'] == 99)
         info = p.call('/Tower/GetTowerInfo')['Result']
         check('层数推进且积分增加', info['Floor'] >= 1 and info['Score'] >= 10, info)

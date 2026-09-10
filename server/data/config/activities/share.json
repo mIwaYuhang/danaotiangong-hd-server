@@ -1,0 +1,8 @@
+{
+  "_doc": "每日分享（/ActivityShare/complate 每日一次领 share_reward）与兑换码（/Activegift/check，gift_codes 键为码、值为奖励，每码每人一次）",
+  "share_reward": [{"Type": 1, "ID": 0, "Count": 20000}, {"Type": 9, "ID": 0, "Count": 10}],
+  "gift_codes": {
+    "DNTG666": [{"Type": 2, "ID": 0, "Count": 200}, {"Type": 6, "ID": 200125, "Count": 50}],
+    "DNTG888": [{"Type": 1, "ID": 0, "Count": 100000}, {"Type": 5, "ID": 100009, "Count": 2}]
+  }
+}

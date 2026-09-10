@@ -1,0 +1,27 @@
+{
+  "_doc": "幸运转盘（/Luckydisk/*）：转盘 16 格 = 12 个奖品（prizes 按权重抽）+ 4 个幸运字（金玉满堂，Type 20 ID 1..4）；每日可转 daily_spins 次，其中前 gold_spin_limit 次花银币 spin_cost_gold；转满 choose_after 次后可花 choose_cost_ingot 元宝任选一格；每日可刷新奖品 refresh_daily 次、每次 refresh_cost_ingot 元宝；集齐任意 3 个字换 exchange_three，集齐金玉满堂换 exchange_four（各每日一次）；crit_chance 概率双倍",
+  "daily_spins": 80,
+  "gold_spin_limit": 50,
+  "spin_cost_gold": 20000,
+  "choose_cost_ingot": 20,
+  "choose_after": 5,
+  "refresh_daily": 20,
+  "refresh_cost_ingot": 10,
+  "crit_chance": 0.15,
+  "prizes": [
+    {"weight": 30, "Type": 1, "ID": 0, "Count": 20000},
+    {"weight": 20, "Type": 1, "ID": 0, "Count": 50000},
+    {"weight": 15, "Type": 6, "ID": 200125, "Count": 20},
+    {"weight": 15, "Type": 6, "ID": 200128, "Count": 20},
+    {"weight": 12, "Type": 11, "ID": 0, "Count": 20},
+    {"weight": 10, "Type": 5, "ID": 100001, "Count": 1},
+    {"weight": 10, "Type": 5, "ID": 100010, "Count": 1},
+    {"weight": 8, "Type": 2, "ID": 0, "Count": 20},
+    {"weight": 8, "Type": 18, "ID": 0, "Count": 200},
+    {"weight": 6, "Type": 5, "ID": 100009, "Count": 1},
+    {"weight": 5, "Type": 2, "ID": 0, "Count": 50},
+    {"weight": 3, "Type": 5, "ID": 100008, "Count": 1}
+  ],
+  "exchange_three": [{"Type": 1, "ID": 0, "Count": 100000}, {"Type": 6, "ID": 200125, "Count": 50}],
+  "exchange_four": [{"Type": 2, "ID": 0, "Count": 200}, {"Type": 5, "ID": 100013, "Count": 1}]
+}

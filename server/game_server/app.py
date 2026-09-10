@@ -45,6 +45,7 @@ from .services.mail import MailService
 from .services.missions import MissionEvents, MissionService
 from .services.player_state import PlayerModel
 from .services.players import Friendships, PlayerDirectory, RealmStore
+from .services.promos import PromoService
 from .services.pvp import ArenaService, WorldBossService
 from .services.recruitment import RecruitmentService
 from .services.roles import RoleRepository, RoleService
@@ -57,6 +58,7 @@ from .services.talisman import TalismanService
 from .services.team import TeamService
 from .services.union import UnionService
 from .services.union_ext import UnionBoardService, UnionDemonService, UnionStoreService, XiantaoService
+from .services.xianmo import XianmoService
 from .services.xunfang import XunFangService
 from .storage import Storage
 
@@ -96,6 +98,8 @@ class Services:
     xiantao: XiantaoService
     csbattle: CsBattleService
     sanqing: SanqingService
+    promos: PromoService
+    xianmo: XianmoService
 
 
 def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Clock, rng: random.Random) -> Services:
@@ -116,6 +120,7 @@ def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Cl
     roles = RoleService(repository, model, mail, config.activities.welcome_mail)
     friends = FriendService(config.features.friends, model, ledger, clock, directory, friendships, mail)
     roles.enrichers.append(friends.enrich)
+    roles.enrichers.append(activities.enrich)  # ServerVipEnable 与 VIP 等级随每次加载刷新
     services = Services(
         account=AccountService(storage, config.auth, realm_id),
         roles=roles,
@@ -151,13 +156,16 @@ def build_services(config: Config, storage: Storage, catalog: Catalog, clock: Cl
         xunfang=XunFangService(config.features.xunfang, model, ledger, clock),
         csbattle=CsBattleService(config.features.csbattle, model, ledger, engine, clock, directory, store, config.server.realm.name),
         sanqing=SanqingService(config.features.sanqing, model, ledger, engine, clock, directory, store),
+        promos=PromoService(config.activities, ledger, clock, model),
+        xianmo=XianmoService(config.features.xianmo, model, ledger, engine, clock, directory, store),
     )
     services.ranking.union_name = services.union.union_name
     services.sanqing.union_name = lambda db, player_id: ('' if directory.is_robot(player_id) else
                                                          services.union.union_name(db, directory.load_state(db, player_id) or {}))
     for provider in (services.arena.notify, services.worldboss.notify, services.friends.notify,
                      services.slave.notify, services.artifact.notify, services.union.notify,
-                     services.destiny.notify, services.havoc.notify, services.csbattle.notify):
+                     services.destiny.notify, services.havoc.notify, services.csbattle.notify,
+                     services.activities.notify, services.promos.notify):
         model.add_notify_provider(provider)
 
     def notify_counts(state):

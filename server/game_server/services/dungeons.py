@@ -226,7 +226,10 @@ class TowerService:
         have = cfg['floors_per_reward'] - pending % cfg['floors_per_reward'] if pending % cfg['floors_per_reward'] else cfg['floors_per_reward']
         info = dict(Floor=tower['floor'], HaveFloor=have, Score=tower['score'],
                     RemainTowerChallengeTime=cfg['daily_times'] - tower['used'], RemainBuyBuffTime=tower['buff_times'],
-                    IsMopping=1 if tower['floor'] > 0 else 0, AddTotalPower=self._buff_power(tower), LastFiveFloorScore=0)
+                    IsMopping=1 if tower['floor'] > 0 else 0, AddTotalPower=self._buff_power(tower), LastFiveFloorScore=0,
+                    # 客户端 TowerFloorLayer 以 `ExtRewardDifficultyType ~= 0` 判断三难度上的额外奖励角标；
+                    # 缺失时 nil ~= 0 成立，随后 spriteList[nil].x 报错导致整个塔界面空白，必须显式给 0
+                    ExtRewardDifficultyType=0)
         if pending >= cfg['floors_per_reward']:
             info['HaveFloor'] = cfg['floors_per_reward']
             info['FloorsReward'] = {'Simp': self._floor_reward(tower['reward_floor'] + cfg['floors_per_reward'])}
@@ -299,7 +302,11 @@ class TowerService:
             tower['score'] += kind['score']
             if floor % cfg['buff_exchange_per_floors'] == 0:
                 tower['buff_times'] += 1
-        report.update(total=1, dropList=[], Reward=[], BattleResult={}, Towerinfo=self._info(tower))
+        # 结算回调拿到的是 BattleResult 子表（BattleData.BattleReward），塔场景从它读 Towerinfo 播爬塔动画；
+        # 只放顶层会导致打赢后界面不涨层、重进才刷新
+        tower_info = self._info(tower)
+        report.update(total=1, dropList=[], Reward=[],
+                      BattleResult={'Towerinfo': tower_info}, Towerinfo=tower_info)
         return Reply(report, global_block(self.ledger.resource(state)))
 
     def mopping(self, ctx: RoleContext, params) -> Reply:

@@ -1,0 +1,16 @@
+{
+  "_doc": "西游坊市（/exchange/list?activityid=1）与黑市（activityid=2）：Id 兑换编号；daily_limit 每日限购（-1 不限）；黑市条目可带 VipLevel 显示 VIP 角标",
+  "market": [
+    {"Id": 101, "daily_limit": 5, "Reward": [{"Type": 6, "ID": 200125, "Count": 20}], "Consume": [{"Type": 1, "ID": 0, "Count": 50000}]},
+    {"Id": 102, "daily_limit": 5, "Reward": [{"Type": 6, "ID": 200128, "Count": 20}], "Consume": [{"Type": 1, "ID": 0, "Count": 50000}]},
+    {"Id": 103, "daily_limit": 3, "Reward": [{"Type": 11, "ID": 0, "Count": 50}], "Consume": [{"Type": 1, "ID": 0, "Count": 80000}]},
+    {"Id": 104, "daily_limit": 2, "Reward": [{"Type": 5, "ID": 100010, "Count": 1}], "Consume": [{"Type": 1, "ID": 0, "Count": 100000}]},
+    {"Id": 105, "daily_limit": -1, "Reward": [{"Type": 18, "ID": 0, "Count": 500}], "Consume": [{"Type": 1, "ID": 0, "Count": 30000}]}
+  ],
+  "black_market": [
+    {"Id": 201, "daily_limit": 1, "VipLevel": 0, "Reward": [{"Type": 5, "ID": 100009, "Count": 1}], "Consume": [{"Type": 2, "ID": 0, "Count": 50}]},
+    {"Id": 202, "daily_limit": 1, "VipLevel": 2, "Reward": [{"Type": 5, "ID": 100008, "Count": 1}], "Consume": [{"Type": 2, "ID": 0, "Count": 100}]},
+    {"Id": 203, "daily_limit": 2, "VipLevel": 3, "Reward": [{"Type": 6, "ID": 200125, "Count": 100}], "Consume": [{"Type": 2, "ID": 0, "Count": 150}]},
+    {"Id": 204, "daily_limit": 1, "VipLevel": 5, "Reward": [{"Type": 5, "ID": 100013, "Count": 1}], "Consume": [{"Type": 2, "ID": 0, "Count": 300}]}
+  ]
+}

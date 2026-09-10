@@ -123,6 +123,12 @@ class Ledger:
             if work.get(name, 0) < count:
                 raise BusinessError(f'{RESOURCE_NAMES.get(name, name)}不足', INSUFFICIENT_STATE.get(name, 99))
             work[name] -= count
+            if name == 'Ingot':
+                # 元宝消费累计：财神到「当日/累计消费」类目使用
+                work.setdefault('Counters', {})
+                work['Counters']['ingot_spent_total'] = work['Counters'].get('ingot_spent_total', 0) + count
+                work.setdefault('Daily', {})
+                work['Daily']['ingot_spent'] = work['Daily'].get('ingot_spent', 0) + count
             if name == 'Energy':
                 work['EnergyUpdatedAt'] = self.clock.now() if work['Energy'] + count >= work['MaxEnergy'] else work['EnergyUpdatedAt']
         elif kind in cfg.bag_types or kind == cfg.fragment_type:

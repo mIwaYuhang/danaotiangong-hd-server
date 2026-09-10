@@ -1,0 +1,33 @@
+{
+  "_doc": {
+    "summary": "仙魔争霸（/Xm/*，客户端 CS* 场景）：每日一届的三道（人/地/天）八强淘汰赛。休赛期在大厅膜拜/唾弃前三名领奖励，比赛期可押注对阵、看战报，赛后按名次展示奖励",
+    "phases": "每日 fight_hour:fight_minute 开赛（此前 prep_seconds 秒为准备期，HaveTime>0）；比赛持续 fight_duration 秒（HaveTime=0），各轮在 round_reveal_seconds 秒后揭晓（四分之一/半决/决赛与季军）；其余时间休赛（HaveTime=-1）",
+    "dao_bands": "人/地/天三道的等级区间（与客户端 CSHomeScene 按 40/70 分界一致）",
+    "seeds_per_dao": "每道种子数（8 强）；真实玩家按战力优先，机器人补位",
+    "worship": "休赛期对前三名膜拜（support_reward）或唾弃（花 spit_cost 元宝、发 oppose_reward），每日合计 worship_daily 次",
+    "gamble": "比赛期押注未揭晓的对阵，胜者按 win_multiplier 返还银币",
+    "rank_rewards": "排行页展示的名次奖励（客户端无领取按钮，仅展示）"
+  },
+  "open_level": 20,
+  "dao_bands": [[1, 40], [41, 70], [71, 999]],
+  "seeds_per_dao": 8,
+  "fight_hour": 20,
+  "fight_minute": 0,
+  "prep_seconds": 1800,
+  "fight_duration": 3600,
+  "round_reveal_seconds": [600, 1800, 3000],
+  "worship_daily": 3,
+  "spit_cost": 10,
+  "support_reward": [{"Type": 26, "ID": 0, "Count": 10}, {"Type": 1, "ID": 0, "Count": 10000}],
+  "oppose_reward": [{"Type": 1, "ID": 0, "Count": 20000}],
+  "lowest_prestige": 100,
+  "win_multiplier": 2,
+  "robot_names": ["九天玄女", "太乙真人", "赤精子", "广成子", "惧留孙", "文殊广法", "普贤真人", "慈航道人"],
+  "rank_rewards": [
+    {"rank": 1, "reward": [{"Type": 2, "ID": 0, "Count": 500}, {"Type": 26, "ID": 0, "Count": 200}]},
+    {"rank": 2, "reward": [{"Type": 2, "ID": 0, "Count": 300}, {"Type": 26, "ID": 0, "Count": 120}]},
+    {"rank": 3, "reward": [{"Type": 2, "ID": 0, "Count": 200}, {"Type": 26, "ID": 0, "Count": 80}]},
+    {"rank": 4, "reward": [{"Type": 2, "ID": 0, "Count": 100}, {"Type": 26, "ID": 0, "Count": 50}]},
+    {"rank": 8, "reward": [{"Type": 1, "ID": 0, "Count": 100000}, {"Type": 26, "ID": 0, "Count": 30}]}
+  ]
+}

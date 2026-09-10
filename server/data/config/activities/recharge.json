@@ -1,0 +1,32 @@
+{
+  "_doc": {
+    "summary": "伪充值：/Recharge/GetOrderID 下单即到账（元宝 = Ingot + ExtreIngot），并通过 Global.Resource.RL 通知客户端充值成功；enabled=false 时下单报「内购未开启」",
+    "enabled": "内购总开关：false 时 GetOrderID/GetPointOrderID 返回错误提示，其余展示接口照常",
+    "server_vip_enable": "下发给客户端的 ServerVipEnable：1 才显示主界面 VIP 等级、充值页 VIP 面板、活动中心分享/推广页签",
+    "packages": "元宝档位（客户端充值页列表）：Money 显示价格（￥），Ingot 基础元宝（计入 VIP 累计），ExtreIngot 赠送元宝",
+    "point_packages": "点卡档位（月卡页「买点卷」按钮）：Money 显示价格，Point 到账点卷",
+    "vip_thresholds": "VIP 1..n 级所需累计购买元宝（基础部分，不含赠送）；VipExp 为到下一级的进度百分比，NextVipExp 为还差的元宝",
+    "first_recharge_reward": "首充奖励（/Recharge/firstreward 列表与 GetFirstRechargeReward 发放）"
+  },
+  "enabled": true,
+  "server_vip_enable": 1,
+  "packages": [
+    {"ID": 1001, "Money": 6, "Ingot": 60, "ExtreIngot": 6},
+    {"ID": 1002, "Money": 30, "Ingot": 300, "ExtreIngot": 40},
+    {"ID": 1003, "Money": 68, "Ingot": 680, "ExtreIngot": 100},
+    {"ID": 1004, "Money": 128, "Ingot": 1280, "ExtreIngot": 250},
+    {"ID": 1005, "Money": 328, "Ingot": 3280, "ExtreIngot": 800},
+    {"ID": 1006, "Money": 648, "Ingot": 6480, "ExtreIngot": 2000}
+  ],
+  "point_packages": [
+    {"ID": 2001, "Money": 10, "Point": 10},
+    {"ID": 2002, "Money": 30, "Point": 30},
+    {"ID": 2003, "Money": 100, "Point": 100}
+  ],
+  "vip_thresholds": [100, 500, 1000, 3000, 6000, 10000, 30000, 60000, 100000, 200000, 350000, 500000],
+  "first_recharge_reward": [
+    {"Type": 2, "ID": 0, "Count": 200},
+    {"Type": 7, "ID": 121, "Count": 1},
+    {"Type": 6, "ID": 200125, "Count": 100}
+  ]
+}

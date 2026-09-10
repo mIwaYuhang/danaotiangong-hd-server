@@ -20,7 +20,9 @@ inventory.json      InventoryConfig      账本类型映射、道具效果、随
 battle.json         BattleConfig         关卡阵容生成、NPC 数值、战斗公式、扫荡、章节宝箱
 recruitment.json    RecruitmentConfig    卡池、免费间隔、保底、新手首抽
 store.json          StoreConfig          商店货架、体力丹阶梯、神秘商店
-activities.json     ActivitiesConfig     签到、征收、七日登录、等级礼包、月卡、公告、邮件
+activities/<活动>.json ActivitiesConfig   一个活动一个文件：签到、征收、七日登录、等级礼包、月卡、
+                                         成长计划、充值（伪充值+开关）、财神到、幸运转盘、采灵芝、
+                                         天女散花、坊市、分享、跑马灯、系统邮件
 missions.json       MissionsConfig       主线与每日任务
 features/<系统>.json FeaturesConfig       中期玩法，一个系统一个文件（争霸、妖王、仙盟、运镖等 17 个）
 client_routes.json  frozenset[str]       客户端接口路径（仅用于日志脱敏）
@@ -881,6 +883,11 @@ class MailTemplate:
     attachments: Tuple[Mapping[str, Any], ...]
 
 
+#: activities 目录下的活动文件名（不含 .json）。
+ACTIVITY_NAMES = ('sign', 'salary', 'seven_login', 'level_gift', 'month_card', 'growup', 'recharge',
+                  'fortune_king', 'luckydisk', 'lingzhi', 'sanhua', 'exchange', 'share', 'marquee', 'mail')
+
+
 @dataclass(frozen=True)
 class ActivitiesConfig:
     sign_rewards: Tuple[Tuple[Mapping[str, Any], ...], ...]
@@ -890,14 +897,22 @@ class ActivitiesConfig:
     seven_day_login: Tuple[Tuple[Mapping[str, Any], ...], ...]
     level_gifts: Tuple[Mapping[str, Any], ...]
     month_card: Mapping[str, Any]
+    growup: Mapping[str, Any]
+    recharge: Mapping[str, Any]
+    fortune_king: Mapping[str, Any]
+    luckydisk: Mapping[str, Any]
+    lingzhi: Mapping[str, Any]
+    sanhua: Mapping[str, Any]
+    exchange: Mapping[str, Any]
+    share: Mapping[str, Any]
     marquee: Tuple[Mapping[str, Any], ...]
     welcome_mail: MailTemplate
     level_up_mail_levels: Tuple[int, ...]
     level_up_mail: MailTemplate
 
     @classmethod
-    def load(cls, section: Section) -> 'ActivitiesConfig':
-        sign, salary = section.section('sign_in'), section.section('daily_salary')
+    def load(cls, sections: Mapping[str, Section]) -> 'ActivitiesConfig':
+        sign, salary = sections['sign'], sections['salary']
         bags = []
         for bag in salary.sections('gift_bags'):
             for key in ('GifBagID', 'MustPlayerVipLevel', 'MustPlayerLevel', 'MustDayNuber'):
@@ -908,17 +923,67 @@ class ActivitiesConfig:
             bag.rewards('reward', allow_empty=False)
             bags.append(freeze(bag.data))
         gifts = []
-        for gift in section.sections('level_gifts'):
+        for gift in sections['level_gift'].sections('gifts'):
             gift.integer('Level', 1)
             gift.rewards('reward', allow_empty=False)
             gifts.append(freeze(gift.data))
-        for item in section.sections('marquee'):
+        for item in sections['marquee'].sections('items'):
             item.string('content')
             item.integer('repeatNumber', 1)
+        recharge = sections['recharge']
+        recharge.boolean('enabled')
+        recharge.integer('server_vip_enable', 0, 1)
+        recharge.integers('vip_thresholds', 1)
+        recharge.rewards('first_recharge_reward')
+        for pkg in recharge.sections('packages'):
+            pkg.integer('ID', 0); pkg.integer('Money', 0); pkg.integer('Ingot', 0); pkg.integer('ExtreIngot', 0)
+        for pkg in recharge.sections('point_packages'):
+            pkg.integer('ID', 0); pkg.integer('Money', 0); pkg.integer('Point', 0)
+        month = sections['month_card']
+        for key in ('MonthCardConsume', 'WeekCardConsume', 'month_days', 'week_days', 'point_to_ingot_rate'):
+            month.integer(key, 0)
+        month.rewards('MonthReward', allow_empty=False)
+        month.rewards('WeekReward', allow_empty=False)
+        growup = sections['growup']
+        growup.integer('vip_limit', 0)
+        growup.integer('price_ingot', 0)
+        for tier in growup.sections('tiers'):
+            tier.integer('Level', 1); tier.integer('Ingot', 1)
+        for item in sections['fortune_king'].sections('items'):
+            item.integer('id', 1); item.integer('type', 1, 5); item.integer('need', 1)
+            item.rewards('rewards', allow_empty=False)
+        disk = sections['luckydisk']
+        for key in ('daily_spins', 'gold_spin_limit', 'spin_cost_gold', 'choose_cost_ingot',
+                    'refresh_daily', 'refresh_cost_ingot', 'choose_after'):
+            disk.integer(key, 0)
+        disk.number('crit_chance', 0, 1)
+        for prize in disk.sections('prizes'):
+            prize.integer('weight', 1)
+            check_reward({k: v for k, v in prize.data.items() if k != 'weight'}, prize.source)
+        disk.rewards('exchange_three', allow_empty=False)
+        disk.rewards('exchange_four', allow_empty=False)
+        zhi = sections['lingzhi']
+        for key in ('daily_eat', 'free_refresh', 'refresh_cost_ingot'):
+            zhi.integer(key, 0)
+        for g in zhi.sections('ganodermas'):
+            g.integer('type', 1, 5); g.string('name'); g.integer('addPotential', 1); g.integer('callCost', 0)
+        sanhua = sections['sanhua']
+        for window in sanhua.sections('windows'):
+            window.string('start'); window.string('end')
+        for cap in ('ingot', 'gold', 'energy'):
+            sanhua.section('caps').integer(cap, 0)
+        exchange = sections['exchange']
+        for key in ('market', 'black_market'):
+            for item in exchange.sections(key):
+                item.integer('Id', 1); item.integer('daily_limit', -1)
+                item.rewards('Reward', allow_empty=False); item.rewards('Consume', allow_empty=False)
+        share = sections['share']
+        share.rewards('share_reward', allow_empty=False)
 
         def mail(sec):
             return MailTemplate(content=sec.string('content'), attachments=sec.rewards('attachments'))
-        welcome, level_up = section.section('welcome_mail'), section.section('level_up_mail')
+        mails = sections['mail']
+        welcome, level_up = mails.section('welcome_mail'), mails.section('level_up_mail')
         return cls(
             sign_rewards=sign.reward_groups('rewards'),
             sign_vip_double_level=sign.integer('vip_double_level', 0),
@@ -927,10 +992,18 @@ class ActivitiesConfig:
                                      'streak_target_days': salary.integer('streak_target_days', 1),
                                      'streak_reward': salary.rewards('streak_reward')}),
             salary_gift_bags=tuple(bags),
-            seven_day_login=section.reward_groups('seven_day_login'),
+            seven_day_login=sections['seven_login'].reward_groups('rewards'),
             level_gifts=tuple(sorted(gifts, key=lambda g: g['Level'])),
-            month_card=section.mapping('month_card'),
-            marquee=freeze(section.raw('marquee')),
+            month_card=freeze(month.data),
+            growup=freeze(growup.data),
+            recharge=freeze(recharge.data),
+            fortune_king=freeze(sections['fortune_king'].data),
+            luckydisk=freeze(disk.data),
+            lingzhi=freeze(zhi.data),
+            sanhua=freeze(sanhua.data),
+            exchange=freeze(exchange.data),
+            share=freeze(share.data),
+            marquee=freeze(sections['marquee'].raw('items')),
             welcome_mail=mail(welcome),
             level_up_mail_levels=level_up.integers('levels', 1, allow_empty=True),
             level_up_mail=mail(level_up),
@@ -995,7 +1068,8 @@ class MissionsConfig:
 
 #: features 目录下的系统文件名（不含 .json），与 FeaturesConfig 字段一一对应。
 FEATURE_NAMES = ('arena', 'worldboss', 'fuben', 'tower', 'refine', 'friends', 'transport', 'slave',
-                 'artifact', 'gem', 'union', 'sacrifice', 'destiny', 'havoc', 'xunfang', 'csbattle', 'sanqing')
+                 'artifact', 'gem', 'union', 'sacrifice', 'destiny', 'havoc', 'xunfang', 'csbattle', 'sanqing',
+                 'xianmo')
 
 
 @dataclass(frozen=True)
@@ -1018,6 +1092,7 @@ class FeaturesConfig:
     xunfang: Mapping[str, Any]
     csbattle: Mapping[str, Any]
     sanqing: Mapping[str, Any]
+    xianmo: Mapping[str, Any]
 
     @classmethod
     def load(cls, sections: Mapping[str, Section]) -> 'FeaturesConfig':
@@ -1056,6 +1131,11 @@ class FeaturesConfig:
         sections['csbattle'].integer('seeds_per_type', 2)
         for chest in sections['sanqing'].sections('chests'):
             chest.integer('type', 1); chest.rewards('chest', allow_empty=False)
+        xianmo = sections['xianmo']
+        xianmo.integer('open_level', 1); xianmo.integer('seeds_per_dao', 4)
+        xianmo.integer('worship_daily', 1); xianmo.integer('spit_cost', 0)
+        for row in xianmo.sections('rank_rewards'):
+            row.integer('rank', 1); row.rewards('reward', allow_empty=False)
         return cls(**{name: freeze(sections[name].data) for name in FEATURE_NAMES})
 
 
@@ -1109,7 +1189,7 @@ def load_config(data_dir: Path) -> Config:
         battle=BattleConfig.load(read('battle')),
         recruitment=RecruitmentConfig.load(read('recruitment')),
         store=StoreConfig.load(read('store')),
-        activities=ActivitiesConfig.load(read('activities')),
+        activities=ActivitiesConfig.load({name: read(f'activities/{name}') for name in ACTIVITY_NAMES}),
         missions=MissionsConfig.load(read('missions')),
         features=FeaturesConfig.load({name: read(f'features/{name}') for name in FEATURE_NAMES}),
         client_routes=frozenset(routes),

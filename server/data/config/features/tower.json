@@ -1,7 +1,7 @@
 {
   "_doc": "通天塔(/Tower/*)：层数上限、每日挑战次数、三种难度(type)的积分与敌方倍率、每层 NPC 等级曲线、每 5 层奖励、Buff 商店（storeLevel 档、score 价、addtionProperty 属性 ID、addtionRate 加成）、扫荡所需等级/VIP",
   "max_floor": 80,
-  "daily_times": 3,
+  "daily_times": 30,
   "types": {
     "1": {
       "name": "力",

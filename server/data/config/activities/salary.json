@@ -1,0 +1,14 @@
+{
+  "_doc": "每日征收：银币 = base_gold + 玩家等级 × gold_per_level；阅历 = base_knowledge + 等级 × knowledge_per_level；连续征收 streak_target_days 天额外给 streak_reward；gift_bags 为活动礼包（icon 为客户端 libao/ 目录下的图标文件名；MustPlayerLevel/MustPlayerVipLevel 领取门槛；MustDayNuber 每日可领次数；MustNumber 礼包库存，-1 不限）",
+  "base_gold": 5000, "gold_per_level": 500, "base_knowledge": 100, "knowledge_per_level": 10,
+  "streak_target_days": 7,
+  "streak_reward": [{"Type": 10, "ID": 0, "quality": 3, "Count": 1}],
+  "gift_bags": [
+    {"GifBagID": 1, "Name": "每日礼包", "icon": "icon_libaoxiangzia.png", "MustPlayerVipLevel": 0, "MustPlayerLevel": 1, "MustDayNuber": 1, "MustNumber": -1,
+     "reward": [{"Type": 9, "ID": 0, "Count": 20}, {"Type": 1, "ID": 0, "Count": 5000}]},
+    {"GifBagID": 2, "Name": "成长礼包", "icon": "icon_libaoxiangzib.png", "MustPlayerVipLevel": 0, "MustPlayerLevel": 10, "MustDayNuber": 1, "MustNumber": -1,
+     "reward": [{"Type": 6, "ID": 200125, "Count": 20}, {"Type": 5, "ID": 100010, "Count": 1}]},
+    {"GifBagID": 3, "Name": "贵宾礼包", "icon": "icon_libaoxiangzic.png", "MustPlayerVipLevel": 1, "MustPlayerLevel": 1, "MustDayNuber": 1, "MustNumber": -1,
+     "reward": [{"Type": 2, "ID": 0, "Count": 100}]}
+  ]
+}

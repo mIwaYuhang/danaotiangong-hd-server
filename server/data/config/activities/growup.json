@@ -1,0 +1,15 @@
+{
+  "_doc": "成长计划：购买需 VIP ≥ vip_limit、花 price_ingot 元宝；此后主将等级每到一档 Level 可领 Ingot 元宝（客户端界面不显示购买价，只显示各档返利）",
+  "vip_limit": 0,
+  "price_ingot": 500,
+  "tiers": [
+    {"Level": 10, "Ingot": 100},
+    {"Level": 20, "Ingot": 200},
+    {"Level": 30, "Ingot": 300},
+    {"Level": 40, "Ingot": 400},
+    {"Level": 50, "Ingot": 500},
+    {"Level": 60, "Ingot": 600},
+    {"Level": 70, "Ingot": 800},
+    {"Level": 80, "Ingot": 1000}
+  ]
+}

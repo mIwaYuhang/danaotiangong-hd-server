@@ -1,6 +1,12 @@
-"""运营活动：签到、每日征收与活动礼包、七日登录、等级礼包、月卡、跑马灯、充值桩。
+"""运营活动：签到、征收、七日登录、等级礼包、月卡、成长计划、伪充值与 VIP、跑马灯。
 
-所有奖励数据来自 ``activities.json``；领取状态记录在角色状态中并按游戏日 / 月份重置。
+所有奖励数据来自 ``data/config/activities/*.json``（一个活动一个文件）；
+领取状态记录在角色状态中并按游戏日 / 月份重置。
+
+伪充值：``/Recharge/GetOrderID?money`` 匹配档位后立即入账（元宝 = Ingot + ExtreIngot），
+回包 ``Global.Resource.RL`` 让客户端触发充值成功事件；``recharge.enabled`` 为总开关。
+VIP 等级按累计购买的基础元宝对照 ``vip_thresholds`` 计算，``VipExp`` 为到下一级的进度百分比、
+``NextVipExp`` 为还差的元宝（客户端「再购买 N 元宝成为 VIPn+1」）。
 """
 from copy import deepcopy
 
@@ -8,11 +14,14 @@ from ..config import ActivitiesConfig, thaw
 from ..errors import BusinessError
 from .base import Reply, RoleContext, SessionContext
 from .clock import Clock
-from .inventory import Ledger
+from .inventory import Ledger, Outcome
 
 STATE_SIGN_DONE = -1124001
 STATE_REWARD_TAKEN = -1131001
 STATE_LEVEL_GIFT = -1140001
+STATE_NOT_CHARGED = -1105004      # 客户端 PlayerNotCharge：弹「还没有任何充值」并引导去充值页
+STATE_GROWUP_BOUGHT = -1141004
+STATE_GROWUP_NOT_BOUGHT = -1141005
 SEVEN_CLAIMABLE, SEVEN_CLAIMED, SEVEN_LOCKED = 1, 2, 3
 
 
@@ -192,29 +201,228 @@ class ActivityService:
     def level_gift_claimable(self, state: dict) -> int:
         return sum(1 for g in self._level_gifts(state) if g['IsGetStatus'])
 
-    def growup_info(self, ctx: RoleContext, params) -> dict:
-        """``/LevelGiftBag/GetGrowupInfo``：成长计划（尚未开放购买）。"""
-        return {'IsBuy': 0, 'Rewards': [], 'Price': 0}
+    # ---- 成长计划 -----------------------------------------------------------
 
-    # ---- 月卡与充值桩 -----------------------------------------------------------
+    def _growup(self, state: dict) -> dict:
+        return state.setdefault('Growup', {'bought': False, 'claimed': []})
+
+    def _growup_tiers(self, state: dict) -> list:
+        plan = self._growup(state)
+        return [thaw(t) for t in self.config.growup['tiers'] if t['Level'] not in plan['claimed']]
+
+    def growup_claimable(self, state: dict) -> int:
+        plan = self._growup(state)
+        if not plan['bought']:
+            return 0
+        lead = max([h['level'] for h in state['ownedHeros']] or [1])
+        return sum(1 for t in self._growup_tiers(state) if lead >= t['Level'])
+
+    def growup_info(self, ctx: RoleContext, params) -> dict:
+        """``/LevelGiftBag/GetGrowupInfo``。"""
+        plan = self._growup(ctx.state)
+        return {'IsBuy': 1 if plan['bought'] else 0, 'VipLevelLimit': self.config.growup['vip_limit'],
+                'Growup': self._growup_tiers(ctx.state)}
+
+    def growup_buy(self, ctx: RoleContext, params) -> Reply:
+        """``/LevelGiftBag/BuyGrowup``。"""
+        state = ctx.state
+        if self._growup(state)['bought']:
+            raise BusinessError('成长计划已购买', STATE_GROWUP_BOUGHT)
+        if state.get('VipLevel', 0) < self.config.growup['vip_limit']:
+            raise BusinessError(f"购买成长计划需要 VIP{self.config.growup['vip_limit']}")
+        price = self.config.growup['price_ingot']
+        outcome = self.ledger.apply(state, consume=[dict(Type=2, ID=0, Count=price)] if price else [])
+        self._growup(state)['bought'] = True
+        return Reply({}, self.ledger.global_for(state, outcome))
+
+    def growup_claim(self, ctx: RoleContext, params) -> Reply:
+        """``/LevelGiftBag/GetGrowupReward?level``。"""
+        state = ctx.state
+        plan = self._growup(state)
+        if not plan['bought']:
+            raise BusinessError('成长计划还未购买', STATE_GROWUP_NOT_BOUGHT)
+        level = params['level']
+        tier = next((t for t in self.config.growup['tiers'] if t['Level'] == level), None)
+        if tier is None or level in plan['claimed']:
+            raise BusinessError('该档奖励不存在或已领取', STATE_REWARD_TAKEN)
+        lead = max([h['level'] for h in state['ownedHeros']] or [1])
+        if lead < level:
+            raise BusinessError('主将等级不足')
+        outcome = self.ledger.apply(state, rewards=[dict(Type=2, ID=0, Count=tier['Ingot'])])
+        self._growup(state)['claimed'].append(level)
+        return Reply({}, self.ledger.global_for(state, outcome))
+
+    # ---- 伪充值与 VIP -----------------------------------------------------------
+
+    def _recharge(self, state: dict) -> dict:
+        rec = state.setdefault('Recharge', {'total': 0, 'today': 0, 'max_single': 0, 'day': '',
+                                            'orders': 0, 'first_claimed': False})
+        today = self.clock.day_key()
+        if rec.get('day') != today:
+            rec['day'] = today
+            rec['today'] = 0
+        return rec
+
+    def apply_vip(self, state: dict):
+        """按累计购买元宝重算 VipLevel / VipExp（进度百分比）/ NextVipExp（距下一级元宝）。"""
+        thresholds = list(self.config.recharge['vip_thresholds'])
+        total = self._recharge(state)['total']
+        level = sum(1 for need in thresholds if total >= need)
+        state['VipLevel'] = level
+        if level >= len(thresholds):
+            state['VipExp'], state['NextVipExp'] = 100, 0
+            return
+        floor = thresholds[level - 1] if level else 0
+        span = thresholds[level] - floor
+        state['VipExp'] = int((total - floor) * 100 / span) if span else 0
+        state['NextVipExp'] = thresholds[level] - total
+
+    def enrich(self, db, state: dict):
+        """加载角色时刷新 VIP 与 ServerVipEnable（主界面 VIP 标签、充值页、分享页签的开关）。"""
+        state['ServerVipEnable'] = self.config.recharge['server_vip_enable']
+        self.apply_vip(state)
+
+    def recharge_list(self, ctx: RoleContext, params) -> list:
+        """``/Recharge/RechargeLst``：充值档位。"""
+        return [thaw(p) for p in self.config.recharge['packages']]
+
+    def _place_order(self, ctx: RoleContext, packages, money_raw):
+        cfg = self.config.recharge
+        if not cfg['enabled']:
+            raise BusinessError('上仙，本服尚未开启内购充值。')
+        try:
+            money = int(float(money_raw or 0))
+        except ValueError as exc:
+            raise BusinessError('充值金额无效') from exc
+        package = next((p for p in packages if int(p['Money']) == money), None)
+        if package is None:
+            raise BusinessError('充值档位不存在')
+        rec = self._recharge(ctx.state)
+        rec['orders'] += 1
+        order_id = f"GM{ctx.state['ID']}-{self.clock.now()}-{rec['orders']}"
+        return package, order_id
+
+    def get_order(self, ctx: RoleContext, params) -> Reply:
+        """``/Recharge/GetOrderID?money``：伪充值，下单即到账元宝并推进 VIP。"""
+        state = ctx.state
+        package, order_id = self._place_order(ctx, self.config.recharge['packages'], params.get('money'))
+        gain = int(package['Ingot']) + int(package.get('ExtreIngot') or 0)
+        outcome = self.ledger.apply(state, rewards=[dict(Type=2, ID=0, Count=gain)] if gain else [])
+        rec = self._recharge(state)
+        rec['total'] += int(package['Ingot'])
+        rec['today'] += int(package['Ingot'])
+        rec['max_single'] = max(rec['max_single'], int(package['Ingot']))
+        self.apply_vip(state)
+        self._emit(state, 'recharge_ingot', int(package['Ingot']))
+        block = self.ledger.global_for(state, outcome)
+        block.setdefault('Resource', {})['RL'] = [{'orderId': order_id, 'Money': int(package['Money'])}]
+        return Reply(order_id, block)
+
+    def get_point_order(self, ctx: RoleContext, params) -> Reply:
+        """``/Recharge/GetPointOrderID?money``：伪充值点卡，直接到账点卷（月卡页使用）。"""
+        state = ctx.state
+        package, order_id = self._place_order(ctx, self.config.recharge['point_packages'], params.get('money'))
+        state['Point'] = state.get('Point', 0) + int(package['Point'])
+        rec = self._recharge(state)
+        rec['total'] += int(package['Money'])
+        rec['today'] += int(package['Money'])
+        rec['max_single'] = max(rec['max_single'], int(package['Money']))
+        self.apply_vip(state)
+        block = self.ledger.global_for(state, Outcome())
+        block.setdefault('Resource', {})['RL'] = [{'orderId': order_id, 'Money': int(package['Money'])}]
+        return Reply(order_id, block)
+
+    def first_recharge_info(self, ctx: RoleContext, params) -> list:
+        """``/Recharge/firstreward``：客户端把 Result 当奖励数组遍历。"""
+        return thaw(self.config.recharge['first_recharge_reward'])
+
+    def first_recharge_claim(self, ctx: RoleContext, params) -> Reply:
+        """``/Recharge/GetFirstRechargeReward``。"""
+        state = ctx.state
+        rec = self._recharge(state)
+        if rec['total'] <= 0:
+            raise BusinessError('您还没有任何充值', STATE_NOT_CHARGED)
+        if rec['first_claimed']:
+            raise BusinessError('首充奖励已领取', STATE_REWARD_TAKEN)
+        outcome = self.ledger.apply(state, rewards=thaw(self.config.recharge['first_recharge_reward']))
+        self._recharge(state)['first_claimed'] = True
+        return Reply({}, self.ledger.global_for(state, outcome))
+
+    # ---- 月卡 / 周卡 / 点卷 -----------------------------------------------------------
+
+    def _month_card(self, state: dict) -> dict:
+        return state.setdefault('MonthCard', {'month_until': 0, 'week_until': 0, 'last_claim': ''})
 
     def month_card_info(self, ctx: RoleContext, params) -> dict:
         """``/Monthcard/GetMonthcardInfo``。"""
-        info = thaw(self.config.month_card)
-        info.update(WeekCountdown=0, MonthCountdown=0, IsBuyMonthCard=0, HaveMonthCardTimes=0)
-        return info
+        cfg = self.config.month_card
+        card = self._month_card(ctx.state)
+        now = self.clock.now()
+        month_left = Clock.remaining(card['month_until'], now)
+        return {'MonthCardConsume': cfg['MonthCardConsume'], 'WeekCardConsume': cfg['WeekCardConsume'],
+                'MonthReward': thaw(cfg['MonthReward']), 'WeekReward': thaw(cfg['WeekReward']),
+                'RechargePointInfo': [{'ID': p['ID'], 'Money': p['Money']} for p in self.config.recharge['point_packages']],
+                'WeekCountdown': Clock.remaining(card['week_until'], now), 'MonthCountdown': month_left,
+                'IsBuyMonthCard': 0,
+                'HaveMonthCardTimes': 1 if month_left > 0 and card['last_claim'] != self.clock.day_key() else 0}
 
-    def unavailable(self, ctx: RoleContext, params):
-        """需要支付渠道的功能。"""
-        raise BusinessError('尚未接入支付渠道，该功能未开放')
+    def _spend_points(self, state: dict, count: int):
+        if state.get('Point', 0) < count:
+            raise BusinessError('点卷不足，请先购买点卡')
+        state['Point'] -= count
 
-    def recharge_list(self, ctx: RoleContext, params) -> list:
-        """``/Recharge/RechargeLst``。"""
-        return []
+    def month_card_claim(self, ctx: RoleContext, params) -> Reply:
+        """``/Monthcard/GetMonthcardReward``：未激活时扣点卷激活并发当日奖，已激活则每日领一次。"""
+        state = ctx.state
+        cfg = self.config.month_card
+        card = self._month_card(state)
+        now, today = self.clock.now(), self.clock.day_key()
+        if Clock.remaining(card['month_until'], now) <= 0:
+            self._spend_points(state, cfg['MonthCardConsume'])
+            card['month_until'] = now + cfg['month_days'] * 86400
+        elif card['last_claim'] == today:
+            raise BusinessError('今日月卡奖励已领取', STATE_REWARD_TAKEN)
+        outcome = self.ledger.apply(state, rewards=thaw(cfg['MonthReward']))
+        card = self._month_card(state)
+        card['last_claim'] = today
+        return Reply({}, self.ledger.global_for(state, outcome))
 
-    def first_recharge_info(self, ctx: RoleContext, params) -> dict:
-        """``/Recharge/firstreward``。"""
-        return {'IsRecharge': 0, 'IsGet': 0, 'Reward': []}
+    def week_card_claim(self, ctx: RoleContext, params) -> Reply:
+        """``/Monthcard/GetWeekcardReward``：扣点卷激活周卡并一次性发放奖励。"""
+        state = ctx.state
+        cfg = self.config.month_card
+        card = self._month_card(state)
+        if Clock.remaining(card['week_until'], self.clock.now()) > 0:
+            raise BusinessError('周卡生效中，无需重复购买', STATE_REWARD_TAKEN)
+        self._spend_points(state, cfg['WeekCardConsume'])
+        outcome = self.ledger.apply(state, rewards=thaw(cfg['WeekReward']))
+        card = self._month_card(state)
+        card['week_until'] = self.clock.now() + cfg['week_days'] * 86400
+        return Reply({}, self.ledger.global_for(state, outcome))
+
+    def change_ingot(self, ctx: RoleContext, params) -> Reply:
+        """``/Monthcard/ChangeIngot?point``：点卷兑换元宝。"""
+        state = ctx.state
+        point = params['point']
+        if point <= 0:
+            raise BusinessError('兑换点数无效')
+        self._spend_points(state, point)
+        outcome = self.ledger.apply(state, rewards=[dict(Type=2, ID=0, Count=point * self.config.month_card['point_to_ingot_rate'])])
+        return Reply({}, self.ledger.global_for(state, outcome))
+
+    # ---- Notify 红点 -----------------------------------------------------------
+
+    def notify(self, state: dict) -> dict:
+        today = self.clock.day_key()
+        sign = state.get('Sign') or {}
+        signed = sign.get('month') == self.clock.month_key() and sign.get('last_day') == today
+        rec = state.get('Recharge') or {}
+        return {'SignRewardShow': 0 if signed else 1,
+                'SevenLoginShow': self.seven_day_claimable(state),
+                'EverydayRewardShow': 0 if state['Daily'].get('salary_taken') else 1,
+                'lgbs': self.level_gift_claimable(state),
+                'Growup': self.growup_claimable(state),
+                'FirstRechargeShow': 1 if rec.get('total') and not rec.get('first_claimed') else 0}
 
     # ---- 公告 -------------------------------------------------------------
 

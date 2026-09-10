@@ -1,0 +1,12 @@
+{
+  "_doc": "系统邮件：welcome_mail 建角发放；level_up_mail 在 levels 各级发放（{level} 为占位符）",
+  "welcome_mail": {
+    "content": "欢迎来到大闹天宫！这是一份见面礼，请收下。",
+    "attachments": [{"Type": 1, "ID": 0, "Count": 20000}, {"Type": 5, "ID": 100001, "Count": 2}, {"Type": 6, "ID": 200125, "Count": 20}]
+  },
+  "level_up_mail": {
+    "levels": [10, 20, 30],
+    "content": "恭喜您达到{level}级！奉上一份奖励。",
+    "attachments": [{"Type": 2, "ID": 0, "Count": 50}]
+  }
+}

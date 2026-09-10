@@ -1,0 +1,10 @@
+{
+  "_doc": "月卡/周卡：激活消耗点卷（MonthCardConsume/WeekCardConsume，客户端叫「点卷」，充值点卡获得）；月卡激活 month_days 天、每日可领一次 MonthReward；周卡激活 week_days 天、激活时一次性发 WeekReward；point_to_ingot_rate 为 /Monthcard/ChangeIngot 每 1 点卷兑换的元宝数",
+  "MonthCardConsume": 30,
+  "WeekCardConsume": 10,
+  "MonthReward": [{"Type": 2, "ID": 0, "Count": 88}],
+  "WeekReward": [{"Type": 2, "ID": 0, "Count": 300}],
+  "month_days": 30,
+  "week_days": 7,
+  "point_to_ingot_rate": 10
+}

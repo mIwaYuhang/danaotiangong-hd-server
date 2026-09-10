@@ -1,0 +1,11 @@
+{
+  "_doc": "财神到（/FortuneKing/*）：type 1 单笔充值 / 2 当日充值 / 3 累计充值 / 4 当日消费 / 5 累计消费；need 为达标元宝数；type 1/2/4 每日重置，3/5 一次性；state 1 可领 2 已领 3 未达标",
+  "items": [
+    {"id": 1, "type": 1, "need": 60, "rewards": [{"Type": 1, "ID": 0, "Count": 50000}, {"Type": 6, "ID": 200125, "Count": 30}]},
+    {"id": 2, "type": 1, "need": 648, "rewards": [{"Type": 2, "ID": 0, "Count": 300}, {"Type": 5, "ID": 100009, "Count": 2}]},
+    {"id": 3, "type": 2, "need": 100, "rewards": [{"Type": 1, "ID": 0, "Count": 80000}, {"Type": 6, "ID": 200128, "Count": 40}]},
+    {"id": 4, "type": 3, "need": 1000, "rewards": [{"Type": 2, "ID": 0, "Count": 500}, {"Type": 5, "ID": 100008, "Count": 2}]},
+    {"id": 5, "type": 4, "need": 200, "rewards": [{"Type": 1, "ID": 0, "Count": 60000}, {"Type": 6, "ID": 200125, "Count": 20}]},
+    {"id": 6, "type": 5, "need": 2000, "rewards": [{"Type": 2, "ID": 0, "Count": 600}, {"Type": 5, "ID": 100013, "Count": 1}]}
+  ]
+}
