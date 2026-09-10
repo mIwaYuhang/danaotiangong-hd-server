@@ -1,11 +1,20 @@
-"""GM 操作实现：全部经由游戏服务层执行，与玩家在线时的规则一致。"""
+"""GM 操作实现：全部经由游戏服务层执行，与玩家在线时的规则一致。
+
+另含「玩家自助门户」：玩家用自己的游戏账号（游客设备号或注册邮箱+密码）登录，
+在配额内给自己发物品（走系统邮件，与 GM 单发一致）。
+"""
 from copy import deepcopy
+import hashlib
+import hmac
 import json
+import re
+import secrets
 import time
 
 from ..config import thaw
 from ..errors import BusinessError
 from ..services.base import SessionContext
+from .config import PORTAL_DEFAULTS
 
 #: 可直接改写的资源字段 → 中文名（用于校验与前端展示）
 EDITABLE_FIELDS = {'PLevel': '等级', 'Gold': '银币', 'Ingot': '元宝', 'Energy': '体力', 'Knowledge': '阅历', 'TrainPill': '培养丹',
@@ -37,13 +46,15 @@ def check_rewards(rewards) -> list:
 
 
 class GmService:
-    def __init__(self, app, announcement_file, mail_title: str, search_limit: int):
+    def __init__(self, app, announcement_file, mail_title: str, search_limit: int, portal: dict = None):
         self.app = app
         self.services = app.services
         self.model = app.services.growth.model if hasattr(app.services, 'growth') else None
         self.announcement_file = announcement_file
         self.mail_title = mail_title
         self.search_limit = search_limit
+        self.portal = {**PORTAL_DEFAULTS, **(portal or {})}
+        self.portal_sessions = {}  # token -> {'user': 游戏用户 ID, 'expires': 时间戳}
         self.started_at = int(time.time())
 
     # ---- 基础 -------------------------------------------------------------
@@ -241,3 +252,103 @@ class GmService:
             raise GmError('公告内容必须是字符串')
         self.announcement_file.write_text(html, encoding='utf-8')
         return {'bytes': len(html.encode('utf-8'))}
+
+    # ---- 玩家自助门户 -----------------------------------------------------------
+
+    def _portal_account(self, db, body: dict) -> int:
+        """按登录方式解析出账号 ID：游客设备号，或注册邮箱 + 密码。"""
+        udid = str(body.get('udid') or '').strip()
+        if udid:
+            row = db.execute('SELECT account_id FROM devices WHERE device = ?', (udid,)).fetchone()
+            if row is None:
+                raise GmError('没有找到该设备号对应的游客账号')
+            return row['account_id']
+        email = str(body.get('email') or '').strip()
+        password = str(body.get('password') or '')
+        if not email or not password:
+            raise GmError('请填写设备号，或邮箱与密码')
+        row = db.execute('SELECT * FROM accounts WHERE email = ?', (email,)).fetchone()
+        if row is None:
+            raise GmError('账号不存在')
+        # 客户端注册时上送的是密码的 MD5；门户里玩家输入明文，这里先 MD5 再比对；
+        # 若玩家直接输入 32 位十六进制，也按原样试一次
+        account = self.services.account
+        candidates = [hashlib.md5(password.encode('utf-8')).hexdigest()]
+        if re.fullmatch(r'[0-9a-fA-F]{32}', password):
+            candidates.append(password.lower())
+        if not any(hmac.compare_digest(account._password_hash(c, row['password_salt']), row['password_hash'])
+                   for c in candidates):
+            raise GmError('密码错误')
+        return row['id']
+
+    def _portal_purge(self):
+        now = int(time.time())
+        for token in [t for t, s in self.portal_sessions.items() if s['expires'] <= now]:
+            self.portal_sessions.pop(token, None)
+
+    def portal_login(self, body) -> dict:
+        if not self.portal['enabled']:
+            raise GmError('玩家自助门户未开启')
+        if not isinstance(body, dict):
+            raise GmError('请求体必须是 JSON 对象')
+        realm_id = self.app.config.server.realm.id
+        with self.app.storage.transaction() as db:
+            account_id = self._portal_account(db, body)
+            user_row = db.execute('SELECT id FROM game_users WHERE account_id = ? AND server_id = ?',
+                                  (account_id, realm_id)).fetchone()
+            if user_row is None:
+                raise GmError('该账号还没有进入过本服，请先在游戏里创建角色')
+            user_id = user_row['id']
+            row = self.services.roles.repository.find(db, user_id)
+            if row is None:
+                raise GmError('该账号在本服还没有角色，请先在游戏里创建角色')
+            state = self.services.roles.model.migrate(json.loads(row['state_json']))
+            if state.get('Banned'):
+                raise GmError('该角色已被封禁')
+            self._portal_purge()
+            token = secrets.token_urlsafe(24)
+            self.portal_sessions[token] = {'user': user_id, 'expires': int(time.time()) + int(self.portal['token_ttl'])}
+            return {'token': token, 'player': self._summary(db, row, state), 'quota': self._portal_quota(state)}
+
+    def portal_user(self, token: str):
+        """门户令牌 → 游戏用户 ID；无效返回 None。"""
+        self._portal_purge()
+        session = self.portal_sessions.get(token or '')
+        return session['user'] if session else None
+
+    def _portal_quota(self, state: dict) -> dict:
+        day = self.services.roles.model.clock.day_key()
+        block = state.get('PortalGrants') or {}
+        used = block.get('used', 0) if block.get('day') == day else 0
+        daily = int(self.portal['daily_mails'])
+        return {'daily': daily, 'used': used, 'remaining': max(0, daily - used),
+                'maxLines': int(self.portal['max_lines']), 'maxCount': int(self.portal['max_count'])}
+
+    def portal_me(self, user_id: int) -> dict:
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            return {'player': self._summary(db, row, state), 'quota': self._portal_quota(state),
+                    'resourceTypes': RESOURCE_TYPES}
+
+    def portal_send(self, user_id: int, rewards) -> dict:
+        if not self.portal['enabled']:
+            raise GmError('玩家自助门户未开启')
+        rewards = check_rewards(rewards)
+        if len(rewards) > int(self.portal['max_lines']):
+            raise GmError(f"一次最多发 {self.portal['max_lines']} 种物品")
+        if any(r['Count'] > int(self.portal['max_count']) for r in rewards):
+            raise GmError(f"单种物品数量不能超过 {self.portal['max_count']}")
+        with self.app.storage.transaction() as db:
+            row, state = self._open(db, user_id)
+            if state.get('Banned'):
+                raise GmError('该角色已被封禁')
+            day = self.services.roles.model.clock.day_key()
+            block = state.setdefault('PortalGrants', {'day': day, 'used': 0})
+            if block.get('day') != day:
+                block.update(day=day, used=0)
+            if block['used'] >= int(self.portal['daily_mails']):
+                raise GmError('今日自助发放次数已用完')
+            mail = self.services.mail.send_system(state, str(self.portal['mail_content']), rewards)
+            block['used'] += 1
+            self._save(db, user_id, state)
+            return {'mail': mail, 'quota': self._portal_quota(state), 'player': self._summary(db, row, state)}

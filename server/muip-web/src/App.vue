@@ -7,6 +7,10 @@ import Players from './views/Players.vue'
 import Broadcast from './views/Broadcast.vue'
 import Announcement from './views/Announcement.vue'
 import Unions from './views/Unions.vue'
+import PlayerPortal from './views/PlayerPortal.vue'
+
+// /player 路径进入玩家自助门户（独立登录，与 GM 后台互不相通）
+const playerMode = window.location.pathname.startsWith('/player')
 
 const views = { dashboard: Dashboard, players: Players, broadcast: Broadcast, announcement: Announcement, unions: Unions }
 const menu = [
@@ -58,7 +62,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="!loggedIn" class="login-page">
+  <PlayerPortal v-if="playerMode" />
+
+  <div v-else-if="!loggedIn" class="login-page">
     <el-card class="login-card" shadow="always">
       <template #header><div class="login-title">大闹天宫HD · GM 后台</div></template>
       <el-form @submit.prevent="login">
@@ -67,6 +73,7 @@ onMounted(async () => {
         </el-form-item>
         <el-button type="primary" :loading="loggingIn" style="width: 100%" @click="login">登录</el-button>
       </el-form>
+      <div class="portal-entry"><a href="/player">玩家自助补给入口 →</a></div>
     </el-card>
   </div>
 
@@ -97,6 +104,7 @@ html, body, #app { height: 100%; margin: 0; background: #f5f7fa; font-family: 'M
 .login-page { height: 100%; display: flex; align-items: center; justify-content: center; }
 .login-card { width: 380px; }
 .login-title { font-size: 18px; font-weight: 600; text-align: center; }
+.portal-entry { text-align: center; margin-top: 12px; font-size: 13px; }
 .layout { height: 100%; }
 .aside { background: #1f2d3d; }
 .brand { color: #fff; font-weight: 600; padding: 18px 20px; font-size: 16px; }

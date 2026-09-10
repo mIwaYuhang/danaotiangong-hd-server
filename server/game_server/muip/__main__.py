@@ -23,9 +23,10 @@ def main(argv=None) -> int:
         print(f'配置错误：{exc}', file=sys.stderr)
         return 2
     app = Application(config, Path(args.database) if args.database else None)
-    gm = GmService(app, config.config_dir / 'announcement.html', muip.mail_title, muip.search_limit)
+    gm = GmService(app, config.config_dir / 'announcement.html', muip.mail_title, muip.search_limit, portal=muip.portal)
     server = serve(gm, muip)
     print(f'GM 服务已启动：http://{muip.host}:{muip.port}/  （前端目录 {muip.webui_dir}，存档 {app.storage.path}）')
+    print(f'玩家自助门户：http://{muip.host}:{muip.port}/player  （portal.enabled={muip.portal["enabled"]}）')
     try:
         server.serve_forever()
     except KeyboardInterrupt:

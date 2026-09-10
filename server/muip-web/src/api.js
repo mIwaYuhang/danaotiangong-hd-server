@@ -41,4 +41,36 @@ export const api = {
   saveAnnouncement: (html) => http.put('/announcement', { html }),
 }
 
+// ---- 玩家自助门户（/player）：独立令牌，与 GM 令牌互不相通 ----
+const PORTAL_TOKEN_KEY = 'muip_portal_token'
+export const getPortalToken = () => localStorage.getItem(PORTAL_TOKEN_KEY) || ''
+export const setPortalToken = (token) => (token ? localStorage.setItem(PORTAL_TOKEN_KEY, token) : localStorage.removeItem(PORTAL_TOKEN_KEY))
+
+const portalHttp = axios.create({ baseURL: '/api/portal', timeout: 30000 })
+portalHttp.interceptors.request.use((cfg) => {
+  const token = getPortalToken()
+  if (token) cfg.headers.Authorization = `Bearer ${token}`
+  return cfg
+})
+portalHttp.interceptors.response.use(
+  (res) => res.data,
+  (err) => {
+    const status = err.response?.status
+    const message = err.response?.data?.error || err.message
+    if (status === 401) {
+      setPortalToken('')
+      window.dispatchEvent(new CustomEvent('portal:logout'))
+    }
+    ElMessage.error(message)
+    return Promise.reject(err)
+  },
+)
+
+export const portalApi = {
+  login: (payload) => portalHttp.post('/login', payload),
+  me: () => portalHttp.get('/me'),
+  items: (type, q) => portalHttp.get('/items', { params: { type, q } }),
+  send: (rewards) => portalHttp.post('/send', { rewards }),
+}
+
 export const formatTime = (ts) => (ts ? new Date(ts * 1000).toLocaleString('zh-CN', { hour12: false }) : '-')

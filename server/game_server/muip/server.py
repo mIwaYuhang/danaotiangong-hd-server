@@ -97,6 +97,8 @@ def make_handler(gm: GmService, config: MuipConfig):
             self.do_POST()
 
         def handle_api(self, method: str, path: str, query: dict, body):
+            if path.startswith('/api/portal/'):
+                return self.handle_portal(method, path, query, body)
             if path == '/api/login' and method == 'POST':
                 if isinstance(body, dict) and body.get('token') == config.token:
                     return self.send_json(200, {'ok': True})
@@ -113,6 +115,34 @@ def make_handler(gm: GmService, config: MuipConfig):
             if result is None:
                 return self.send_json(404, {'error': '接口不存在'})
             self.send_json(200, result)
+
+        def handle_portal(self, method: str, path: str, query: dict, body):
+            """玩家自助门户：/api/portal/login 开放，其余接口校验门户令牌（与 GM 令牌互不相通）。"""
+            first = lambda key, default='': (query.get(key) or [default])[0]
+            try:
+                if path == '/api/portal/login' and method == 'POST':
+                    return self.send_json(200, gm.portal_login(body))
+                header = self.headers.get('Authorization', '')
+                token = header[7:].strip() if header.startswith('Bearer ') else ''
+                user_id = gm.portal_user(token)
+                if user_id is None:
+                    return self.send_json(401, {'error': '未登录或登录已过期'})
+                if path == '/api/portal/me' and method == 'GET':
+                    return self.send_json(200, gm.portal_me(user_id))
+                if path == '/api/portal/items' and method == 'GET':
+                    try:
+                        item_type = int(first('type', '5'))
+                    except ValueError:
+                        raise GmError('type 必须是整数')
+                    return self.send_json(200, {'items': gm.search_items(item_type, first('q'))})
+                if path == '/api/portal/send' and method == 'POST':
+                    return self.send_json(200, gm.portal_send(user_id, body.get('rewards') if isinstance(body, dict) else None))
+            except GmError as exc:
+                return self.send_json(400, {'error': str(exc)})
+            except Exception as exc:
+                self.log_error('门户接口异常 %s %s: %r', method, path, exc)
+                return self.send_json(500, {'error': f'内部错误：{exc}'})
+            return self.send_json(404, {'error': '接口不存在'})
 
         def dispatch(self, method: str, path: str, query: dict, body):
             first = lambda key, default='': (query.get(key) or [default])[0]

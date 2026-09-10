@@ -3,7 +3,12 @@
 import { ref, watch } from 'vue'
 import { api } from '../api'
 
-const props = defineProps({ modelValue: { type: Array, default: () => [] }, resourceTypes: { type: Object, default: () => ({}) } })
+const props = defineProps({
+  modelValue: { type: Array, default: () => [] },
+  resourceTypes: { type: Object, default: () => ({}) },
+  // 可替换的检索接口（玩家门户传 portalApi.items），默认走 GM 接口
+  itemsApi: { type: Function, default: null },
+})
 const emit = defineEmits(['update:modelValue'])
 
 const catalogTypes = { 4: '将魂', 5: '道具', 6: '材料', 7: '英雄', 10: '装备' }
@@ -22,7 +27,7 @@ const names = ref({})
 async function search(q) {
   loading.value = true
   try {
-    const res = await api.items(type.value, q)
+    const res = await (props.itemsApi || api.items)(type.value, q)
     items.value = res.items
     for (const it of res.items) names.value[`${type.value}:${it.id}`] = it.name
   } finally {

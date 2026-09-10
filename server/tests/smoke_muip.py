@@ -1,4 +1,5 @@
-"""GM 服务（MUIP）冒烟：启动 HTTP 服务，走一遍登录、检索、改数值、发放、邮件、封禁、公告、静态页。"""
+"""GM 服务（MUIP）冒烟：登录、检索、改数值、发放、邮件、封禁、公告、静态页、玩家自助门户。"""
+import base64
 import datetime as dt
 import json
 import random
@@ -12,7 +13,7 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from smoke_v5 import SERVER_DIR, Player, check, PASSED, FAILED  # noqa: E402
+from smoke_v5 import SERVER_DIR, Player, check, get, PASSED, FAILED  # noqa: E402
 from game_server.app import Application  # noqa: E402
 from game_server.config import load_config  # noqa: E402
 from game_server.muip.config import MuipConfig  # noqa: E402
@@ -48,8 +49,11 @@ def main():
         app = Application(config, workdir / 'muip.sqlite3', clock=clock, rng=random.Random(21))
         a = Player(app, 'dev-a', '甲', 101, 30)
         b = Player(app, 'dev-b', '乙', 112, 20)
-        gm = GmService(app, announcement, muip.mail_title, muip.search_limit)
-        test_cfg = MuipConfig(host='127.0.0.1', port=0, token=muip.token, webui_dir=muip.webui_dir, search_limit=50, mail_title='GM')
+        portal_cfg = {'enabled': True, 'daily_mails': 2, 'max_lines': 3, 'max_count': 1000, 'token_ttl': 3600,
+                      'mail_content': '自助补给'}
+        gm = GmService(app, announcement, muip.mail_title, muip.search_limit, portal=portal_cfg)
+        test_cfg = MuipConfig(host='127.0.0.1', port=0, token=muip.token, webui_dir=muip.webui_dir, search_limit=50,
+                              mail_title='GM', portal=portal_cfg)
         server = serve(gm, test_cfg)
         threading.Thread(target=server.serve_forever, daemon=True).start()
         base = f'http://127.0.0.1:{server.server_address[1]}'
@@ -100,6 +104,49 @@ def main():
         status, body = call(base, 'GET', '/players')
         check('SPA 路由回退 index.html', status == 200 and b'<div id="app">' in body)
         check('未知 API 404', call(base, 'GET', '/api/nothing', token=token)[0] == 404)
+
+        # ---- 玩家自助门户 ----
+        check('门户：未知设备 400', call(base, 'POST', '/api/portal/login', {'udid': 'dev-none'})[0] == 400)
+        status, body = call(base, 'POST', '/api/portal/login', {'udid': 'dev-a'})
+        check('门户：设备号登录', status == 200 and body['token'] and body['player']['name'] == '甲甲'
+              and body['quota']['daily'] == 2, body.get('player'))
+        ptoken = body['token']
+        check('门户令牌不能访问 GM 接口', call(base, 'GET', '/api/status', token=ptoken)[0] == 401)
+        check('无令牌访问门户 401', call(base, 'GET', '/api/portal/me')[0] == 401)
+        status, body = call(base, 'GET', '/api/portal/me', token=ptoken)
+        check('门户：我的信息', status == 200 and body['player']['userId'] == a.user and body['quota']['used'] == 0
+              and body['resourceTypes'], body.get('quota'))
+        status, body = call(base, 'GET', '/api/portal/items?type=5&q=', token=ptoken)
+        check('门户：道具检索', status == 200 and body['items'], (status, body))
+        mails_before = a.role()['Notify']['MailCount']
+        status, body = call(base, 'POST', '/api/portal/send', {'rewards': [{'Type': 2, 'ID': 0, 'Count': 100}]}, ptoken)
+        check('门户：给自己发元宝（邮件送达）', status == 200 and body['quota']['used'] == 1
+              and a.role()['Notify']['MailCount'] == mails_before + 1, body.get('quota'))
+        check('门户：单种数量超限 400',
+              call(base, 'POST', '/api/portal/send', {'rewards': [{'Type': 1, 'ID': 0, 'Count': 5000}]}, ptoken)[0] == 400)
+        check('门户：种数超限 400',
+              call(base, 'POST', '/api/portal/send', {'rewards': [{'Type': 1, 'ID': 0, 'Count': 1}] * 4}, ptoken)[0] == 400)
+        call(base, 'POST', '/api/portal/send', {'rewards': [{'Type': 1, 'ID': 0, 'Count': 100}]}, ptoken)
+        status, body = call(base, 'POST', '/api/portal/send', {'rewards': [{'Type': 1, 'ID': 0, 'Count': 100}]}, ptoken)
+        check('门户：每日 2 次用完 400', status == 400 and '用完' in body['error'], body)
+        # 邮箱账号：注册 → 进服建角 → 门户用明文密码登录
+        md5_123456 = 'e10adc3949ba59abbe56e057f20f883e'
+        ticket = get(app, '/sdk/Register', email='p@x.com', pwd=md5_123456)['Result']['UserID']
+        r = get(app, '/Role/partner', userid=json.dumps({'sessionId': ticket}), partnerId='101', serverid='1',
+                deviceToken='x', idfa='', mac='')['Result']
+        get(app, '/Role/Name', user=r['UserId'], session=r['Session'], version='210', resource='0', _l='Home',
+            deviceToken='x', name=base64.b64encode('丙'.encode()).decode(), heroProtoID='128')
+        status, body = call(base, 'POST', '/api/portal/login', {'email': 'p@x.com', 'password': '123456'})
+        check('门户：邮箱+明文密码登录', status == 200 and body['player']['name'] == '丙', body)
+        check('门户：错误密码 400', call(base, 'POST', '/api/portal/login', {'email': 'p@x.com', 'password': 'bad'})[0] == 400)
+        # 封禁角色不能登录门户
+        call(base, 'POST', f'/api/players/{b.user}/update', {'fields': {'Banned': True}}, token)
+        check('门户：封禁角色拒绝登录', call(base, 'POST', '/api/portal/login', {'udid': 'dev-b'})[0] == 400)
+        call(base, 'POST', f'/api/players/{b.user}/update', {'fields': {'Banned': False}}, token)
+        # 总开关
+        gm.portal['enabled'] = False
+        check('门户：开关关闭后登录被拒', call(base, 'POST', '/api/portal/login', {'udid': 'dev-a'})[0] == 400)
+        gm.portal['enabled'] = True
     except Exception:
         traceback.print_exc(); FAILED.append('未捕获异常')
     finally:

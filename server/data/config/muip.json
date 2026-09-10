@@ -1,14 +1,23 @@
 {
   "_doc": {
-    "listen": "GM 服务监听地址（建议只绑定内网 / 本机）",
+    "listen": "GM 服务监听地址（建议只绑定内网 / 本机；玩家门户与 GM 后台同端口，开放给玩家时注意网络边界）",
     "token": "GM 登录令牌：前端登录时填写，所有 API 请求需携带 Authorization: Bearer <token>",
     "webui_dir": "前端构建产物目录（相对本文件所在目录），由 muip-web 执行 npm run build 生成",
     "search_limit": "玩家搜索最多返回条数",
-    "mail_title": "GM 邮件在客户端显示的发件人名称"
+    "mail_title": "GM 邮件在客户端显示的发件人名称",
+    "portal": "玩家自助门户（浏览器访问 /player）：玩家用游戏账号（游客设备号或注册邮箱+密码）登录，在配额内给自己发物品（走系统邮件）。enabled 总开关；daily_mails 每人每日可发邮件数；max_lines 单封最多物品种数；max_count 单种物品数量上限；token_ttl 登录有效期（秒）；mail_content 邮件正文"
   },
   "listen": {"host": "127.0.0.1", "port": 8090},
   "token": "12345678",
   "webui_dir": "../../muip-web/dist",
   "search_limit": 50,
-  "mail_title": "运营团队"
+  "mail_title": "运营团队",
+  "portal": {
+    "enabled": true,
+    "daily_mails": 999999,
+    "max_lines": 8,
+    "max_count": 1000000,
+    "token_ttl": 86400,
+    "mail_content": "自助补给已送达，请注意查收。"
+  }
 }
