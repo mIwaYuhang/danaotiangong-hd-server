@@ -3,7 +3,9 @@ name = "local-game-server"
 version = "0.3.0"
 description = "本地单机游戏服务端：区服列表、账号鉴权、角色与首章玩法（仅供本地测试）"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "protobuf>=4.25,<6",
+]
 
 [project.scripts]
 local-game-server = "game_server.cli:main"
