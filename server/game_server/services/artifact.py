@@ -91,7 +91,8 @@ class ArtifactService:
             nodes.append([{'battlePropertyType': PROPERTY_TYPE[attr], 'value': int(round(float(row.get(column, 0)) * self.config['attr_scale_per_level']))}])
         return {'step': step, 'level': level, 'perfusionNode': node,
                 'fragments': [{'fragmentID': f, 'needCount': 1} for f in self.fragments_of(step)],
-                'additions': [{'battlePropertyType': PROPERTY_TYPE[a], 'value': v} for a, v in attrs.items()],
+                'additions': [{'battlePropertyType': kind, 'value': attrs.get(attr, 0)}
+                              for attr, kind in PROPERTY_TYPE.items()],
                 'perfusionss': nodes}
 
     # ---- 接口 -------------------------------------------------------------
@@ -176,6 +177,24 @@ class ArtifactService:
             rewards.append(dict(Type=3, ID=0, Count=self.config['rob_exp']))
         return {'report': report, 'rewards': rewards, 'got': got}
 
+    @staticmethod
+    def _rob_report(result: dict, outcome, profile: dict, target_id: int) -> dict:
+        rewards = outcome.rewards
+        # Cards only display already granted rewards; they never enter the ledger.
+        opened = rewards[:1]
+        unselected = [[rewards[(i + 1) % len(rewards)]] for i in range(2)] if rewards else []
+        rob_player = {'prestige': sum(r['Count'] for r in rewards if r['Type'] == 26),
+                      'exp': sum(r['Count'] for r in rewards if r['Type'] == 3),
+                      'isGetFragment': result['got'],
+                      'beRobbedPlayer': {'name': profile['Name'], 'playerID': str(target_id),
+                                         'avatarID': profile['Avatar'], 'battlePower': profile['BattlePower']},
+                      'openReward': deepcopy(opened), 'notOpenRewards': deepcopy(unselected)}
+        report = result['report']
+        report.update(total=1, dropList=[], Reward=deepcopy(rewards),
+                      BattleResult={'RobPlayer': deepcopy(rob_player)},
+                      enemy={'Name': profile['Name'], 'Vip': 0}, RobPlayer=rob_player)
+        return report
+
     def rob(self, ctx: RoleContext, params) -> Reply:
         """``/Artifacthall/Rob?fragmentID&beRobbedPlayerID&type``。"""
         state = ctx.state
@@ -192,12 +211,7 @@ class ArtifactService:
         profile = self.directory.profile(ctx.db, target_id)
         result = self._rob_once(ctx, params['fragmentID'], target_id, params.get('type') or 1)
         outcome = self.ledger.apply(state, rewards=result['rewards'])
-        report = result['report']
-        report.update(total=1, dropList=[], Reward=deepcopy(outcome.rewards), BattleResult={}, enemy={'Name': profile['Name'], 'Vip': 0},
-                      RobPlayer={'prestige': self.config['rob_prestige'], 'exp': self.config['rob_exp'], 'isGetFragment': result['got'],
-                                 'beRobbedPlayer': {'name': profile['Name'], 'playerID': str(target_id), 'avatarID': profile['Avatar'],
-                                                    'battlePower': profile['BattlePower']},
-                                 'openReward': [r for r in outcome.rewards if r['Type'] == 6], 'notOpenRewards': []})
+        report = self._rob_report(result, outcome, profile, target_id)
         return Reply(report, self.ledger.global_for(state, outcome))
 
     def rob_ten(self, ctx: RoleContext, params) -> Reply:
@@ -240,12 +254,7 @@ class ArtifactService:
         profile = self.directory.profile(ctx.db, target_id)
         result = self._rob_once(ctx, record['fragmentID'], target_id, 1)
         outcome = self.ledger.apply(state, rewards=result['rewards'])
-        report = result['report']
-        report.update(total=1, dropList=[], Reward=deepcopy(outcome.rewards), BattleResult={}, enemy={'Name': profile['Name'], 'Vip': 0},
-                      RobPlayer={'prestige': self.config['rob_prestige'], 'exp': self.config['rob_exp'], 'isGetFragment': result['got'],
-                                 'beRobbedPlayer': {'name': profile['Name'], 'playerID': str(target_id), 'avatarID': profile['Avatar'],
-                                                    'battlePower': profile['BattlePower']},
-                                 'openReward': [r for r in outcome.rewards if r['Type'] == 6], 'notOpenRewards': []})
+        report = self._rob_report(result, outcome, profile, target_id)
         return Reply(report, self.ledger.global_for(state, outcome))
 
     def notify(self, state: dict) -> dict:

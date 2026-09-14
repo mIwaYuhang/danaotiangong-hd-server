@@ -6,7 +6,8 @@
 
 战报格式（客户端 ``BattleData:init``）：
 - ``battleHeros``：双方单位，``posId`` 1-6 我方、7-12 敌方；
-- ``battleRecords``：每次行动一条，``Step=true``，``skillType`` 1 普攻 / 2 怒气技；
+- ``battleRecords``：普通行动 ``Step=true``，连斩追击 ``Step=false`` 并带攻击前天赋提示；
+  ``skillType`` 1 普攻 / 2 怒气技；
   ``health/rage`` 为行动者的增量，``affectList`` 为受击者增量，``effect`` 1 普通 / 2 暴击 / 3 格挡 / 4 闪避。
 
 怒气技的目标与倍率从 ``BaseSkills.desc`` 解析（``{...}`` 内为含 ``sl``=技能等级 的算式），
@@ -66,6 +67,8 @@ class SkillSpec:
     count: int = 1
     percent: float = 100.0
     own_side: bool = False
+    rage_drain: float = 0
+    lifesteal: bool = False
 
 
 def _safe_eval(node):
@@ -100,19 +103,31 @@ def parse_skill(desc, sl: int) -> SkillSpec:
     spec = SkillSpec()
     if not isinstance(desc, str):
         return spec
+    desc = desc.replace('{0.75*({', '{0.75*(')
     match = FORMULA.search(desc)
     value = evaluate_formula(match.group(1), sl) if match else None
-    own = '我方' in desc or '自身' in desc
-    if own and '怒气' in desc:
+    own = '我方' in desc or desc.startswith(('回复', '恢复', '治疗', '增加'))
+    if desc.startswith('增加') and '怒气' in desc:
         spec.kind, spec.own_side = 'rage', True
         spec.percent = value if value is not None else 30
-    elif own and ('回复' in desc or '治疗' in desc):
+    elif own and desc.startswith(('回复', '恢复', '治疗')):
         spec.kind, spec.own_side = 'heal', True
         spec.percent = value if value is not None else 50
     else:
         spec.kind = 'damage'
         spec.percent = value if value is not None else 100
-    if '全体' in desc or '所有' in desc:
+    if spec.kind == 'damage':
+        spec.lifesteal = '恢复自身等量' in desc
+        drain = re.search(r'(?:降低|减低)(?:敌方|其)?\{([^{}]+)\}点怒气', desc)
+        if drain and '概率' not in desc:
+            spec.rage_drain = evaluate_formula(drain.group(1), sl) or 0
+    if spec.own_side and '自身' in desc:
+        spec.targeting = 'self'
+    elif '损失最多' in desc or '损血最多' in desc:
+        spec.targeting = 'missing'
+    elif '一列' in desc:
+        spec.targeting = 'column'
+    elif '全体' in desc or '所有' in desc:
         spec.targeting = 'all'
     elif '横排' in desc:
         spec.targeting = 'row'
@@ -129,6 +144,9 @@ def parse_skill(desc, sl: int) -> SkillSpec:
             if word in desc:
                 spec.targeting, spec.count = 'count', n
                 break
+    count = re.search(r'(\d+)(?:个|名)', desc)
+    if count:
+        spec.count = int(count.group(1))
     return spec
 
 
@@ -152,7 +170,35 @@ class BattleEngine:
         return Unit(pos=hero['battleIx'], side=0, name=template['name'], attrs=attrs, hero_id=hero['heroId'],
                     skill_id=template.get('skillId', 0), skill_level=hero.get('rageSkillLevel', 1),
                     talent_id=template.get('talentId', 0), rebirth=hero.get('rebirthCount', 0), weapon_id=weapon,
-                    hp=int(attrs['health']), hp_max=int(attrs['health']), rage=self.hero_config.rage.initial)
+                    hp=int(attrs['health']), hp_max=int(attrs['health']), rage=self._initial_rage(hero))
+
+    def _initial_rage(self, hero: dict) -> int:
+        amount = self.hero_config.rage.initial
+        for instance in hero.get('equipList', []):
+            template = self.catalog['BaseEquips'].get(str(instance.get('equipId')), {})
+            unlocked = max(0, int(instance.get('BreakthroughCount', 0) or 0))
+            stages = template.get('jieJiAttrs') or {}
+            stages = stages.items() if isinstance(stages, dict) else enumerate(stages, 1)
+            for index, stage in stages:
+                if int(index) <= unlocked:
+                    match = re.search(r'初始怒气提升(\d+)', stage.get('desc') or '')
+                    if match:
+                        amount += int(match.group(1))
+        return max(0, min(self.hero_config.rage.max, amount))
+
+    def _cleave_percent(self, actor: Unit) -> Optional[float]:
+        # 10036 is 九界魔尊's 连斩; other talents need separate mechanics.
+        if actor.talent_id != 10036 or not actor.hero_id:
+            return None
+        template = self.heroes.template(actor.hero_id)
+        level = self.heroes.talent_level(template, actor.rebirth)
+        if level <= 0:
+            return None
+        desc = self.catalog['BaseSkills'].get('10036', {}).get('desc') or {}
+        text = desc.get(str(level), '') if isinstance(desc, dict) else desc[min(level, len(desc)) - 1]
+        match = FORMULA.search(text)
+        bonus = evaluate_formula(match.group(1), level) if match else None
+        return 100 + bonus if bonus is not None else None
 
     def archetype(self, profession: int, quality: int) -> dict:
         """同职业同品质英雄模板的平均值（NPC 的 1 级模板）。"""
@@ -278,6 +324,17 @@ class BattleEngine:
                     records.append(self._cast(round_no, actor, spec, foes, friends))
                 else:
                     records.append(self._attack(round_no, actor, foes))
+                percent = self._cleave_percent(actor)
+                # Only a fresh kill can extend the action; each extra attack is normal,
+                # even when its rage gain would otherwise permit a rage skill.
+                while percent is not None and actor.alive and any(not u.alive for u in foes):
+                    foes = [u for u in foes if u.alive]
+                    if not foes:
+                        break
+                    extra = self._attack(round_no, actor, foes, percent)
+                    extra['Step'] = False
+                    extra['ts'] = dict(ts=1, hns=False)
+                    records.append(extra)
             if not any(u.alive for u in enemies):
                 winner = 0
                 break
@@ -307,10 +364,15 @@ class BattleEngine:
         if spec.targeting == 'row':
             primary = self._pick_default(pool)
             return [u for u in pool if (u.pos in FRONT_ROW) == (primary.pos in FRONT_ROW)]
+        if spec.targeting == 'column':
+            primary = self._pick_default(pool)
+            return [u for u in pool if (u.pos - 1) % 3 == (primary.pos - 1) % 3]
+        if spec.targeting == 'missing':
+            return sorted(pool, key=lambda u: (-(u.hp_max - u.hp), u.pos))[:spec.count]
         if spec.targeting == 'highest':
-            return [max(pool, key=lambda u: u.hp)]
+            return sorted(pool, key=lambda u: (-u.hp, u.pos))[:spec.count]
         if spec.targeting == 'lowest':
-            return [min(pool, key=lambda u: u.hp)]
+            return sorted(pool, key=lambda u: (u.hp, u.pos))[:spec.count]
         if spec.targeting == 'count':
             ordered = sorted(pool, key=lambda u: u.pos)
             return ordered[:spec.count]
@@ -341,9 +403,9 @@ class BattleEngine:
         unit.rage = max(0, min(self.hero_config.rage.max, unit.rage + amount))
         return unit.rage - before
 
-    def _attack(self, round_no: int, actor: Unit, foes: List[Unit]) -> dict:
+    def _attack(self, round_no: int, actor: Unit, foes: List[Unit], percent: float = 100) -> dict:
         target = self._pick_default(foes)
-        damage, effect = self._hit(actor, target, 'normalAttack', 'normalDefense', 100)
+        damage, effect = self._hit(actor, target, 'normalAttack', 'normalDefense', percent)
         dealt = min(target.hp, damage)
         target.hp -= dealt
         actor_rage = self._gain_rage(actor, self.hero_config.rage.gain_on_attack)
@@ -353,7 +415,10 @@ class BattleEngine:
                     affectList=[dict(posId=target.pos, health=-dealt, rage=target_rage, hpmax=0, effect=effect, state=[])])
 
     def _cast(self, round_no: int, actor: Unit, spec: SkillSpec, foes: List[Unit], friends: List[Unit]) -> dict:
-        targets = self._select(spec, foes, friends)
+        targets = [actor] if spec.targeting == 'self' else self._select(spec, foes, friends)
+        # Spend before self-targeted gains, matching the client's actor-then-affects order.
+        actor_rage = self._gain_rage(actor, -self.hero_config.rage.cost)
+        actor_healed = 0
         affects = []
         for target in targets:
             if spec.kind == 'rage':
@@ -369,7 +434,12 @@ class BattleEngine:
                 dealt = min(target.hp, damage)
                 target.hp -= dealt
                 target_rage = self._gain_rage(target, self.hero_config.rage.gain_on_hit) if target.alive else 0
+                if target.alive and effect != EFFECT_DODGE:
+                    target_rage += self._gain_rage(target, -int(spec.rage_drain))
+                if spec.lifesteal:
+                    healed = min(actor.hp_max - actor.hp, dealt)
+                    actor.hp += healed
+                    actor_healed += healed
                 affects.append(dict(posId=target.pos, health=-dealt, rage=target_rage, hpmax=0, effect=effect, state=[]))
-        actor_rage = self._gain_rage(actor, -self.hero_config.rage.cost)
-        return dict(roundCount=round_no, Step=True, skillType=SKILL_RAGE, posId=actor.pos, health=0,
+        return dict(roundCount=round_no, Step=True, skillType=SKILL_RAGE, posId=actor.pos, health=actor_healed,
                     rage=actor_rage, hpmax=0, affectList=affects)

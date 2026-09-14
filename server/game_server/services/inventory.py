@@ -106,7 +106,15 @@ class Ledger:
         work = deepcopy(state)
         outcome = Outcome()
         for raw in consume:
-            item = self.entry(raw['Type'], raw['ID'], raw['Count'], raw)
+            if raw['Type'] == cfg.equip_type:
+                # Consumption addresses an owned instance, not a BaseEquips template.
+                ident = self.positive(raw['ID'])
+                if self.positive(raw['Count']) != 1:
+                    raise BusinessError('每个材料法宝实例只能消耗一次')
+                self.equipment.get(work, ident)
+                item = dict(Type=cfg.equip_type, ID=ident, Count=1)
+            else:
+                item = self.entry(raw['Type'], raw['ID'], raw['Count'], raw)
             self._consume(work, item)
             outcome.consume.append(item)
         for raw in rewards:
@@ -445,10 +453,10 @@ class InventoryService:
         slot = next((s for s in shop['shelf'] if s['Index'] == index), None)
         if slot is None:
             raise BusinessError('货架上没有该商品')
-        if slot['HaveBuyTimes'] >= 1:
+        if slot['HaveBuyTimes'] <= 0:
             raise BusinessError('该商品已售出')
         outcome = self.ledger.apply(ctx.state, rewards=slot['Item'],
                                     consume=[dict(Type=slot['PriceType'], ID=0, Count=slot['Price'])])
         slot = next(s for s in ctx.state['MysteryStore']['shelf'] if s['Index'] == index)
-        slot['HaveBuyTimes'] = 1
+        slot['HaveBuyTimes'] = 0
         return Reply({'Info': deepcopy(ctx.state['MysteryStore']['shelf'])}, self.ledger.global_for(ctx.state, outcome))

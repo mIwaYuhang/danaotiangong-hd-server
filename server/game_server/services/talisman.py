@@ -143,17 +143,36 @@ class TalismanService:
         consume = []
         if stage.get('mateId') and stage.get('mateCount'):
             consume.append(dict(Type=6, ID=int(stage['mateId']), Count=int(stage['mateCount'])))
-        materials = [x for x in (params.get('ids') or '').split(',') if x]
-        if stage.get('equipId') and stage.get('equipCount'):
-            if len(materials) != int(stage['equipCount']):
-                raise BusinessError(f'需要 {stage["equipCount"]} 件 {self.equipment.template(int(stage["equipId"]))["name"]} 作为材料')
-            for raw in materials:
-                material = self.equipment.get(state, self.ledger.positive(raw))
-                if material['equipId'] != int(stage['equipId']) or material['equipUserId'] == instance['equipUserId']:
-                    raise BusinessError('材料法宝不符合要求')
-                if material.get('heroId'):
-                    raise BusinessError('材料法宝请先卸下')
-                consume.append(dict(Type=10, ID=material['equipUserId'], Count=1))
+        raw_count = params.get('count', '0')
+        meteor_count = 0 if type(raw_count) in (int, str) and str(raw_count) == '0' else self.ledger.positive(raw_count)
+        raw_ids = params.get('ids', '')
+        if not isinstance(raw_ids, str):
+            raise BusinessError('材料法宝编号不合法')
+        materials = [self.ledger.positive(x) for x in raw_ids.split(',')] if raw_ids else []
+        if len(set(materials)) != len(materials):
+            raise BusinessError('不能重复使用同一件材料法宝')
+        equip_count = int(stage.get('equipCount') or 0)
+        equip_id = int(stage.get('equipId') or 0)
+        if len(materials) + meteor_count != equip_count:
+            raise BusinessError(f'需要 {equip_count} 件同名法宝或天外陨铁作为材料')
+        for ident in materials:
+            material = self.equipment.get(state, ident)
+            if material['equipId'] != equip_id or ident == instance['equipUserId']:
+                raise BusinessError('材料法宝不符合要求')
+            if material.get('heroId'):
+                raise BusinessError('材料法宝请先卸下')
+            consume.append(dict(Type=10, ID=ident, Count=1))
+        if meteor_count:
+            required = self.equipment.template(equip_id)
+            if required['quality'] != self.catalog['QualityType']['eOrange']:
+                raise BusinessError('天外陨铁仅可替代橙色装备')
+            meteor_ids = [int(k) for k, row in self.catalog['BaseMates'].items()
+                          if row.get('mateType') == self.catalog['PropType']['eYunTie']]
+            if len(meteor_ids) != 1:
+                raise BusinessError('天外陨铁配置不正确')
+            consume.append(dict(Type=6, ID=meteor_ids[0], Count=meteor_count))
+        if not consume:
+            raise BusinessError('喂灵材料配置为空，未提升')
         outcome = self.ledger.apply(state, consume=consume)
         instance = self.equipment.get(state, params['id'])
         instance['BreakthroughCount'] = next_stage
